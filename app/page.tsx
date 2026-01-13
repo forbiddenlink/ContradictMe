@@ -50,22 +50,34 @@ export default function Home() {
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
             <button 
-              onClick={() => handleChallenge("I think remote work is always better")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleChallenge("Nuclear energy is too dangerous")}
+              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
             >
-              "Remote work is always better"
+              💡 "Nuclear energy is too dangerous"
             </button>
             <button 
-              onClick={() => handleChallenge("Crypto is just a scam")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleChallenge("College is always worth it")}
+              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
             >
-              "Crypto is just a scam"
+              🎓 "College is always worth it"
             </button>
             <button 
-              onClick={() => handleChallenge("Social media does more harm than good")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleChallenge("AI will cause mass unemployment")}
+              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
             >
-              "Social media does more harm than good"
+              🤖 "AI will cause mass unemployment"
+            </button>
+            <button 
+              onClick={() => handleChallenge("UBI makes people lazy")}
+              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+            >
+              💰 "UBI makes people lazy"
+            </button>
+            <button 
+              onClick={() => handleChallenge("EVs are always better for the environment")}
+              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+            >
+              🚗 "EVs are always green"
             </button>
           </div>
         </div>

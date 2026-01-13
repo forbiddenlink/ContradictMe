@@ -120,22 +120,28 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         <div className="px-4 pb-4">
           <div className="flex flex-wrap gap-2 mb-4">
             <button
-              onClick={() => handleSuggestedPrompt("I think remote work is always better")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleSuggestedPrompt("Nuclear energy is too dangerous")}
+              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
             >
-              "Remote work is always better"
+              💡 Nuclear energy
             </button>
             <button
-              onClick={() => handleSuggestedPrompt("Crypto is just a scam")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleSuggestedPrompt("College is always worth it")}
+              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
             >
-              "Crypto is just a scam"
+              🎓 College ROI
             </button>
             <button
-              onClick={() => handleSuggestedPrompt("Social media does more harm than good")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all"
+              onClick={() => handleSuggestedPrompt("AI will cause mass unemployment")}
+              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
             >
-              "Social media does more harm than good"
+              🤖 AI & Jobs
+            </button>
+            <button
+              onClick={() => handleSuggestedPrompt("You need meat to be healthy")}
+              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
+            >
+              🥗 Plant-based diet
             </button>
           </div>
         </div>
