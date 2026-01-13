@@ -3,22 +3,24 @@
 @tailwind utilities;
 
 :root {
-  /* Color System */
-  --navy-900: #1A2332;
-  --navy-800: #2A3C52;
-  --navy-700: #3A4D63;
-  --navy-600: #4A5D73;
+  /* Modern 2026 Color System - Deep Cosmic Palette */
+  --deep-900: #0A0E27;
+  --deep-800: #151B3D;
+  --deep-700: #1E2749;
+  --deep-600: #2A3558;
 
-  --terracotta-500: #E8A87C;
-  --terracotta-400: #EDB890;
-  --terracotta-300: #F2C8A4;
+  --electric-500: #6366F1;
+  --electric-400: #818CF8;
+  --electric-300: #A5B4FC;
+  --electric-200: #C7D2FE;
 
-  --sage-700: #3D5A46;
-  --sage-600: #5A7C65;
-  --sage-500: #779E83;
+  --accent-500: #EC4899;
+  --accent-400: #F472B6;
+  --accent-300: #F9A8D4;
 
-  --amber-500: #F57C00;
-  --crimson-500: #C62828;
+  --success-500: #10B981;
+  --warning-500: #F59E0B;
+  --crimson-500: #EF4444;
 
   --gray-50: #F8F9FA;
   --gray-100: #F1F3F5;
@@ -34,15 +36,15 @@
   --glass-dark: rgba(26, 35, 50, 0.05);
 
   /* Semantic Colors */
-  --color-primary: var(--navy-800);
-  --color-accent: var(--terracotta-500);
-  --color-background: var(--gray-50);
+  --color-primary: var(--deep-800);
+  --color-accent: var(--electric-500);
+  --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-text-primary: var(--navy-800);
-  --color-text-secondary: var(--navy-700);
+  --color-text-primary: var(--deep-800);
+  --color-text-secondary: var(--deep-700);
   --color-text-muted: var(--gray-600);
   --color-border: var(--gray-200);
-  --color-border-hover: var(--gray-300);
+  --color-border-hover: var(--electric-200);
 
   /* Typography */
   --text-xs: 0.75rem;

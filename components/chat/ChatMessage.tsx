@@ -30,8 +30,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         <div
           className={`rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-all duration-300 ${
             isUser
-              ? 'bg-gradient-to-br from-terracotta-500 to-terracotta-400 text-white'
-              : 'bg-white/90 backdrop-blur-sm border border-gray-200 text-navy-800'
+              ? 'bg-gradient-to-br from-electric-500 to-accent-500 text-white'
+              : 'bg-white/90 backdrop-blur-sm border border-gray-200 text-deep-800'
           }`}
         >
           {isUser ? (

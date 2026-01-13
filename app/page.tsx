@@ -17,14 +17,14 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-electric-50/30 to-accent-50/20">
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-6 pt-20 pb-16">
         <div className="text-center mb-16">
-          <h1 className="title-page mb-6 text-balance">
-            An AI that <span className="text-terracotta-500">disagrees</span> with you
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-balance bg-gradient-to-r from-deep-900 via-electric-600 to-accent-600 bg-clip-text text-transparent">
+            An AI that disagrees with you
           </h1>
-          <p className="text-xl text-navy-700 leading-relaxed max-w-2xl mx-auto text-balance">
+          <p className="text-xl text-deep-700 leading-relaxed max-w-2xl mx-auto text-balance">
             Challenge your beliefs with the strongest counterarguments, backed by research.
             Fight echo chambers. Think critically.
           </p>
@@ -38,12 +38,12 @@ export default function Home() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleChallenge()}
-              className="w-full px-5 py-4 pr-40 rounded-2xl border border-gray-200 focus:border-terracotta-400 focus:ring-2 focus:ring-terracotta-100 outline-none transition-all placeholder:text-gray-400 bg-white"
+              className="w-full px-5 py-4 pr-40 rounded-2xl border-2 border-gray-200 focus:border-electric-400 focus:ring-4 focus:ring-electric-100 outline-none transition-all placeholder:text-gray-400 bg-white/80 backdrop-blur-sm shadow-sm"
               placeholder="Tell me something you believe strongly..."
             />
             <button
               onClick={() => handleChallenge()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-3 bg-terracotta-500 text-white rounded-xl font-semibold text-sm transition-all hover:bg-terracotta-400 hover:-translate-y-[calc(50%+2px)]"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-3 bg-gradient-to-r from-electric-500 to-accent-500 text-white rounded-xl font-semibold text-sm transition-all hover:shadow-lg hover:-translate-y-[calc(50%+2px)] hover:scale-105"
             >
               Challenge Me
             </button>
@@ -51,33 +51,33 @@ export default function Home() {
           <div className="mt-4 flex flex-wrap gap-3">
             <button 
               onClick={() => handleChallenge("Nuclear energy is too dangerous")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+              className="px-5 py-3 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-md transition-all"
             >
-              💡 "Nuclear energy is too dangerous"
+              Nuclear energy
             </button>
             <button 
               onClick={() => handleChallenge("College is always worth it")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+              className="px-5 py-3 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-md transition-all"
             >
-              🎓 "College is always worth it"
+              College ROI
             </button>
             <button 
               onClick={() => handleChallenge("AI will cause mass unemployment")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+              className="px-5 py-3 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-md transition-all"
             >
-              🤖 "AI will cause mass unemployment"
+              AI & Jobs
             </button>
             <button 
               onClick={() => handleChallenge("UBI makes people lazy")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+              className="px-5 py-3 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-md transition-all"
             >
-              💰 "UBI makes people lazy"
+              Universal basic income
             </button>
             <button 
               onClick={() => handleChallenge("EVs are always better for the environment")}
-              className="px-5 py-3 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-md"
+              className="px-5 py-3 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-md transition-all"
             >
-              🚗 "EVs are always green"
+              Electric vehicles
             </button>
           </div>
         </div>

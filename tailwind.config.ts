@@ -9,32 +9,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          900: '#1A2332',
-          800: '#2A3C52',
-          700: '#3A4D63',
-          600: '#4A5D73',
+        // Modern 2026 Deep Cosmic Palette
+        deep: {
+          900: '#0A0E27',
+          800: '#151B3D',
+          700: '#1E2749',
+          600: '#2A3558',
         },
-        terracotta: {
-          500: '#E8A87C',
-          400: '#EDB890',
-          300: '#F2C8A4',
+        electric: {
+          500: '#6366F1',
+          400: '#818CF8',
+          300: '#A5B4FC',
+          200: '#C7D2FE',
+          100: '#E0E7FF',
         },
-        sage: {
-          700: '#3D5A46',
-          600: '#5A7C65',
-          500: '#779E83',
+        accent: {
+          500: '#EC4899',
+          400: '#F472B6',
+          300: '#F9A8D4',
         },
-        amber: {
-          500: '#F57C00',
+        success: {
+          500: '#10B981',
+        },
+        warning: {
+          500: '#F59E0B',
         },
         crimson: {
-          500: '#C62828',
+          500: '#EF4444',
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'IBM Plex Mono', 'monospace'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       spacing: {
         '18': '4.5rem',

@@ -121,27 +121,27 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => handleSuggestedPrompt("Nuclear energy is too dangerous")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
-              💡 Nuclear energy
+              Nuclear energy
             </button>
             <button
               onClick={() => handleSuggestedPrompt("College is always worth it")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
-              🎓 College ROI
+              College ROI
             </button>
             <button
               onClick={() => handleSuggestedPrompt("AI will cause mass unemployment")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
-              🤖 AI & Jobs
+              AI & Jobs
             </button>
             <button
               onClick={() => handleSuggestedPrompt("You need meat to be healthy")}
-              className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-sm font-medium text-navy-700 hover:bg-white/80 hover:border-gray-300 transition-all hover:shadow-sm"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
-              🥗 Plant-based diet
+              Plant-based diet
             </button>
           </div>
         </div>
