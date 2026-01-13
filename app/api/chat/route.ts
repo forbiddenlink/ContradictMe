@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { message, conversationId } = await req.json();
+    const { message } = await req.json();
 
     console.log('Received message:', message);
 
@@ -54,8 +54,8 @@ export async function POST(req: NextRequest) {
     // Extract text from parts array
     let responseText = 'No response from agent';
     if (data.parts && Array.isArray(data.parts)) {
-      const textParts = data.parts.filter((part: any) => part.type === 'text' || part.text);
-      responseText = textParts.map((part: any) => part.text).join('\n');
+      const textParts = data.parts.filter((part: { type?: string; text?: string }) => part.type === 'text' || part.text);
+      responseText = textParts.map((part: { text: string }) => part.text).join('\n');
     } else if (data.text) {
       responseText = data.text;
     } else if (data.response) {

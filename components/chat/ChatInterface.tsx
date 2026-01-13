@@ -36,6 +36,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       hasProcessedInitial.current = true;
       handleSendMessage(initialMessage);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialMessage]);
 
   const handleSendMessage = async (content: string) => {
@@ -103,11 +104,11 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           <ChatMessage key={message.id} message={message} />
         ))}
         {isLoading && (
-          <div className="flex items-center space-x-2 text-navy-600">
+          <div className="flex items-center space-x-2 text-slate-600">
             <div className="flex space-x-1">
-              <div className="w-2 h-2 bg-terracotta-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-terracotta-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-terracotta-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
             <span className="text-sm">Searching for counterarguments...</span>
           </div>
@@ -121,25 +122,25 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => handleSuggestedPrompt("Nuclear energy is too dangerous")}
-              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-slate-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
               Nuclear energy
             </button>
             <button
               onClick={() => handleSuggestedPrompt("College is always worth it")}
-              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-slate-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
               College ROI
             </button>
             <button
               onClick={() => handleSuggestedPrompt("AI will cause mass unemployment")}
-              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-slate-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
               AI & Jobs
             </button>
             <button
               onClick={() => handleSuggestedPrompt("You need meat to be healthy")}
-              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-deep-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
+              className="px-4 py-2 bg-white/70 backdrop-blur-md border border-gray-200/50 rounded-full text-sm font-medium text-slate-700 hover:bg-white hover:border-electric-200 hover:shadow-sm transition-all"
             >
               Plant-based diet
             </button>

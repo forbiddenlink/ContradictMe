@@ -34,12 +34,12 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
         placeholder="Tell me something you believe strongly..."
         disabled={isLoading}
         autoFocus
-        className="flex-1 px-5 py-4 rounded-2xl border border-gray-200 focus:border-terracotta-400 focus:ring-2 focus:ring-terracotta-100 outline-none transition-all placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+        className="flex-1 px-5 py-4 rounded-2xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none transition-all placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed bg-white"
       />
       <button
         onClick={handleSend}
         disabled={!input.trim() || isLoading}
-        className="px-6 py-4 bg-terracotta-500 text-white rounded-2xl font-semibold text-sm transition-all hover:bg-terracotta-400 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        className="px-6 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-2xl font-semibold text-sm transition-all hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
         Challenge Me
       </button>

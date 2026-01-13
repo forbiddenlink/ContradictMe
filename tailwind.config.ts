@@ -9,30 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Modern 2026 Deep Cosmic Palette
-        deep: {
-          900: '#0A0E27',
-          800: '#151B3D',
-          700: '#1E2749',
-          600: '#2A3558',
+        // 2026 Deep Ocean Professional Palette
+        slate: {
+          950: '#0A1628',
+          900: '#0F2137',
+          800: '#1A2F47',
+          700: '#2D4057',
+          600: '#455A74',
         },
-        electric: {
-          500: '#6366F1',
-          400: '#818CF8',
-          300: '#A5B4FC',
-          200: '#C7D2FE',
-          100: '#E0E7FF',
+        teal: {
+          600: '#0D7C7D',
+          500: '#0D9A9B',
+          400: '#1DBAB4',
+          300: '#4DD4CF',
+          200: '#8CE8E4',
+          100: '#D1F5F3',
         },
-        accent: {
-          500: '#EC4899',
-          400: '#F472B6',
-          300: '#F9A8D4',
+        amber: {
+          600: '#D97706',
+          500: '#F59E0B',
+          400: '#FBBF24',
+          300: '#FCD34D',
         },
         success: {
           500: '#10B981',
-        },
-        warning: {
-          500: '#F59E0B',
         },
         crimson: {
           500: '#EF4444',

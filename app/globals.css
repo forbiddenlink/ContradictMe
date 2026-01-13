@@ -3,23 +3,26 @@
 @tailwind utilities;
 
 :root {
-  /* Modern 2026 Color System - Deep Cosmic Palette */
-  --deep-900: #0A0E27;
-  --deep-800: #151B3D;
-  --deep-700: #1E2749;
-  --deep-600: #2A3558;
+  /* 2026 Deep Ocean Professional Palette */
+  --slate-950: #0A1628;
+  --slate-900: #0F2137;
+  --slate-800: #1A2F47;
+  --slate-700: #2D4057;
+  --slate-600: #455A74;
 
-  --electric-500: #6366F1;
-  --electric-400: #818CF8;
-  --electric-300: #A5B4FC;
-  --electric-200: #C7D2FE;
+  --teal-600: #0D7C7D;
+  --teal-500: #0D9A9B;
+  --teal-400: #1DBAB4;
+  --teal-300: #4DD4CF;
+  --teal-200: #8CE8E4;
+  --teal-100: #D1F5F3;
 
-  --accent-500: #EC4899;
-  --accent-400: #F472B6;
-  --accent-300: #F9A8D4;
+  --amber-600: #D97706;
+  --amber-500: #F59E0B;
+  --amber-400: #FBBF24;
+  --amber-300: #FCD34D;
 
   --success-500: #10B981;
-  --warning-500: #F59E0B;
   --crimson-500: #EF4444;
 
   --gray-50: #F8F9FA;
@@ -36,15 +39,15 @@
   --glass-dark: rgba(26, 35, 50, 0.05);
 
   /* Semantic Colors */
-  --color-primary: var(--deep-800);
-  --color-accent: var(--electric-500);
+  --color-primary: var(--slate-800);
+  --color-accent: var(--teal-500);
   --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-text-primary: var(--deep-800);
-  --color-text-secondary: var(--deep-700);
+  --color-text-primary: var(--slate-900);
+  --color-text-secondary: var(--slate-700);
   --color-text-muted: var(--gray-600);
   --color-border: var(--gray-200);
-  --color-border-hover: var(--electric-200);
+  --color-border-hover: var(--teal-200);
 
   /* Typography */
   --text-xs: 0.75rem;
@@ -97,45 +100,80 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-navy-800 font-sans antialiased;
+    @apply bg-gray-50 text-slate-900 font-sans antialiased;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
   /* Custom focus ring (better than default) */
   *:focus-visible {
-    @apply outline-none ring-2 ring-terracotta-500 ring-offset-2 rounded;
+    @apply outline-none ring-2 ring-teal-500 ring-offset-2 rounded;
   }
 }
 
 @layer components {
-  /* Argument Card - Liquid Glass Effect */
+  /* Argument Card - Enhanced Liquid Glass Effect with Noise */
   .argument-card {
-    @apply p-6 rounded-2xl transition-all duration-300;
+    @apply p-6 rounded-2xl transition-all duration-500;
     background: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0.7)
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.65)
     );
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow:
       0 1px 3px rgba(26, 35, 50, 0.04),
-      0 8px 24px rgba(26, 35, 50, 0.08);
+      0 8px 24px rgba(26, 35, 50, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
   .argument-card:hover {
-    @apply -translate-y-1;
+    @apply -translate-y-1 scale-[1.01];
     box-shadow:
       0 4px 12px rgba(26, 35, 50, 0.08),
-      0 16px 48px rgba(26, 35, 50, 0.12);
-    border-color: rgba(232, 168, 124, 0.3);
+      0 20px 60px rgba(13, 154, 155, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border-color: rgba(29, 186, 180, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.75)
+    );
   }
 
-  /* Quality Score Badge */
+  /* Magnetic Button Base */
+  .btn-magnetic {
+    @apply relative overflow-hidden;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+
+  .btn-magnetic:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 24px -10px rgba(13, 154, 155, 0.3);
+  }
+
+  .btn-magnetic:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Liquid Gradient Animation */
+  @keyframes liquid-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .bg-liquid {
+    background-size: 200% 200%;
+    animation: liquid-shift 8s ease-in-out infinite;
+  }
+
+  /* Quality Score Badge - Glassmorphic */
   .quality-score {
     @apply flex items-center gap-2 px-4 py-2 rounded-xl;
-    background: rgba(90, 124, 101, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(13, 154, 155, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   /* Source Card */
@@ -152,12 +190,12 @@
 
   /* Chat Input */
   .chat-input-field {
-    @apply w-full px-6 py-4 pr-32 text-base font-sans text-navy-800 bg-white border-2 border-gray-200 rounded-2xl outline-none transition-all duration-200 resize-none min-h-[56px] max-h-[200px];
+    @apply w-full px-6 py-4 pr-32 text-base font-sans text-slate-900 bg-white border-2 border-gray-200 rounded-2xl outline-none transition-all duration-200 resize-none min-h-[56px] max-h-[200px];
   }
 
   .chat-input-field:focus {
-    @apply border-terracotta-500;
-    box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.1);
+    @apply border-teal-500;
+    box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
   }
 
   /* Skeleton Loading */
@@ -175,15 +213,15 @@
 
   /* Typography Utilities */
   .title-page {
-    @apply text-4xl font-semibold leading-tight tracking-tight text-navy-900;
+    @apply text-4xl font-semibold leading-tight tracking-tight text-slate-950;
   }
 
   .title-argument {
-    @apply text-2xl font-semibold leading-snug text-navy-800;
+    @apply text-2xl font-semibold leading-snug text-slate-900;
   }
 
   .text-body {
-    @apply text-base font-normal leading-normal text-navy-700;
+    @apply text-base font-normal leading-normal text-slate-700;
   }
 
   .text-citation {

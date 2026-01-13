@@ -43,7 +43,7 @@ export default function TestChat() {
         </div>
 
         <p className="mt-4 text-sm text-gray-600">
-          If you can type here, the issue is with our chat component. If not, it's a browser/system issue.
+          If you can type here, the issue is with our chat component. If not, it&apos;s a browser/system issue.
         </p>
       </div>
     </div>

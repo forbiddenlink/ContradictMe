@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import ChatInterface from '@/components/chat/ChatInterface';
 
-export default function ChatPage() {
+function ChatContent() {
   const searchParams = useSearchParams();
   const [initialMessage, setInitialMessage] = useState<string | null>(null);
 
@@ -15,31 +16,37 @@ export default function ChatPage() {
     }
   }, [searchParams]);
 
+  return <ChatInterface initialMessage={initialMessage} />;
+}
+
+export default function ChatPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <h1 className="text-2xl font-bold text-navy-900">
-              Contradict<span className="text-terracotta-500">Me</span>
+            <h1 className="text-2xl font-bold text-slate-950">
+              Contradict<span className="text-teal-600">Me</span>
             </h1>
-            <span className="px-3 py-1 bg-terracotta-100 text-terracotta-700 rounded-full text-xs font-semibold">
+            <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-semibold">
               BETA
             </span>
           </div>
-          <a 
+          <Link
             href="/"
-            className="text-sm text-navy-600 hover:text-navy-900 font-medium transition-colors"
+            className="text-sm text-slate-700 hover:text-slate-950 font-medium transition-colors"
           >
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </header>
 
       {/* Chat Container */}
       <div className="flex-1 min-h-0 max-w-4xl w-full mx-auto flex flex-col">
-        <ChatInterface initialMessage={initialMessage} />
+        <Suspense fallback={<div className="flex items-center justify-center h-full">Loading...</div>}>
+          <ChatContent />
+        </Suspense>
       </div>
 
       {/* Footer */}

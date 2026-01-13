@@ -30,8 +30,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         <div
           className={`rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-all duration-300 ${
             isUser
-              ? 'bg-gradient-to-br from-electric-500 to-accent-500 text-white'
-              : 'bg-white/90 backdrop-blur-sm border border-gray-200 text-deep-800'
+              ? 'bg-gradient-to-br from-teal-600 to-cyan-600 text-white'
+              : 'bg-white/90 backdrop-blur-sm border border-gray-200 text-slate-800'
           }`}
         >
           {isUser ? (
@@ -42,7 +42,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
               {parsed && parsed.intro && (
                 <div className="prose prose-sm max-w-none">
                   {parsed.intro.split('\n').map((line, i) => (
-                    <p key={i} className="text-navy-700 leading-relaxed mb-2">
+                    <p key={i} className="text-slate-700 leading-relaxed mb-2">
                       {line}
                     </p>
                   ))}
@@ -68,7 +68,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                               // Bold headers
                               if (line.startsWith('**') && line.endsWith('**')) {
                                 return (
-                                  <p key={i} className="font-bold text-navy-900 text-base mb-2">
+                                  <p key={i} className="font-bold text-slate-900 text-base mb-2">
                                     {line.replace(/\*\*/g, '')}
                                   </p>
                                 );
@@ -77,7 +77,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                               // Source citations
                               if (line.startsWith('📚')) {
                                 return (
-                                  <p key={i} className="text-sm text-navy-600 bg-white px-3 py-2 rounded-lg mt-3">
+                                  <p key={i} className="text-sm text-slate-600 bg-white px-3 py-2 rounded-lg mt-3">
                                     {line}
                                   </p>
                                 );
@@ -86,7 +86,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                               // Evidence strength
                               if (line.includes('Evidence Strength:')) {
                                 return (
-                                  <p key={i} className="text-sm font-semibold text-sage-600 mt-2">
+                                  <p key={i} className="text-sm font-semibold text-success-500 mt-2">
                                     {line}
                                   </p>
                                 );
@@ -102,7 +102,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                               }
                               
                               return (
-                                <p key={i} className="text-navy-700 leading-relaxed mb-2">
+                                <p key={i} className="text-slate-700 leading-relaxed mb-2">
                                   {line}
                                 </p>
                               );
@@ -114,7 +114,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                     
                     // Regular text
                     return (
-                      <div key={idx} className="text-navy-700">
+                      <div key={idx} className="text-slate-700">
                         {section.split('\n').map((line, i) => line.trim() && (
                           <p key={i} className="mb-2">{line}</p>
                         ))}
