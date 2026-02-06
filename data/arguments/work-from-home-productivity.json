@@ -1,0 +1,27 @@
+{
+  "id": "work-from-home-productivity",
+  "topic": "Remote Work Productivity",
+  "position": "for",
+  "mainClaim": "Remote work increases productivity for most knowledge workers while improving work-life balance",
+  "evidence": "Stanford 2-year controlled study of 16,000 workers showed remote employees completed 13% more calls with same quality scores. Microsoft's 182-country study found 87% of remote workers report equal or higher productivity. Commute elimination saves average worker 54 minutes daily, adding 220+ hours annually. Meta's internal data showed remote engineers shipped 15% more code with fewer bugs.",
+  "supportingPoints": [
+    "Reduced office distractions allow for longer periods of deep focus work",
+    "Flexibility enables work during peak cognitive hours (varies by individual)",
+    "Geographic flexibility allows hiring best talent regardless of location",
+    "Environmental benefits: 54M tons CO2 reduction from eliminated commutes"
+  ],
+  "qualityScore": 90,
+  "sourceCredibility": 94,
+  "evidenceStrength": 88,
+  "sourceMetadata": {
+    "authors": ["Dr. Nicholas Bloom", "Dr. James Liang", "Microsoft Research"],
+    "institution": "Stanford University & Microsoft",
+    "yearPublished": 2024,
+    "publicationType": "Controlled Experiment & Large-scale Survey",
+    "peerReviewed": true,
+    "citationCount": 892
+  },
+  "limitations": "Results vary significantly by role type - creative collaboration may suffer. Junior employees benefit less without in-person mentorship. Requires discipline and proper home workspace. Hybrid models may capture best of both approaches.",
+  "tags": ["Remote Work", "Productivity", "Work-Life Balance", "Future of Work"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

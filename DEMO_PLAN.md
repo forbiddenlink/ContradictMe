@@ -13,6 +13,7 @@
 ### Part 1: The Problem (30 seconds)
 
 **Script:**
+
 > "We live in echo chambers. Algorithms show us what we already believe. We rarely encounter the STRONGEST arguments against our views - just straw-man versions that are easy to dismiss. What if an AI actively challenged you instead of confirming your biases?"
 
 **Visual:** Split screen showing typical search results (confirming bias) vs ContradictMe approach
@@ -25,6 +26,7 @@
 **User Input:** "I think remote work is always better than office work"
 
 **Agent Response (live):**
+
 > "Let me present the strongest case for in-office work:
 >
 > **1. Innovation & Breakthrough Ideas (Quality Score: 87/100)**  
@@ -47,6 +49,7 @@
 > What would you like to explore further?"
 
 **Highlight:**
+
 - Quality scores visible
 - Source credibility indicators
 - Acknowledges nuance
@@ -60,6 +63,7 @@
 **User Input:** "Cryptocurrency is just a scam"
 
 **Agent Response (live):**
+
 > "I hear your skepticism. Let me steel-man the case for crypto:
 >
 > **1. Financial Inclusion (Quality Score: 82/100)**  
@@ -82,6 +86,7 @@
 > Does this change your view on any specific use case?"
 
 **Highlight:**
+
 - Respectful tone ("I hear your skepticism")
 - Strong evidence from credible sources
 - Acknowledges the user's concerns
@@ -116,6 +121,7 @@
 ### Part 5: The Impact (30 seconds)
 
 **Script:**
+
 > "ContradictMe isn't about changing minds - it's about better thinking. It helps students write better papers, professionals make better decisions, and all of us escape our echo chambers.
 >
 > In a world of polarization and filter bubbles, this is an AI that makes us more thoughtful, not more certain."
@@ -127,6 +133,7 @@
 ### Part 6: Call to Action (20 seconds)
 
 **Script:**
+
 > "Try it yourself: [contradictme.app]
 >
 > Tell me a belief you hold strongly, and I'll challenge it with the best counterarguments I can find.
@@ -175,11 +182,13 @@
 ### Recording Setup
 
 **Equipment:**
+
 - Screen recording: Loom or OBS
 - Audio: Quality microphone
 - Editing: Final Cut Pro / Adobe Premiere
 
 **Shots Needed:**
+
 1. Opening hook (15 sec)
 2. Live interaction - Demo 1 (90 sec)
 3. Live interaction - Demo 2 (90 sec)
@@ -188,6 +197,7 @@
 6. Call to action (20 sec)
 
 **Editing:**
+
 - Fast-paced (keep under 7 minutes)
 - Captions/subtitles throughout
 - Highlight key quality scores
@@ -237,16 +247,19 @@
 ### Differentiators
 
 **vs. Traditional Search:**
+
 - Actively seeks opposing views
 - Quality-ranked counterarguments
 - Conversational exploration
 
 **vs. ChatGPT:**
+
 - Specialized for counterarguments
 - Cited, credible sources
 - Purpose-built ranking (not just LLM generation)
 
 **vs. Debate Forums:**
+
 - Highest quality arguments only
 - No toxicity or bad faith
 - Intelligent agent guidance
@@ -295,27 +308,27 @@
 
 [AGENT RESPONDS]
 
-"Even for beliefs I hold strongly, ContradictMe finds 
+"Even for beliefs I hold strongly, ContradictMe finds
 the STRONGEST counterarguments, not weak straw-man versions."
 
 ---
 
 [TRANSITION: Technical view]
 
-"Behind the scenes, this is powered by Algolia Agent Studio 
+"Behind the scenes, this is powered by Algolia Agent Studio
 and three search indices:"
 
 [SHOW: Algolia dashboard]
 
 "- 500+ indexed counterarguments
- - 200+ research studies  
+ - 200+ research studies
  - 100+ expert opinions
- 
+
  Custom ranking by:
  - Source credibility
- - Evidence strength  
+ - Evidence strength
  - Argument quality
- 
+
  Results in under 50 milliseconds."
 
 ---
@@ -329,7 +342,7 @@ It helps students write better papers.
 Professionals make better decisions.
 All of us escape our echo chambers.
 
-In a world of polarization, this is AI that 
+In a world of polarization, this is AI that
 makes us more thoughtful, not more certain."
 
 ---
@@ -356,6 +369,7 @@ Let's make AI that challenges us to think better."
 **Title:** "I Built an AI That Disagrees With You - And Why That's a Good Thing"
 
 **Structure:**
+
 1. The problem (echo chambers)
 2. The solution (ContradictMe)
 3. Technical implementation (Algolia deep-dive)
@@ -367,14 +381,15 @@ Let's make AI that challenges us to think better."
 ### Social Media Teaser
 
 **Twitter/X:**
+
 > "I built an AI that actively disagrees with you.
-> 
+>
 > Tell it 'Remote work is always better' and it'll present the strongest case for offices.
-> 
+>
 > Say 'Crypto is a scam' and it'll steel-man the case for cryptocurrency.
-> 
+>
 > Try it: [link]
-> 
+>
 > Built for @Algolia Agent Studio Challenge"
 
 **Include:** Video clip of most compelling demo interaction
@@ -384,12 +399,14 @@ Let's make AI that challenges us to think better."
 ## Metrics to Highlight
 
 **During Demo:**
+
 - "500+ curated counterarguments"
 - "87/100 average quality score"
 - "<2 second response time"
 - "200+ research studies indexed"
 
 **For Impact:**
+
 - "80% of beta users said it changed how they think about a topic"
 - "4.6/5 average argument quality rating"
 - "65% click through to read full sources"
@@ -401,6 +418,7 @@ Let's make AI that challenges us to think better."
 ### 1. Use of Underlying Technology (Algolia)
 
 **Demonstrate:**
+
 - Agent Studio conversational flow
 - Multi-index federated search
 - Custom ranking algorithm
@@ -411,6 +429,7 @@ Let's make AI that challenges us to think better."
 ### 2. Usability and User Experience
 
 **Demonstrate:**
+
 - Clean, intuitive interface
 - Respectful, non-confrontational tone
 - Clear source citations
@@ -421,6 +440,7 @@ Let's make AI that challenges us to think better."
 ### 3. Creativity
 
 **Demonstrate:**
+
 - Counter-intuitive approach (AI that disagrees)
 - Steel-manning (not straw-manning)
 - Novel application of conversational AI
@@ -429,6 +449,7 @@ Let's make AI that challenges us to think better."
 ### 4. Innovation
 
 **Demonstrate:**
+
 - First of its kind
 - Addresses real societal problem (echo chambers)
 - Technical sophistication (multi-factor ranking)

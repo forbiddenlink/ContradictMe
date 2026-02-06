@@ -210,54 +210,37 @@ async function createIndices() {
       'supportingPoints',
       'tags',
       'domain',
-      'opposingBeliefs'
+      'opposingBeliefs',
     ],
     attributesForFaceting: [
       'filterOnly(position)',
       'searchable(domain)',
       'searchable(argumentType)',
       'filterOnly(sourceMetadata.yearPublished)',
-      'filterOnly(qualityScores.overall)'
+      'filterOnly(qualityScores.overall)',
     ],
     customRanking: [
       'desc(qualityScores.overall)',
       'desc(qualityScores.sourceCredibility)',
-      'desc(qualityScores.evidenceStrength)'
+      'desc(qualityScores.evidenceStrength)',
     ],
     typoTolerance: 'strict',
     distinct: true,
-    attributeForDistinct: 'mainClaim'
+    attributeForDistinct: 'mainClaim',
   });
 
   // Create Research index
   const researchIndex = client.initIndex('prod_RESEARCH');
   await researchIndex.setSettings({
-    searchableAttributes: [
-      'studyTitle',
-      'findings.finding',
-      'methodology',
-      'domain'
-    ],
-    customRanking: [
-      'desc(credibilityScore)',
-      'desc(sampleSize)',
-      'desc(yearPublished)'
-    ]
+    searchableAttributes: ['studyTitle', 'findings.finding', 'methodology', 'domain'],
+    customRanking: ['desc(credibilityScore)', 'desc(sampleSize)', 'desc(yearPublished)'],
   });
 
   // Create Experts index
   const expertsIndex = client.initIndex('prod_EXPERTS');
   await expertsIndex.setSettings({
-    searchableAttributes: [
-      'expertName',
-      'opinion',
-      'credentials',
-      'domain',
-      'expertise'
-    ],
-    customRanking: [
-      'desc(credibilityScore)'
-    ]
+    searchableAttributes: ['expertName', 'opinion', 'credentials', 'domain', 'expertise'],
+    customRanking: ['desc(credibilityScore)'],
   });
 
   console.log('✅ Indices created successfully');
@@ -267,6 +250,7 @@ createIndices();
 ```
 
 Run with:
+
 ```bash
 npx tsx scripts/indexing/create-indices.ts
 ```
@@ -369,7 +353,7 @@ if __name__ == "__main__":
         "cryptocurrency legitimate use cases",
         "social media positive effects studies"
     ]
-    
+
     for topic in topics:
         papers = scrape_google_scholar(topic)
         arguments = [extract_arguments(p) for p in papers]
@@ -423,7 +407,7 @@ describe('ArgumentCard', () => {
         }}
       />
     );
-    
+
     expect(screen.getByText('Test claim')).toBeInTheDocument();
     expect(screen.getByText(/87/)).toBeInTheDocument();
   });
@@ -502,21 +486,25 @@ export default function RootLayout({ children }) {
 ### Common Issues
 
 **Issue: Algolia search not returning results**
+
 - Check API keys are correct
 - Verify indices are populated
 - Check filters aren't too restrictive
 
 **Issue: Agent Studio not responding**
+
 - Verify Agent ID and API key
 - Check system prompt configuration
 - Test with simple queries first
 
 **Issue: Slow build times**
+
 - Enable Next.js incremental builds
 - Optimize images
 - Review bundle size
 
 **Issue: TypeScript errors**
+
 - Run `npm run type-check`
 - Update type definitions
 - Check tsconfig.json settings

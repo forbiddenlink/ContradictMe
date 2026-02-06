@@ -25,11 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "On the Road to Clean: Electric Vehicle Lifecycle Emissions in Grid Context",
-    "authors": [
-      "Prof. Randall Field",
-      "Dr. Sergey Paltsev",
-      "Prof. Jessica Trancik"
-    ],
+    "authors": ["Prof. Randall Field", "Dr. Sergey Paltsev", "Prof. Jessica Trancik"],
     "institution": "MIT Energy Initiative",
     "publicationType": "Peer-reviewed study",
     "journal": "Nature Climate Change",
@@ -44,25 +40,14 @@
   "evidenceStrength": 89,
   "argumentCoherence": 91,
   "relevanceScore": 96,
-  "tags": [
-    "electric vehicles",
-    "climate change",
-    "environment",
-    "sustainability",
-    "energy"
-  ],
+  "tags": ["electric vehicles", "climate change", "environment", "sustainability", "energy"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "lifecycle-assessment",
     "domain": "environment",
     "subDomain": "transportation",
     "strength": "strong",
-    "tags": [
-      "EVs",
-      "climate",
-      "environment",
-      "energy"
-    ],
+    "tags": ["EVs", "climate", "environment", "energy"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

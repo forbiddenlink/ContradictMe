@@ -1,0 +1,27 @@
+{
+  "id": "artificial-meat-environment",
+  "topic": "Lab-Grown Meat",
+  "position": "for",
+  "mainClaim": "Cultivated meat could dramatically reduce environmental impact of food production while meeting protein demands",
+  "evidence": "Oxford lifecycle analysis shows cultivated meat uses 95% less land, 78% less water, and produces 96% fewer greenhouse gas emissions than conventional beef. Current global livestock system uses 77% of agricultural land but provides only 18% of calories. Scaling cultivated meat could free 3 billion hectares for rewilding/carbon sequestration. Good Food Institute projects price parity with conventional meat by 2030 as production scales.",
+  "supportingPoints": [
+    "Eliminates animal welfare concerns and zoonotic disease risks",
+    "Precision nutrition - can optimize fatty acid profiles and reduce harmful compounds",
+    "Reduces antibiotic use - livestock consume 70% of world's antibiotics",
+    "Food security - decouples protein production from land/water availability"
+  ],
+  "qualityScore": 87,
+  "sourceCredibility": 90,
+  "evidenceStrength": 85,
+  "sourceMetadata": {
+    "authors": ["Dr. Hanna Tuomisto", "Good Food Institute", "Oxford University"],
+    "institution": "University of Oxford & GFI",
+    "yearPublished": 2024,
+    "publicationType": "Lifecycle Assessment Study",
+    "peerReviewed": true,
+    "citationCount": 412
+  },
+  "limitations": "Current production energy-intensive and expensive. Consumer acceptance uncertain. Disruption to livestock farmers and rural economies. Nutritional profile and long-term health effects need more study. Scale-up challenges remain.",
+  "tags": ["Environment", "Food Technology", "Climate", "Agriculture"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

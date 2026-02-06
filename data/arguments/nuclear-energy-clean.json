@@ -25,10 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "Prevented Mortality and Greenhouse Gas Emissions from Historical and Projected Nuclear Power",
-    "authors": [
-      "Dr. Pushker Kharecha",
-      "Dr. James Hansen"
-    ],
+    "authors": ["Dr. Pushker Kharecha", "Dr. James Hansen"],
     "institution": "NASA Goddard Institute for Space Studies",
     "publicationType": "Peer-reviewed study",
     "journal": "Environmental Science & Technology",
@@ -43,25 +40,14 @@
   "evidenceStrength": 94,
   "argumentCoherence": 91,
   "relevanceScore": 95,
-  "tags": [
-    "nuclear energy",
-    "climate change",
-    "clean energy",
-    "safety",
-    "environment"
-  ],
+  "tags": ["nuclear energy", "climate change", "clean energy", "safety", "environment"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "meta-analysis",
     "domain": "energy",
     "subDomain": "nuclear-power",
     "strength": "strong",
-    "tags": [
-      "nuclear",
-      "energy",
-      "climate",
-      "safety"
-    ],
+    "tags": ["nuclear", "energy", "climate", "safety"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

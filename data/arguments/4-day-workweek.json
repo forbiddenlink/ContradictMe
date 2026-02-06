@@ -1,0 +1,27 @@
+{
+  "id": "4-day-workweek",
+  "topic": "Four-Day Workweek",
+  "position": "for",
+  "mainClaim": "Four-day workweeks maintain or increase productivity while dramatically improving employee wellbeing",
+  "evidence": "Largest trial ever - 61 UK companies, 2,900 employees, 6 months - showed revenue increased 35% on average, staff turnover dropped 57%, and 92% of companies continued the policy after trial ended. Iceland's trials with 2,500 workers showed productivity remained constant or improved in majority of workplaces. Employee stress and burnout decreased 71%, work-life balance ratings increased by 45 points.",
+  "supportingPoints": [
+    "Reduced hours force efficiency gains and elimination of time-wasting meetings",
+    "Three-day weekends allow full mental recovery and prevent burnout",
+    "Attraction/retention tool in competitive talent markets",
+    "Environmental impact: reduced commuting and office energy use"
+  ],
+  "qualityScore": 89,
+  "sourceCredibility": 91,
+  "evidenceStrength": 87,
+  "sourceMetadata": {
+    "authors": ["4 Day Week Global", "Cambridge University", "Boston College"],
+    "institution": "University of Cambridge & Boston College",
+    "yearPublished": 2024,
+    "publicationType": "Large-scale Controlled Trial",
+    "peerReviewed": true,
+    "citationCount": 423
+  },
+  "limitations": "Results vary by industry - difficult for 24/7 operations or customer-facing roles. May not work for hourly workers paid for time. Requires significant organizational restructuring. Long-term effects beyond 12 months less studied.",
+  "tags": ["Work Culture", "Productivity", "Employee Wellbeing", "Labor Policy"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

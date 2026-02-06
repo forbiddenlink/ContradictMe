@@ -25,10 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "Modeling the Macroeconomic Effects of Universal Basic Income",
-    "authors": [
-      "Dr. Marshall Steinbaum",
-      "Dr. Michael Stynes"
-    ],
+    "authors": ["Dr. Marshall Steinbaum", "Dr. Michael Stynes"],
     "institution": "Roosevelt Institute",
     "publicationType": "Economic analysis",
     "journal": "Roosevelt Institute Working Papers",
@@ -42,25 +39,14 @@
   "evidenceStrength": 84,
   "argumentCoherence": 88,
   "relevanceScore": 90,
-  "tags": [
-    "UBI",
-    "economics",
-    "poverty",
-    "welfare",
-    "social policy"
-  ],
+  "tags": ["UBI", "economics", "poverty", "welfare", "social policy"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "experimental",
     "domain": "economics",
     "subDomain": "social-policy",
     "strength": "moderate-strong",
-    "tags": [
-      "UBI",
-      "policy",
-      "economics",
-      "welfare"
-    ],
+    "tags": ["UBI", "policy", "economics", "welfare"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

@@ -1,0 +1,22 @@
+---
+engines:
+  # Disable Python linters for this TypeScript/React project
+  pylint:
+    enabled: false
+
+  # Enable appropriate linters for TypeScript/React
+  eslint:
+    enabled: true
+
+  # TypeScript-specific
+  tslint:
+    enabled: true
+
+exclude_paths:
+  - 'node_modules/**'
+  - '.next/**'
+  - 'coverage/**'
+  - '__tests__/**'
+  - '.history/**'
+  - 'dist/**'
+  - 'build/**'

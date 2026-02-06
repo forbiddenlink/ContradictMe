@@ -29,7 +29,8 @@ That's what ContradictMe does. It's an AI agent that actively seeks out and pres
 **Try it:** [Link to live demo]
 
 Tell it:
-- "I think remote work is always better" 
+
+- "I think remote work is always better"
 - "Cryptocurrency is just a scam"
 - "Social media does more harm than good"
 
@@ -68,14 +69,15 @@ This is my submission for the **Algolia Agent Studio Challenge**, and it showcas
 I configured an agent with a specific personality:
 
 ```
-You are ContradictMe - an intellectually honest AI that helps 
+You are ContradictMe - an intellectually honest AI that helps
 users think critically by presenting strong counterarguments.
 
-Your goal: Steel-man opposing views, cite quality sources, 
+Your goal: Steel-man opposing views, cite quality sources,
 promote intellectual humility.
 ```
 
 The agent:
+
 - Parses the user's belief
 - Identifies domain and key assumptions
 - Generates targeted search queries
@@ -87,18 +89,20 @@ The agent:
 I created an Algolia index focused on **curation over volume**:
 
 **Arguments Index (15-25 exceptional counterarguments for MVP)**
+
 ```javascript
 {
   customRanking: [
     'desc(qualityScore)',
     'desc(sourceCredibility)',
     'desc(evidenceStrength)',
-    'desc(recency)'
-  ]
+    'desc(recency)',
+  ];
 }
 ```
 
 Each argument includes:
+
 - Main claim with steel-manned presentation
 - Supporting evidence from peer-reviewed sources
 - Source metadata (author, institution, DOI)
@@ -107,6 +111,7 @@ Each argument includes:
 - Counter-counterarguments for nuance
 
 **Why Quality Over Quantity Works:**
+
 - Every argument manually curated by expert review
 - 100% peer-reviewed academic sources
 - No weak arguments dilute the experience
@@ -118,12 +123,11 @@ Each argument includes:
 This is the secret sauce. Every argument gets scored:
 
 ```javascript
-qualityScore = (
-  sourceCredibility * 0.4 +      // Academic, peer-reviewed = higher
-  evidenceStrength * 0.3 +       // Empirical data > anecdotes
-  argumentCoherence * 0.2 +      // Logical structure
-  relevanceToContext * 0.1       // Matches user's belief
-)
+qualityScore =
+  sourceCredibility * 0.4 + // Academic, peer-reviewed = higher
+  evidenceStrength * 0.3 + // Empirical data > anecdotes
+  argumentCoherence * 0.2 + // Logical structure
+  relevanceToContext * 0.1; // Matches user's belief
 ```
 
 This ensures the TOP results are genuinely the strongest counterarguments, not just keyword matches.
@@ -133,10 +137,7 @@ This ensures the TOP results are genuinely the strongest counterarguments, not j
 The frontend uses Algolia's chat widget for a smooth conversational experience:
 
 ```tsx
-<InstantSearch
-  searchClient={searchClient}
-  indexName="prod_ARGUMENTS"
->
+<InstantSearch searchClient={searchClient} indexName="prod_ARGUMENTS">
   <ChatWidget />
   <ArgumentResults />
 </InstantSearch>
@@ -153,7 +154,7 @@ Results appear in <50ms thanks to Algolia's speed.
 > Let me present the strongest case for in-office work:
 >
 > **1. Innovation & Breakthrough Ideas** (Quality Score: 87/100)
-> 
+>
 > Stanford study of 10,000 developers found 23% more patent filings from hybrid teams compared to fully remote. The research suggests spontaneous "water cooler" conversations lead to unexpected idea combinations that scheduled video calls miss.
 >
 > 📚 **Source:** Dr. Sarah Chen, Stanford Economics, "Innovation Patterns in Distributed Teams" (2024)  
@@ -175,14 +176,16 @@ Results appear in <50ms thanks to Algolia's speed.
 Getting high-quality data was the hardest part:
 
 ### Sources:
+
 1. **Academic papers** (Google Scholar, arXiv)
 2. **Expert analysis** (HBR, MIT Tech Review, The Economist)
 3. **Research organizations** (Stanford, MIT, Pew)
 4. **Structured debate platforms** (Kialo, ProCon.org)
 
 ### Process:
+
 ```
-Raw Content 
+Raw Content
   → Extract arguments (NLP)
   → Score quality (ML model)
   → Verify sources (manual review)
@@ -190,6 +193,7 @@ Raw Content
 ```
 
 ### Coverage:
+
 - 15-25 exceptional arguments across 3-5 high-impact topics
 - Remote work vs office (5 arguments)
 - Cryptocurrency value (5 arguments)
@@ -198,6 +202,7 @@ Raw Content
 - AI & automation (3-5 arguments)
 
 **Each argument:**
+
 - Manually curated from peer-reviewed sources
 - Quality score 80-95+
 - Full source attribution with DOIs
@@ -209,7 +214,8 @@ Raw Content
 
 **Problem:** How do you present counterarguments without seeming like you're pushing an agenda?
 
-**Solution:** 
+**Solution:**
+
 - Always acknowledge limitations
 - Include "counter-counterarguments"
 - Focus on empirical claims, not values
@@ -220,6 +226,7 @@ Raw Content
 **Problem:** It's easy to find arguments, hard to find GOOD arguments.
 
 **Solution for MVP:**
+
 - **Ruthless curation**: Only arguments with peer-reviewed sources
 - **Manual verification**: Every argument fact-checked
 - **Quality floor**: Minimum quality score of 80/100
@@ -232,6 +239,7 @@ Raw Content
 **Problem:** Some beliefs touch on identity, values, religion.
 
 **Solution:**
+
 - Focus on empirical claims that can be studied
 - Extra respectful framing
 - Acknowledge emotional dimensions
@@ -240,19 +248,24 @@ Raw Content
 ## Why This Could Win
 
 ### ✅ Fights Echo Chambers (Responsible AI)
+
 This goes against typical algorithm behavior - it's designed to challenge, not confirm. That's meaningful in 2025.
 
 ### ✅ Genuinely Novel (Creativity)
+
 I haven't seen any consumer AI product that does this. Most AI agrees with you or gives "balanced" answers. This actively disagrees.
 
 ### ✅ Technical Sophistication (Use of Technology)
+
 - Custom agent personality in Agent Studio
 - Multi-index federated search
 - Sophisticated quality ranking beyond keyword matching
 - InstantSearch chat widget integration
 
 ### ✅ Immediate Practical Value (Usability)
+
 Anyone can try it right now and get value:
+
 - Students: Write better papers
 - Professionals: Make better decisions
 - Researchers: Stress-test hypotheses
@@ -263,12 +276,14 @@ Anyone can try it right now and get value:
 This MVP proves the concept with exceptional quality. Post-contest expansion:
 
 **Next 3 months:**
+
 - [ ] Expand to 100-200 arguments across 10-15 topics
 - [ ] Add user feedback system for quality improvements
 - [ ] Implement conversation history
 - [ ] Mobile-optimized experience
 
 **Next 6-12 months:**
+
 - [ ] Community-contributed arguments (expert moderation)
 - [ ] Debate preparation mode (for students)
 - [ ] Integration with note-taking apps (Notion, Obsidian)
@@ -283,6 +298,7 @@ This MVP proves the concept with exceptional quality. Post-contest expansion:
 Tell me something you believe strongly, and I'll challenge it.
 
 **Examples to try:**
+
 - "Remote work is always better"
 - "Crypto is a scam"
 - "Social media does more harm than good"
@@ -294,6 +310,7 @@ Tell me something you believe strongly, and I'll challenge it.
 📂 **GitHub:** [github.com/yourusername/contradictme]
 
 Full documentation:
+
 - [Architecture](link)
 - [Data Strategy](link)
 - [Algolia Implementation](link)
@@ -309,6 +326,7 @@ In a world of filter bubbles and polarization, that feels more important than ev
 ---
 
 **Built with:**
+
 - Algolia Agent Studio (conversational AI)
 - Algolia Search (multi-index search)
 - Next.js (frontend)
@@ -324,6 +342,7 @@ In a world of filter bubbles and polarization, that feels more important than ev
 ## Questions? Feedback?
 
 Drop a comment below! I'd love to hear:
+
 - What beliefs should I challenge?
 - Ideas for improvement?
 - Would you use this?
@@ -333,4 +352,3 @@ And if you like the concept, a ❤️ reaction would mean a lot!
 ---
 
 #AlgoliaAgentStudio #AI #CriticalThinking #Search #OpenSource #ContestSubmission
-

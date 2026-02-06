@@ -1,0 +1,27 @@
+{
+  "id": "space-exploration-funding",
+  "topic": "Space Exploration Funding",
+  "position": "for",
+  "mainClaim": "Space exploration generates massive economic returns and drives critical technological innovation",
+  "evidence": "NASA economic analysis shows every $1 invested returns $7-14 in economic activity through technology transfer. GPS (space tech) generates $1.4 trillion annually in economic value. Space program spinoffs include: memory foam, cordless tools, water filtration, satellite communications, weather forecasting (saves $31 billion/year in disaster prevention). Current space economy is $469 billion, projected to reach $1.8 trillion by 2035, creating 1.5 million high-skill jobs.",
+  "supportingPoints": [
+    "Asteroid mining could unlock quadrillions in rare earth minerals",
+    "Space manufacturing enables materials impossible to create in gravity",
+    "Climate monitoring satellites essential for understanding/addressing climate change",
+    "Inspirational value drives STEM education and long-term innovation culture"
+  ],
+  "qualityScore": 88,
+  "sourceCredibility": 93,
+  "evidenceStrength": 86,
+  "sourceMetadata": {
+    "authors": ["NASA Office of Technology Transfer", "Space Foundation"],
+    "institution": "NASA & Morgan Stanley Research",
+    "yearPublished": 2025,
+    "publicationType": "Economic Impact Analysis",
+    "peerReviewed": false,
+    "citationCount": 531
+  },
+  "limitations": "Returns are long-term and uncertain. Opportunity cost compared to direct Earth-focused research. Private sector now capable of many space activities. Equitable distribution of space economy benefits not guaranteed.",
+  "tags": ["Space Exploration", "Innovation", "Economic Development", "Technology"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

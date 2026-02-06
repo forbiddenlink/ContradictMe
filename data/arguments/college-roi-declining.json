@@ -25,11 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "The College Payoff: More Education Doesn't Always Mean More Earnings",
-    "authors": [
-      "Dr. Anthony Carnevale",
-      "Dr. Ban Cheah",
-      "Dr. Martin Van Der Werf"
-    ],
+    "authors": ["Dr. Anthony Carnevale", "Dr. Ban Cheah", "Dr. Martin Van Der Werf"],
     "institution": "Georgetown University Center on Education and the Workforce",
     "publicationType": "Longitudinal research study",
     "journal": "Georgetown CEW Reports",
@@ -44,26 +40,14 @@
   "evidenceStrength": 90,
   "argumentCoherence": 86,
   "relevanceScore": 93,
-  "tags": [
-    "education",
-    "college",
-    "student debt",
-    "career",
-    "economics",
-    "ROI"
-  ],
+  "tags": ["education", "college", "student debt", "career", "economics", "ROI"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "longitudinal-study",
     "domain": "education",
     "subDomain": "higher-education-economics",
     "strength": "strong",
-    "tags": [
-      "college",
-      "education",
-      "debt",
-      "career"
-    ],
+    "tags": ["college", "education", "debt", "career"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

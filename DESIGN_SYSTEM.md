@@ -20,31 +20,31 @@ Our design communicates **credibility, sophistication, and respectful challenge*
 
 ```css
 /* Primary Colors */
---navy-900: #1A2332;      /* Darkest - headers, emphasis */
---navy-800: #2A3C52;      /* Primary text, main elements */
---navy-700: #3A4D63;      /* Secondary text */
---navy-600: #4A5D73;      /* Tertiary elements */
+--navy-900: #1a2332; /* Darkest - headers, emphasis */
+--navy-800: #2a3c52; /* Primary text, main elements */
+--navy-700: #3a4d63; /* Secondary text */
+--navy-600: #4a5d73; /* Tertiary elements */
 
 /* Accent Colors */
---terracotta-500: #E8A87C; /* Warm accent - CTAs, highlights */
---terracotta-400: #EDB890; /* Lighter variant */
---terracotta-300: #F2C8A4; /* Subtle highlights */
+--terracotta-500: #e8a87c; /* Warm accent - CTAs, highlights */
+--terracotta-400: #edb890; /* Lighter variant */
+--terracotta-300: #f2c8a4; /* Subtle highlights */
 
 /* Quality Indicators */
---sage-700: #3D5A46;      /* Dark green - excellent quality */
---sage-600: #5A7C65;      /* Medium green - good quality */
---sage-500: #779E83;      /* Light green - acceptable */
---amber-500: #F57C00;     /* Orange - moderate quality */
---crimson-500: #C62828;   /* Red - low quality (rarely shown) */
+--sage-700: #3d5a46; /* Dark green - excellent quality */
+--sage-600: #5a7c65; /* Medium green - good quality */
+--sage-500: #779e83; /* Light green - acceptable */
+--amber-500: #f57c00; /* Orange - moderate quality */
+--crimson-500: #c62828; /* Red - low quality (rarely shown) */
 
 /* Neutral Palette */
---gray-50: #F8F9FA;       /* Background */
---gray-100: #F1F3F5;      /* Subtle backgrounds */
---gray-200: #E9ECEF;      /* Borders */
---gray-300: #DEE2E6;      /* Dividers */
---gray-400: #CED4DA;      /* Disabled states */
---gray-600: #6C757D;      /* Muted text */
---gray-800: #343A40;      /* Strong text */
+--gray-50: #f8f9fa; /* Background */
+--gray-100: #f1f3f5; /* Subtle backgrounds */
+--gray-200: #e9ecef; /* Borders */
+--gray-300: #dee2e6; /* Dividers */
+--gray-400: #ced4da; /* Disabled states */
+--gray-600: #6c757d; /* Muted text */
+--gray-800: #343a40; /* Strong text */
 
 /* Glass Effects */
 --glass-white: rgba(255, 255, 255, 0.1);
@@ -58,7 +58,7 @@ Our design communicates **credibility, sophistication, and respectful challenge*
 --color-primary: var(--navy-800);
 --color-accent: var(--terracotta-500);
 --color-background: var(--gray-50);
---color-surface: #FFFFFF;
+--color-surface: #ffffff;
 --color-text-primary: var(--navy-800);
 --color-text-secondary: var(--navy-700);
 --color-text-muted: var(--gray-600);
@@ -71,11 +71,11 @@ Our design communicates **credibility, sophistication, and respectful challenge*
 ```javascript
 // Function to get color based on quality score
 function getQualityColor(score) {
-  if (score >= 90) return 'var(--sage-700)';      // 90-100: Excellent
-  if (score >= 80) return 'var(--sage-600)';      // 80-89: Very Good
-  if (score >= 70) return 'var(--sage-500)';      // 70-79: Good
-  if (score >= 60) return 'var(--amber-500)';     // 60-69: Moderate
-  return 'var(--crimson-500)';                    // <60: Low (rare)
+  if (score >= 90) return 'var(--sage-700)'; // 90-100: Excellent
+  if (score >= 80) return 'var(--sage-600)'; // 80-89: Very Good
+  if (score >= 70) return 'var(--sage-500)'; // 70-79: Good
+  if (score >= 60) return 'var(--amber-500)'; // 60-69: Moderate
+  return 'var(--crimson-500)'; // <60: Low (rare)
 }
 ```
 
@@ -88,6 +88,7 @@ function getQualityColor(score) {
 - **Amber/Crimson:** Use sparingly for quality warnings
 
 **Avoid:**
+
 - Pure black (#000000) - use navy-900 instead
 - Bright blues - too generic for chatbots
 - Neon colors - undermines credibility
@@ -111,12 +112,14 @@ function getQualityColor(score) {
 ```
 
 **Why Inter?**
+
 - Variable font (fewer HTTP requests)
 - Excellent readability at small sizes
 - Professional, modern aesthetic
 - Used by top tools (Linear, GitHub, Figma)
 
 **Why IBM Plex Mono?**
+
 - Humanist monospace (more readable than Courier)
 - Perfect for citations and source metadata
 - Technical but approachable
@@ -125,31 +128,31 @@ function getQualityColor(score) {
 
 ```css
 /* Font Sizes */
---text-xs: 0.75rem;      /* 12px - Small labels, badges */
---text-sm: 0.875rem;     /* 14px - Body text, descriptions */
---text-base: 1rem;       /* 16px - Default body */
---text-lg: 1.125rem;     /* 18px - Emphasized text */
---text-xl: 1.25rem;      /* 20px - Section headers */
---text-2xl: 1.5rem;      /* 24px - Card titles */
---text-3xl: 1.875rem;    /* 30px - Page headers */
---text-4xl: 2.25rem;     /* 36px - Hero text */
+--text-xs: 0.75rem; /* 12px - Small labels, badges */
+--text-sm: 0.875rem; /* 14px - Body text, descriptions */
+--text-base: 1rem; /* 16px - Default body */
+--text-lg: 1.125rem; /* 18px - Emphasized text */
+--text-xl: 1.25rem; /* 20px - Section headers */
+--text-2xl: 1.5rem; /* 24px - Card titles */
+--text-3xl: 1.875rem; /* 30px - Page headers */
+--text-4xl: 2.25rem; /* 36px - Hero text */
 
 /* Font Weights */
---weight-light: 300;     /* Subtle emphasis */
---weight-normal: 400;    /* Body text */
---weight-medium: 500;    /* Slight emphasis */
---weight-semibold: 600;  /* Strong emphasis */
+--weight-light: 300; /* Subtle emphasis */
+--weight-normal: 400; /* Body text */
+--weight-medium: 500; /* Slight emphasis */
+--weight-semibold: 600; /* Strong emphasis */
 
 /* Line Heights */
---leading-tight: 1.25;   /* Headings */
---leading-snug: 1.375;   /* Subheadings */
---leading-normal: 1.5;   /* Body text */
+--leading-tight: 1.25; /* Headings */
+--leading-snug: 1.375; /* Subheadings */
+--leading-normal: 1.5; /* Body text */
 --leading-relaxed: 1.625; /* Long-form content */
 
 /* Letter Spacing */
---tracking-tight: -0.02em;  /* Large headings */
---tracking-normal: 0;       /* Body text */
---tracking-wide: 0.025em;   /* Small caps, labels */
+--tracking-tight: -0.02em; /* Large headings */
+--tracking-normal: 0; /* Body text */
+--tracking-wide: 0.025em; /* Small caps, labels */
 ```
 
 ### Typography Usage
@@ -204,18 +207,18 @@ function getQualityColor(score) {
 
 ```css
 /* Spacing Scale (based on 4px grid) */
---space-1: 0.25rem;   /* 4px */
---space-2: 0.5rem;    /* 8px */
---space-3: 0.75rem;   /* 12px */
---space-4: 1rem;      /* 16px */
---space-5: 1.25rem;   /* 20px */
---space-6: 1.5rem;    /* 24px */
---space-8: 2rem;      /* 32px */
---space-10: 2.5rem;   /* 40px */
---space-12: 3rem;     /* 48px */
---space-16: 4rem;     /* 64px */
---space-20: 5rem;     /* 80px */
---space-24: 6rem;     /* 96px */
+--space-1: 0.25rem; /* 4px */
+--space-2: 0.5rem; /* 8px */
+--space-3: 0.75rem; /* 12px */
+--space-4: 1rem; /* 16px */
+--space-5: 1.25rem; /* 20px */
+--space-6: 1.5rem; /* 24px */
+--space-8: 2rem; /* 32px */
+--space-10: 2.5rem; /* 40px */
+--space-12: 3rem; /* 48px */
+--space-16: 4rem; /* 64px */
+--space-20: 5rem; /* 80px */
+--space-24: 6rem; /* 96px */
 
 /* Container Widths */
 --container-sm: 640px;
@@ -236,6 +239,7 @@ function getQualityColor(score) {
 The most important component - must be exceptional.
 
 **Design Features:**
+
 - Liquid Glass aesthetic with backdrop blur
 - Subtle depth with soft shadows
 - Expandable sections (limitations/caveats)
@@ -250,11 +254,7 @@ The most important component - must be exceptional.
   border-radius: 16px;
 
   /* Liquid Glass Effect */
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.7)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
   backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.18);
 
@@ -390,7 +390,7 @@ The most important component - must be exceptional.
 }
 
 .limitations__item::before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--amber-500);
@@ -457,14 +457,7 @@ Instead of plain numbers, use radial progress ring:
 // React component for animated quality score
 <svg width="80" height="80" viewBox="0 0 80 80">
   {/* Background circle */}
-  <circle
-    cx="40"
-    cy="40"
-    r="32"
-    fill="none"
-    stroke="rgba(0,0,0,0.05)"
-    strokeWidth="8"
-  />
+  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth="8" />
 
   {/* Animated progress circle */}
   <circle
@@ -475,11 +468,11 @@ Instead of plain numbers, use radial progress ring:
     stroke={getQualityColor(score)}
     strokeWidth="8"
     strokeDasharray={`${2 * Math.PI * 32}`}
-    strokeDashoffset={`${2 * Math.PI * 32 * (1 - score/100)}`}
+    strokeDashoffset={`${2 * Math.PI * 32 * (1 - score / 100)}`}
     transform="rotate(-90 40 40)"
     style={{
       transition: 'stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1)',
-      transitionDelay: '0.2s'
+      transitionDelay: '0.2s',
     }}
   />
 
@@ -518,12 +511,19 @@ Custom SVG badges (no generic icons):
 }
 
 /* Badge variants */
-.evidence-badge--empirical { background: rgba(90, 124, 101, 0.1); }
-.evidence-badge--expert { background: rgba(232, 168, 124, 0.1); }
-.evidence-badge--research { background: rgba(42, 60, 82, 0.1); }
+.evidence-badge--empirical {
+  background: rgba(90, 124, 101, 0.1);
+}
+.evidence-badge--expert {
+  background: rgba(232, 168, 124, 0.1);
+}
+.evidence-badge--research {
+  background: rgba(42, 60, 82, 0.1);
+}
 ```
 
 **Badge Types:**
+
 - 📊 EMPIRICAL (data-driven studies)
 - 👤 EXPERT (expert opinions)
 - 📚 RESEARCH (academic papers)
@@ -711,17 +711,29 @@ Custom SVG badges (no generic icons):
 }
 
 /* Stagger effect via inline styles or JS */
-.argument-card:nth-child(1) { animation-delay: 0ms; }
-.argument-card:nth-child(2) { animation-delay: 100ms; }
-.argument-card:nth-child(3) { animation-delay: 200ms; }
+.argument-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.argument-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+.argument-card:nth-child(3) {
+  animation-delay: 200ms;
+}
 ```
 
 **2. Quality Score Animation**
 
 ```css
 @keyframes countUp {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .quality-score__value {
@@ -736,8 +748,13 @@ Custom SVG badges (no generic icons):
 
 ```css
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .evidence-badge:hover {
@@ -749,8 +766,12 @@ Custom SVG badges (no generic icons):
 
 ```css
 @keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }
 
 .skeleton {
@@ -782,8 +803,14 @@ Custom SVG badges (no generic icons):
 
 ```css
 @keyframes typing {
-  0%, 60%, 100% { opacity: 0.3; }
-  30% { opacity: 1; }
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
 }
 
 .typing-indicator {
@@ -800,9 +827,15 @@ Custom SVG badges (no generic icons):
   animation: typing 1.4s ease-in-out infinite;
 }
 
-.typing-indicator__dot:nth-child(1) { animation-delay: 0s; }
-.typing-indicator__dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator__dot:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator__dot:nth-child(1) {
+  animation-delay: 0s;
+}
+.typing-indicator__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 ```
 
 ---
@@ -813,10 +846,10 @@ Custom SVG badges (no generic icons):
 
 ```css
 /* Mobile First Approach */
---breakpoint-sm: 640px;   /* Small tablets */
---breakpoint-md: 768px;   /* Tablets */
---breakpoint-lg: 1024px;  /* Small laptops */
---breakpoint-xl: 1280px;  /* Desktops */
+--breakpoint-sm: 640px; /* Small tablets */
+--breakpoint-md: 768px; /* Tablets */
+--breakpoint-lg: 1024px; /* Small laptops */
+--breakpoint-xl: 1280px; /* Desktops */
 --breakpoint-2xl: 1536px; /* Large screens */
 ```
 
@@ -890,6 +923,7 @@ Custom SVG badges (no generic icons):
 ### Color Contrast
 
 All text meets WCAG AA standards:
+
 - Body text (navy-700 on gray-50): 10.5:1 ✓
 - Secondary text (gray-600 on white): 5.2:1 ✓
 - Quality scores use sufficient contrast even on colored backgrounds
@@ -927,8 +961,8 @@ module.exports = {
         mono: ['IBM Plex Mono', 'monospace'],
       },
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
+        18: '4.5rem',
+        88: '22rem',
       },
       backdropBlur: {
         xs: '2px',
@@ -936,7 +970,7 @@ module.exports = {
       animation: {
         'slide-in-up': 'slideInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
         'count-up': 'countUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        'shimmer': 'shimmer 2s linear infinite',
+        shimmer: 'shimmer 2s linear infinite',
       },
       keyframes: {
         slideInUp: {
@@ -955,7 +989,7 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
 ```
 
 ---
@@ -1016,6 +1050,7 @@ Before implementation:
 ## Design Anti-Patterns to Avoid
 
 ❌ **Don't:**
+
 - Use generic chatbot bubble design (too common)
 - Use bright blue primary colors (overused in chat UIs)
 - Use emoji reactions or playful illustrations (undermines credibility)
@@ -1025,6 +1060,7 @@ Before implementation:
 - Use stock icons (use custom SVG badges)
 
 ✅ **Do:**
+
 - Emphasize content over chrome
 - Use whitespace generously
 - Make source citations prominent

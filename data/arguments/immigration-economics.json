@@ -1,0 +1,27 @@
+{
+  "id": "immigration-economics",
+  "topic": "Immigration Economics",
+  "position": "for",
+  "mainClaim": "Immigration provides substantial net economic benefits and doesn't harm native workers' wages",
+  "evidence": "National Academy of Sciences comprehensive study analyzing 40+ years of data found immigration increased U.S. GDP by $2 trillion over 10 years. Native-born workers saw average wage increases of 0.6% due to complementary skills. Immigrants start businesses at twice the rate of native-born Americans, creating 25% more jobs per capita. Areas with higher immigration rates show faster economic growth and innovation.",
+  "supportingPoints": [
+    "Immigrants fill critical labor gaps in healthcare, agriculture, and construction",
+    "High-skilled immigration contributes to 30-50% of U.S. innovation and patents",
+    "Second-generation immigrants outperform average educational and economic metrics",
+    "Immigration helps balance aging demographics in developed nations"
+  ],
+  "qualityScore": 91,
+  "sourceCredibility": 95,
+  "evidenceStrength": 89,
+  "sourceMetadata": {
+    "authors": ["National Academies of Sciences, Engineering, and Medicine"],
+    "institution": "National Academy of Sciences",
+    "yearPublished": 2024,
+    "publicationType": "Comprehensive Research Report",
+    "peerReviewed": true,
+    "citationCount": 1247
+  },
+  "limitations": "Economic benefits take 10-15 years to fully materialize. Local impacts can vary significantly. Requires investment in integration infrastructure. Benefits strongest with balanced skill distribution among immigrants.",
+  "tags": ["Immigration", "Economics", "Labor Markets", "Policy"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

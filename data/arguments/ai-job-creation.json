@@ -25,10 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "The Race Between Man and Machine: Implications of Technology for Growth, Factor Shares, and Employment",
-    "authors": [
-      "Prof. Daron Acemoglu",
-      "Prof. Pascual Restrepo"
-    ],
+    "authors": ["Prof. Daron Acemoglu", "Prof. Pascual Restrepo"],
     "institution": "MIT Department of Economics",
     "publicationType": "Peer-reviewed study",
     "journal": "American Economic Review",
@@ -44,26 +41,14 @@
   "evidenceStrength": 92,
   "argumentCoherence": 89,
   "relevanceScore": 94,
-  "tags": [
-    "AI",
-    "automation",
-    "employment",
-    "technology",
-    "economics",
-    "future of work"
-  ],
+  "tags": ["AI", "automation", "employment", "technology", "economics", "future of work"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "longitudinal-study",
     "domain": "economics",
     "subDomain": "labor-economics",
     "strength": "strong",
-    "tags": [
-      "AI",
-      "jobs",
-      "automation",
-      "technology"
-    ],
+    "tags": ["AI", "jobs", "automation", "technology"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

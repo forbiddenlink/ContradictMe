@@ -1,0 +1,27 @@
+{
+  "id": "universal-healthcare",
+  "topic": "Universal Healthcare",
+  "position": "for",
+  "mainClaim": "Universal healthcare systems deliver better health outcomes at lower costs than market-based systems",
+  "evidence": "Comprehensive analysis of 30 OECD countries shows universal systems spend 40% less per capita ($5,697 vs $11,945 in U.S.) while achieving better outcomes: 4.2 years longer life expectancy, 50% lower infant mortality, 35% lower chronic disease burden. JAMA study found U.S. administrative costs consume 34% of healthcare spending vs 17% in universal systems. No medical bankruptcies in universal systems vs 530,000/year in U.S.",
+  "supportingPoints": [
+    "Preventive care access reduces expensive emergency treatments",
+    "Single-payer eliminates insurance profit margins and complexity",
+    "Negotiating power reduces drug prices 60-80% vs U.S. levels",
+    "Universal coverage improves productivity - workers less afraid to leave jobs"
+  ],
+  "qualityScore": 92,
+  "sourceCredibility": 96,
+  "evidenceStrength": 91,
+  "sourceMetadata": {
+    "authors": ["Commonwealth Fund", "Dr. David Himmelstein", "Dr. Steffie Woolhandler"],
+    "institution": "Harvard Medical School & Johns Hopkins",
+    "yearPublished": 2024,
+    "publicationType": "International Comparative Study",
+    "peerReviewed": true,
+    "citationCount": 1876
+  },
+  "limitations": "Transition costs and disruption significant. Wait times for non-urgent procedures can be longer. Taxation increases required. Cultural/political barriers in U.S. are substantial. Quality of implementation varies by country.",
+  "tags": ["Healthcare", "Public Policy", "Economics", "Health Outcomes"],
+  "lastUpdated": "2026-01-13T00:00:00Z"
+}

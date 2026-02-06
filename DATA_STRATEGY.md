@@ -9,6 +9,7 @@ ContradictMe's effectiveness depends entirely on high-quality, diverse counterar
 ### Tier 1: Academic & Research (Highest Quality)
 
 **Sources:**
+
 - Google Scholar (via Serper API)
 - arXiv.org (preprints)
 - PubMed (health/science)
@@ -17,12 +18,14 @@ ContradictMe's effectiveness depends entirely on high-quality, diverse counterar
 - Academic institutional repositories
 
 **Why:**
+
 - Peer-reviewed credibility
 - Empirical evidence
 - Methodology transparency
 - Citation graphs
 
 **Example Extraction:**
+
 ```
 Paper: "The Productivity Paradox of Remote Work" (MIT, 2024)
 Finding: "While individual productivity increased 5%, team productivity decreased 12%"
@@ -32,6 +35,7 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 ### Tier 2: Expert Opinion & Analysis
 
 **Sources:**
+
 - Harvard Business Review
 - MIT Technology Review
 - The Economist
@@ -41,6 +45,7 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 - TED talks transcripts
 
 **Why:**
+
 - Expert synthesis of research
 - Real-world context
 - Accessible explanations
@@ -49,12 +54,14 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 ### Tier 3: Quality Journalism
 
 **Sources:**
+
 - AP, Reuters (fact-based reporting)
 - New York Times, Wall Street Journal (analysis pieces)
 - The Atlantic, New Yorker (long-form)
 - Domain-specific publications (e.g., Ars Technica for tech)
 
 **Why:**
+
 - Timely coverage
 - Investigative reporting
 - Case studies
@@ -63,12 +70,14 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 ### Tier 4: Structured Debate Platforms
 
 **Sources:**
+
 - Kialo (structured debate platform)
 - ProCon.org (curated arguments)
 - Stanford Encyclopedia of Philosophy
 - IEP (Internet Encyclopedia of Philosophy)
 
 **Why:**
+
 - Pre-structured arguments
 - Both sides represented
 - Clear claim/evidence format
@@ -77,12 +86,14 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 ### Tier 5: Expert Testimony & Interviews
 
 **Sources:**
+
 - Congressional hearing transcripts
 - Expert witness statements
 - Academic interviews
 - Conference presentations
 
 **Why:**
+
 - High-credibility sources
 - Nuanced positions
 - Addressing specific questions
@@ -130,6 +141,7 @@ Finding: "While individual productivity increased 5%, team productivity decrease
 ### Content Balance
 
 For each topic, aim for:
+
 - **60% evidence-based arguments** (studies, data, research)
 - **25% expert opinion** (credentialed experts weighing in)
 - **15% case studies** (real-world examples, outcomes)
@@ -155,7 +167,7 @@ topics = [
 for topic in topics:
   for query in topic.search_queries:
     results = google_scholar_search(query, limit=20)
-    
+
     for paper in results:
       if quality_check(paper):
         arguments = extract_arguments(paper)
@@ -168,6 +180,7 @@ for topic in topics:
 ### Phase 2: Manual Curation
 
 **Quality Control:**
+
 1. Review auto-extracted arguments
 2. Verify source credibility
 3. Check for bias or misrepresentation
@@ -175,6 +188,7 @@ for topic in topics:
 5. Tag with metadata
 
 **Curator Guidelines:**
+
 - Steel-man: Present strongest form of argument
 - Avoid straw-man versions
 - Ensure evidence actually supports claim
@@ -299,18 +313,21 @@ for topic in topics:
 ### Source Credibility (1-100)
 
 **Academic Sources:**
+
 - Tier 1 journals (Nature, Science, Cell): 90-100
 - Top institution research (MIT, Stanford, Harvard): 85-95
 - Peer-reviewed journals: 70-85
 - Preprints (arXiv): 60-75
 
 **Expert Opinion:**
+
 - Nobel laureate / field leader: 90-100
 - Tenured professor at top institution: 80-90
 - Published expert with credentials: 70-80
 - Recognized practitioner: 60-70
 
 **Journalism:**
+
 - AP, Reuters: 80-85
 - Major newspapers (NYT, WSJ): 75-80
 - Quality magazines (The Atlantic): 70-75
@@ -319,18 +336,21 @@ for topic in topics:
 ### Evidence Strength (1-100)
 
 **Quantitative:**
+
 - Large RCT (n>1000): 90-100
 - Medium RCT (n>100): 80-90
 - Observational study (large sample): 70-80
 - Small study (n<100): 60-70
 
 **Qualitative:**
+
 - Systematic review/meta-analysis: 85-95
 - Multiple case studies: 70-80
 - Single case study: 60-70
 - Expert synthesis: 55-65
 
 **Logical:**
+
 - Formal logical proof: 90-100
 - Strong deductive reasoning: 80-90
 - Inductive reasoning: 70-80
@@ -339,6 +359,7 @@ for topic in topics:
 ### Argument Coherence (1-100)
 
 Calculated by:
+
 - Clear claim: +25
 - Evidence directly supports claim: +25
 - Addresses counterarguments: +20
@@ -354,12 +375,14 @@ Calculated by:
 ### MVP (Contest Submission - Feb 8, 2026)
 
 **Core Arguments:**
+
 - **15-25 exceptional arguments** across 3-5 high-impact topics
 - **Each argument manually curated and verified**
 - **100% of arguments include peer-reviewed sources**
 - **Every limitation and caveat documented**
 
 **Focused Topics (3-5 only):**
+
 1. **Remote work vs office work** (5 arguments against remote)
 2. **Cryptocurrency value proposition** (5 arguments for crypto)
 3. **Social media impact** (3-5 arguments on both sides)
@@ -367,12 +390,14 @@ Calculated by:
 5. **AI impact on jobs** (3-5 arguments on automation benefits)
 
 **Per-Topic Breakdown:**
+
 - 3-5 steel-manned counterarguments
 - Mix of empirical studies, expert opinions, case studies
 - Quality scores 80-95+ (no weak arguments)
 - Full source attribution with DOIs/URLs
 
 **Why This Wins:**
+
 - Demonstrates curation quality (judges will test with these topics)
 - Shows technical sophistication (quality scoring, source credibility)
 - Proves concept viability (even with limited data, it works)
@@ -381,12 +406,14 @@ Calculated by:
 ### Post-Contest (3-6 months)
 
 After winning, expand to:
+
 - **100-200 arguments** across 10-15 domains
 - **50+ research studies** indexed separately
 - **30+ expert opinions** as standalone index
 - User-submitted arguments (moderated)
 
 **Long-term Vision (1 year):**
+
 - **1,000+ arguments**
 - **500+ research studies**
 - **200+ expert opinions**
@@ -395,20 +422,24 @@ After winning, expand to:
 ## Data Maintenance
 
 ### Weekly:
+
 - Add arguments on trending topics (from social media, news)
 - User feedback review (flag low-quality arguments)
 
 ### Monthly:
+
 - Update citation counts
 - Add new research papers
 - Review and improve argument quality
 
 ### Quarterly:
+
 - Re-score source credibility (journals, experts)
 - Archive outdated content
 - Rebalance domain coverage
 
 ### Annually:
+
 - Comprehensive quality audit
 - Methodology review
 - Coverage gap analysis
@@ -416,18 +447,21 @@ After winning, expand to:
 ## Ethical Considerations
 
 ### Bias Mitigation:
+
 - Include arguments from diverse political/cultural perspectives
 - Avoid cherry-picking evidence
 - Present limitations alongside arguments
 - Regular bias audits
 
 ### Content Moderation:
+
 - No hate speech, harassment, or harmful content
 - Filter conspiracy theories and debunked claims
 - Age-appropriate content filters
 - Disclaimers for sensitive topics (health, legal, financial)
 
 ### Transparency:
+
 - Always cite sources
 - Show quality scores
 - Explain limitations
@@ -453,23 +487,27 @@ After winning, expand to:
 ## Tools & Services
 
 **Data Collection:**
+
 - Serper API (Google Scholar access)
 - Scrapy (web scraping)
 - BeautifulSoup (HTML parsing)
 - OpenAI API (argument extraction)
 
 **Data Processing:**
+
 - Python (data pipeline)
 - Pandas (data manipulation)
 - spaCy (NLP - claim extraction)
 - scikit-learn (quality scoring ML)
 
 **Storage & Search:**
+
 - Algolia (primary search index)
 - PostgreSQL (backup, analytics)
 - Redis (caching)
 
 **Monitoring:**
+
 - Algolia Analytics
 - Custom dashboard (argument quality metrics)
 - User feedback system

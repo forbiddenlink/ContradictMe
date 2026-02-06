@@ -113,6 +113,7 @@ What belief would you like me to challenge?
 If there's a section for index settings or search parameters:
 
 **Searchable Attributes** (in order):
+
 1. mainClaim
 2. evidence
 3. supportingPoints
@@ -121,6 +122,7 @@ If there's a section for index settings or search parameters:
 6. domain
 
 **Custom Ranking** (in order):
+
 1. desc(qualityScore)
 2. desc(sourceCredibility)
 3. desc(evidenceStrength)
@@ -143,9 +145,11 @@ Look for these settings:
 Before deploying, test in the Agent Studio playground:
 
 ### Test Query 1: Remote Work
+
 **Input**: "I think remote work is always better"
 
 **Expected**: Agent should:
+
 - Acknowledge the belief
 - Retrieve the remote-work-innovation argument
 - Present Stanford study findings
@@ -153,9 +157,11 @@ Before deploying, test in the Agent Studio playground:
 - Acknowledge nuance (hybrid models)
 
 ### Test Query 2: General
+
 **Input**: "Tell me more about innovation"
 
 **Expected**: Agent should:
+
 - Ask clarifying questions
 - Request the user's specific belief
 - Stay on mission (challenging beliefs, not general Q&A)
@@ -219,23 +225,27 @@ npm run dev
 ## 🆘 Troubleshooting
 
 ### Problem: Can't find Agent Studio
+
 - **Solution**: Make sure you're on the right plan (Build plan supports Agent Studio)
 - Check under "AI Products", "Agent Builder", or "Conversational AI"
 
 ### Problem: Agent not returning results
-- **Solution**: 
+
+- **Solution**:
   - Check that the index has data (run `npm run index-arguments`)
   - Verify index name is exactly: `contradictme_arguments`
   - Check searchable attributes are configured
 
 ### Problem: API endpoint not working
+
 - **Solution**:
   - Verify the endpoint URL format
   - Check your API keys in `.env.local`
   - Make sure to restart dev server after changing env vars
 
 ### Problem: Agent gives generic responses
-- **Solution**: 
+
+- **Solution**:
   - Review your system prompt - make sure it emphasizes using the index
   - Check that the index is properly connected
   - Try being more specific in test queries

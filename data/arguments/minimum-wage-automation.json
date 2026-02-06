@@ -47,25 +47,14 @@
   "evidenceStrength": 83,
   "argumentCoherence": 84,
   "relevanceScore": 89,
-  "tags": [
-    "minimum wage",
-    "automation",
-    "employment",
-    "economics",
-    "policy"
-  ],
+  "tags": ["minimum wage", "automation", "employment", "economics", "policy"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "quasi-experimental",
     "domain": "economics",
     "subDomain": "labor-economics",
     "strength": "moderate-strong",
-    "tags": [
-      "wages",
-      "automation",
-      "employment",
-      "policy"
-    ],
+    "tags": ["wages", "automation", "employment", "policy"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

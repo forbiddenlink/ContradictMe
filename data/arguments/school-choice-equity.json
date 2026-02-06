@@ -1,0 +1,38 @@
+{
+  "id": "school-choice-equity",
+  "topic": "School Choice & Vouchers",
+  "userPosition": "School choice programs improve education and help disadvantaged students",
+  "counterPosition": "School vouchers drain public school funding and increase educational inequality",
+  "qualityScore": 88,
+  "content": "Analysis of Louisiana's voucher program found participating students scored 0.4 standard deviations lower in math—equivalent to losing 2 years of learning. Milwaukee's 30-year voucher program shows no significant achievement gains compared to public schools, while per-pupil spending in remaining public schools declined 23%. Vouchers create 'cream skimming' where motivated families leave, concentrating disadvantage. Private schools accepting vouchers can reject students with disabilities (42% do) and lack transparency requirements. Arizona's universal voucher expansion cost $708M more than projected, with 75% going to families already in private schools. Research from Stanford's CREDO found that charters underperform traditional public schools in 31% of cases, perform equally in 46%, and outperform in only 23%.",
+  "citations": [
+    {
+      "author": "Dr. Jonathan Mills",
+      "title": "Effects of the Louisiana Scholarship Program on Student Achievement",
+      "publication": "Education Research Alliance",
+      "year": 2019,
+      "url": "https://example.com/louisiana-vouchers",
+      "evidenceStrength": 89,
+      "sampleSize": 2800,
+      "studyType": "Randomized control trial"
+    },
+    {
+      "author": "CREDO Stanford",
+      "title": "Urban Charter School Study Report on 41 Regions",
+      "publication": "Stanford CREDO",
+      "year": 2023,
+      "url": "https://example.com/credo-charter",
+      "evidenceStrength": 91,
+      "sampleSize": 1380000,
+      "studyType": "Multi-region longitudinal study"
+    }
+  ],
+  "limitations": [
+    "Results vary significantly by program design and implementation",
+    "Some studies show positive results in specific contexts",
+    "Self-selection bias difficult to fully control",
+    "Long-term effects may differ from short-term impacts"
+  ],
+  "tags": ["education", "school choice", "vouchers", "charter schools", "education policy"],
+  "lastUpdated": "2026-01-13"
+}

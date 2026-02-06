@@ -24,11 +24,7 @@
   ],
   "sourceMetadata": {
     "title": "Cryptocurrency and Financial Inclusion in Sub-Saharan Africa: An Empirical Analysis",
-    "authors": [
-      "Dr. James Okoro",
-      "Dr. Sarah Martinez",
-      "Prof. Wei Chen"
-    ],
+    "authors": ["Dr. James Okoro", "Dr. Sarah Martinez", "Prof. Wei Chen"],
     "institution": "MIT Digital Currency Initiative",
     "publicationType": "Peer-reviewed study",
     "journal": "Journal of Development Economics",
@@ -58,12 +54,7 @@
     "domain": "economics",
     "subDomain": "development-finance",
     "strength": "strong",
-    "tags": [
-      "crypto",
-      "finance",
-      "banking",
-      "global-development"
-    ],
+    "tags": ["crypto", "finance", "banking", "global-development"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

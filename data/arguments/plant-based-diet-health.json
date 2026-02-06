@@ -25,10 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "Health Effects of Vegetarian and Vegan Diets",
-    "authors": [
-      "Dr. Ambika Satija",
-      "Dr. Frank Hu"
-    ],
+    "authors": ["Dr. Ambika Satija", "Dr. Frank Hu"],
     "institution": "Harvard T.H. Chan School of Public Health",
     "publicationType": "Meta-analysis",
     "journal": "The Lancet",
@@ -44,26 +41,14 @@
   "evidenceStrength": 88,
   "argumentCoherence": 87,
   "relevanceScore": 91,
-  "tags": [
-    "nutrition",
-    "health",
-    "diet",
-    "plant-based",
-    "vegan",
-    "vegetarian"
-  ],
+  "tags": ["nutrition", "health", "diet", "plant-based", "vegan", "vegetarian"],
   "metadata": {
     "argumentType": "empirical",
     "evidenceType": "meta-analysis",
     "domain": "health",
     "subDomain": "nutrition",
     "strength": "strong",
-    "tags": [
-      "diet",
-      "health",
-      "nutrition",
-      "vegan"
-    ],
+    "tags": ["diet", "health", "nutrition", "vegan"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

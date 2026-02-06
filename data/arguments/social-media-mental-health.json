@@ -25,11 +25,7 @@
   ],
   "sourceMetadata": {
     "title": "Social Media Use and Adolescent Mental Health: A Four-Year Longitudinal Study",
-    "authors": [
-      "Dr. Lisa Berkman",
-      "Dr. Michael Chen",
-      "Dr. Amanda Rodriguez"
-    ],
+    "authors": ["Dr. Lisa Berkman", "Dr. Michael Chen", "Dr. Amanda Rodriguez"],
     "institution": "Johns Hopkins Bloomberg School of Public Health",
     "publicationType": "Longitudinal study",
     "journal": "JAMA Psychiatry",
@@ -59,12 +55,7 @@
     "domain": "health",
     "subDomain": "mental-health",
     "strength": "strong",
-    "tags": [
-      "social-media",
-      "mental-health",
-      "teens",
-      "wellbeing"
-    ],
+    "tags": ["social-media", "mental-health", "teens", "wellbeing"],
     "createdAt": "2026-01-13T00:00:00Z",
     "lastUpdated": "2026-01-13T00:00:00Z",
     "reviewStatus": "verified",

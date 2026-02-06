@@ -63,6 +63,7 @@ ContradictMe is built as a conversational AI agent using Algolia Agent Studio, w
 ### 1. Frontend (Next.js)
 
 **Key Components:**
+
 - `ChatInterface.tsx` - Main conversation UI using Algolia's chat widget
 - `ArgumentCard.tsx` - Displays individual counterarguments with sources
 - `BeliefInput.tsx` - Initial belief statement input with helpful examples
@@ -70,19 +71,22 @@ ContradictMe is built as a conversational AI agent using Algolia Agent Studio, w
 - `FeedbackCollector.tsx` - User feedback on argument quality/helpfulness
 
 **State Management:**
+
 - React Context for conversation history
 - Local storage for user preferences (argument types, depth level)
 
 **Styling:**
+
 - Tailwind CSS for responsive design
 - Custom color scheme emphasizing neutrality and credibility
 
 ### 2. Algolia Agent Studio Configuration
 
 **Agent Personality:**
+
 ```
-You are ContradictMe, an intellectually honest AI that helps users 
-think critically by presenting strong counterarguments to their beliefs. 
+You are ContradictMe, an intellectually honest AI that helps users
+think critically by presenting strong counterarguments to their beliefs.
 
 Your goal is to:
 - Steel-man opposing views (strongest form, not straw-man)
@@ -91,13 +95,14 @@ Your goal is to:
 - Encourage intellectual humility
 - Present multiple angles when appropriate
 
-You are NOT trying to change minds, but to help users understand 
+You are NOT trying to change minds, but to help users understand
 the strongest case against their position.
 ```
 
 **Prompt Engineering Strategy:**
 
 1. **Belief Parsing:**
+
    ```
    Extract:
    - Main claim
@@ -107,6 +112,7 @@ the strongest case against their position.
    ```
 
 2. **Counterargument Query Generation:**
+
    ```
    Generate search queries for:
    - Empirical evidence against the claim
@@ -139,7 +145,7 @@ the strongest case against their position.
     'tags',
     'domain'
   ],
-  
+
   attributesForFaceting: [
     'filterOnly(position)', // for/against
     'argumentType',
@@ -147,14 +153,14 @@ the strongest case against their position.
     'sourceQuality',
     'evidenceType'
   ],
-  
+
   customRanking: [
     'desc(qualityScore)',      // Argument quality (1-100)
     'desc(sourceCredibility)', // Source credibility (1-100)
     'desc(evidenceStrength)',  // Evidence strength (1-100)
     'desc(recency)'            // Newer research ranked higher
   ],
-  
+
   ranking: [
     'typo',
     'geo',
@@ -171,17 +177,17 @@ the strongest case against their position.
 **Quality Scoring Algorithm:**
 
 ```javascript
-qualityScore = (
-  sourceCredibility * 0.4 +      // Academic, expert, reputable source
-  evidenceStrength * 0.3 +       // Empirical data, studies, examples
-  argumentCoherence * 0.2 +      // Logical structure
-  relevanceToContext * 0.1       // Matches user's specific belief
-)
+qualityScore =
+  sourceCredibility * 0.4 + // Academic, expert, reputable source
+  evidenceStrength * 0.3 + // Empirical data, studies, examples
+  argumentCoherence * 0.2 + // Logical structure
+  relevanceToContext * 0.1; // Matches user's specific belief
 ```
 
 ### 4. Data Pipeline
 
 **Sourcing:**
+
 1. Academic papers (Google Scholar API, arXiv)
 2. Expert opinion databases
 3. High-quality journalism (AP, Reuters, specialist publications)
@@ -189,6 +195,7 @@ qualityScore = (
 5. Curated argument databases (Kialo, debate resources)
 
 **Processing:**
+
 ```
 Raw Content → Extract Arguments → Score Quality → Index to Algolia
     │              │                   │              │
@@ -275,6 +282,7 @@ Response:
 ## Monitoring & Analytics
 
 Track:
+
 - Most common belief topics
 - Argument quality ratings from users
 - Source effectiveness (which sources convince users most)
@@ -291,24 +299,28 @@ Track:
 ## Development Roadmap
 
 **Phase 1: MVP (Week 1-2)**
+
 - Basic chat interface
 - Single arguments index
 - 100+ seed arguments across 5 domains
 - Core agent prompting
 
 **Phase 2: Enhancement (Week 2-3)**
+
 - Multiple indices (research, experts, case studies)
 - Quality scoring refinement
 - Source credibility indicators
 - Argument type filtering
 
 **Phase 3: Polish (Week 3-4)**
+
 - UI/UX improvements
 - Conversation memory
 - User feedback collection
 - Demo preparation
 
 **Phase 4: Contest Submission (Week 4)**
+
 - Demo video
 - Documentation
 - DEV post

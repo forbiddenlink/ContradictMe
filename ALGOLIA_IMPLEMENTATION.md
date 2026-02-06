@@ -54,6 +54,7 @@ If a belief is on a sensitive topic (politics, religion, identity):
 ### 2. Conversation Flow Design
 
 **Initial Greeting:**
+
 ```
 👋 Hi! I'm ContradictMe - an AI that helps you think critically by challenging your beliefs.
 
@@ -61,7 +62,7 @@ Tell me something you believe strongly, and I'll present the strongest arguments
 
 Examples to try:
 • "I think remote work is always better"
-• "Crypto is just a scam"  
+• "Crypto is just a scam"
 • "Social media does more harm than good"
 • "College is a waste of money"
 
@@ -69,12 +70,14 @@ What belief would you like me to challenge?
 ```
 
 **Follow-up Prompts:**
+
 - "Would you like to explore any of these counterarguments in more depth?"
 - "Are there specific concerns I should address?"
 - "Does this change your view at all, or reinforce it?"
 - "What would it take to change your mind on this?"
 
 **Conversation Memory:**
+
 - Remember user's original belief throughout conversation
 - Track which counterarguments have been presented
 - Reference previous points when relevant
@@ -152,16 +155,7 @@ What belief would you like me to challenge?
     "desc(qualityScores.sourceCredibility)",
     "desc(qualityScores.evidenceStrength)"
   ],
-  "ranking": [
-    "typo",
-    "geo",
-    "words",
-    "filters",
-    "proximity",
-    "attribute",
-    "exact",
-    "custom"
-  ],
+  "ranking": ["typo", "geo", "words", "filters", "proximity", "attribute", "exact", "custom"],
   "typoTolerance": "strict",
   "minWordSizefor1Typo": 5,
   "minWordSizefor2Typos": 8,
@@ -174,10 +168,7 @@ What belief would you like me to challenge?
     "qualityScores",
     "metadata"
   ],
-  "attributesToHighlight": [
-    "mainClaim",
-    "evidence"
-  ],
+  "attributesToHighlight": ["mainClaim", "evidence"],
   "highlightPreTag": "<mark>",
   "highlightPostTag": "</mark>",
   "hitsPerPage": 10,
@@ -194,34 +185,17 @@ What belief would you like me to challenge?
   {
     "objectID": "synonym_remote_work",
     "type": "synonym",
-    "synonyms": [
-      "remote work",
-      "work from home",
-      "wfh",
-      "telecommuting",
-      "distributed work"
-    ]
+    "synonyms": ["remote work", "work from home", "wfh", "telecommuting", "distributed work"]
   },
   {
     "objectID": "synonym_office_work",
     "type": "synonym",
-    "synonyms": [
-      "office work",
-      "in-office",
-      "on-site work",
-      "in-person work"
-    ]
+    "synonyms": ["office work", "in-office", "on-site work", "in-person work"]
   },
   {
     "objectID": "synonym_crypto",
     "type": "synonym",
-    "synonyms": [
-      "cryptocurrency",
-      "crypto",
-      "bitcoin",
-      "digital currency",
-      "blockchain currency"
-    ]
+    "synonyms": ["cryptocurrency", "crypto", "bitcoin", "digital currency", "blockchain currency"]
   }
 ]
 ```
@@ -241,9 +215,7 @@ What belief would you like me to challenge?
     ],
     "consequence": {
       "params": {
-        "optionalFilters": [
-          "sourceMetadata.yearPublished>=2020<score=2>"
-        ]
+        "optionalFilters": ["sourceMetadata.yearPublished>=2020<score=2>"]
       }
     }
   },
@@ -271,22 +243,13 @@ What belief would you like me to challenge?
 
 ```json
 {
-  "searchableAttributes": [
-    "studyTitle",
-    "findings.finding",
-    "methodology",
-    "domain"
-  ],
+  "searchableAttributes": ["studyTitle", "findings.finding", "methodology", "domain"],
   "attributesForFaceting": [
     "filterOnly(yearPublished)",
     "searchable(domain)",
     "filterOnly(credibilityScore)"
   ],
-  "customRanking": [
-    "desc(credibilityScore)",
-    "desc(sampleSize)",
-    "desc(yearPublished)"
-  ]
+  "customRanking": ["desc(credibilityScore)", "desc(sampleSize)", "desc(yearPublished)"]
 }
 ```
 
@@ -296,20 +259,9 @@ What belief would you like me to challenge?
 
 ```json
 {
-  "searchableAttributes": [
-    "expertName",
-    "opinion",
-    "credentials",
-    "domain",
-    "expertise"
-  ],
-  "attributesForFaceting": [
-    "searchable(domain)",
-    "filterOnly(credibilityScore)"
-  ],
-  "customRanking": [
-    "desc(credibilityScore)"
-  ]
+  "searchableAttributes": ["expertName", "opinion", "credentials", "domain", "expertise"],
+  "attributesForFaceting": ["searchable(domain)", "filterOnly(credibilityScore)"],
+  "customRanking": ["desc(credibilityScore)"]
 }
 ```
 
@@ -327,29 +279,29 @@ const search = async (query, domain, position) => {
       query: query,
       params: {
         filters: `domain:${domain} AND position:${position}`,
-        hitsPerPage: 5
-      }
+        hitsPerPage: 5,
+      },
     },
     {
       indexName: 'prod_RESEARCH',
       query: query,
       params: {
         filters: `domain:${domain} AND findings.supports:${position}`,
-        hitsPerPage: 3
-      }
+        hitsPerPage: 3,
+      },
     },
     {
       indexName: 'prod_EXPERTS',
       query: query,
       params: {
         filters: `domain:${domain}`,
-        hitsPerPage: 2
-      }
-    }
+        hitsPerPage: 2,
+      },
+    },
   ];
 
   const { results } = await searchClient.multipleQueries(queries);
-  
+
   // Merge and rank results by quality scores
   return mergeAndRankResults(results);
 };
@@ -375,11 +327,8 @@ export default function ChatInterface() {
         router: history(),
       }}
     >
-      <Configure
-        hitsPerPage={5}
-        filters="qualityScores.overall >= 70"
-      />
-      
+      <Configure hitsPerPage={5} filters="qualityScores.overall >= 70" />
+
       <ChatWidget />
     </InstantSearch>
   );
@@ -401,22 +350,25 @@ export function ChatWidget() {
 
   const handleSubmit = async (belief: string) => {
     // Add user message
-    setMessages(prev => [...prev, { role: 'user', content: belief }]);
-    
+    setMessages((prev) => [...prev, { role: 'user', content: belief }]);
+
     // Send to Agent Studio
     const response = await fetch('/api/agent/chat', {
       method: 'POST',
       body: JSON.stringify({ message: belief }),
     });
-    
+
     const data = await response.json();
-    
+
     // Add agent response
-    setMessages(prev => [...prev, {
-      role: 'agent',
-      content: data.reply,
-      arguments: data.arguments
-    }]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: 'agent',
+        content: data.reply,
+        arguments: data.arguments,
+      },
+    ]);
   };
 
   return (
@@ -441,12 +393,12 @@ interface ArgumentCardProps {
   limitations?: string[];
 }
 
-export function ArgumentCard({ 
-  claim, 
-  evidence, 
-  source, 
+export function ArgumentCard({
+  claim,
+  evidence,
+  source,
   qualityScore,
-  limitations 
+  limitations,
 }: ArgumentCardProps) {
   return (
     <div className="argument-card border rounded-lg p-4 mb-4">
@@ -455,13 +407,13 @@ export function ArgumentCard({
         <QualityBadge score={qualityScore} />
         <SourceCredibility source={source} />
       </div>
-      
+
       {/* Main claim */}
       <h3 className="font-bold text-lg mb-2">{claim}</h3>
-      
+
       {/* Evidence */}
       <p className="text-gray-700 mb-3">{evidence}</p>
-      
+
       {/* Source */}
       <div className="text-sm text-gray-600 bg-gray-50 p-2 rounded">
         <strong>Source:</strong> {source.title}
@@ -470,13 +422,11 @@ export function ArgumentCard({
         <br />
         <strong>Published:</strong> {source.yearPublished} | {source.institution}
       </div>
-      
+
       {/* Limitations */}
       {limitations && limitations.length > 0 && (
         <details className="mt-2">
-          <summary className="cursor-pointer text-sm text-blue-600">
-            Limitations & Caveats
-          </summary>
+          <summary className="cursor-pointer text-sm text-blue-600">Limitations & Caveats</summary>
           <ul className="text-sm text-gray-600 mt-2 ml-4 list-disc">
             {limitations.map((limit, i) => (
               <li key={i}>{limit}</li>
@@ -484,15 +434,11 @@ export function ArgumentCard({
           </ul>
         </details>
       )}
-      
+
       {/* Action buttons */}
       <div className="mt-3 flex gap-2">
-        <button className="text-sm text-blue-600">
-          Read Full Source →
-        </button>
-        <button className="text-sm text-gray-600">
-          See Related Arguments
-        </button>
+        <button className="text-sm text-blue-600">Read Full Source →</button>
+        <button className="text-sm text-gray-600">See Related Arguments</button>
       </div>
     </div>
   );
@@ -517,7 +463,7 @@ const agent = new AgentStudio({
 
 export async function POST(request: Request) {
   const { message, conversationId } = await request.json();
-  
+
   try {
     const response = await agent.chat({
       message,
@@ -525,21 +471,18 @@ export async function POST(request: Request) {
       context: {
         timestamp: new Date().toISOString(),
         // Include any user preferences
-      }
+      },
     });
-    
+
     return NextResponse.json({
       reply: response.message,
       arguments: response.searchResults,
       conversationId: response.conversationId,
-      followUpQuestions: response.suggestions
+      followUpQuestions: response.suggestions,
     });
   } catch (error) {
     console.error('Agent error:', error);
-    return NextResponse.json(
-      { error: 'Failed to get response' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to get response' }, { status: 500 });
   }
 }
 ```
@@ -549,11 +492,13 @@ export async function POST(request: Request) {
 ### 1. Relevance Tuning
 
 **Test Queries:**
+
 - "remote work is better" → Should find office work benefits
 - "crypto is a scam" → Should find legitimate use cases
 - "social media is harmful" → Should find benefits and nuance
 
 **Expected Top Results:**
+
 - High quality scores (>80)
 - Direct counterarguments to stated belief
 - Recent research preferred
@@ -562,6 +507,7 @@ export async function POST(request: Request) {
 ### 2. Ranking Optimization
 
 **Custom Ranking Weights:**
+
 ```
 qualityScore: 40%
 sourceCredibility: 30%
@@ -570,6 +516,7 @@ recency: 10%
 ```
 
 **A/B Testing:**
+
 - Test different ranking formulas
 - Measure user engagement (clicks, time on result)
 - Collect explicit feedback
@@ -577,6 +524,7 @@ recency: 10%
 ### 3. Query Understanding
 
 **Variations to Handle:**
+
 - "I think X" → Find arguments against X
 - "Why is X bad?" → Find arguments for X
 - "Change my mind about X" → Find strongest counter to X
@@ -587,18 +535,21 @@ recency: 10%
 ### Key Metrics
 
 **Search Metrics:**
+
 - Click-through rate on arguments
 - Time spent reading each argument
 - Source link clicks
 - Feedback ratings
 
 **Conversation Metrics:**
+
 - Average conversation length
 - Follow-up question rate
 - Topic distribution
 - Sentiment (did user feel respected?)
 
 **Quality Metrics:**
+
 - Argument quality ratings (user feedback)
 - Source credibility perception
 - "Changed my mind" responses
@@ -607,6 +558,7 @@ recency: 10%
 ### Algolia Analytics Dashboard
 
 Monitor:
+
 - Top searched beliefs
 - Most clicked arguments
 - Search-to-no-results rate
