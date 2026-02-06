@@ -53,3 +53,10 @@ thoughts/
 
 # Claude Code
 .claude/
+
+# Screenshots (temporary captures)
+*.png
+!/public/*.png
+
+# Playwright MCP
+.playwright-mcp/

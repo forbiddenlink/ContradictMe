@@ -124,6 +124,8 @@ Contest Entry Period: January 7 - February 8, 2026
 - ✅ SEO optimization (Open Graph, Twitter cards)
 - ✅ Abstract "thinking" animation (no generic bouncing dots)
 - ✅ Crystallization card entrance animations
+- ✅ Dark mode with system preference support
+- ✅ Theme toggle (light/dark/system)
 
 ### Testing
 

@@ -4,26 +4,21 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json();
 
-    console.log('Received message:', message);
-
     // Check if Agent Studio endpoint is configured
     const agentEndpoint = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
 
     if (!agentEndpoint) {
       return NextResponse.json({
-        message: "I'm still being set up! 🚧\n\nThe Agent Studio endpoint isn't configured.",
+        message: "The Agent Studio endpoint isn't configured yet. Please set up your environment variables.",
         arguments: [],
       });
     }
-
-    console.log('Calling Algolia Agent Studio at:', agentEndpoint);
 
     // Validate required environment variables
     const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
     const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY;
 
     if (!appId || !apiKey) {
-      console.error('Missing Algolia credentials');
       return NextResponse.json({
         message:
           'Configuration error: Missing Algolia credentials. Please check your environment variables.',
@@ -53,16 +48,12 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    console.log('Agent response status:', response.status);
-
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Agent API error:', errorText);
       throw new Error(`Agent API returned ${response.status}: ${errorText}`);
     }
 
     const data = await response.json();
-    console.log('Agent response data:', data);
 
     // Extract text from parts array
     let responseText = 'No response from agent';
@@ -85,7 +76,10 @@ export async function POST(req: NextRequest) {
       arguments: data.arguments || [],
     });
   } catch (error) {
-    console.error('Chat API error:', error);
+    // Log error in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Chat API error:', error);
+    }
     return NextResponse.json(
       {
         message: `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}`,
