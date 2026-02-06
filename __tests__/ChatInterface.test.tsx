@@ -81,7 +81,8 @@ describe('ChatInterface', () => {
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(button);
 
-    expect(screen.getByLabelText(/Analyzing perspectives/i)).toBeInTheDocument();
+    // Multi-phase loading starts with "Understanding your belief..."
+    expect(screen.getByLabelText(/Understanding your belief/i)).toBeInTheDocument();
   });
 
   it('displays error message on API failure', async () => {

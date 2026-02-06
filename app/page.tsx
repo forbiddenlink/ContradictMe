@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Home() {
   const router = useRouter();
@@ -18,36 +19,30 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50/30 to-cyan-50/20 relative overflow-hidden"
+      className="min-h-screen bg-slate-50 dark:bg-slate-950 relative transition-colors duration-300"
       role="main"
     >
-      {/* Animated Background Orbs for depth */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute top-20 left-10 w-96 h-96 bg-violet-400/15 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '5s' }}
-        ></div>
-        <div
-          className="absolute top-40 right-20 w-72 h-72 bg-teal-400/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '4s', animationDelay: '1s' }}
-        ></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '6s', animationDelay: '2s' }}
-        ></div>
-        <div
-          className="absolute bottom-40 left-1/4 w-64 h-64 bg-violet-300/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '7s', animationDelay: '3s' }}
-        ></div>
+      {/* Subtle noise texture for print-like feel */}
+      <div
+        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Theme Toggle - fixed position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
       </div>
 
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-16 sm:pb-20 relative z-10">
         <header className="text-center mb-14 sm:mb-20">
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-5 sm:mb-7 text-balance bg-gradient-to-r from-slate-900 via-violet-700 to-teal-600 bg-clip-text text-transparent bg-liquid leading-[1.1] tracking-[-0.03em]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-5 sm:mb-7 text-balance text-slate-900 dark:text-white leading-[1.1] tracking-[-0.03em]">
             An AI that disagrees with you
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-slate-600 leading-relaxed max-w-2xl mx-auto text-balance">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto text-balance">
             Challenge your beliefs with the strongest counterarguments, backed by research. Fight
             echo chambers. Think critically.
           </p>
@@ -65,13 +60,13 @@ export default function Home() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleChallenge()}
-              className="w-full px-5 sm:px-6 py-4 sm:py-5 pr-32 sm:pr-44 rounded-2xl border-2 border-gray-200/60 focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none transition-all placeholder:text-gray-400 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl hover:bg-white/80 text-base sm:text-lg"
+              className="w-full px-5 sm:px-6 py-4 sm:py-5 pr-32 sm:pr-44 rounded-2xl border-2 border-slate-200 dark:border-slate-700 focus:border-violet-500 dark:focus:border-violet-400 focus:ring-4 focus:ring-violet-100 dark:focus:ring-violet-900/50 outline-none transition-all duration-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 text-base sm:text-lg"
               placeholder="Tell me something you believe strongly..."
               aria-label="Enter a belief you hold strongly"
             />
             <button
               onClick={() => handleChallenge()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-4 sm:px-7 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-semibold text-sm sm:text-base btn-magnetic shadow-lg whitespace-nowrap"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-4 sm:px-7 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-xl font-semibold text-sm sm:text-base btn-magnetic shadow-lg hover:shadow-teal-500/25 whitespace-nowrap"
               aria-label="Start challenge conversation"
             >
               Challenge Me
@@ -84,35 +79,35 @@ export default function Home() {
           >
             <button
               onClick={() => handleChallenge('Nuclear energy is too dangerous')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/70 backdrop-blur-xl border border-white/40 rounded-full text-sm sm:text-base font-medium text-slate-700 hover:bg-white hover:border-teal-400 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
               aria-label="Challenge belief about nuclear energy"
             >
               Nuclear energy
             </button>
             <button
               onClick={() => handleChallenge('College is always worth it')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/70 backdrop-blur-xl border border-white/40 rounded-full text-sm sm:text-base font-medium text-slate-700 hover:bg-white hover:border-teal-400 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
               aria-label="Challenge belief about college ROI"
             >
               College ROI
             </button>
             <button
               onClick={() => handleChallenge('AI will cause mass unemployment')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/70 backdrop-blur-xl border border-white/40 rounded-full text-sm sm:text-base font-medium text-slate-700 hover:bg-white hover:border-teal-400 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
               aria-label="Challenge belief about AI and jobs"
             >
               AI & Jobs
             </button>
             <button
               onClick={() => handleChallenge('UBI makes people lazy')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/70 backdrop-blur-xl border border-white/40 rounded-full text-sm sm:text-base font-medium text-slate-700 hover:bg-white hover:border-teal-400 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
               aria-label="Challenge belief about universal basic income"
             >
               Universal basic income
             </button>
             <button
               onClick={() => handleChallenge('EVs are always better for the environment')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/70 backdrop-blur-xl border border-white/40 rounded-full text-sm sm:text-base font-medium text-slate-700 hover:bg-white hover:border-teal-400 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
               aria-label="Challenge belief about electric vehicles"
             >
               Electric vehicles
@@ -124,7 +119,7 @@ export default function Home() {
         <section className="mb-16 sm:mb-20" aria-labelledby="example-heading">
           <h2
             id="example-heading"
-            className="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-5 sm:mb-6 px-2 sm:px-0 tracking-tight"
+            className="font-display text-lg sm:text-xl font-semibold text-slate-800 dark:text-slate-200 mb-5 sm:mb-6 px-2 sm:px-0 tracking-tight"
           >
             Here&apos;s what you&apos;ll get:
           </h2>
@@ -135,10 +130,10 @@ export default function Home() {
                 Innovation requires serendipity
               </h3>
               <div className="quality-score ml-3 sm:ml-4" aria-label="Quality score 87 out of 100">
-                <span className="text-score text-violet-600" aria-hidden="true">
+                <span className="text-score text-violet-600 dark:text-violet-400" aria-hidden="true">
                   87
                 </span>
-                <span className="text-[10px] sm:text-xs font-medium text-gray-600 uppercase tracking-wide">
+                <span className="text-[10px] sm:text-xs font-medium text-gray-600 dark:text-slate-400 uppercase tracking-wide">
                   Quality
                 </span>
               </div>
@@ -153,12 +148,12 @@ export default function Home() {
 
             {/* Source Card */}
             <div className="source-card">
-              <div className="text-citation font-medium text-slate-800 mb-1 text-sm sm:text-base">
+              <div className="text-citation font-medium text-slate-800 dark:text-slate-200 mb-1 text-sm sm:text-base">
                 Dr. Sarah Chen
               </div>
               <div className="text-citation text-xs sm:text-sm">Stanford Economics, 2024</div>
               <div
-                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-gray-600"
+                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-gray-600 dark:text-slate-400"
                 role="list"
                 aria-label="Research metrics"
               >
@@ -170,19 +165,19 @@ export default function Home() {
 
             {/* Limitations */}
             <div className="limitations">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-800 mb-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">
                 <span aria-hidden="true">⚠</span>
                 <span>Limitations</span>
               </div>
               <ul className="list-none p-0 m-0 space-y-1">
-                <li className="text-xs sm:text-sm text-slate-700 pl-4 relative">
-                  <span className="absolute left-0 text-violet-500" aria-hidden="true">
+                <li className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 pl-4 relative">
+                  <span className="absolute left-0 text-violet-500 dark:text-violet-400" aria-hidden="true">
                     •
                   </span>
                   Study focused on tech industry
                 </li>
-                <li className="text-xs sm:text-sm text-slate-700 pl-4 relative">
-                  <span className="absolute left-0 text-violet-500" aria-hidden="true">
+                <li className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 pl-4 relative">
+                  <span className="absolute left-0 text-violet-500 dark:text-violet-400" aria-hidden="true">
                     •
                   </span>
                   Hybrid model (2-3 days) equally effective
@@ -190,15 +185,11 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* CTA Link */}
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 mt-4 transition-all hover:gap-3 hover:text-cyan-600"
-              aria-label="Read the full research study"
-            >
-              Read Full Study
-              <span aria-hidden="true">→</span>
-            </a>
+            {/* CTA - Example indicator */}
+            <div className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400 mt-4">
+              <span className="px-2 py-1 bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 rounded text-xs">Example Card</span>
+              <span className="text-slate-500 dark:text-slate-400">Real arguments include source links</span>
+            </div>
           </article>
         </section>
 
@@ -210,13 +201,13 @@ export default function Home() {
           <h2 id="features-heading" className="sr-only">
             Key Features
           </h2>
-          <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl">
+          <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4 rounded-xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 dark:text-violet-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -229,21 +220,21 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Evidence-Based
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
               Every argument backed by peer-reviewed research, not just plausible-sounding text.
             </p>
           </div>
 
-          <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl">
+          <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4 rounded-xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 dark:text-violet-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -256,21 +247,21 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Steel-Manned
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
               The strongest form of opposing arguments, not weak straw-man versions.
             </p>
           </div>
 
-          <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl sm:col-span-2 md:col-span-1">
+          <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:col-span-2 md:col-span-1">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4 rounded-xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 dark:text-violet-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -283,10 +274,10 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Respectful
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
               Never condescending. Honest about limitations. Promotes thinking, not
               &ldquo;winning.&rdquo;
             </p>
@@ -294,17 +285,17 @@ export default function Home() {
         </section>
 
         {/* Status */}
-        <div className="text-center py-6 sm:py-8 px-4 sm:px-6 bg-white/40 backdrop-blur-sm border border-gray-200 rounded-2xl mx-2 sm:mx-0">
-          <div className="text-xs sm:text-sm font-semibold text-violet-600 uppercase tracking-wide mb-1.5 sm:mb-2">
+        <div className="text-center py-6 sm:py-8 px-4 sm:px-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl mx-2 sm:mx-0">
+          <div className="text-xs sm:text-sm font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide mb-1.5 sm:mb-2">
             Algolia Agent Studio Challenge
           </div>
-          <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-1.5 sm:mb-2">
+          <h3 className="text-lg sm:text-xl font-semibold text-slate-800 dark:text-slate-100 mb-1.5 sm:mb-2">
             Contest Submission
           </h3>
-          <p className="text-xs sm:text-sm text-slate-700 mb-3">
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-3">
             Building an AI that challenges echo chambers
           </p>
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-600">
+          <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -315,15 +306,15 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white/40 backdrop-blur-sm py-6 sm:py-8 mt-12 sm:mt-16">
+      <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 py-6 sm:py-8 mt-12 sm:mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-xs sm:text-sm text-gray-600">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-slate-400">
             Built with{' '}
             <a
               href="https://www.algolia.com/products/agent-studio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-600 hover:text-cyan-600 font-medium transition-colors"
+              className="text-violet-600 dark:text-violet-400 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
             >
               Algolia Agent Studio
             </a>{' '}

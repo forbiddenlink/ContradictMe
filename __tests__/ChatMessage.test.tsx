@@ -142,8 +142,9 @@ describe('ChatMessage', () => {
         timestamp: Date.now(),
       };
       render(<ChatMessage message={message} />);
-      // Component shows the raw text when not in an argument section
-      expect(screen.getByText(/\*\*Nuance\*\*: This has important caveats/)).toBeInTheDocument();
+      // Component now renders bold markdown inline - check for the content
+      expect(screen.getByText(/Nuance/)).toBeInTheDocument();
+      expect(screen.getByText(/This has important caveats/)).toBeInTheDocument();
     });
 
     it('splits content by --- delimiter', () => {
