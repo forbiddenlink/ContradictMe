@@ -17,10 +17,12 @@ export default function TestChat() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold mb-4">Test Chat - Can You Type Here?</h1>
-        
+
         <div className="mb-4 p-4 bg-white rounded-lg min-h-[200px]">
           {messages.map((msg, i) => (
-            <div key={i} className="mb-2 p-2 bg-blue-100 rounded">{msg}</div>
+            <div key={i} className="mb-2 p-2 bg-blue-100 rounded">
+              {msg}
+            </div>
           ))}
         </div>
 
@@ -43,7 +45,8 @@ export default function TestChat() {
         </div>
 
         <p className="mt-4 text-sm text-gray-600">
-          If you can type here, the issue is with our chat component. If not, it&apos;s a browser/system issue.
+          If you can type here, the issue is with our chat component. If not, it&apos;s a
+          browser/system issue.
         </p>
       </div>
     </div>

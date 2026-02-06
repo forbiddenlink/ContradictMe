@@ -30,15 +30,8 @@ async function configureIndex(client: ReturnType<typeof algoliasearch>) {
           'filterOnly(sourceMetadata.yearPublished)',
           'filterOnly(qualityScore)',
         ],
-        customRanking: [
-          'desc(qualityScore)',
-          'desc(sourceCredibility)',
-          'desc(evidenceStrength)',
-        ],
-        attributesToSnippet: [
-          'evidence:50',
-          'mainClaim:30'
-        ],
+        customRanking: ['desc(qualityScore)', 'desc(sourceCredibility)', 'desc(evidenceStrength)'],
+        attributesToSnippet: ['evidence:50', 'mainClaim:30'],
         highlightPreTag: '<mark>',
         highlightPostTag: '</mark>',
       },
@@ -56,7 +49,7 @@ async function indexArguments(client: ReturnType<typeof algoliasearch>) {
 
   // Read all JSON files from data/arguments
   const argumentsDir = path.join(process.cwd(), 'data', 'arguments');
-  const files = fs.readdirSync(argumentsDir).filter(f => f.endsWith('.json'));
+  const files = fs.readdirSync(argumentsDir).filter((f) => f.endsWith('.json'));
 
   console.log(`📁 Found ${files.length} argument file(s)\n`);
 

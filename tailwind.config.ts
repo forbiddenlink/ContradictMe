@@ -1,10 +1,10 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -52,8 +52,8 @@ const config: Config = {
       animation: {
         'slide-in-up': 'slideInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
         'count-up': 'countUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        'shimmer': 'shimmer 2s linear infinite',
-        'typing': 'typing 1.4s ease-in-out infinite',
+        shimmer: 'shimmer 2s linear infinite',
+        typing: 'typing 1.4s ease-in-out infinite',
       },
       keyframes: {
         slideInUp: {
