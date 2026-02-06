@@ -7,17 +7,54 @@ interface ChatMessageProps {
   message: Message;
 }
 
+// Render inline markdown (bold) within text
+function renderInlineMarkdown(text: string): React.ReactNode {
+  // Handle bold text wrapped in double asterisks
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  const boldPattern = /\*\*(.+?)\*\*/g;
+  let match;
+
+  while ((match = boldPattern.exec(text)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    // Add the bold text
+    parts.push(
+      <strong key={match.index} className="font-semibold text-slate-900 dark:text-slate-100">
+        {match[1]}
+      </strong>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+}
+
 export default function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user';
 
   // Parse the assistant message to extract structured data
   const parseAssistantMessage = (content: string) => {
-    // Split by lines
     const lines = content.split('\n').filter((line) => line.trim());
 
+    // Find the first argument marker (numbered point or separator)
+    const firstArgIndex = lines.findIndex(line =>
+      /^\*\*\d+\./.test(line) || line.trim() === '---'
+    );
+
+    // Intro is everything before the first argument
+    const introEnd = firstArgIndex > 0 ? firstArgIndex : Math.min(3, lines.length);
+
     return {
-      intro: lines.slice(0, 3).join('\n'), // First few lines before arguments
-      rest: lines.slice(3).join('\n'),
+      intro: lines.slice(0, introEnd).join('\n'),
+      rest: lines.slice(introEnd).join('\n'),
     };
   };
 
@@ -28,10 +65,10 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       <div className={`max-w-[85%] ${isUser ? 'ml-auto' : 'mr-auto'}`}>
         {/* Message Bubble */}
         <div
-          className={`rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-all duration-300 ${
+          className={`rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
             isUser
               ? 'bg-gradient-to-br from-teal-600 to-cyan-600 text-white'
-              : 'bg-gradient-to-br from-white/95 to-violet-50/50 backdrop-blur-sm border border-violet-100/50 text-slate-800'
+              : 'bg-gradient-to-br from-white/95 to-violet-50/50 dark:from-slate-800/95 dark:to-violet-950/30 backdrop-blur-sm border border-violet-100/50 dark:border-violet-900/30 text-slate-800 dark:text-slate-200'
           }`}
         >
           {isUser ? (
@@ -40,12 +77,18 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             <div className="space-y-4">
               {/* Intro text */}
               {parsed && parsed.intro && (
-                <div className="prose prose-sm max-w-none">
-                  {parsed.intro.split('\n').map((line, i) => (
-                    <p key={i} className="text-slate-700 leading-relaxed mb-2">
-                      {line}
-                    </p>
-                  ))}
+                <div className="prose prose-sm max-w-none dark:prose-invert">
+                  {parsed.intro.split('\n').map((line, i) => {
+                    // Remove surrounding quotes and clean up
+                    const cleanLine = line.replace(/^"(.*)"$/, '$1');
+                    // Skip separator lines
+                    if (cleanLine === '---') return null;
+                    return (
+                      <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2">
+                        {renderInlineMarkdown(cleanLine)}
+                      </p>
+                    );
+                  })}
                 </div>
               )}
 
@@ -60,59 +103,63 @@ export default function ChatMessage({ message }: ChatMessageProps) {
 
                     if (isArgument) {
                       return (
-                        <div key={idx} className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                          <div className="prose prose-sm max-w-none">
+                        <div key={idx} className="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-200 dark:border-slate-700">
+                          <div className="prose prose-sm max-w-none dark:prose-invert">
                             {section.split('\n').map((line, i) => {
                               if (!line.trim()) return null;
 
-                              // Bold headers
-                              if (line.startsWith('**') && line.endsWith('**')) {
+                              // Remove surrounding quotes if present
+                              const cleanLine = line.replace(/^"(.*)"$/, '$1');
+
+                              // Source citations (📚)
+                              if (cleanLine.startsWith('📚')) {
                                 return (
-                                  <p key={i} className="font-bold text-slate-900 text-base mb-2">
-                                    {line.replace(/\*\*/g, '')}
+                                  <p
+                                    key={i}
+                                    className="text-sm text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 px-3 py-2 rounded-lg mt-3"
+                                  >
+                                    {cleanLine}
                                   </p>
                                 );
                               }
 
-                              // Source citations
-                              if (line.startsWith('📚')) {
+                              // Nuance or warning section (⚠️ or starts with Nuance)
+                              if (cleanLine.includes('⚠️ Nuance:') || cleanLine.match(/^\*\*Nuance\*\*:/)) {
                                 return (
                                   <p
                                     key={i}
-                                    className="text-sm text-slate-600 bg-white px-3 py-2 rounded-lg mt-3"
+                                    className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-3 py-2 rounded-lg mt-3 border-l-4 border-amber-400"
                                   >
-                                    {line}
+                                    {renderInlineMarkdown(cleanLine.replace(/^\*\*Nuance\*\*:/, '⚠️ Nuance:'))}
                                   </p>
                                 );
                               }
 
                               // Evidence strength
-                              if (line.includes('Evidence Strength:')) {
+                              if (cleanLine.includes('Evidence Strength:')) {
                                 return (
                                   <p
                                     key={i}
-                                    className="text-sm font-semibold text-success-500 mt-2"
+                                    className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-2"
                                   >
-                                    {line}
+                                    {cleanLine}
                                   </p>
                                 );
                               }
 
-                              // Nuance section
-                              if (line.startsWith('**Nuance**:')) {
+                              // Bullet points (lines starting with -)
+                              if (cleanLine.startsWith('- ')) {
                                 return (
-                                  <p
-                                    key={i}
-                                    className="text-sm text-amber-700 bg-amber-50 px-3 py-2 rounded-lg mt-3 border-l-4 border-amber-400"
-                                  >
-                                    {line.replace('**Nuance**:', '⚠️ Nuance:')}
+                                  <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2 pl-4 border-l-2 border-slate-200 dark:border-slate-600">
+                                    {renderInlineMarkdown(cleanLine.slice(2))}
                                   </p>
                                 );
                               }
 
+                              // Regular lines - render with inline markdown
                               return (
-                                <p key={i} className="text-slate-700 leading-relaxed mb-2">
-                                  {line}
+                                <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2">
+                                  {renderInlineMarkdown(cleanLine)}
                                 </p>
                               );
                             })}
@@ -121,17 +168,18 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                       );
                     }
 
-                    // Regular text
+                    // Regular text section - also render with inline markdown
                     return (
-                      <div key={idx} className="text-slate-700">
-                        {section.split('\n').map(
-                          (line, i) =>
-                            line.trim() && (
-                              <p key={i} className="mb-2">
-                                {line}
-                              </p>
-                            )
-                        )}
+                      <div key={idx} className="text-slate-700 dark:text-slate-300">
+                        {section.split('\n').map((line, i) => {
+                          if (!line.trim()) return null;
+                          const cleanLine = line.replace(/^"(.*)"$/, '$1');
+                          return (
+                            <p key={i} className="mb-2">
+                              {renderInlineMarkdown(cleanLine)}
+                            </p>
+                          );
+                        })}
                       </div>
                     );
                   })}
@@ -151,7 +199,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         )}
 
         {/* Timestamp */}
-        <div className={`text-xs text-gray-500 mt-2 ${isUser ? 'text-right' : 'text-left'}`}>
+        <div className={`text-xs text-gray-500 dark:text-slate-500 mt-2 ${isUser ? 'text-right' : 'text-left'}`}>
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',

@@ -433,3 +433,112 @@
   --violet-100: #EDE9FE;
   --violet-50: #F5F3FF;
 }
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion Support
+   ============================================
+   Respects user preference for reduced motion.
+   Users with vestibular disorders or motion sensitivity
+   will see instant transitions instead of animations.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .thinking-blob {
+    animation: none !important;
+    border-radius: 50% !important;
+  }
+
+  .animate-crystallize,
+  .animate-slide-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT (CSS Custom Properties)
+   ============================================
+   Prepared for future dark mode toggle.
+   Toggle by adding `class="dark"` to <html> element.
+*/
+.dark {
+  --color-background: var(--slate-950);
+  --color-surface: var(--slate-900);
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-border: var(--slate-700);
+  --color-border-hover: var(--teal-600);
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+.dark .argument-card {
+  background: linear-gradient(135deg, rgba(15, 33, 55, 0.95), rgba(26, 47, 71, 0.85));
+  border-color: rgba(77, 212, 207, 0.2);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dark .argument-card:hover {
+  background: linear-gradient(135deg, rgba(20, 40, 65, 0.95), rgba(30, 55, 80, 0.9));
+  border-color: rgba(77, 212, 207, 0.35);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 20px 60px rgba(13, 154, 155, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dark .quality-score {
+  background: rgba(30, 45, 65, 0.8);
+  border-color: rgba(77, 212, 207, 0.2);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dark .source-card {
+  background: rgba(15, 25, 40, 0.6);
+  @apply border-slate-700;
+}
+
+.dark .limitations {
+  background: rgba(120, 53, 15, 0.15);
+  @apply border-amber-600;
+}
+
+.dark .title-argument {
+  @apply text-slate-100;
+}
+
+.dark .text-body {
+  @apply text-slate-300;
+}
+
+.dark .text-citation {
+  @apply text-slate-400;
+}
+
+.dark .chat-input-field {
+  @apply bg-slate-800 border-slate-600 text-slate-100;
+}
+
+.dark .chat-input-field:focus {
+  @apply border-teal-500;
+}

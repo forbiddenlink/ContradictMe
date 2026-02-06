@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Argument } from '@/lib/types';
 
 interface ArgumentCardProps {
@@ -16,9 +17,9 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
   // Color based on quality score
   const getQualityColor = (score: number) => {
-    if (score >= 80) return 'text-violet-600';
-    if (score >= 60) return 'text-violet-500';
-    return 'text-slate-500';
+    if (score >= 80) return 'text-violet-600 dark:text-violet-400';
+    if (score >= 60) return 'text-violet-500 dark:text-violet-400';
+    return 'text-slate-500 dark:text-slate-400';
   };
 
   const getQualityRingColor = (score: number) => {
@@ -35,7 +36,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <div className="relative w-20 h-20">
             <svg className="transform -rotate-90 w-20 h-20">
               {/* Background circle */}
-              <circle cx="40" cy="40" r="36" stroke="#E5E7EB" strokeWidth="6" fill="none" />
+              <circle cx="40" cy="40" r="36" className="stroke-gray-200 dark:stroke-slate-700" strokeWidth="6" fill="none" />
               {/* Progress circle */}
               <circle
                 cx="40"
@@ -47,14 +48,14 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
                 strokeLinecap="round"
-                className="transition-all duration-1000 ease-out"
+                className="transition-all duration-500 ease-out"
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center flex-col">
               <span className={`text-2xl font-bold ${getQualityColor(argument.qualityScore)}`}>
                 {argument.qualityScore}
               </span>
-              <span className="text-xs text-gray-500">quality</span>
+              <span className="text-xs text-gray-500 dark:text-slate-400">quality</span>
             </div>
           </div>
 
@@ -63,8 +64,8 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
             <span
               className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
                 argument.position === 'against'
-                  ? 'bg-violet-100 text-violet-700'
-                  : 'bg-teal-100 text-teal-700'
+                  ? 'bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300'
+                  : 'bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300'
               }`}
             >
               {argument.position === 'against' ? 'Counterargument' : 'Supporting'}
@@ -74,7 +75,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
         {/* Source Credibility */}
         <div className="text-right">
-          <div className="text-sm text-gray-600">Source</div>
+          <div className="text-sm text-gray-600 dark:text-slate-400">Source</div>
           <div className={`text-lg font-bold ${getQualityColor(argument.sourceCredibility)}`}>
             {argument.sourceCredibility}/100
           </div>
@@ -82,21 +83,21 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       </div>
 
       {/* Main Claim */}
-      <h3 className="font-display text-xl font-bold text-slate-800 mb-3 leading-tight">{argument.mainClaim}</h3>
+      <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-tight">{argument.mainClaim}</h3>
 
       {/* Evidence */}
       <div className="mb-4">
-        <p className="text-slate-700 leading-relaxed">{argument.evidence}</p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{argument.evidence}</p>
       </div>
 
       {/* Supporting Points */}
       {argument.supportingPoints && argument.supportingPoints.length > 0 && (
         <div className="mb-4">
-          <div className="text-sm font-semibold text-slate-700 mb-2">Key Points:</div>
+          <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Key Points:</div>
           <ul className="space-y-1">
             {argument.supportingPoints.map((point, idx) => (
-              <li key={idx} className="flex items-start text-sm text-slate-600">
-                <span className="text-violet-500 mr-2">•</span>
+              <li key={idx} className="flex items-start text-sm text-slate-600 dark:text-slate-400">
+                <span className="text-violet-500 dark:text-violet-400 mr-2">•</span>
                 <span>{point}</span>
               </li>
             ))}
@@ -105,14 +106,14 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       )}
 
       {/* Source Metadata */}
-      <div className="border-t border-gray-200 pt-4 mb-4">
-        <div className="flex items-center text-sm text-slate-600">
+      <div className="border-t border-gray-200 dark:border-slate-700 pt-4 mb-4">
+        <div className="flex items-center text-sm text-slate-600 dark:text-slate-400">
           <span className="mr-2">📚</span>
           <div>
-            <div className="font-medium">
+            <div className="font-medium text-slate-700 dark:text-slate-300">
               {argument.sourceMetadata?.authors?.join(', ') || 'Multiple Authors'}
             </div>
-            <div className="text-gray-600">
+            <div className="text-gray-600 dark:text-slate-400">
               {argument.sourceMetadata?.institution || 'Unknown Institution'}
               {argument.sourceMetadata?.yearPublished &&
                 ` • ${argument.sourceMetadata.yearPublished}`}
@@ -126,7 +127,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       {/* Evidence Strength & Tags */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div className="flex items-center space-x-2 text-sm">
-          <span className="text-gray-600">Evidence:</span>
+          <span className="text-gray-600 dark:text-slate-400">Evidence:</span>
           <span className={`font-semibold ${getQualityColor(argument.evidenceStrength)}`}>
             {argument.evidenceStrength}/100
           </span>
@@ -135,7 +136,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           {argument.tags?.slice(0, 3).map((tag, idx) => (
             <span
               key={idx}
-              className="px-2 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-medium"
+              className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-xs font-medium"
             >
               {tag}
             </span>
@@ -145,19 +146,27 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
       {/* Limitations (collapsible) */}
       {argument.limitations && (
-        <div className="border-t border-gray-200 pt-3">
+        <div className="border-t border-gray-200 dark:border-slate-700 pt-3">
           <button
             onClick={() => setShowLimitations(!showLimitations)}
-            className="flex items-center justify-between w-full text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
+            className="flex items-center justify-between w-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <span>⚠️ Limitations & Caveats</span>
-            <span className="text-gray-400">{showLimitations ? '▲' : '▼'}</span>
+            <span className="text-gray-400 dark:text-slate-500">{showLimitations ? '▲' : '▼'}</span>
           </button>
-          {showLimitations && (
-            <div className="mt-3 text-sm text-gray-600 bg-gray-50 rounded-lg p-3 animate-in fade-in slide-in-from-top-2">
-              {argument.limitations}
-            </div>
-          )}
+          <AnimatePresence>
+            {showLimitations && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
+                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                className="text-sm text-gray-600 dark:text-slate-400 bg-gray-50 dark:bg-slate-800/50 rounded-lg p-3 overflow-hidden"
+              >
+                {argument.limitations}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
     </div>

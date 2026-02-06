@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 // Distinctive headline font - geometric, modern, memorable
 const spaceGrotesk = Space_Grotesk({
@@ -34,6 +35,10 @@ export const metadata: Metadata = {
   title: 'ContradictMe - Challenge Your Beliefs with AI',
   description:
     'An AI that actively seeks and presents the strongest counterarguments to your views. Steel-man opposing perspectives with research-backed arguments. Fight echo chambers and think critically.',
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
   keywords: [
     'AI',
     'critical thinking',
@@ -77,9 +82,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="antialiased">
-        <ErrorBoundary>{children}</ErrorBoundary>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <body className="antialiased bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        <ThemeProvider defaultTheme="system">
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </ThemeProvider>
       </body>
     </html>
   );
