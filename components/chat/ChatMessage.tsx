@@ -13,11 +13,11 @@ export default function ChatMessage({ message }: ChatMessageProps) {
   // Parse the assistant message to extract structured data
   const parseAssistantMessage = (content: string) => {
     // Split by lines
-    const lines = content.split('\n').filter(line => line.trim());
-    
+    const lines = content.split('\n').filter((line) => line.trim());
+
     return {
       intro: lines.slice(0, 3).join('\n'), // First few lines before arguments
-      rest: lines.slice(3).join('\n')
+      rest: lines.slice(3).join('\n'),
     };
   };
 
@@ -48,23 +48,23 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                   ))}
                 </div>
               )}
-              
+
               {/* Main content - formatted */}
               {parsed && parsed.rest && (
                 <div className="space-y-3">
                   {parsed.rest.split('---').map((section, idx) => {
                     if (!section.trim()) return null;
-                    
+
                     // Check if this section contains a numbered argument
                     const isArgument = section.match(/^\*\*\d+\./);
-                    
+
                     if (isArgument) {
                       return (
                         <div key={idx} className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                           <div className="prose prose-sm max-w-none">
                             {section.split('\n').map((line, i) => {
                               if (!line.trim()) return null;
-                              
+
                               // Bold headers
                               if (line.startsWith('**') && line.endsWith('**')) {
                                 return (
@@ -73,34 +73,43 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                                   </p>
                                 );
                               }
-                              
+
                               // Source citations
                               if (line.startsWith('📚')) {
                                 return (
-                                  <p key={i} className="text-sm text-slate-600 bg-white px-3 py-2 rounded-lg mt-3">
+                                  <p
+                                    key={i}
+                                    className="text-sm text-slate-600 bg-white px-3 py-2 rounded-lg mt-3"
+                                  >
                                     {line}
                                   </p>
                                 );
                               }
-                              
+
                               // Evidence strength
                               if (line.includes('Evidence Strength:')) {
                                 return (
-                                  <p key={i} className="text-sm font-semibold text-success-500 mt-2">
+                                  <p
+                                    key={i}
+                                    className="text-sm font-semibold text-success-500 mt-2"
+                                  >
                                     {line}
                                   </p>
                                 );
                               }
-                              
+
                               // Nuance section
                               if (line.startsWith('**Nuance**:')) {
                                 return (
-                                  <p key={i} className="text-sm text-amber-700 bg-amber-50 px-3 py-2 rounded-lg mt-3 border-l-4 border-amber-400">
+                                  <p
+                                    key={i}
+                                    className="text-sm text-amber-700 bg-amber-50 px-3 py-2 rounded-lg mt-3 border-l-4 border-amber-400"
+                                  >
                                     {line.replace('**Nuance**:', '⚠️ Nuance:')}
                                   </p>
                                 );
                               }
-                              
+
                               return (
                                 <p key={i} className="text-slate-700 leading-relaxed mb-2">
                                   {line}
@@ -111,13 +120,18 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                         </div>
                       );
                     }
-                    
+
                     // Regular text
                     return (
                       <div key={idx} className="text-slate-700">
-                        {section.split('\n').map((line, i) => line.trim() && (
-                          <p key={i} className="mb-2">{line}</p>
-                        ))}
+                        {section.split('\n').map(
+                          (line, i) =>
+                            line.trim() && (
+                              <p key={i} className="mb-2">
+                                {line}
+                              </p>
+                            )
+                        )}
                       </div>
                     );
                   })}
@@ -138,9 +152,9 @@ export default function ChatMessage({ message }: ChatMessageProps) {
 
         {/* Timestamp */}
         <div className={`text-xs text-gray-500 mt-2 ${isUser ? 'text-right' : 'text-left'}`}>
-          {new Date(message.timestamp).toLocaleTimeString([], { 
-            hour: '2-digit', 
-            minute: '2-digit' 
+          {new Date(message.timestamp).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
           })}
         </div>
       </div>

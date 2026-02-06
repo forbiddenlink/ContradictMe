@@ -8,23 +8,36 @@ export async function POST(req: NextRequest) {
 
     // Check if Agent Studio endpoint is configured
     const agentEndpoint = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
-    
+
     if (!agentEndpoint) {
       return NextResponse.json({
         message: "I'm still being set up! 🚧\n\nThe Agent Studio endpoint isn't configured.",
-        arguments: []
+        arguments: [],
       });
     }
 
     console.log('Calling Algolia Agent Studio at:', agentEndpoint);
+
+    // Validate required environment variables
+    const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+    const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY;
+
+    if (!appId || !apiKey) {
+      console.error('Missing Algolia credentials');
+      return NextResponse.json({
+        message:
+          'Configuration error: Missing Algolia credentials. Please check your environment variables.',
+        arguments: [],
+      });
+    }
 
     // Call Algolia Agent Studio API (ai-sdk-5 format with parts)
     const response = await fetch(agentEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Algolia-Application-Id': process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
-        'X-Algolia-API-Key': process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY!,
+        'X-Algolia-Application-Id': appId,
+        'X-Algolia-API-Key': apiKey,
       },
       body: JSON.stringify({
         messages: [
@@ -32,11 +45,11 @@ export async function POST(req: NextRequest) {
             role: 'user',
             parts: [
               {
-                text: message
-              }
-            ]
-          }
-        ]
+                text: message,
+              },
+            ],
+          },
+        ],
       }),
     });
 
@@ -54,7 +67,9 @@ export async function POST(req: NextRequest) {
     // Extract text from parts array
     let responseText = 'No response from agent';
     if (data.parts && Array.isArray(data.parts)) {
-      const textParts = data.parts.filter((part: { type?: string; text?: string }) => part.type === 'text' || part.text);
+      const textParts = data.parts.filter(
+        (part: { type?: string; text?: string }) => part.type === 'text' || part.text
+      );
       responseText = textParts.map((part: { text: string }) => part.text).join('\n');
     } else if (data.text) {
       responseText = data.text;
@@ -69,16 +84,14 @@ export async function POST(req: NextRequest) {
       message: responseText,
       arguments: data.arguments || [],
     });
-
   } catch (error) {
     console.error('Chat API error:', error);
     return NextResponse.json(
-      { 
+      {
         message: `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        arguments: []
+        arguments: [],
       },
       { status: 200 } // Return 200 so the frontend shows the error message
     );
   }
 }
-

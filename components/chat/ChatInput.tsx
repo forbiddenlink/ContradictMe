@@ -26,7 +26,11 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
 
   return (
     <div className="flex gap-2">
+      <label htmlFor="chat-message-input" className="sr-only">
+        Type your belief or message
+      </label>
       <input
+        id="chat-message-input"
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -34,15 +38,23 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
         placeholder="Tell me something you believe strongly..."
         disabled={isLoading}
         autoFocus
-        className="flex-1 px-5 py-4 rounded-2xl border border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none transition-all placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+        className="flex-1 px-5 sm:px-6 py-4 sm:py-5 rounded-2xl border-2 border-gray-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none transition-all placeholder:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed bg-white text-base sm:text-lg"
+        aria-label="Chat message input"
+        aria-describedby={isLoading ? 'loading-status' : undefined}
       />
       <button
         onClick={handleSend}
         disabled={!input.trim() || isLoading}
-        className="px-6 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-2xl font-semibold text-sm transition-all hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        className="px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-2xl font-semibold text-sm sm:text-base transition-all hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        aria-label={isLoading ? 'Sending message...' : 'Send message to challenge your belief'}
       >
         Challenge Me
       </button>
+      {isLoading && (
+        <span id="loading-status" className="sr-only" role="status" aria-live="polite">
+          Sending message, please wait...
+        </span>
+      )}
     </div>
   );
 }

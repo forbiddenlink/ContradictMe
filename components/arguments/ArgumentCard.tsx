@@ -35,14 +35,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <div className="relative w-20 h-20">
             <svg className="transform -rotate-90 w-20 h-20">
               {/* Background circle */}
-              <circle
-                cx="40"
-                cy="40"
-                r="36"
-                stroke="#E5E7EB"
-                strokeWidth="6"
-                fill="none"
-              />
+              <circle cx="40" cy="40" r="36" stroke="#E5E7EB" strokeWidth="6" fill="none" />
               {/* Progress circle */}
               <circle
                 cx="40"
@@ -67,11 +60,13 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
           {/* Position badge */}
           <div className="flex flex-col">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
-              argument.position === 'against' 
-                ? 'bg-cyan-100 text-cyan-700'
-                : 'bg-teal-100 text-teal-700'
-            }`}>
+            <span
+              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+                argument.position === 'against'
+                  ? 'bg-cyan-100 text-cyan-700'
+                  : 'bg-teal-100 text-teal-700'
+              }`}
+            >
               {argument.position === 'against' ? '✗ Against' : '✓ For'}
             </span>
           </div>
@@ -87,15 +82,11 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       </div>
 
       {/* Main Claim */}
-      <h3 className="text-xl font-bold text-slate-800 mb-3 leading-tight">
-        {argument.mainClaim}
-      </h3>
+      <h3 className="text-xl font-bold text-slate-800 mb-3 leading-tight">{argument.mainClaim}</h3>
 
       {/* Evidence */}
       <div className="mb-4">
-        <p className="text-slate-700 leading-relaxed">
-          {argument.evidence}
-        </p>
+        <p className="text-slate-700 leading-relaxed">{argument.evidence}</p>
       </div>
 
       {/* Supporting Points */}
@@ -119,11 +110,14 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <span className="mr-2">📚</span>
           <div>
             <div className="font-medium">
-              {argument.sourceMetadata.authors?.join(', ') || 'Multiple Authors'}
+              {argument.sourceMetadata?.authors?.join(', ') || 'Multiple Authors'}
             </div>
             <div className="text-gray-600">
-              {argument.sourceMetadata.institution} • {argument.sourceMetadata.yearPublished}
-              {argument.sourceMetadata.publicationType && ` • ${argument.sourceMetadata.publicationType}`}
+              {argument.sourceMetadata?.institution || 'Unknown Institution'}
+              {argument.sourceMetadata?.yearPublished &&
+                ` • ${argument.sourceMetadata.yearPublished}`}
+              {argument.sourceMetadata?.publicationType &&
+                ` • ${argument.sourceMetadata.publicationType}`}
             </div>
           </div>
         </div>
@@ -139,7 +133,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           {argument.tags?.slice(0, 3).map((tag, idx) => (
-            <span 
+            <span
               key={idx}
               className="px-2 py-1 bg-slate-100 text-slate-600 rounded-md text-xs font-medium"
             >
@@ -157,9 +151,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
             className="flex items-center justify-between w-full text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
           >
             <span>⚠️ Limitations & Caveats</span>
-            <span className="text-gray-400">
-              {showLimitations ? '▲' : '▼'}
-            </span>
+            <span className="text-gray-400">{showLimitations ? '▲' : '▼'}</span>
           </button>
           {showLimitations && (
             <div className="mt-3 text-sm text-gray-600 bg-gray-50 rounded-lg p-3 animate-in fade-in slide-in-from-top-2">
