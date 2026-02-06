@@ -26,8 +26,15 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Build the endpoint URL with required query parameters
+    const url = new URL(agentEndpoint);
+    // Ensure stream is a boolean value
+    url.searchParams.set('stream', 'false');
+    // Add compatibility mode for ai-sdk-5 format
+    url.searchParams.set('compatibilityMode', 'ai-sdk-5');
+
     // Call Algolia Agent Studio API (ai-sdk-5 format with parts)
-    const response = await fetch(agentEndpoint, {
+    const response = await fetch(url.toString(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
