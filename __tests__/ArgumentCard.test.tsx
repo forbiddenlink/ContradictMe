@@ -48,12 +48,12 @@ describe('ArgumentCard', () => {
 
   it('renders the position badge', () => {
     render(<ArgumentCard argument={mockArgument} />);
-    expect(screen.getByText('✗ Against')).toBeInTheDocument();
+    expect(screen.getByText('Counterargument')).toBeInTheDocument();
   });
 
-  it('renders "For" badge when position is for', () => {
+  it('renders "Supporting" badge when position is for', () => {
     render(<ArgumentCard argument={{ ...mockArgument, position: 'for' }} />);
-    expect(screen.getByText('✓ For')).toBeInTheDocument();
+    expect(screen.getByText('Supporting')).toBeInTheDocument();
   });
 
   it('renders the evidence', () => {

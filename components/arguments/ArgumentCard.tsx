@@ -16,19 +16,19 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
   // Color based on quality score
   const getQualityColor = (score: number) => {
-    if (score >= 80) return 'text-success-500';
-    if (score >= 60) return 'text-teal-600';
+    if (score >= 80) return 'text-violet-600';
+    if (score >= 60) return 'text-violet-500';
     return 'text-slate-500';
   };
 
   const getQualityRingColor = (score: number) => {
-    if (score >= 80) return '#0D9488'; // teal-600
-    if (score >= 60) return '#14B8A6'; // teal-500
+    if (score >= 80) return '#7C3AED'; // violet-600 - premium counterarguments
+    if (score >= 60) return '#8B5CF6'; // violet-500
     return '#64748B'; // slate-500
   };
 
   return (
-    <div className="argument-card group">
+    <div className="argument-card group animate-crystallize">
       <div className="flex items-start justify-between mb-4">
         {/* Quality Score - Radial Progress */}
         <div className="flex items-center space-x-4">
@@ -63,11 +63,11 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
             <span
               className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
                 argument.position === 'against'
-                  ? 'bg-cyan-100 text-cyan-700'
+                  ? 'bg-violet-100 text-violet-700'
                   : 'bg-teal-100 text-teal-700'
               }`}
             >
-              {argument.position === 'against' ? '✗ Against' : '✓ For'}
+              {argument.position === 'against' ? 'Counterargument' : 'Supporting'}
             </span>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       </div>
 
       {/* Main Claim */}
-      <h3 className="text-xl font-bold text-slate-800 mb-3 leading-tight">{argument.mainClaim}</h3>
+      <h3 className="font-display text-xl font-bold text-slate-800 mb-3 leading-tight">{argument.mainClaim}</h3>
 
       {/* Evidence */}
       <div className="mb-4">
@@ -96,7 +96,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <ul className="space-y-1">
             {argument.supportingPoints.map((point, idx) => (
               <li key={idx} className="flex items-start text-sm text-slate-600">
-                <span className="text-teal-600 mr-2">•</span>
+                <span className="text-violet-500 mr-2">•</span>
                 <span>{point}</span>
               </li>
             ))}

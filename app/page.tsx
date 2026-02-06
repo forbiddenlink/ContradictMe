@@ -24,19 +24,27 @@ export default function Home() {
       {/* Animated Background Orbs for depth */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
-          className="absolute top-20 left-10 w-96 h-96 bg-teal-400/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '4s' }}
+          className="absolute top-20 left-10 w-96 h-96 bg-violet-400/15 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '5s' }}
         ></div>
         <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"
+          className="absolute top-40 right-20 w-72 h-72 bg-teal-400/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '4s', animationDelay: '1s' }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl animate-pulse"
           style={{ animationDuration: '6s', animationDelay: '2s' }}
+        ></div>
+        <div
+          className="absolute bottom-40 left-1/4 w-64 h-64 bg-violet-300/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '7s', animationDelay: '3s' }}
         ></div>
       </div>
 
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-16 sm:pb-20 relative z-10">
         <header className="text-center mb-14 sm:mb-20">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-5 sm:mb-7 text-balance bg-gradient-to-r from-slate-900 via-teal-700 to-cyan-600 bg-clip-text text-transparent bg-liquid leading-tight tracking-tight">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-5 sm:mb-7 text-balance bg-gradient-to-r from-slate-900 via-violet-700 to-teal-600 bg-clip-text text-transparent bg-liquid leading-[1.1] tracking-[-0.03em]">
             An AI that disagrees with you
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-slate-600 leading-relaxed max-w-2xl mx-auto text-balance">
@@ -116,18 +124,18 @@ export default function Home() {
         <section className="mb-16 sm:mb-20" aria-labelledby="example-heading">
           <h2
             id="example-heading"
-            className="text-lg sm:text-xl font-semibold text-slate-800 mb-5 sm:mb-6 px-2 sm:px-0 tracking-tight"
+            className="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-5 sm:mb-6 px-2 sm:px-0 tracking-tight"
           >
             Here&apos;s what you&apos;ll get:
           </h2>
           <article className="argument-card">
             {/* Header with Quality Score */}
             <div className="flex justify-between items-start mb-4">
-              <h3 className="title-argument flex-1 text-lg sm:text-xl">
+              <h3 className="font-display title-argument flex-1 text-lg sm:text-xl">
                 Innovation requires serendipity
               </h3>
               <div className="quality-score ml-3 sm:ml-4" aria-label="Quality score 87 out of 100">
-                <span className="text-score text-success-500" aria-hidden="true">
+                <span className="text-score text-violet-600" aria-hidden="true">
                   87
                 </span>
                 <span className="text-[10px] sm:text-xs font-medium text-gray-600 uppercase tracking-wide">
@@ -168,13 +176,13 @@ export default function Home() {
               </div>
               <ul className="list-none p-0 m-0 space-y-1">
                 <li className="text-xs sm:text-sm text-slate-700 pl-4 relative">
-                  <span className="absolute left-0 text-amber-500" aria-hidden="true">
+                  <span className="absolute left-0 text-violet-500" aria-hidden="true">
                     •
                   </span>
                   Study focused on tech industry
                 </li>
                 <li className="text-xs sm:text-sm text-slate-700 pl-4 relative">
-                  <span className="absolute left-0 text-amber-500" aria-hidden="true">
+                  <span className="absolute left-0 text-violet-500" aria-hidden="true">
                     •
                   </span>
                   Hybrid model (2-3 days) equally effective
@@ -185,7 +193,7 @@ export default function Home() {
             {/* CTA Link */}
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-sm font-medium text-teal-600 mt-4 transition-all hover:gap-3 hover:text-cyan-600"
+              className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 mt-4 transition-all hover:gap-3 hover:text-cyan-600"
               aria-label="Read the full research study"
             >
               Read Full Study
@@ -204,11 +212,11 @@ export default function Home() {
           </h2>
           <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-teal-100 to-cyan-200 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -221,7 +229,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
               Evidence-Based
             </h3>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -231,11 +239,11 @@ export default function Home() {
 
           <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-teal-100 to-cyan-200 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -248,7 +256,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
               Steel-Manned
             </h3>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -258,11 +266,11 @@ export default function Home() {
 
           <div className="p-6 sm:p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl sm:col-span-2 md:col-span-1">
             <div
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-teal-100 to-cyan-200 flex items-center justify-center"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-2 sm:mb-3 rounded-xl bg-gradient-to-br from-violet-100 to-teal-100 flex items-center justify-center"
               aria-hidden="true"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -275,7 +283,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
+            <h3 className="font-display font-semibold text-slate-800 mb-2 sm:mb-2.5 text-base sm:text-lg tracking-tight">
               Respectful
             </h3>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -287,7 +295,7 @@ export default function Home() {
 
         {/* Status */}
         <div className="text-center py-6 sm:py-8 px-4 sm:px-6 bg-white/40 backdrop-blur-sm border border-gray-200 rounded-2xl mx-2 sm:mx-0">
-          <div className="text-xs sm:text-sm font-semibold text-teal-600 uppercase tracking-wide mb-1.5 sm:mb-2">
+          <div className="text-xs sm:text-sm font-semibold text-violet-600 uppercase tracking-wide mb-1.5 sm:mb-2">
             Algolia Agent Studio Challenge
           </div>
           <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-1.5 sm:mb-2">
@@ -315,7 +323,7 @@ export default function Home() {
               href="https://www.algolia.com/products/agent-studio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal-600 hover:text-cyan-600 font-medium transition-colors"
+              className="text-violet-600 hover:text-cyan-600 font-medium transition-colors"
             >
               Algolia Agent Studio
             </a>{' '}

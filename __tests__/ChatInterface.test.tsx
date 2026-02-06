@@ -21,7 +21,7 @@ describe('ChatInterface', () => {
 
   it('renders the initial assistant message', () => {
     render(<ChatInterface />);
-    expect(screen.getByText(/Hi! I'm ContradictMe/i)).toBeInTheDocument();
+    expect(screen.getByText(/I'm ContradictMe/i)).toBeInTheDocument();
   });
 
   it('renders the chat input', () => {
@@ -81,7 +81,7 @@ describe('ChatInterface', () => {
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(button);
 
-    expect(screen.getByLabelText(/Loading response/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Analyzing perspectives/i)).toBeInTheDocument();
   });
 
   it('displays error message on API failure', async () => {

@@ -27,7 +27,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         id: generateId(),
         role: 'assistant',
         content:
-          "👋 Hi! I'm ContradictMe - an AI that helps you think critically by challenging your beliefs.\n\nTell me something you believe strongly, and I'll present the strongest arguments against it. I'm not trying to change your mind - just help you see other perspectives.",
+          "I'm ContradictMe — an AI designed to challenge your beliefs with the strongest possible counterarguments.\n\nTell me something you believe strongly. I'll present research-backed opposing perspectives, not to change your mind, but to help you understand the full picture.",
         timestamp: Date.now(),
       },
     ];
@@ -165,26 +165,23 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
             <div
               className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl px-5 py-4 shadow-sm"
               role="status"
-              aria-label="Loading response"
+              aria-label="Analyzing perspectives"
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
+                {/* Abstract thinking blob */}
                 <div
-                  className="w-2 h-2 bg-teal-500 rounded-full animate-bounce"
-                  style={{ animationDelay: '0ms' }}
+                  className="w-8 h-8 thinking-blob opacity-80"
                   aria-hidden="true"
-                ></div>
-                <div
-                  className="w-2 h-2 bg-teal-500 rounded-full animate-bounce"
-                  style={{ animationDelay: '150ms' }}
-                  aria-hidden="true"
-                ></div>
-                <div
-                  className="w-2 h-2 bg-teal-500 rounded-full animate-bounce"
-                  style={{ animationDelay: '300ms' }}
-                  aria-hidden="true"
-                ></div>
+                  style={{
+                    background: 'linear-gradient(135deg, #8B5CF6 0%, #0D9A9B 50%, #7C3AED 100%)',
+                    backgroundSize: '200% 200%',
+                    animation: 'think-morph 4s ease-in-out infinite, gradient-shift 3s ease-in-out infinite',
+                    borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+                  }}
+                />
+                <span className="text-sm text-slate-600 font-medium">Analyzing perspectives...</span>
               </div>
-              <span className="sr-only">Loading counterarguments...</span>
+              <span className="sr-only">Analyzing perspectives and finding counterarguments...</span>
             </div>
           </div>
         )}

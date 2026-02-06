@@ -31,7 +31,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           className={`rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-all duration-300 ${
             isUser
               ? 'bg-gradient-to-br from-teal-600 to-cyan-600 text-white'
-              : 'bg-white/90 backdrop-blur-sm border border-gray-200 text-slate-800'
+              : 'bg-gradient-to-br from-white/95 to-violet-50/50 backdrop-blur-sm border border-violet-100/50 text-slate-800'
           }`}
         >
           {isUser ? (

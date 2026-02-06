@@ -31,6 +31,17 @@ const config: Config = {
           400: '#FBBF24',
           300: '#FCD34D',
         },
+        // Violet for counterarguments - intellectual stimulation
+        violet: {
+          700: '#6D28D9',
+          600: '#7C3AED',
+          500: '#8B5CF6',
+          400: '#A78BFA',
+          300: '#C4B5FD',
+          200: '#DDD6FE',
+          100: '#EDE9FE',
+          50: '#F5F3FF',
+        },
         success: {
           500: '#10B981',
         },
@@ -39,6 +50,7 @@ const config: Config = {
         },
       },
       fontFamily: {
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       },
