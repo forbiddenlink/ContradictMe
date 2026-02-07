@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
         </section>
         <section className="mb-8">
           <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Legal Rights and Frameworks</h2>
-          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             Depending on your location, you may have rights to access, correction, deletion, and
             portability of personal data. Our handling of requests follows applicable requirements
             under relevant frameworks such as GDPR and CCPA where applicable. For background on
@@ -110,6 +110,67 @@ export default function PrivacyPolicyPage() {
               California Attorney General CCPA overview
             </a>
             .
+          </p>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            If you wish to exercise these rights, please contact us with sufficient detail to
+            identify the request scope. We will respond within the timeframe required by applicable
+            law and may request verification of your identity before processing certain requests.
+          </p>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Cookies and Tracking</h2>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            ContradictMe uses minimal analytics to understand usage patterns and improve service
+            quality. We use Vercel Analytics and Speed Insights to collect aggregate performance
+            metrics and page view data. These tools do not use third-party advertising cookies.
+          </p>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            We store your theme preference (light/dark mode) in local browser storage to improve
+            your experience. This data never leaves your device and is not transmitted to our servers.
+            You can clear this at any time through your browser settings.
+          </p>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Third-Party Services</h2>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            ContradictMe uses the following third-party services to deliver functionality:
+          </p>
+          <ul className="list-none space-y-3 text-base sm:text-lg text-slate-700 dark:text-slate-300 ml-6">
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400">•</span>
+              <div>
+                <strong>Vercel</strong> - Hosting and edge delivery infrastructure
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400">•</span>
+              <div>
+                <strong>Algolia Agent Studio</strong> - AI-powered search and response generation
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400">•</span>
+              <div>
+                <strong>Vercel Analytics</strong> - Privacy-focused analytics without cookies
+              </div>
+            </li>
+          </ul>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+            Each provider operates under their own privacy policies and data processing agreements.
+            We select providers that maintain strong security standards and limit data use to
+            operational necessities.
+          </p>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Policy Updates</h2>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            We may update this policy to reflect changes in our practices, legal requirements, or
+            service features. Material changes will be posted on this page with an updated effective
+            date. Continued use of the service after changes constitutes acceptance of the updated
+            policy. We recommend reviewing this page periodically to stay informed.
           </p>
         </section>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from './ThemeProvider';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme, theme } = useTheme();
@@ -13,7 +13,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <motion.button
+    <m.button
       onClick={cycleTheme}
       className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors duration-200"
       aria-label={`Current theme: ${theme}. Click to change.`}
@@ -24,7 +24,7 @@ export default function ThemeToggle() {
       {/* Icon container - prevents transform conflicts */}
       <div className="relative w-[18px] h-[18px]">
         {/* Sun icon (light mode) */}
-        <motion.svg
+        <m.svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -52,10 +52,10 @@ export default function ThemeToggle() {
           <path d="M20 12h2" />
           <path d="m6.34 17.66-1.41 1.41" />
           <path d="m19.07 4.93-1.41 1.41" />
-        </motion.svg>
+        </m.svg>
 
         {/* Moon icon (dark mode) */}
-        <motion.svg
+        <m.svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -75,12 +75,12 @@ export default function ThemeToggle() {
           transition={{ duration: 0.2 }}
         >
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </motion.svg>
+        </m.svg>
       </div>
 
       {/* System indicator */}
       {theme === 'system' && (
-        <motion.span
+        <m.span
           className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-teal-500 rounded-full border-2 border-white dark:border-slate-800"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -88,6 +88,6 @@ export default function ThemeToggle() {
           title="Following system preference"
         />
       )}
-    </motion.button>
+    </m.button>
   );
 }

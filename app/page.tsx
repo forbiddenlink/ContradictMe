@@ -90,12 +90,11 @@ export default function Home() {
               onKeyDown={(e) => e.key === 'Enter' && handleChallenge()}
               className="w-full px-5 sm:px-6 py-4 sm:py-5 pr-32 sm:pr-44 rounded-2xl border-2 border-slate-200 dark:border-slate-700 focus:border-violet-500 dark:focus:border-violet-400 focus:ring-4 focus:ring-violet-100 dark:focus:ring-violet-900/50 outline-none transition-all duration-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 text-base sm:text-lg"
               placeholder="Tell me something you believe strongly..."
-              aria-label="Enter a belief you hold strongly"
+              aria-label="Tell me something you believe strongly"
             />
             <button
               onClick={() => handleChallenge()}
               className="absolute right-2 top-1/2 -translate-y-1/2 px-4 sm:px-7 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-xl font-semibold text-sm sm:text-base btn-magnetic shadow-lg hover:shadow-teal-500/25 whitespace-nowrap"
-              aria-label="Start challenge conversation"
             >
               Challenge Me
             </button>
@@ -108,35 +107,30 @@ export default function Home() {
             <button
               onClick={() => handleChallenge('Nuclear energy is too dangerous')}
               className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
-              aria-label="Challenge belief about nuclear energy"
             >
               Nuclear energy
             </button>
             <button
               onClick={() => handleChallenge('College is always worth it')}
               className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
-              aria-label="Challenge belief about college ROI"
             >
               College ROI
             </button>
             <button
               onClick={() => handleChallenge('AI will cause mass unemployment')}
               className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
-              aria-label="Challenge belief about AI and jobs"
             >
               AI & Jobs
             </button>
             <button
               onClick={() => handleChallenge('UBI makes people lazy')}
               className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
-              aria-label="Challenge belief about universal basic income"
             >
               Universal basic income
             </button>
             <button
               onClick={() => handleChallenge('EVs are always better for the environment')}
               className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 hover:border-violet-300 dark:hover:border-violet-600 hover:text-violet-700 dark:hover:text-violet-300 transition-colors duration-200"
-              aria-label="Challenge belief about electric vehicles"
             >
               Electric vehicles
             </button>

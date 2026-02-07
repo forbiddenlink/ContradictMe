@@ -94,6 +94,52 @@ export default function AboutPage() {
           .
         </p>
 
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">Common Use Cases</h2>
+          <ul className="space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300">
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
+              <div>
+                <strong>Debate Preparation:</strong> Students and professionals use ContradictMe to anticipate counterarguments before presentations, debates, or policy discussions.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
+              <div>
+                <strong>Critical Thinking Practice:</strong> Educators assign prompts to help students engage with opposing evidence and develop intellectual humility.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
+              <div>
+                <strong>Decision-Making:</strong> Individuals exploring career changes, policy positions, or personal beliefs use the tool to surface blind spots before making commitments.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
+              <div>
+                <strong>Research Starting Point:</strong> Writers and researchers use responses as a curated starting point for exploring opposing perspectives and evidence gaps.
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">Evidence Standards</h2>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            ContradictMe prioritizes arguments backed by peer-reviewed research, transparent methodologies,
+            and verifiable sources. Each argument includes quality scores based on evidence strength,
+            sample size, and study design. We explicitly flag limitations, conflicts of interest,
+            and areas where scientific consensus is absent or evolving.
+          </p>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            Unlike generative AI models that produce plausible-sounding text, our system is designed
+            to cite specific studies and acknowledge when evidence is thin, contradictory, or
+            context-dependent. This approach helps users distinguish between well-supported claims
+            and speculative arguments.
+          </p>
+        </section>
+
         <div className="flex flex-wrap gap-4 text-sm sm:text-base">
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home

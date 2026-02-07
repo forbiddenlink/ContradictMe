@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { MotionProvider } from '@/components/MotionProvider';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
 // Distinctive headline font - geometric, modern, memorable
@@ -106,8 +109,12 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider defaultTheme="system">
-          <ErrorBoundary>{children}</ErrorBoundary>
+          <MotionProvider>
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </MotionProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

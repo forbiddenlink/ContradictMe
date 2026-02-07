@@ -46,7 +46,7 @@ describe('Home Page', () => {
 
   it('renders the Challenge Me button', () => {
     renderWithTheme(<Home />);
-    const button = screen.getByRole('button', { name: 'Start challenge conversation' });
+    const button = screen.getByRole('button', { name: /Challenge Me/i });
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('Challenge Me');
   });

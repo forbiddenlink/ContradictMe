@@ -100,6 +100,56 @@ export default function ContactPage() {
           .
         </p>
 
+        <section className="mb-8" aria-labelledby="faq-heading">
+          <h2
+            id="faq-heading"
+            className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4"
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-200 mb-2">
+                How quickly will I get a response?
+              </h3>
+              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                We aim to respond within 2 business days (Monday-Friday). Urgent technical issues
+                affecting service availability receive priority attention.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-200 mb-2">
+                Can I suggest new topics or arguments?
+              </h3>
+              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                Yes! We welcome topic suggestions, especially for areas where public discourse would
+                benefit from seeing steel-manned counterarguments. Include the topic, why it matters,
+                and any high-quality sources you've already found.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-200 mb-2">
+                What if I think a response contains factual errors?
+              </h3>
+              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                Please email us with the specific claim, why you believe it's incorrect, and links
+                to credible sources that contradict it. We review all factual correction requests
+                and update our argument database when warranted.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-200 mb-2">
+                Do you offer educational or institutional partnerships?
+              </h3>
+              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                Yes. Schools, universities, and research organizations can contact us about bulk
+                access, custom topic coverage, or integration support. Please use the general
+                contact email and include details about your institution and intended use case.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <div className="flex flex-wrap gap-4 text-sm sm:text-base">
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home

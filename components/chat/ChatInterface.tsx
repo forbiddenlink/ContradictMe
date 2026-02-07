@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
@@ -343,7 +343,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       >
         <AnimatePresence mode="popLayout">
           {messages.map((message, index) => (
-            <motion.div
+            <m.div
               key={message.id}
               variants={messageVariants}
               initial="initial"
@@ -357,7 +357,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
               layout
             >
               <ChatMessage message={message} isStreaming={isStreaming && message.id === streamingMessageId} />
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
         {isLoading && !isStreaming && (
@@ -410,7 +410,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium uppercase tracking-wide">
             Popular beliefs to challenge
           </p>
-          <motion.div
+          <m.div
             className="flex flex-wrap gap-2 mb-4 max-h-[180px] overflow-y-auto pr-2 scrollbar-thin"
             role="group"
             aria-label="Suggested topics to challenge"
@@ -425,7 +425,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
             }}
           >
             {SUGGESTED_PROMPTS.map((item, index) => (
-              <motion.button
+              <m.button
                 key={item.label}
                 onClick={() => handleSuggestedPrompt(item.prompt)}
                 className="px-4 py-2 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-gray-200/50 dark:border-slate-700/50 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:border-violet-200 dark:hover:border-violet-500/50 hover:shadow-sm hover:text-violet-700 dark:hover:text-violet-300 transition-all"
@@ -436,9 +436,9 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
                 transition={{ duration: 0.2, delay: index * 0.02 }}
               >
                 {item.label}
-              </motion.button>
+              </m.button>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       )}
 
