@@ -56,15 +56,19 @@ function extractTextPayload(parsed: unknown): string {
   const data = parsed as {
     type?: string;
     delta?: string | { text?: string };
+    textDelta?: string;
+    output_text?: string;
+    content?: string | Array<{ type?: string; text?: string }>;
+    value?: string;
     parts?: Array<{ type?: string; text?: string }>;
     text?: string;
     choices?: Array<{ delta?: { content?: string } }>;
-    response?: string;
-    message?: string;
+    response?: string | { text?: string };
+    message?: string | { content?: string | Array<{ text?: string }> };
   };
 
-  // Handle Algolia Agent Studio format: {"type": "text-delta", "delta": "content"}
-  if (data.type === 'text-delta' && typeof data.delta === 'string') {
+  // Handle common stream chunk formats: {"type":"text-delta","delta":"..."}
+  if (data.type?.includes('delta') && typeof data.delta === 'string') {
     return data.delta;
   }
 
@@ -75,10 +79,29 @@ function extractTextPayload(parsed: unknown): string {
       .join('');
   }
   if (data.text) return data.text;
+  if (data.textDelta) return data.textDelta;
+  if (data.output_text) return data.output_text;
+  if (typeof data.content === 'string') return data.content;
+  if (Array.isArray(data.content)) {
+    return data.content
+      .filter((part) => part.type === 'text' || Boolean(part.text))
+      .map((part) => part.text ?? '')
+      .join('');
+  }
+  if (data.type?.includes('delta') && typeof data.value === 'string') return data.value;
   if (typeof data.delta === 'object' && data.delta?.text) return data.delta.text;
   if (data.choices?.[0]?.delta?.content) return data.choices[0].delta.content;
-  if (data.response) return data.response;
-  if (data.message) return data.message;
+  if (typeof data.response === 'string') return data.response;
+  if (data.response && typeof data.response === 'object' && data.response.text) {
+    return data.response.text;
+  }
+  if (typeof data.message === 'string') return data.message;
+  if (data.message && typeof data.message === 'object') {
+    if (typeof data.message.content === 'string') return data.message.content;
+    if (Array.isArray(data.message.content)) {
+      return data.message.content.map((part) => part.text ?? '').join('');
+    }
+  }
   return '';
 }
 

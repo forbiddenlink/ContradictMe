@@ -209,7 +209,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       }
 
       // Check if response is streaming (SSE)
-      const contentType = response.headers.get('content-type') || '';
+      const contentType = response.headers?.get?.('content-type') || '';
 
       if (contentType.includes('text/event-stream') && response.body) {
         // Handle streaming response
@@ -217,43 +217,62 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         const decoder = new TextDecoder();
         let streamedContent = '';
         let hasStartedStreaming = false;
+        let streamBuffer = '';
+
+        const applyStreamChunk = (rawLine: string) => {
+          if (!rawLine.startsWith('data:')) return;
+          const data = rawLine.slice(5).trimStart();
+          if (!data || data === '[DONE]') return;
+
+          try {
+            const parsed = JSON.parse(data) as {
+              text?: string;
+              delta?: string;
+              textDelta?: string;
+            };
+            const nextText = parsed.text || parsed.delta || parsed.textDelta;
+            if (!nextText) return;
+
+            // Start streaming mode on first content
+            if (!hasStartedStreaming) {
+              hasStartedStreaming = true;
+              setIsStreaming(true);
+              setIsLoading(false); // Hide loading phases once content arrives
+            }
+
+            streamedContent += nextText;
+            // Update the message content incrementally
+            setMessages((prev) =>
+              prev.map((msg) =>
+                msg.id === assistantMessageId
+                  ? { ...msg, content: streamedContent }
+                  : msg
+              )
+            );
+          } catch {
+            // Skip unparseable data
+          }
+        };
 
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
 
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n');
+          streamBuffer += decoder.decode(value, { stream: true });
+          let lineBreakIndex = streamBuffer.indexOf('\n');
 
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const data = line.slice(6);
-              if (data === '[DONE]') continue;
-
-              try {
-                const parsed = JSON.parse(data);
-                if (parsed.text) {
-                  // Start streaming mode on first content
-                  if (!hasStartedStreaming) {
-                    hasStartedStreaming = true;
-                    setIsStreaming(true);
-                    setIsLoading(false); // Hide loading phases once content arrives
-                  }
-                  streamedContent += parsed.text;
-                  // Update the message content incrementally
-                  setMessages((prev) =>
-                    prev.map((msg) =>
-                      msg.id === assistantMessageId
-                        ? { ...msg, content: streamedContent }
-                        : msg
-                    )
-                  );
-                }
-              } catch {
-                // Skip unparseable data
-              }
-            }
+          while (lineBreakIndex >= 0) {
+            const line = streamBuffer.slice(0, lineBreakIndex).replace(/\r$/, '');
+            applyStreamChunk(line);
+            streamBuffer = streamBuffer.slice(lineBreakIndex + 1);
+            lineBreakIndex = streamBuffer.indexOf('\n');
           }
+        }
+
+        const finalText = decoder.decode();
+        if (finalText) streamBuffer += finalText;
+        if (streamBuffer.trim()) {
+          applyStreamChunk(streamBuffer.replace(/\r$/, ''));
         }
 
         // Finalize the message

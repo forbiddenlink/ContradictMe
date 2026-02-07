@@ -393,6 +393,9 @@ export default function Home() {
             >
               Privacy Policy
             </Link>
+            <Link href="/learn" className="text-slate-600 dark:text-slate-400 hover:underline">
+              Learn
+            </Link>
             <Link href="/chat" className="text-slate-600 dark:text-slate-400 hover:underline">
               Start Chat
             </Link>

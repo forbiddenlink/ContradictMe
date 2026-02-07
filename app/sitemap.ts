@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/site';
+import { TOPIC_GUIDES } from '@/lib/topicGuides';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return [
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/`,
       lastModified: now,
@@ -36,4 +37,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
   ];
+
+  const guidePages: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/learn`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...TOPIC_GUIDES.map((guide) => ({
+      url: `${SITE_URL}/learn/${guide.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+  ];
+
+  return [...corePages, ...guidePages];
 }

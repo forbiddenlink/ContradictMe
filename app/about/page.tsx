@@ -144,6 +144,9 @@ export default function AboutPage() {
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home
           </Link>
+          <Link href="/learn" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Learn
+          </Link>
           <Link href="/chat" className="text-violet-600 dark:text-violet-400 hover:underline">
             Start Chat
           </Link>

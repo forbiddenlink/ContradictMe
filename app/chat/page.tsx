@@ -109,6 +109,9 @@ export default function ChatPage() {
       <footer className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border-t border-gray-200 dark:border-slate-800 px-6 py-3">
         <div className="max-w-4xl mx-auto text-center text-sm text-gray-600 dark:text-slate-400">
           <nav className="mb-2 flex justify-center gap-4 text-xs sm:text-sm" aria-label="Legal and company links">
+            <Link href="/learn" className="hover:underline">
+              Learn
+            </Link>
             <Link href="/about" className="hover:underline">
               About
             </Link>

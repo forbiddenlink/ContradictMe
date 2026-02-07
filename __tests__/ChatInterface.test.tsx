@@ -70,9 +70,7 @@ describe('ChatInterface', () => {
   });
 
   it('shows loading state while waiting for response', async () => {
-    (global.fetch as jest.Mock).mockImplementationOnce(
-      () => new Promise((resolve) => setTimeout(resolve, 100))
-    );
+    (global.fetch as jest.Mock).mockImplementationOnce(() => new Promise(() => {}));
 
     render(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
@@ -82,7 +80,7 @@ describe('ChatInterface', () => {
     fireEvent.click(button);
 
     // Multi-phase loading starts with "Understanding your belief..."
-    expect(screen.getByLabelText(/Understanding your belief/i)).toBeInTheDocument();
+    expect(screen.getByText(/Understanding your belief/i)).toBeInTheDocument();
   });
 
   it('displays error message on API failure', async () => {

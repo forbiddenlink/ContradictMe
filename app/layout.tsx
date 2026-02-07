@@ -28,6 +28,8 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const shouldLoadVercelInsights = process.env.VERCEL === '1';
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -113,8 +115,8 @@ export default function RootLayout({
             <ErrorBoundary>{children}</ErrorBoundary>
           </MotionProvider>
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
+        {shouldLoadVercelInsights && <Analytics />}
+        {shouldLoadVercelInsights && <SpeedInsights />}
       </body>
     </html>
   );
