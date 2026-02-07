@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <main
+      id="main-content"
       className="min-h-screen bg-slate-50 dark:bg-slate-950 relative transition-colors duration-300"
       role="main"
     >
@@ -284,6 +286,53 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Why this exists */}
+        <section
+          className="mb-16 sm:mb-20 px-2 sm:px-0"
+          aria-labelledby="why-heading"
+        >
+          <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
+            <h2
+              id="why-heading"
+              className="font-display text-xl sm:text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-4 tracking-tight"
+            >
+              Why ContradictMe matters
+            </h2>
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+              Most feeds reward agreement and outrage. That pushes people toward familiar takes,
+              not stronger reasoning. ContradictMe is built to reverse that pattern by presenting
+              the strongest case against your position, including evidence quality, sample size, and
+              limits of each source. The goal is not to force a conclusion. The goal is to help you
+              make better decisions after seeing what your current view may be missing.
+            </p>
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Use it to pressure-test an argument before a debate, evaluate policy tradeoffs, or
+              prepare for high-stakes conversations at work and school. If you want details on the
+              project mission, trust standards, or how to get in touch, visit our{' '}
+              <Link href="/about" className="text-violet-600 dark:text-violet-400 hover:underline">
+                About page
+              </Link>
+              ,{' '}
+              <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline">
+                Contact page
+              </Link>
+              , and{' '}
+              <Link
+                href="/privacy-policy"
+                className="text-violet-600 dark:text-violet-400 hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+              Good reasoning is rarely about finding one perfect argument. It is about understanding
+              the strongest objections, updating beliefs when warranted, and separating facts from
+              narratives. ContradictMe is designed as a practical thinking tool for that process.
+            </p>
+          </div>
+        </section>
+
         {/* Status */}
         <div className="text-center py-6 sm:py-8 px-4 sm:px-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl mx-2 sm:mx-0">
           <div className="text-xs sm:text-sm font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide mb-1.5 sm:mb-2">
@@ -308,10 +357,30 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 py-6 sm:py-8 mt-12 sm:mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <nav
+            className="mb-3 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs sm:text-sm"
+            aria-label="Footer links"
+          >
+            <Link href="/about" className="text-slate-600 dark:text-slate-400 hover:underline">
+              About
+            </Link>
+            <Link href="/contact" className="text-slate-600 dark:text-slate-400 hover:underline">
+              Contact
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="text-slate-600 dark:text-slate-400 hover:underline"
+            >
+              Privacy Policy
+            </Link>
+            <Link href="/chat" className="text-slate-600 dark:text-slate-400 hover:underline">
+              Start Chat
+            </Link>
+          </nav>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-slate-400">
             Built with{' '}
             <a
-              href="https://www.algolia.com/products/agent-studio/"
+              href="https://www.algolia.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-violet-600 dark:text-violet-400 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"

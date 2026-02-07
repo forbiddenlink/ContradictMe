@@ -34,7 +34,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'ContradictMe - Challenge Your Beliefs with AI',
   description:
-    'An AI that actively seeks and presents the strongest counterarguments to your views. Steel-man opposing perspectives with research-backed arguments. Fight echo chambers and think critically.',
+    'ContradictMe challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.',
+  alternates: {
+    canonical: './',
+  },
   icons: {
     icon: '/icon.svg',
     apple: '/icon.svg',
@@ -60,6 +63,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  metadataBase: new URL('https://contradict-me.vercel.app'),
   openGraph: {
     title: 'ContradictMe - An AI That Disagrees With You',
     description:
@@ -67,12 +71,21 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'ContradictMe',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ContradictMe - An AI that disagrees with you',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ContradictMe - Challenge Your Beliefs',
     description:
       'An AI that disagrees with you, backed by research. Fight echo chambers, think critically.',
+    images: ['/og-image.png'],
   },
 };
 
@@ -84,6 +97,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body className="antialiased bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        {/* Skip link for accessibility - keyboard navigation */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-teal-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider defaultTheme="system">
           <ErrorBoundary>{children}</ErrorBoundary>
         </ThemeProvider>
