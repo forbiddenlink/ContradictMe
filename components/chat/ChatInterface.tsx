@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
+import ThinkingIndicator from '../ui/ThinkingIndicator';
 import { saveConversation, loadConversation, clearConversation } from '@/lib/storage';
 
 // Generate unique IDs using crypto
@@ -100,12 +101,16 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
     ];
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [streamingMessageId, setStreamingMessageId] = useState<string | null>(null);
   const [loadingPhase, setLoadingPhase] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasProcessedInitial = useRef(false);
   const abortControllerRef = useRef<AbortController | null>(null);
   const loadingPhaseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const userMessages = useMemo(() => messages.filter((message) => message.role === 'user'), [messages]);
+  const hasUserMessages = userMessages.length > 0;
 
   // Progress through loading phases for better perceived performance
   useEffect(() => {
@@ -175,6 +180,17 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
     setIsLoading(true);
     setError(null);
 
+    // Create placeholder assistant message for streaming
+    const assistantMessageId = generateId();
+    const assistantMessage: Message = {
+      id: assistantMessageId,
+      role: 'assistant',
+      content: '',
+      timestamp: Date.now(),
+    };
+    setStreamingMessageId(assistantMessageId);
+    setMessages((prev) => [...prev, assistantMessage]);
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -182,6 +198,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         body: JSON.stringify({
           message: content,
           conversationId: generateId(),
+          stream: true,
         }),
         signal: signal || controller.signal,
       });
@@ -191,36 +208,103 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         throw new Error(errorData.error || `Server error: ${response.status}`);
       }
 
-      const data = await response.json();
+      // Check if response is streaming (SSE)
+      const contentType = response.headers.get('content-type') || '';
 
-      const assistantMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: data.message,
-        arguments: data.arguments,
-        timestamp: Date.now(),
-      };
+      if (contentType.includes('text/event-stream') && response.body) {
+        // Handle streaming response
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let streamedContent = '';
+        let hasStartedStreaming = false;
 
-      setMessages((prev) => [...prev, assistantMessage]);
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data === '[DONE]') continue;
+
+              try {
+                const parsed = JSON.parse(data);
+                if (parsed.text) {
+                  // Start streaming mode on first content
+                  if (!hasStartedStreaming) {
+                    hasStartedStreaming = true;
+                    setIsStreaming(true);
+                    setIsLoading(false); // Hide loading phases once content arrives
+                  }
+                  streamedContent += parsed.text;
+                  // Update the message content incrementally
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === assistantMessageId
+                        ? { ...msg, content: streamedContent }
+                        : msg
+                    )
+                  );
+                }
+              } catch {
+                // Skip unparseable data
+              }
+            }
+          }
+        }
+
+        // Finalize the message
+        setIsStreaming(false);
+        setStreamingMessageId(null);
+        if (!streamedContent) {
+          streamedContent = 'No response received from the agent.';
+        }
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === assistantMessageId
+              ? { ...msg, content: streamedContent }
+              : msg
+          )
+        );
+      } else {
+        // Handle non-streaming JSON response (fallback)
+        const data = await response.json();
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === assistantMessageId
+              ? { ...msg, content: data.message, arguments: data.arguments }
+              : msg
+          )
+        );
+      }
     } catch (err) {
       // Don't show error if request was aborted
       if (err instanceof Error && err.name === 'AbortError') {
+        // Remove the empty assistant message on abort
+        setMessages((prev) => prev.filter((msg) => msg.id !== assistantMessageId));
+        setIsStreaming(false);
+        setStreamingMessageId(null);
         return;
       }
       console.error('Error sending message:', err);
       const errorMessage = err instanceof Error ? err.message : 'Something went wrong';
       setError(errorMessage);
 
-      // Fallback response when API isn't ready (with varied messages)
-      const fallbackMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: getRandomErrorMessage(),
-        timestamp: Date.now(),
-      };
-      setMessages((prev) => [...prev, fallbackMessage]);
+      // Update the placeholder message with error content
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === assistantMessageId
+            ? { ...msg, content: getRandomErrorMessage() }
+            : msg
+        )
+      );
     } finally {
       setIsLoading(false);
+      setIsStreaming(false);
+      setStreamingMessageId(null);
       abortControllerRef.current = null;
     }
   }, [getRandomErrorMessage]);
@@ -272,48 +356,17 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
               }}
               layout
             >
-              <ChatMessage message={message} />
+              <ChatMessage message={message} isStreaming={isStreaming && message.id === streamingMessageId} />
             </motion.div>
           ))}
         </AnimatePresence>
-        {isLoading && (
+        {isLoading && !isStreaming && (
           <div className="flex justify-start animate-slide-up">
-            <div
-              className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-gray-200 dark:border-slate-700 rounded-2xl px-5 py-4 shadow-sm"
-              role="status"
-              aria-label={LOADING_PHASES[loadingPhase].message}
-            >
-              <div className="flex items-center gap-3">
-                {/* Abstract thinking blob */}
-                <div
-                  className="w-8 h-8 thinking-blob opacity-80"
-                  aria-hidden="true"
-                  style={{
-                    background: 'linear-gradient(135deg, #8B5CF6 0%, #0D9A9B 50%, #7C3AED 100%)',
-                    backgroundSize: '200% 200%',
-                    animation: 'think-morph 4s ease-in-out infinite, gradient-shift 3s ease-in-out infinite',
-                    borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-                  }}
-                />
-                <div className="flex flex-col">
-                  <span className="text-sm text-slate-600 dark:text-slate-300 font-medium transition-all duration-300">
-                    {LOADING_PHASES[loadingPhase].message}
-                  </span>
-                  {/* Phase progress indicator */}
-                  <div className="flex gap-1 mt-1.5" aria-hidden="true">
-                    {LOADING_PHASES.map((_, idx) => (
-                      <div
-                        key={idx}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                          idx <= loadingPhase ? 'bg-violet-500' : 'bg-gray-300 dark:bg-slate-600'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <span className="sr-only">{LOADING_PHASES[loadingPhase].message}</span>
-            </div>
+            <ThinkingIndicator
+              phase={loadingPhase}
+              message={LOADING_PHASES[loadingPhase].message}
+              totalPhases={LOADING_PHASES.length}
+            />
           </div>
         )}
 
@@ -335,7 +388,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
                   <button
                     onClick={() => {
                       setError(null);
-                      const lastUserMessage = messages.filter((m) => m.role === 'user').pop();
+                      const lastUserMessage = userMessages[userMessages.length - 1];
                       if (lastUserMessage) handleSendMessage(lastUserMessage.content);
                     }}
                     className="mt-2 text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition-colors"
@@ -352,7 +405,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       </div>
 
       {/* Suggested Prompts (only show if no user messages yet) */}
-      {messages.filter((m) => m.role === 'user').length === 0 && (
+      {!hasUserMessages && (
         <div className="px-4 pb-4">
           <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium uppercase tracking-wide">
             Popular beliefs to challenge

@@ -1,37 +1,36 @@
 import type { MetadataRoute } from 'next';
-
-const BASE_URL = 'https://contradict-me.vercel.app';
+import { SITE_URL } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
     {
-      url: BASE_URL,
+      url: `${SITE_URL}/`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/chat`,
+      url: `${SITE_URL}/chat`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/about`,
+      url: `${SITE_URL}/about`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/contact`,
+      url: `${SITE_URL}/contact`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${BASE_URL}/privacy-policy`,
+      url: `${SITE_URL}/privacy-policy`,
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.5,

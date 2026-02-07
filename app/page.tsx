@@ -4,6 +4,23 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
+import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
+
+const HOME_UPDATED_DATE = '2026-02-07';
+const HOME_UPDATED_ISO_DATE = `${HOME_UPDATED_DATE}T00:00:00.000Z`;
+
+const homePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `${SITE_NAME} Home`,
+  url: `${SITE_URL}/`,
+  datePublished: HOME_UPDATED_ISO_DATE,
+  dateModified: HOME_UPDATED_ISO_DATE,
+  author: {
+    '@type': 'Organization',
+    name: DEFAULT_AUTHOR,
+  },
+};
 
 export default function Home() {
   const router = useRouter();
@@ -24,6 +41,12 @@ export default function Home() {
       className="min-h-screen bg-slate-50 dark:bg-slate-950 relative transition-colors duration-300"
       role="main"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* Subtle noise texture for print-like feel */}
       <div
         className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
@@ -47,6 +70,9 @@ export default function Home() {
           <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto text-balance">
             Challenge your beliefs with the strongest counterarguments, backed by research. Fight
             echo chambers. Think critically.
+          </p>
+          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            By {DEFAULT_AUTHOR} • Last updated {HOME_UPDATED_DATE}
           </p>
         </header>
 

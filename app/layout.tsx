@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
 // Distinctive headline font - geometric, modern, memorable
 const spaceGrotesk = Space_Grotesk({
@@ -32,11 +33,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'ContradictMe - Challenge Your Beliefs with AI',
+  title: `${SITE_NAME} - Challenge Your Beliefs with AI`,
   description:
-    'ContradictMe challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.',
+    `${SITE_NAME} challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.`,
   alternates: {
-    canonical: './',
+    canonical: `${SITE_URL}/`,
   },
   icons: {
     icon: '/icon.svg',
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
     'echo chambers',
     'rational discourse',
   ],
-  authors: [{ name: 'ContradictMe' }],
-  creator: 'ContradictMe',
-  publisher: 'ContradictMe',
+  authors: [{ name: DEFAULT_AUTHOR }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   robots: {
     index: true,
     follow: true,
@@ -63,7 +64,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  metadataBase: new URL('https://contradict-me.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: 'ContradictMe - An AI That Disagrees With You',
     description:

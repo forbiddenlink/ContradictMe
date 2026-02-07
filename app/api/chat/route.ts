@@ -1,98 +1,253 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+
+const MAX_MESSAGE_LENGTH = 4000;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 25;
+const AGENT_TIMEOUT_MS = 30_000;
+
+type RateLimitState = {
+  count: number;
+  resetAt: number;
+};
+
+const rateLimitStore = new Map<string, RateLimitState>();
+
+const jsonHeaders = { 'Content-Type': 'application/json' };
+
+function getClientId(req: NextRequest): string {
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) return forwardedFor.split(',')[0].trim();
+  return req.headers.get('x-real-ip') ?? 'anonymous';
+}
+
+function isRateLimited(clientId: string): boolean {
+  const now = Date.now();
+
+  // Opportunistically clean old buckets to keep memory bounded.
+  for (const [key, value] of rateLimitStore.entries()) {
+    if (value.resetAt <= now) rateLimitStore.delete(key);
+  }
+
+  const existing = rateLimitStore.get(clientId);
+  if (!existing || existing.resetAt <= now) {
+    rateLimitStore.set(clientId, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return false;
+  }
+
+  if (existing.count >= RATE_LIMIT_MAX_REQUESTS) return true;
+  existing.count += 1;
+  rateLimitStore.set(clientId, existing);
+  return false;
+}
+
+function errorResponse(status: number, error: string): Response {
+  return new Response(JSON.stringify({ error, arguments: [] }), {
+    status,
+    headers: jsonHeaders,
+  });
+}
+
+function extractTextPayload(parsed: unknown): string {
+  if (!parsed || typeof parsed !== 'object') return '';
+
+  const data = parsed as {
+    parts?: Array<{ type?: string; text?: string }>;
+    text?: string;
+    delta?: { text?: string };
+    choices?: Array<{ delta?: { content?: string } }>;
+    response?: string;
+    message?: string;
+  };
+
+  if (Array.isArray(data.parts)) {
+    return data.parts
+      .filter((part) => part.type === 'text' || Boolean(part.text))
+      .map((part) => part.text ?? '')
+      .join('');
+  }
+  if (data.text) return data.text;
+  if (data.delta?.text) return data.delta.text;
+  if (data.choices?.[0]?.delta?.content) return data.choices[0].delta.content;
+  if (data.response) return data.response;
+  if (data.message) return data.message;
+  return '';
+}
 
 export async function POST(req: NextRequest) {
+  const clientId = getClientId(req);
+  if (isRateLimited(clientId)) {
+    return new Response(
+      JSON.stringify({
+        error: 'Rate limit exceeded. Please wait a minute and try again.',
+        arguments: [],
+      }),
+      {
+        status: 429,
+        headers: { ...jsonHeaders, 'Retry-After': '60' },
+      }
+    );
+  }
+
+  let body: unknown;
   try {
-    const { message } = await req.json();
+    body = await req.json();
+  } catch {
+    return errorResponse(400, 'Invalid JSON payload.');
+  }
+
+  try {
+    const { message, stream = true } = (body ?? {}) as {
+      message?: unknown;
+      stream?: unknown;
+    };
+
+    if (typeof message !== 'string' || !message.trim()) {
+      return errorResponse(400, 'Message is required.');
+    }
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return errorResponse(
+        413,
+        `Message exceeds ${MAX_MESSAGE_LENGTH} characters. Please shorten and try again.`
+      );
+    }
 
     // Check if Agent Studio endpoint is configured
-    const agentEndpoint = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
+    const agentEndpoint =
+      process.env.ALGOLIA_AGENT_ENDPOINT || process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
 
     if (!agentEndpoint) {
-      return NextResponse.json({
-        message: "The Agent Studio endpoint isn't configured yet. Please set up your environment variables.",
-        arguments: [],
-      });
+      return errorResponse(500, "The Agent Studio endpoint isn't configured.");
     }
 
     // Validate required environment variables
-    const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
-    const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY;
+    const appId = process.env.ALGOLIA_APP_ID || process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+    const apiKey =
+      process.env.ALGOLIA_SEARCH_API_KEY || process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY;
 
     if (!appId || !apiKey) {
-      return NextResponse.json({
-        message:
-          'Configuration error: Missing Algolia credentials. Please check your environment variables.',
-        arguments: [],
-      });
+      return errorResponse(500, 'Configuration error: Missing Algolia credentials.');
     }
 
     // Build the endpoint URL with required query parameters
+    const wantsStream = stream !== false;
     const url = new URL(agentEndpoint);
-    // Ensure stream is a boolean value
-    url.searchParams.set('stream', 'false');
-    // Add compatibility mode for ai-sdk-5 format
+    url.searchParams.set('stream', wantsStream ? 'true' : 'false');
     url.searchParams.set('compatibilityMode', 'ai-sdk-5');
 
     // Call Algolia Agent Studio API (ai-sdk-5 format with parts)
-    const response = await fetch(url.toString(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Algolia-Application-Id': appId,
-        'X-Algolia-API-Key': apiKey,
-      },
-      body: JSON.stringify({
-        messages: [
-          {
-            role: 'user',
-            parts: [
-              {
-                text: message,
-              },
-            ],
-          },
-        ],
-      }),
-    });
+    let response: Response;
+    try {
+      response = await fetch(url.toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Algolia-Application-Id': appId,
+          'X-Algolia-API-Key': apiKey,
+        },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: 'user',
+              parts: [{ text: message.trim() }],
+            },
+          ],
+        }),
+        signal: AbortSignal.timeout(AGENT_TIMEOUT_MS),
+      });
+    } catch (fetchError) {
+      if (fetchError instanceof Error && fetchError.name === 'TimeoutError') {
+        return errorResponse(504, 'Agent request timed out. Please retry.');
+      }
+      return errorResponse(502, 'Failed to reach Agent service.');
+    }
 
     if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Agent API returned ${response.status}: ${errorText}`);
+      const errorText = await response.text().catch(() => '');
+      const detail = errorText ? ` ${errorText.slice(0, 300)}` : '';
+      return errorResponse(502, `Agent API returned ${response.status}.${detail}`);
     }
 
-    const data = await response.json();
+    // Handle streaming response
+    if (wantsStream && response.body) {
+      // Create a TransformStream to process the SSE events
+      const encoder = new TextEncoder();
+      const decoder = new TextDecoder();
+      let buffer = '';
 
-    // Extract text from parts array
-    let responseText = 'No response from agent';
-    if (data.parts && Array.isArray(data.parts)) {
-      const textParts = data.parts.filter(
-        (part: { type?: string; text?: string }) => part.type === 'text' || part.text
-      );
-      responseText = textParts.map((part: { text: string }) => part.text).join('\n');
-    } else if (data.text) {
-      responseText = data.text;
-    } else if (data.response) {
-      responseText = data.response;
-    } else if (data.message) {
-      responseText = data.message;
+      const processLine = (line: string, controller: TransformStreamDefaultController) => {
+        if (!line.startsWith('data:')) return;
+
+        const data = line.slice(5).trimStart();
+        if (!data) return;
+
+        if (data === '[DONE]') {
+          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+          return;
+        }
+
+        try {
+          const parsed = JSON.parse(data);
+          const content = extractTextPayload(parsed);
+          if (content) {
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: content })}\n\n`));
+          }
+        } catch {
+          // Ignore malformed chunks from upstream.
+        }
+      };
+
+      const transformStream = new TransformStream({
+        async transform(chunk, controller) {
+          buffer += decoder.decode(chunk, { stream: true });
+
+          let lineBreakIndex = buffer.indexOf('\n');
+          while (lineBreakIndex >= 0) {
+            const line = buffer.slice(0, lineBreakIndex).replace(/\r$/, '');
+            processLine(line, controller);
+            buffer = buffer.slice(lineBreakIndex + 1);
+            lineBreakIndex = buffer.indexOf('\n');
+          }
+        },
+        flush(controller) {
+          const finalText = decoder.decode();
+          if (finalText) buffer += finalText;
+          if (buffer.trim().length > 0) {
+            processLine(buffer.replace(/\r$/, ''), controller);
+          }
+        },
+      });
+
+      return new Response(response.body.pipeThrough(transformStream), {
+        headers: {
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache, no-transform',
+          Connection: 'keep-alive',
+          'X-Accel-Buffering': 'no',
+        },
+      });
     }
 
-    // Return the agent's response
-    return NextResponse.json({
-      message: responseText,
-      arguments: data.arguments || [],
-    });
+    // Non-streaming fallback
+    const data = await response.json().catch(() => ({}));
+    const responseText = extractTextPayload(data) || 'No response from agent.';
+
+    return new Response(
+      JSON.stringify({
+        message: responseText,
+        arguments: (data as { arguments?: unknown[] }).arguments || [],
+      }),
+      { status: 200, headers: jsonHeaders }
+    );
   } catch (error) {
-    // Log error in development only
     if (process.env.NODE_ENV === 'development') {
       console.error('Chat API error:', error);
     }
-    return NextResponse.json(
-      {
-        message: `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        arguments: [],
-      },
-      { status: 200 } // Return 200 so the frontend shows the error message
+    return errorResponse(
+      500,
+      `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}`
     );
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { DEFAULT_AUTHOR } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Live Debate Chat | ContradictMe',
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/chat',
   },
+  authors: [{ name: DEFAULT_AUTHOR }],
 };
 
 export default function ChatLayout({

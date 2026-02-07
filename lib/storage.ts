@@ -17,7 +17,7 @@ export const loadConversation = (): Message[] | null => {
     const timestamp = localStorage.getItem('contradictme_timestamp');
 
     // Clear if older than 24 hours
-    if (timestamp && Date.now() - parseInt(timestamp) > 24 * 60 * 60 * 1000) {
+    if (timestamp && Date.now() - parseInt(timestamp, 10) > 24 * 60 * 60 * 1000) {
       clearConversation();
       return null;
     }

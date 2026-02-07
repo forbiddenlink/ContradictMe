@@ -1,10 +1,26 @@
 'use client';
 
 import { Message } from '@/lib/types';
-import ArgumentCard from '../arguments/ArgumentCard';
+import ArgumentCardEnhanced from '../arguments/ArgumentCardEnhanced';
 
 interface ChatMessageProps {
   message: Message;
+  isStreaming?: boolean;
+}
+
+function parseAssistantMessage(content: string) {
+  const lines = content.split('\n').filter((line) => line.trim());
+
+  // Find the first argument marker (numbered point or separator)
+  const firstArgIndex = lines.findIndex((line) => /^\*\*\d+\./.test(line) || line.trim() === '---');
+
+  // Intro is everything before the first argument
+  const introEnd = firstArgIndex > 0 ? firstArgIndex : Math.min(3, lines.length);
+
+  return {
+    intro: lines.slice(0, introEnd).join('\n'),
+    rest: lines.slice(introEnd).join('\n'),
+  };
 }
 
 // Render inline markdown (bold) within text
@@ -37,27 +53,8 @@ function renderInlineMarkdown(text: string): React.ReactNode {
   return parts.length > 0 ? parts : text;
 }
 
-export default function ChatMessage({ message }: ChatMessageProps) {
+export default function ChatMessage({ message, isStreaming = false }: ChatMessageProps) {
   const isUser = message.role === 'user';
-
-  // Parse the assistant message to extract structured data
-  const parseAssistantMessage = (content: string) => {
-    const lines = content.split('\n').filter((line) => line.trim());
-
-    // Find the first argument marker (numbered point or separator)
-    const firstArgIndex = lines.findIndex(line =>
-      /^\*\*\d+\./.test(line) || line.trim() === '---'
-    );
-
-    // Intro is everything before the first argument
-    const introEnd = firstArgIndex > 0 ? firstArgIndex : Math.min(3, lines.length);
-
-    return {
-      intro: lines.slice(0, introEnd).join('\n'),
-      rest: lines.slice(introEnd).join('\n'),
-    };
-  };
-
   const parsed = !isUser ? parseAssistantMessage(message.content) : null;
 
   return (
@@ -75,6 +72,10 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             <p className="text-white">{message.content}</p>
           ) : (
             <div className="space-y-4">
+              {/* Streaming cursor for empty content */}
+              {isStreaming && !message.content && (
+                <span className="inline-block w-2 h-5 bg-violet-500 animate-pulse rounded-sm" aria-label="Receiving response" />
+              )}
               {/* Intro text */}
               {parsed && parsed.intro && (
                 <div className="prose prose-sm max-w-none dark:prose-invert">
@@ -185,6 +186,10 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                   })}
                 </div>
               )}
+              {/* Streaming cursor at end of content */}
+              {isStreaming && message.content && (
+                <span className="inline-block w-2 h-4 bg-violet-500 animate-pulse rounded-sm ml-1" aria-hidden="true" />
+              )}
             </div>
           )}
         </div>
@@ -192,8 +197,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         {/* Arguments (if assistant message has them) */}
         {!isUser && message.arguments && message.arguments.length > 0 && (
           <div className="mt-4 space-y-4">
-            {message.arguments.map((argument) => (
-              <ArgumentCard key={argument.objectID} argument={argument} />
+            {message.arguments.map((argument, index) => (
+              <ArgumentCardEnhanced key={argument.objectID} argument={argument} index={index} />
             ))}
           </div>
         )}

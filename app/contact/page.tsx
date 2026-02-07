@@ -1,5 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
+
+const UPDATED_DATE = '2026-02-07';
+const UPDATED_ISO_DATE = `${UPDATED_DATE}T00:00:00.000Z`;
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: `Contact ${SITE_NAME}`,
+  url: `${SITE_URL}/contact`,
+  datePublished: UPDATED_ISO_DATE,
+  dateModified: UPDATED_ISO_DATE,
+  author: {
+    '@type': 'Organization',
+    name: DEFAULT_AUTHOR,
+  },
+};
 
 export const metadata: Metadata = {
   title: 'Contact and Support | ContradictMe',
@@ -13,8 +30,17 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactPageSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Contact</h1>
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-6">
+          By {DEFAULT_AUTHOR} • Last updated {UPDATED_DATE}
+        </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
           We welcome feedback on argument quality, missing sources, factual errors, and product
           improvements. Please include the topic you asked about and the response details so we can
@@ -49,6 +75,30 @@ export default function ContactPage() {
             </li>
           </ul>
         </section>
+        <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8">
+          For deployment-related incidents, include affected route URLs and the time window so we
+          can correlate logs quickly. If your issue relates to how results are sourced or ranked,
+          include at least one external reference URL to compare against. You can also review the
+          platform deployment model at{' '}
+          <a
+            href="https://vercel.com/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-600 dark:text-violet-400 hover:underline"
+          >
+            Vercel Docs
+          </a>{' '}
+          and API reliability practices in the{' '}
+          <a
+            href="https://datatracker.ietf.org/doc/html/rfc9110"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-600 dark:text-violet-400 hover:underline"
+          >
+            HTTP Semantics standard
+          </a>
+          .
+        </p>
 
         <div className="flex flex-wrap gap-4 text-sm sm:text-base">
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
