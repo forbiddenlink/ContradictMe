@@ -54,13 +54,19 @@ function extractTextPayload(parsed: unknown): string {
   if (!parsed || typeof parsed !== 'object') return '';
 
   const data = parsed as {
+    type?: string;
+    delta?: string | { text?: string };
     parts?: Array<{ type?: string; text?: string }>;
     text?: string;
-    delta?: { text?: string };
     choices?: Array<{ delta?: { content?: string } }>;
     response?: string;
     message?: string;
   };
+
+  // Handle Algolia Agent Studio format: {"type": "text-delta", "delta": "content"}
+  if (data.type === 'text-delta' && typeof data.delta === 'string') {
+    return data.delta;
+  }
 
   if (Array.isArray(data.parts)) {
     return data.parts
@@ -69,7 +75,7 @@ function extractTextPayload(parsed: unknown): string {
       .join('');
   }
   if (data.text) return data.text;
-  if (data.delta?.text) return data.delta.text;
+  if (typeof data.delta === 'object' && data.delta?.text) return data.delta.text;
   if (data.choices?.[0]?.delta?.content) return data.choices[0].delta.content;
   if (data.response) return data.response;
   if (data.message) return data.message;

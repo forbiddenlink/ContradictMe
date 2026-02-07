@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV !== 'production';
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -18,6 +20,17 @@ const nextConfig = {
 
   // Security headers
   async headers() {
+    const scriptSrc = ["'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : [])].join(
+      ' '
+    );
+    const connectSrc = [
+      "'self'",
+      ...(isDev ? ['ws:', 'wss:'] : []),
+      'https://*.algolia.net',
+      'https://*.algolianet.com',
+      'https://ai-sdk-5.api.algolia.com',
+    ].join(' ');
+
     return [
       {
         source: '/:path*',
@@ -41,7 +54,7 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.algolia.net https://*.algolianet.com https://ai-sdk-5.api.algolia.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;",
+              `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src ${connectSrc}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;`,
           },
         ],
       },
