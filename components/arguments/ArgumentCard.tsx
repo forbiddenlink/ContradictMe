@@ -209,18 +209,21 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <button
             onClick={() => setShowLimitations(!showLimitations)}
             className="flex items-center justify-between w-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+            aria-expanded={showLimitations}
+            aria-controls={`limitations-${argument.mainClaim.slice(0, 20).replace(/\s/g, '-')}`}
           >
             <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-amber-600 dark:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <svg className="w-4 h-4 text-amber-600 dark:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               Limitations & Caveats
             </span>
-            <span className="text-gray-400 dark:text-slate-500">{showLimitations ? '▲' : '▼'}</span>
+            <span className="text-gray-400 dark:text-slate-500" aria-hidden="true">{showLimitations ? '▲' : '▼'}</span>
           </button>
           <AnimatePresence>
             {showLimitations && (
               <motion.div
+                id={`limitations-${argument.mainClaim.slice(0, 20).replace(/\s/g, '-')}`}
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
                 animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}

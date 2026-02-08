@@ -92,7 +92,7 @@ export default function ChatInput({ onSend, isLoading, error }: ChatInputProps) 
         disabled={isLoading}
         autoFocus
         maxLength={MAX_MESSAGE_LENGTH}
-        className="flex-1 px-5 sm:px-6 py-4 sm:py-5 rounded-2xl border-2 border-gray-200 dark:border-slate-700 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-4 focus:ring-teal-100 dark:focus:ring-teal-900/50 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-slate-500 disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-base sm:text-lg"
+        className="flex-1 px-5 sm:px-6 py-4 sm:py-5 rounded-2xl border-2 border-gray-200 dark:border-slate-700 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-4 focus:ring-teal-100 dark:focus:ring-teal-900/50 outline-none transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-base sm:text-lg"
         aria-label="Chat message input. Press Enter to send, Escape to clear, / to focus"
         aria-describedby={isLoading ? 'loading-status' : 'keyboard-shortcuts'}
       />

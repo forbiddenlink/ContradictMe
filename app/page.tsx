@@ -171,7 +171,7 @@ export default function Home() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleChallenge()}
-              className="w-full px-5 sm:px-6 py-4 sm:py-5 pr-32 sm:pr-44 rounded-2xl border-2 border-slate-200 dark:border-slate-700 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-4 focus:ring-teal-100 dark:focus:ring-teal-900/50 outline-none transition-all duration-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 text-base sm:text-lg"
+              className="w-full px-5 sm:px-6 py-4 sm:py-5 pr-32 sm:pr-44 rounded-2xl border-2 border-slate-200 dark:border-slate-700 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-4 focus:ring-teal-100 dark:focus:ring-teal-900/50 outline-none transition-all duration-200 placeholder:text-slate-500 dark:placeholder:text-slate-400 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 text-base sm:text-lg"
               placeholder="Tell me something you believe strongly..."
               aria-label="Tell me something you believe strongly"
             />

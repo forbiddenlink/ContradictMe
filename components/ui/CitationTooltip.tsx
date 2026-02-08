@@ -32,6 +32,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
         onMouseLeave={() => setIsOpen(false)}
         onClick={handleInteraction}
         aria-label={`Citation ${index}: ${source.title}`}
+        aria-describedby={isVisible ? `citation-tooltip-${index}` : undefined}
       >
         <sup className="citation-number">[{index}]</sup>
       </button>
@@ -40,6 +41,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
       <AnimatePresence>
         {isVisible && (
           <motion.div
+            id={`citation-tooltip-${index}`}
             initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.97 }}
@@ -54,10 +56,10 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
               {/* Source Type Badge */}
               <div className="flex items-center justify-between mb-2">
                 <span className="citation-badge">
-                  {source.publicationType === 'peer-reviewed' && '📊 Peer-Reviewed'}
-                  {source.publicationType === 'report' && '📄 Report'}
-                  {source.publicationType === 'book' && '📚 Book'}
-                  {source.publicationType === 'article' && '📰 Article'}
+                  {source.publicationType === 'peer-reviewed' && <><span aria-hidden="true">📊</span> Peer-Reviewed</>}
+                  {source.publicationType === 'report' && <><span aria-hidden="true">📄</span> Report</>}
+                  {source.publicationType === 'book' && <><span aria-hidden="true">📚</span> Book</>}
+                  {source.publicationType === 'article' && <><span aria-hidden="true">📰</span> Article</>}
                 </span>
                 {source.yearPublished && (
                   <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
@@ -87,7 +89,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
               {source.citationCount && source.citationCount > 0 && (
                 <div className="citation-metrics">
                   <span className="citation-metric-item">
-                    📈 {source.citationCount.toLocaleString()} citations
+                    <span aria-hidden="true">📈</span> {source.citationCount.toLocaleString()} citations
                   </span>
                 </div>
               )}

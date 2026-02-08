@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
@@ -46,6 +46,11 @@ export function ConversationHistorySidebar({
   const [searchMode, setSearchMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
+  // Refs for focus management
+  const sidebarRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   const { conversations, grouped, isLoading } = useConversations();
   const { query, setQuery, results, isSearching } = useConversationSearch();
   const { deleteConversation, toggleBookmark, updateTitle } =
@@ -54,6 +59,77 @@ export function ConversationHistorySidebar({
     useConversationExport();
 
   const displayConversations = searchMode && query ? results : conversations;
+
+  // Store the element that triggered the sidebar
+  useEffect(() => {
+    if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement;
+    }
+  }, [isOpen]);
+
+  // Focus first focusable element on open, restore focus on close
+  useEffect(() => {
+    if (isOpen) {
+      // Focus the close button as the first focusable element
+      closeButtonRef.current?.focus();
+    } else if (triggerRef.current) {
+      // Return focus to trigger element on close
+      triggerRef.current.focus();
+    }
+  }, [isOpen]);
+
+  // Handle Escape key to close sidebar
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  // Focus trap - cycle through focusable elements
+  const handleFocusTrap = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !sidebarRef.current) return;
+
+      const focusableElements = sidebarRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift + Tab: if on first element, go to last
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab: if on last element, go to first
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.addEventListener('keydown', handleFocusTrap);
+    return () => document.removeEventListener('keydown', handleFocusTrap);
+  }, [isOpen, handleFocusTrap]);
 
   const handleDelete = async (conversationId: string, title: string) => {
     if (!confirm(`Delete "${title}"?`)) return;
@@ -136,15 +212,19 @@ export function ConversationHistorySidebar({
 
           {/* Sidebar */}
           <motion.aside
+            ref={sidebarRef}
             initial={{ x: -320 }}
             animate={{ x: 0 }}
             exit={{ x: -320 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed left-0 top-0 h-full w-80 bg-background border-r border-border z-50 flex flex-col"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="sidebar-title"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
-              <h2 className="text-lg font-semibold">Conversations</h2>
+              <h2 id="sidebar-title" className="text-lg font-semibold">Conversations</h2>
               <div className="flex items-center gap-2">
                 <Button
                   variant="ghost"
@@ -162,6 +242,7 @@ export function ConversationHistorySidebar({
                   )}
                 </Button>
                 <Button
+                  ref={closeButtonRef}
                   variant="ghost"
                   size="icon"
                   onClick={onClose}

@@ -844,7 +844,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
                 whileTap="tap"
                 transition={{ duration: 0.2, delay: index * 0.02 }}
               >
-                <span className="text-base transition-transform group-hover:scale-110">
+                <span className="text-base transition-transform group-hover:scale-110" aria-hidden="true">
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
