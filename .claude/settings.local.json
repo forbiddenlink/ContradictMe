@@ -55,7 +55,8 @@
       "Bash(gh run view:*)",
       "Bash(npx squirrelscan:*)",
       "WebFetch(domain:contradict-me.vercel.app)",
-      "Bash(npm run format:*)"
+      "Bash(npm run format:*)",
+      "Skill(github-search)"
     ]
   }
 }

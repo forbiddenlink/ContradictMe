@@ -15,8 +15,9 @@ const aboutPageSchema = {
   datePublished: ISO_DATE,
   dateModified: ISO_DATE,
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: DEFAULT_AUTHOR,
+    url: `${SITE_URL}/about/liz-stein`,
   },
 };
 

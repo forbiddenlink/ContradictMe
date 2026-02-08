@@ -59,9 +59,9 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         datePublished: publishedIso,
         dateModified: publishedIso,
         author: {
-          '@type': 'Organization',
+          '@type': 'Person',
           name: DEFAULT_AUTHOR,
-          url: `${SITE_URL}/about`,
+          url: `${SITE_URL}/about/liz-stein`,
         },
         publisher: {
           '@type': 'Organization',
