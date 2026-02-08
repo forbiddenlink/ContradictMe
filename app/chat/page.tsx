@@ -11,7 +11,8 @@ export async function generateMetadata({ searchParams }: ChatPageProps): Promise
   const message = params.message;
 
   if (message && message.length > 0) {
-    const truncated = message.length > 50 ? message.substring(0, 47) + '...' : message;
+    // Max 60 chars total: 45 for message + " | " (3) + "ContradictMe" (12) = 60
+    const truncated = message.length > 45 ? message.substring(0, 42) + '...' : message;
 
     return {
       title: `${truncated} | ${SITE_NAME}`,

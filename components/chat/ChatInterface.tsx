@@ -448,7 +448,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
                 key={item.label}
                 onClick={() => handleSuggestedPrompt(item.prompt)}
                 className="px-4 py-2 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-gray-200/50 dark:border-slate-700/50 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:border-violet-200 dark:hover:border-violet-500/50 hover:shadow-sm hover:text-violet-700 dark:hover:text-violet-300 transition-all"
-                aria-label={`Challenge belief: ${item.prompt}`}
+                aria-label={item.label}
                 variants={promptVariants}
                 whileHover="hover"
                 whileTap="tap"

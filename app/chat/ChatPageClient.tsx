@@ -86,6 +86,13 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
             This tool is designed for critical thinking, debate preparation, research verification, and decision analysis. We <strong>steel-man</strong> opposing viewpoints—presenting them in their strongest, most credible form—rather than attacking weak straw-man versions. This approach helps you understand opposing positions as deeply as your own.
           </p>
 
+          <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+            <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">What to Expect</h2>
+            <p className="text-sm">
+              Each response includes specific counterarguments backed by peer-reviewed research, quality scores based on evidence strength, and honest limitations. You&rsquo;ll see citations from credible institutions, uncertainty notes when evidence is mixed, and reflection questions to deepen your thinking. This isn&rsquo;t about winning debates—it&rsquo;s about making better decisions by understanding the strongest case against your current position.
+            </p>
+          </div>
+
           <p className="text-sm">
             Background on steel-manning: <a
               href="https://en.wikipedia.org/wiki/Straw_man#Steelmanning"
