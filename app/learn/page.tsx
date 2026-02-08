@@ -151,6 +151,9 @@ export default function LearnHubPage() {
           <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline">
             Contact
           </Link>
+          <Link href="/privacy-policy" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Privacy Policy
+          </Link>
         </nav>
       </div>
     </main>
