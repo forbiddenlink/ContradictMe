@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Argument } from '@/lib/types';
 
 interface ArgumentCardProps {
@@ -10,6 +10,8 @@ interface ArgumentCardProps {
 
 export default function ArgumentCard({ argument }: ArgumentCardProps) {
   const [showLimitations, setShowLimitations] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   // Calculate quality score position for radial progress
   const circumference = 2 * Math.PI * 36; // radius = 36
@@ -29,7 +31,13 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
   };
 
   return (
-    <div className="argument-card group animate-crystallize">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="argument-card group"
+    >
       <div className="flex items-start justify-between mb-4">
         {/* Quality Score - Radial Progress */}
         <div className="flex items-center space-x-4">
@@ -180,6 +188,6 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           </AnimatePresence>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

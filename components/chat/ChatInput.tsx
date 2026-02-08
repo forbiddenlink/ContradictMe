@@ -1,20 +1,40 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { m } from 'framer-motion';
 
 interface ChatInputProps {
   onSend: (message: string) => void;
   isLoading: boolean;
+  error?: string | null;
 }
 
 const MAX_MESSAGE_LENGTH = 2000;
 
-export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
+type ButtonState = 'idle' | 'sending' | 'success';
+
+export default function ChatInput({ onSend, isLoading, error }: ChatInputProps) {
   const [input, setInput] = useState('');
+  const [buttonState, setButtonState] = useState<ButtonState>('idle');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Update button state based on loading and error
+  useEffect(() => {
+    if (isLoading) {
+      setButtonState('sending');
+    } else if (!error && buttonState === 'sending') {
+      // Show success briefly, then reset
+      setButtonState('success');
+      const timer = setTimeout(() => setButtonState('idle'), 1000);
+      return () => clearTimeout(timer);
+    } else if (error) {
+      setButtonState('idle');
+    }
+  }, [isLoading, error, buttonState]);
 
   const handleSend = () => {
     if (input.trim() && !isLoading) {
+      setButtonState('sending');
       onSend(input.trim());
       setInput('');
     }
@@ -76,14 +96,43 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
         aria-label="Chat message input. Press Enter to send, Escape to clear, / to focus"
         aria-describedby={isLoading ? 'loading-status' : 'keyboard-shortcuts'}
       />
-      <button
+      <m.button
         onClick={handleSend}
         disabled={!input.trim() || isLoading}
-        className="px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-2xl font-semibold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-        aria-label={isLoading ? 'Sending message...' : 'Challenge Me'}
+        animate={{
+          scale: buttonState === 'success' ? [1, 1.05, 1] : 1,
+          backgroundColor:
+            buttonState === 'success'
+              ? '#10B981'
+              : buttonState === 'sending'
+                ? '#0D7C7D'
+                : undefined,
+        }}
+        transition={{
+          scale: { duration: 0.4, times: [0, 0.5, 1] },
+          backgroundColor: { duration: 0.3 },
+        }}
+        className="relative overflow-hidden px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-2xl font-semibold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        aria-label={
+          buttonState === 'success'
+            ? 'Message sent!'
+            : isLoading
+              ? 'Sending message...'
+              : 'Challenge Me'
+        }
       >
-        Challenge Me
-      </button>
+        {buttonState === 'sending' && (
+          <m.div
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 2, ease: 'easeInOut' }}
+            className="absolute inset-0 bg-teal-700/30"
+          />
+        )}
+        <span className="relative z-10">
+          {buttonState === 'success' ? '✓ Sent' : 'Challenge Me'}
+        </span>
+      </m.button>
       {isLoading && (
         <span id="loading-status" className="sr-only" role="status" aria-live="polite">
           Sending message, please wait...

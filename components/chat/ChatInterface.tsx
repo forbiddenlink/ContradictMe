@@ -6,6 +6,7 @@ import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import ThinkingIndicator from '../ui/ThinkingIndicator';
+import { SkeletonMessage } from '../ui/SkeletonCard';
 import { saveConversation, loadConversation, clearConversation } from '@/lib/storage';
 
 // Generate unique IDs using crypto
@@ -493,13 +494,22 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           ))}
         </AnimatePresence>
         {isLoading && !isStreaming && (
-          <div className="flex justify-start animate-slide-up">
-            <ThinkingIndicator
-              phase={loadingPhase}
-              message={LOADING_PHASES[loadingPhase].message}
-              totalPhases={LOADING_PHASES.length}
-            />
-          </div>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-4"
+          >
+            <SkeletonMessage />
+            <div className="flex justify-start">
+              <ThinkingIndicator
+                phase={loadingPhase}
+                message={LOADING_PHASES[loadingPhase].message}
+                totalPhases={LOADING_PHASES.length}
+              />
+            </div>
+          </m.div>
         )}
 
         {/* Error display */}
@@ -581,7 +591,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
 
       {/* Input Area */}
       <div className="border-t border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 relative z-10">
-        <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
+        <ChatInput onSend={handleSendMessage} isLoading={isLoading} error={error} />
       </div>
     </div>
   );
