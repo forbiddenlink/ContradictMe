@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
+import dynamic from 'next/dynamic';
 import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
@@ -10,8 +10,13 @@ import FollowUpSuggestions from './FollowUpSuggestions';
 import EnhancedThinkingIndicator from '../ui/EnhancedThinkingIndicator';
 import { SkeletonMessage } from '../ui/SkeletonCard';
 import { ConversationHistorySidebar } from '../ui/ConversationHistorySidebar';
-import ShareModal from '../ui/ShareModal';
 import ThemeToggle from '../ThemeToggle';
+
+// Dynamic import for ShareModal - only load when needed (client-only)
+const ShareModal = dynamic(() => import('../ui/ShareModal'), {
+  ssr: false,
+  loading: () => null,
+});
 import { Menu, Share2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { saveConversation, loadConversation, clearConversation } from '@/lib/storage';
@@ -382,8 +387,15 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       !isStreaming &&
       messages[messages.length - 1].role === 'assistant'
     ) {
-      // Trigger confetti celebration
-      const timer = setTimeout(() => {
+      // Check for reduced motion preference before triggering confetti
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        return; // Skip confetti for users who prefer reduced motion
+      }
+
+      // Trigger confetti celebration - dynamically import to reduce initial bundle
+      const timer = setTimeout(async () => {
+        const confetti = (await import('canvas-confetti')).default;
         confetti({
           particleCount: 100,
           spread: 70,

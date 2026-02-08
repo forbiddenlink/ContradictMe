@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/debate`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
       url: `${SITE_URL}/about`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -41,6 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.5,
+    },
+    {
+      url: `${SITE_URL}/analytics`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.4,
     },
   ];
 

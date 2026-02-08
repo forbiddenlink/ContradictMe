@@ -119,10 +119,24 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           onClick={handleCopy}
           animate={{ scale: copied ? [1, 1.2, 1] : 1 }}
           transition={{ duration: 0.4 }}
-          className="flex-shrink-0 px-3 py-1.5 text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/30 hover:bg-violet-100 dark:hover:bg-violet-900/40 rounded-lg transition-colors"
+          className="flex-shrink-0 px-3 py-1.5 text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/30 hover:bg-violet-100 dark:hover:bg-violet-900/40 rounded-lg transition-colors flex items-center gap-1.5"
           title="Copy argument to clipboard"
         >
-          {copied ? '✓ Copied' : '📋 Copy'}
+          {copied ? (
+            <>
+              <svg className="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Copied</span>
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <span>Copy</span>
+            </>
+          )}
         </motion.button>
       </div>
 
@@ -151,7 +165,9 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       {/* Source Metadata */}
       <div className="border-t border-gray-200 dark:border-slate-700 pt-4 mb-4">
         <div className="flex items-center text-sm text-slate-700 dark:text-slate-300">
-          <span className="mr-2">📚</span>
+          <svg className="w-5 h-5 mr-2 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
           <div>
             <div className="font-medium text-slate-700 dark:text-slate-300">
               {argument.sourceMetadata?.authors?.join(', ') || 'Multiple Authors'}
@@ -194,7 +210,12 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
             onClick={() => setShowLimitations(!showLimitations)}
             className="flex items-center justify-between w-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            <span>⚠️ Limitations & Caveats</span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-amber-600 dark:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Limitations & Caveats
+            </span>
             <span className="text-gray-400 dark:text-slate-500">{showLimitations ? '▲' : '▼'}</span>
           </button>
           <AnimatePresence>

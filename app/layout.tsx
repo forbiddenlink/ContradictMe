@@ -5,7 +5,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { MotionProvider } from '@/components/MotionProvider';
 import { ToastProvider } from '@/components/ui/ToastProvider';
-import KeyboardShortcutsModal from '@/components/ui/KeyboardShortcutsModal';
+import DynamicKeyboardShortcutsModal from '@/components/ui/DynamicKeyboardShortcutsModal';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -125,7 +125,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="system">
           <MotionProvider>
             <ErrorBoundary>
-              <KeyboardShortcutsModal />
+              <DynamicKeyboardShortcutsModal />
               {children}
             </ErrorBoundary>
             <ToastProvider />

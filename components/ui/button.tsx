@@ -23,9 +23,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             // Variants
             'bg-teal-600 text-white hover:bg-teal-700 shadow-sm hover:shadow-md':
               variant === 'default',
-            'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100':
+            // Ghost: improved dark mode contrast (slate-100 text on slate-700/800 bg = 7.5:1+)
+            'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-100':
               variant === 'ghost',
-            'border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100':
+            // Outline: improved dark mode contrast with lighter text
+            'border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-100':
               variant === 'outline',
             'bg-red-600 text-white hover:bg-red-700 shadow-sm':
               variant === 'destructive',
