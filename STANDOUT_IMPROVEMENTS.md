@@ -7,12 +7,14 @@
 ## 🎯 What Algolia Contest Winners Did
 
 ### Judging Criteria (From Past Winners):
+
 1. **Functionality** - Clean code that works flawlessly
 2. **User Experience** - Thoughtful placement, beautiful styling
 3. **Creativity** - Novel features that surprise and delight
 4. **Key Differentiator**: "Show how contextual data retrieval enhances UX **without back-and-forth dialogue**"
 
 ### Winner Pattern (Ruben Quintero):
+
 - Used InstantSearch widgets creatively
 - Searchable refinement lists
 - Geographic search with maps
@@ -26,6 +28,7 @@
 ### TIER 1: CRITICAL - Do These NOW (< 2 hours)
 
 #### 1. Skeleton Loaders with Shimmer Effect ⚡
+
 **Why**: 47% activation rate increase (Attention Insight 2025)
 **Impact**: Makes loading feel instant instead of slow
 **Implementation**:
@@ -61,6 +64,7 @@ animation: {
 ```
 
 #### 2. Success/Error Button Animations 🎨
+
 **Why**: Visual feedback reduces user uncertainty (UX 2025 trend)
 **Impact**: Professional, polished feel
 **Implementation**:
@@ -73,7 +77,7 @@ const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 
   onClick={handleSend}
   animate={{
     scale: submitState === 'success' ? [1, 1.1, 1] : 1,
-    backgroundColor: submitState === 'error' ? '#EF4444' : undefined
+    backgroundColor: submitState === 'error' ? '#EF4444' : undefined,
   }}
   className={`relative overflow-hidden ...`}
 >
@@ -87,10 +91,11 @@ const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 
   )}
   {submitState === 'success' && '✓ Sent'}
   {submitState === 'error' && '✗ Retry'}
-</motion.button>
+</motion.button>;
 ```
 
 #### 3. Scroll-Triggered Fade-In Animations 📜
+
 **Why**: Award-winning sites use animation subordinate to meaning
 **Impact**: Guide user's eye, highlight advantages
 **Implementation**:
@@ -100,7 +105,7 @@ const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 
 import { useInView } from 'framer-motion';
 
 const ref = useRef(null);
-const isInView = useInView(ref, { once: true, margin: "-100px" });
+const isInView = useInView(ref, { once: true, margin: '-100px' });
 
 <motion.div
   ref={ref}
@@ -109,10 +114,11 @@ const isInView = useInView(ref, { once: true, margin: "-100px" });
   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
 >
   {/* ArgumentCard content */}
-</motion.div>
+</motion.div>;
 ```
 
 #### 4. Real-Time Progress Bar (Not Just Phases) 📊
+
 **Why**: "Progress bars reduce uncertainty and improve UX" (2025 Best Practices)
 **Impact**: Shows exactly how far along the AI is
 **Implementation**:
@@ -123,7 +129,7 @@ const [progress, setProgress] = useState(0);
 
 useEffect(() => {
   const interval = setInterval(() => {
-    setProgress(prev => Math.min(prev + 1, 95)); // Never show 100% until done
+    setProgress((prev) => Math.min(prev + 1, 95)); // Never show 100% until done
   }, 100);
   return () => clearInterval(interval);
 }, []);
@@ -135,7 +141,7 @@ useEffect(() => {
     animate={{ width: `${progress}%` }}
     transition={{ duration: 0.3 }}
   />
-</div>
+</div>;
 ```
 
 ---
@@ -143,6 +149,7 @@ useEffect(() => {
 ### TIER 2: VERCEL CRITICAL - Performance (< 1 hour)
 
 #### 5. Dynamic Import ArgumentCard 📦
+
 **Why**: Bundle size optimization (Vercel #1 priority)
 **Impact**: Faster initial page load
 **Implementation**:
@@ -153,11 +160,12 @@ import dynamic from 'next/dynamic';
 
 const ArgumentCard = dynamic(() => import('@/components/arguments/ArgumentCard'), {
   loading: () => <SkeletonCard />,
-  ssr: false // Only needed client-side
+  ssr: false, // Only needed client-side
 });
 ```
 
 #### 6. Defer Vercel Analytics 📈
+
 **Why**: Load analytics AFTER hydration (Vercel best practice)
 **Impact**: Faster Time to Interactive
 **Implementation**:
@@ -166,18 +174,18 @@ const ArgumentCard = dynamic(() => import('@/components/arguments/ArgumentCard')
 // app/layout.tsx
 import dynamic from 'next/dynamic';
 
-const Analytics = dynamic(
-  () => import('@vercel/analytics/react').then(mod => mod.Analytics),
-  { ssr: false }
-);
+const Analytics = dynamic(() => import('@vercel/analytics/react').then((mod) => mod.Analytics), {
+  ssr: false,
+});
 
 const SpeedInsights = dynamic(
-  () => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights),
+  () => import('@vercel/speed-insights/next').then((mod) => mod.SpeedInsights),
   { ssr: false }
 );
 ```
 
 #### 7. Add Suspense Boundaries ⚡
+
 **Why**: Stream content progressively (Vercel async-suspense-boundaries)
 **Impact**: Faster perceived performance
 **Implementation**:
@@ -189,7 +197,17 @@ import { SkeletonCard } from '@/components/ui/SkeletonCard';
 
 export default function ChatPage() {
   return (
-    <Suspense fallback={<div className="space-y-4">{Array(3).fill(0).map((_, i) => <SkeletonCard key={i} />)}</div>}>
+    <Suspense
+      fallback={
+        <div className="space-y-4">
+          {Array(3)
+            .fill(0)
+            .map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+        </div>
+      }
+    >
       <ChatInterface initialMessage={message} />
     </Suspense>
   );
@@ -201,6 +219,7 @@ export default function ChatPage() {
 ### TIER 3: DELIGHT FEATURES (< 3 hours)
 
 #### 8. Hover Preload on Suggestion Chips 🔮
+
 **Why**: Perceived speed boost (Vercel bundle-preload)
 **Impact**: Instant response when clicked
 **Implementation**:
@@ -221,6 +240,7 @@ const router = useRouter();
 ```
 
 #### 9. Pull-to-Refresh Gesture 🔄
+
 **Why**: 2025 trend for mobile web apps
 **Impact**: Native app feel
 **Implementation**:
@@ -233,22 +253,18 @@ const { pullDistance } = usePullToRefresh({
   onRefresh: () => {
     clearConversation();
     window.location.reload();
-  }
+  },
 });
 
-<motion.div
-  style={{ paddingTop: pullDistance }}
-  className="transition-all"
->
+<motion.div style={{ paddingTop: pullDistance }} className="transition-all">
   {pullDistance > 80 && (
-    <div className="text-center text-sm text-violet-600">
-      ↻ Release to start fresh conversation
-    </div>
+    <div className="text-center text-sm text-violet-600">↻ Release to start fresh conversation</div>
   )}
-</motion.div>
+</motion.div>;
 ```
 
 #### 10. Typing Sound Effect (Optional) 🔊
+
 **Why**: Multi-sensory feedback increases engagement
 **Impact**: Memorable, unique experience
 **Implementation**:
@@ -261,12 +277,15 @@ useEffect(() => {
   if (isStreaming) {
     const audio = new Audio('/sounds/typing.mp3');
     audio.volume = 0.1;
-    audio.play().catch(() => {/* User hasn't interacted yet */});
+    audio.play().catch(() => {
+      /* User hasn't interacted yet */
+    });
   }
 }, [isStreaming]);
 ```
 
 #### 11. Copy-to-Clipboard with Animation ✂️
+
 **Why**: Common pattern on award-winning sites
 **Impact**: Useful + delightful
 **Implementation**:
@@ -282,15 +301,14 @@ const handleCopy = () => {
 };
 
 <button onClick={handleCopy} className="...">
-  <motion.div
-    animate={{ scale: copied ? [1, 1.2, 1] : 1 }}
-  >
+  <motion.div animate={{ scale: copied ? [1, 1.2, 1] : 1 }}>
     {copied ? '✓ Copied' : '📋 Copy'}
   </motion.div>
-</button>
+</button>;
 ```
 
 #### 12. Confetti on First Successful Response 🎉
+
 **Why**: Celebration increases retention
 **Impact**: Memorable first experience
 **Implementation**:
@@ -304,7 +322,7 @@ useEffect(() => {
     confetti({
       particleCount: 100,
       spread: 70,
-      origin: { y: 0.6 }
+      origin: { y: 0.6 },
     });
   }
 }, [messages.length]);
@@ -315,6 +333,7 @@ useEffect(() => {
 ### TIER 4: POLISH (< 2 hours)
 
 #### 13. Floating Action Button (Back to Top) ⬆️
+
 **Why**: Standard on long-scroll apps
 **Impact**: Better navigation
 **Implementation**:
@@ -349,6 +368,7 @@ export function ScrollToTop() {
 ```
 
 #### 14. Live Typing Indicator (Like iMessage) 💬
+
 **Why**: Shows AI is "thinking" in familiar way
 **Impact**: Comfortable, recognizable pattern
 **Implementation**:
@@ -366,7 +386,7 @@ export function TypingIndicator() {
           transition={{
             duration: 0.6,
             repeat: Infinity,
-            delay: i * 0.15
+            delay: i * 0.15,
           }}
         />
       ))}
@@ -376,6 +396,7 @@ export function TypingIndicator() {
 ```
 
 #### 15. Argument Comparison Mode (Side-by-Side) 🔀
+
 **Why**: Novel feature that shows Algolia power
 **Impact**: Unique differentiator
 **Implementation**:
@@ -423,7 +444,9 @@ html {
 }
 
 /* Cursor pointer on all interactive elements */
-button, a, [role="button"] {
+button,
+a,
+[role='button'] {
   @apply cursor-pointer;
 }
 
@@ -449,22 +472,22 @@ button, a, [role="button"] {
 
 ## 📊 IMPACT SUMMARY
 
-| Improvement | Time | Impact | Wow Factor |
-|------------|------|--------|------------|
-| Skeleton loaders | 30 min | 47% boost | ⭐⭐⭐⭐⭐ |
-| Button animations | 20 min | High polish | ⭐⭐⭐⭐ |
-| Scroll animations | 30 min | Professional | ⭐⭐⭐⭐⭐ |
-| Progress bar | 20 min | Reduces anxiety | ⭐⭐⭐⭐ |
-| Dynamic imports | 15 min | Faster load | ⭐⭐⭐ |
-| Defer analytics | 10 min | Better TTI | ⭐⭐⭐ |
-| Suspense boundaries | 20 min | Faster perceived | ⭐⭐⭐⭐ |
-| Hover preload | 15 min | Instant feel | ⭐⭐⭐⭐ |
-| Pull-to-refresh | 45 min | Native feel | ⭐⭐⭐⭐⭐ |
-| Copy-to-clipboard | 15 min | Useful | ⭐⭐⭐ |
-| Confetti celebration | 10 min | Memorable | ⭐⭐⭐⭐⭐ |
-| Scroll to top | 20 min | Better UX | ⭐⭐⭐ |
-| Typing indicator | 15 min | Familiar | ⭐⭐⭐⭐ |
-| Comparison view | 60 min | Unique | ⭐⭐⭐⭐⭐ |
+| Improvement          | Time   | Impact           | Wow Factor |
+| -------------------- | ------ | ---------------- | ---------- |
+| Skeleton loaders     | 30 min | 47% boost        | ⭐⭐⭐⭐⭐ |
+| Button animations    | 20 min | High polish      | ⭐⭐⭐⭐   |
+| Scroll animations    | 30 min | Professional     | ⭐⭐⭐⭐⭐ |
+| Progress bar         | 20 min | Reduces anxiety  | ⭐⭐⭐⭐   |
+| Dynamic imports      | 15 min | Faster load      | ⭐⭐⭐     |
+| Defer analytics      | 10 min | Better TTI       | ⭐⭐⭐     |
+| Suspense boundaries  | 20 min | Faster perceived | ⭐⭐⭐⭐   |
+| Hover preload        | 15 min | Instant feel     | ⭐⭐⭐⭐   |
+| Pull-to-refresh      | 45 min | Native feel      | ⭐⭐⭐⭐⭐ |
+| Copy-to-clipboard    | 15 min | Useful           | ⭐⭐⭐     |
+| Confetti celebration | 10 min | Memorable        | ⭐⭐⭐⭐⭐ |
+| Scroll to top        | 20 min | Better UX        | ⭐⭐⭐     |
+| Typing indicator     | 15 min | Familiar         | ⭐⭐⭐⭐   |
+| Comparison view      | 60 min | Unique           | ⭐⭐⭐⭐⭐ |
 
 **Total Time**: ~5 hours for ALL improvements
 **Total Impact**: Contest-winning level
@@ -474,6 +497,7 @@ button, a, [role="button"] {
 ## 🎯 RECOMMENDED IMPLEMENTATION ORDER
 
 ### Phase 1: CRITICAL (Do First - 1.5 hours)
+
 1. Skeleton loaders (30 min)
 2. Dynamic imports (15 min)
 3. Scroll animations (30 min)
@@ -481,12 +505,14 @@ button, a, [role="button"] {
 5. CSS polish (15 min)
 
 ### Phase 2: DELIGHT (Next - 1 hour)
+
 6. Button success/error (20 min)
 7. Progress bar (20 min)
 8. Confetti on first message (10 min)
 9. Copy-to-clipboard (15 min)
 
 ### Phase 3: ADVANCED (If Time - 2 hours)
+
 10. Pull-to-refresh (45 min)
 11. Comparison view (60 min)
 12. Typing indicator (15 min)
@@ -522,6 +548,7 @@ Based on Algolia contest criteria:
 ---
 
 **Sources**:
+
 - Vercel React Best Practices (57 rules, 2025)
 - BricxLabs Micro-Interactions Study (47% boost)
 - Algolia Contest Winner Analysis (Ruben Quintero)
