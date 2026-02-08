@@ -44,7 +44,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homePageSchema).replaceAll('<', '\\u003c'),
+          __html: JSON.stringify(homePageSchema).replaceAll('<', String.raw`\u003c`),
         }}
       />
       {/* Subtle noise texture for print-like feel */}
@@ -78,13 +78,6 @@ export default function Home() {
           <span className="hidden sm:inline text-white/50">•</span>
           <div>
             <span className="font-semibold">73/73</span> Tests Passing
-          </div>
-          <span className="hidden sm:inline text-white/50">•</span>
-          <div className="flex items-center gap-1.5">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span>Contest Entry</span>
           </div>
         </div>
       </div>
@@ -291,7 +284,7 @@ export default function Home() {
                     aria-hidden="true"
                   >
                     •
-                  </span>
+                  </span>{' '}
                   Study focused on tech industry
                 </li>
                 <li className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 pl-4 relative">
@@ -300,7 +293,7 @@ export default function Home() {
                     aria-hidden="true"
                   >
                     •
-                  </span>
+                  </span>{' '}
                   Hybrid model (2-3 days) equally effective
                 </li>
               </ul>

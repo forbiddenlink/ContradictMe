@@ -8,7 +8,6 @@ import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import FollowUpSuggestions from './FollowUpSuggestions';
 import EnhancedThinkingIndicator from '../ui/EnhancedThinkingIndicator';
-import { SkeletonMessage } from '../ui/SkeletonCard';
 import { ConversationHistorySidebar } from '../ui/ConversationHistorySidebar';
 import ThemeToggle from '../ThemeToggle';
 
@@ -207,10 +206,10 @@ const promptVariants = {
 };
 
 interface ChatInterfaceProps {
-  initialMessage?: string | null;
+  readonly initialMessage?: string | null;
 }
 
-export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
+export default function ChatInterface({ initialMessage }: Readonly<ChatInterfaceProps>) {
   // Sidebar and conversation state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
@@ -257,7 +256,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
   // Get last assistant message for follow-up suggestions
   const lastAssistantMessage = useMemo(() => {
     const assistantMessages = messages.filter((msg) => msg.role === 'assistant');
-    return assistantMessages[assistantMessages.length - 1];
+    return assistantMessages.at(-1);
   }, [messages]);
 
   // Check if we should show follow-up suggestions
@@ -268,7 +267,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       !isStreaming &&
       lastAssistantMessage &&
       lastAssistantMessage.content.length > 0 &&
-      messages[messages.length - 1]?.role === 'assistant'
+      messages.at(-1)?.role === 'assistant'
     );
   }, [hasUserMessages, isLoading, isStreaming, lastAssistantMessage, messages]);
 
@@ -358,7 +357,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
             }
           } else if (currentConversationId) {
             // Add the latest message to existing conversation
-            const latestMessage = messages[messages.length - 1];
+            const latestMessage = messages.at(-1);
             if (latestMessage) {
               await addMessageToDB(currentConversationId, convertMessage(latestMessage));
             }
@@ -385,10 +384,10 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       assistantMsgs.length === 2 &&
       !isLoading &&
       !isStreaming &&
-      messages[messages.length - 1].role === 'assistant'
+      messages.at(-1)?.role === 'assistant'
     ) {
       // Check for reduced motion preference before triggering confetti
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) {
         return; // Skip confetti for users who prefer reduced motion
       }
@@ -779,7 +778,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
                   <button
                     onClick={() => {
                       setError(null);
-                      const lastUserMessage = userMessages[userMessages.length - 1];
+                      const lastUserMessage = userMessages.at(-1);
                       if (lastUserMessage) handleSendMessage(lastUserMessage.content);
                     }}
                     className="mt-2 text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition-colors"

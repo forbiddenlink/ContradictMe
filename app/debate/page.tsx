@@ -1,17 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { 
   Brain, 
   Heart, 
   Send, 
   Share2, 
   Download, 
-  ThumbsUp, 
-  ThumbsDown,
-  Sparkles,
-  Zap,
+  ThumbsUp,
   MessageCircle,
   Trophy
 } from 'lucide-react';
@@ -70,9 +67,7 @@ export default function DebatePage() {
       isActive: true,
     });
 
-    toast.success('Debate started! Watch the AI agents argue...', {
-      icon: '⚔️',
-    });
+    toast.success('Debate started! Watch the AI agents argue...');
 
     // Start with logical AI's opening argument
     await generateDebateRound(topicInput, [], 1, 'logical');
@@ -100,14 +95,15 @@ export default function DebatePage() {
         ? `Make an opening argument about: ${topic}\n\nBe compelling but concise.`
         : `Continue the debate about: ${topic}\n\nPrevious arguments:\n${context}\n\nRespond to your opponent's points and strengthen your position.`;
 
+      // Combine system prompt and user prompt into a single message
+      // since the API expects { message: string } format
+      const combinedMessage = `${systemPrompt}\n\n${userPrompt}`;
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt },
-          ],
+          message: combinedMessage,
         }),
       });
 
@@ -129,10 +125,13 @@ export default function DebatePage() {
             if (line.startsWith('data: ')) {
               try {
                 const data = JSON.parse(line.slice(6));
-                if (data.content) {
+                // API returns {text: "..."} format
+                if (data.text) {
+                  fullResponse += data.text;
+                } else if (data.content) {
                   fullResponse += data.content;
                 }
-              } catch (e) {
+              } catch {
                 // Skip invalid JSON
               }
             }
@@ -170,9 +169,7 @@ export default function DebatePage() {
           currentRound: round,
           isActive: false,
         }));
-        toast.success('Debate complete! Cast your vote below.', {
-          icon: '🏆',
-        });
+        toast.success('Debate complete! Cast your vote below.');
       }
     } catch (error) {
       console.error('Debate generation error:', error);
@@ -199,9 +196,7 @@ export default function DebatePage() {
     }));
 
     setUserInterjection('');
-    toast.success('Interjection added! AIs will consider it.', {
-      icon: '💬',
-    });
+    toast.success('Interjection added! AIs will consider it.');
 
     // Continue debate with user's input in context
     const nextSpeaker = debateState.messages[debateState.messages.length - 1]?.speaker === 'logical' 
@@ -224,17 +219,15 @@ export default function DebatePage() {
     }));
 
     const name = vote === 'logical' ? 'Logical Larry' : 'Emotional Emma';
-    toast.success(`You voted for ${name}!`, {
-      icon: '🎉',
-    });
+    toast.success(`You voted for ${name}!`);
   };
 
   const shareDebate = async () => {
     const transcript = debateState.messages
       .map(m => {
-        const name = m.speaker === 'logical' ? '🧠 Logical Larry' : 
-                     m.speaker === 'emotional' ? '❤️ Emotional Emma' : 
-                     '👤 You';
+        const name = m.speaker === 'logical' ? 'Logical Larry' : 
+                     m.speaker === 'emotional' ? 'Emotional Emma' : 
+                     'You';
         return `${name} (Round ${m.round}):\n${m.content}`;
       })
       .join('\n\n---\n\n');
@@ -285,9 +278,11 @@ export default function DebatePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <Sparkles className="w-8 h-8 text-violet-600 dark:text-violet-400" />
-                <Zap className="absolute -top-1 -right-1 w-4 h-4 text-teal-500 animate-pulse" />
+              <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/30">
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-3-3m0 0l-3 3m3-3v6" />
+                </svg>
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-teal-600">
@@ -323,7 +318,7 @@ export default function DebatePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Topic Input */}
         {!debateState.isActive && debateState.messages.length === 0 && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl mx-auto mb-8"
@@ -342,9 +337,12 @@ export default function DebatePage() {
               <button
                 onClick={startDebate}
                 disabled={!topicInput.trim()}
-                className="mt-4 w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-teal-600 text-white font-semibold hover:from-violet-700 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+                className="mt-4 w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-teal-600 text-white font-semibold hover:from-violet-700 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
-                Start Debate ⚔️
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Start Debate
               </button>
             </div>
 
@@ -368,7 +366,7 @@ export default function DebatePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
 
         {/* Debate Arena */}
@@ -406,7 +404,7 @@ export default function DebatePage() {
                   {debateState.messages
                     .filter(m => m.speaker === 'logical')
                     .map((message, idx) => (
-                      <motion.div
+                      <m.div
                         key={message.id}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -419,7 +417,7 @@ export default function DebatePage() {
                         <p className="text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
                           {message.content}
                         </p>
-                      </motion.div>
+                      </m.div>
                     ))}
                 </AnimatePresence>
               </div>
@@ -439,7 +437,7 @@ export default function DebatePage() {
                   {debateState.messages
                     .filter(m => m.speaker === 'emotional')
                     .map((message, idx) => (
-                      <motion.div
+                      <m.div
                         key={message.id}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -452,7 +450,7 @@ export default function DebatePage() {
                         <p className="text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
                           {message.content}
                         </p>
-                      </motion.div>
+                      </m.div>
                     ))}
                 </AnimatePresence>
               </div>
@@ -502,6 +500,8 @@ export default function DebatePage() {
                       onClick={handleInterjection}
                       disabled={!userInterjection.trim() || isGenerating}
                       className="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      aria-label="Send interjection"
+                      title="Send interjection"
                     >
                       <Send className="w-5 h-5" />
                     </button>
@@ -512,7 +512,7 @@ export default function DebatePage() {
 
             {/* Voting Section (only when debate is complete) */}
             {!debateState.isActive && debateState.messages.length > 0 && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-gradient-to-r from-violet-50 to-teal-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700"
@@ -556,7 +556,7 @@ export default function DebatePage() {
                     </button>
                   </div>
                 )}
-              </motion.div>
+              </m.div>
             )}
 
             {/* Loading Indicator */}

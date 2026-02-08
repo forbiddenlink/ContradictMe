@@ -72,7 +72,7 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(contactPageGraph).replaceAll('<', '\\u003c'),
+          __html: JSON.stringify(contactPageGraph).replaceAll('<', String.raw`\u003c`),
         }}
       />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
@@ -158,8 +158,7 @@ export default function ContactPage() {
             className="text-violet-600 dark:text-violet-400 hover:underline"
           >
             HTTP Semantics standard
-          </a>
-          .
+          </a>.
         </p>
 
         <section className="mb-8" aria-labelledby="faq-heading">

@@ -61,7 +61,8 @@
       "Bash(curl:*)",
       "Skill(perplexity-search)",
       "Skill(vercel-react-best-practices)",
-      "Bash(npm run format:check:*)"
+      "Bash(npm run format:check:*)",
+      "mcp__plugin_playwright_playwright__browser_install"
     ]
   }
 }
