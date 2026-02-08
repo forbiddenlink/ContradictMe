@@ -87,7 +87,7 @@ export default function ComponentShowcase() {
           <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100">
             ✨ Crystalline Intelligence Design System
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-lg text-slate-700 dark:text-slate-300">
             Production-grade components for ContradictMe
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               1. ArgumentCardEnhanced
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Production-grade argument display with faceted glassmorphism, progressive disclosure, and crystallization animations.
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<ArgumentCardEnhanced
   argument={argumentData}
   index={0} // for staggered animation
@@ -126,7 +126,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               2. ConfidenceBar
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Visual confidence indicators with animated fills, color-coded by score level.
             </p>
           </div>
@@ -158,7 +158,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<ConfidenceBar
   score={89}
   label="Quality Score"
@@ -176,7 +176,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               3. EvidenceBadge
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Visual strength indicators with type display and animated entrance.
             </p>
           </div>
@@ -199,7 +199,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<EvidenceBadge
   strength="strong"
   type="empirical"
@@ -215,7 +215,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               4. SourceCredibilityBadge
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Source metadata display with compact and full modes.
             </p>
           </div>
@@ -248,7 +248,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<SourceCredibilityBadge
   source={sourceMetadata}
   score={92}
@@ -264,7 +264,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               5. CitationTooltip
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Perplexity-style inline citations with hover tooltips.
             </p>
           </div>
@@ -295,7 +295,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<CitationTooltip
   source={sourceMetadata}
   index={1}
@@ -311,7 +311,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               6. ThinkingIndicator
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               Enhanced loading state with morphing blob and progress ring.
             </p>
           </div>
@@ -335,7 +335,7 @@ export default function ComponentShowcase() {
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Usage:
             </h3>
-            <pre className="text-xs text-slate-600 dark:text-slate-400 overflow-x-auto">
+            <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
 {`<ThinkingIndicator
   phase={0}
   message="Understanding your perspective..."
@@ -351,7 +351,7 @@ export default function ComponentShowcase() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               Design Principles
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-700 dark:text-slate-300">
               The &ldquo;Crystalline Intelligence&rdquo; aesthetic philosophy
             </p>
           </div>
@@ -397,7 +397,7 @@ export default function ComponentShowcase() {
 
         {/* Footer */}
         <div className="text-center pt-12 border-t border-slate-200 dark:border-slate-700">
-          <p className="text-sm text-slate-600 dark:text-slate-400">
+          <p className="text-sm text-slate-700 dark:text-slate-300">
             ✨ Designed by Claude Sonnet 4.5 • Crystalline Intelligence Design System v1.0.0
           </p>
         </div>

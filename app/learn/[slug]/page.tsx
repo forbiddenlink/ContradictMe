@@ -115,7 +115,7 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         }}
       />
       <div className="max-w-4xl mx-auto px-6 py-12 sm:py-16">
-        <nav className="text-sm text-slate-600 dark:text-slate-400 mb-6" aria-label="Breadcrumb">
+        <nav className="text-sm text-slate-700 dark:text-slate-300 mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:underline">
             Home
           </Link>{' '}
@@ -158,7 +158,7 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
               >
                 <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
                 <p className="text-slate-700 dark:text-slate-300 mb-3">{item.summary}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">
                   <strong>Evidence signal:</strong> {item.evidence}
                 </p>
                 <p className="text-sm text-amber-700 dark:text-amber-400">
@@ -256,14 +256,14 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
                 className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 hover:border-violet-300 dark:hover:border-violet-700 transition-colors"
               >
                 <h3 className="font-semibold mb-1">{item.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">{item.description}</p>
+                <p className="text-sm text-slate-700 dark:text-slate-300">{item.description}</p>
               </Link>
             ))}
           </div>
         </section>
 
         <footer className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
-          <nav className="flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400" aria-label="Legal and site links">
+          <nav className="flex flex-wrap gap-4 text-sm text-slate-700 dark:text-slate-300" aria-label="Legal and site links">
             <Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Home</Link>
             <Link href="/chat" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Start Chat</Link>
             <Link href="/about" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">About</Link>

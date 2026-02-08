@@ -96,7 +96,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Key Points:</div>
           <ul className="space-y-1">
             {argument.supportingPoints.map((point, idx) => (
-              <li key={idx} className="flex items-start text-sm text-slate-600 dark:text-slate-400">
+              <li key={idx} className="flex items-start text-sm text-slate-700 dark:text-slate-300">
                 <span className="text-violet-500 dark:text-violet-400 mr-2">•</span>
                 <span>{point}</span>
               </li>
@@ -107,7 +107,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
 
       {/* Source Metadata */}
       <div className="border-t border-gray-200 dark:border-slate-700 pt-4 mb-4">
-        <div className="flex items-center text-sm text-slate-600 dark:text-slate-400">
+        <div className="flex items-center text-sm text-slate-700 dark:text-slate-300">
           <span className="mr-2">📚</span>
           <div>
             <div className="font-medium text-slate-700 dark:text-slate-300">
@@ -136,7 +136,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           {argument.tags?.slice(0, 3).map((tag, idx) => (
             <span
               key={idx}
-              className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-xs font-medium"
+              className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-xs font-medium"
             >
               {tag}
             </span>

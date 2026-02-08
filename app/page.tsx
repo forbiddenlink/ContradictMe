@@ -71,7 +71,7 @@ export default function Home() {
             Challenge your beliefs with the strongest counterarguments, backed by research. Fight
             echo chambers. Think critically.
           </p>
-          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
             By {DEFAULT_AUTHOR} • Last updated {HOME_UPDATED_DATE}
           </p>
         </header>
@@ -155,7 +155,7 @@ export default function Home() {
                 <span className="text-score text-violet-600 dark:text-violet-400" aria-hidden="true">
                   87
                 </span>
-                <span className="text-[10px] sm:text-xs font-medium text-gray-600 dark:text-slate-400 uppercase tracking-wide">
+                <span className="text-[10px] sm:text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wide">
                   Quality
                 </span>
               </div>
@@ -175,7 +175,7 @@ export default function Home() {
               </div>
               <div className="text-citation text-xs sm:text-sm">Stanford Economics, 2024</div>
               <div
-                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-gray-600 dark:text-slate-400"
+                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-700 dark:text-slate-300"
                 role="list"
                 aria-label="Research metrics"
               >
@@ -210,7 +210,7 @@ export default function Home() {
             {/* CTA - Example indicator */}
             <div className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400 mt-4">
               <span className="px-2 py-1 bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 rounded text-xs">Example Card</span>
-              <span className="text-slate-500 dark:text-slate-400">Real arguments include source links</span>
+              <span className="text-slate-600 dark:text-slate-300">Real arguments include source links</span>
             </div>
           </article>
         </section>
@@ -245,7 +245,7 @@ export default function Home() {
             <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Evidence-Based
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               Every argument backed by peer-reviewed research, not just plausible-sounding text.
             </p>
           </div>
@@ -272,7 +272,7 @@ export default function Home() {
             <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Steel-Manned
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               The strongest form of opposing arguments, not weak straw-man versions.
             </p>
           </div>
@@ -299,7 +299,7 @@ export default function Home() {
             <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100 mb-2 text-base sm:text-lg tracking-tight">
               Respectful
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               Never condescending. Honest about limitations. Promotes thinking, not
               &ldquo;winning.&rdquo;
             </p>
@@ -364,7 +364,7 @@ export default function Home() {
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-3">
             Building an AI that challenges echo chambers
           </p>
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -381,26 +381,26 @@ export default function Home() {
             className="mb-3 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs sm:text-sm"
             aria-label="Footer links"
           >
-            <Link href="/about" className="text-slate-600 dark:text-slate-400 hover:underline">
+            <Link href="/about" className="text-slate-700 dark:text-slate-300 hover:underline">
               About
             </Link>
-            <Link href="/contact" className="text-slate-600 dark:text-slate-400 hover:underline">
+            <Link href="/contact" className="text-slate-700 dark:text-slate-300 hover:underline">
               Contact
             </Link>
             <Link
               href="/privacy-policy"
-              className="text-slate-600 dark:text-slate-400 hover:underline"
+              className="text-slate-700 dark:text-slate-300 hover:underline"
             >
               Privacy Policy
             </Link>
-            <Link href="/learn" className="text-slate-600 dark:text-slate-400 hover:underline">
+            <Link href="/learn" className="text-slate-700 dark:text-slate-300 hover:underline">
               Learn
             </Link>
-            <Link href="/chat" className="text-slate-600 dark:text-slate-400 hover:underline">
+            <Link href="/chat" className="text-slate-700 dark:text-slate-300 hover:underline">
               Start Chat
             </Link>
           </nav>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
             Built with{' '}
             <a
               href="https://www.algolia.com/"

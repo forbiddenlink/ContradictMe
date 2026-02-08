@@ -50,7 +50,8 @@
       "Skill(onboard)",
       "Skill(repo-research-analyst)",
       "Skill(research-agent)",
-      "Skill(audit-website)"
+      "Skill(audit-website)",
+      "Bash(find:*)"
     ]
   }
 }

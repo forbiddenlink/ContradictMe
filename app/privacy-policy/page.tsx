@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
       />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Privacy Policy</h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-8">
+        <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-8">
           By {DEFAULT_AUTHOR} • Effective date: {EFFECTIVE_DATE}
         </p>
 

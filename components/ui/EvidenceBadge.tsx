@@ -36,7 +36,7 @@ export default function EvidenceBadge({
       border: 'border-slate-400/60 dark:border-slate-500/40 border-dashed',
       text: 'text-slate-700 dark:text-slate-300',
       icon: '○',
-      iconColor: 'text-slate-600 dark:text-slate-400',
+      iconColor: 'text-slate-700 dark:text-slate-300',
       glow: '0 0 16px rgba(100, 116, 139, 0.15)',
     },
   };

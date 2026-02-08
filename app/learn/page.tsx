@@ -82,7 +82,7 @@ export default function LearnHubPage() {
               </ul>
             </div>
 
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-sm text-slate-700 dark:text-slate-300">
               Each guide includes peer-reviewed sources, evidence quality assessments, limitation notes, and practical reflection questions you can use in academic work, policy analysis, and professional decision-making.
             </p>
           </div>
@@ -101,10 +101,10 @@ export default function LearnHubPage() {
               <h2 className="font-display text-xl font-semibold tracking-tight mb-3">
                 {guide.title}
               </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
                 {guide.description}
               </p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">
+              <p className="text-xs text-slate-700 dark:text-slate-300 mb-5">
                 Position tested: {guide.beliefToChallenge}
               </p>
               <div className="flex flex-col gap-2 text-sm">

@@ -199,7 +199,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
 
         .citation-authors {
           @apply text-xs;
-          @apply text-slate-600 dark:text-slate-400;
+          @apply text-slate-700 dark:text-slate-300;
           @apply font-medium;
         }
 
@@ -213,7 +213,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
           @apply mt-3 pt-3;
           @apply border-t border-slate-200 dark:border-slate-700;
           @apply text-xs italic;
-          @apply text-slate-600 dark:text-slate-400;
+          @apply text-slate-700 dark:text-slate-300;
           @apply leading-relaxed;
           @apply line-clamp-3;
         }

@@ -40,7 +40,7 @@ export default function AboutPage() {
       />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">About ContradictMe</h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-6">
+        <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
           By {DEFAULT_AUTHOR} • Published {PUBLISHED_DATE}
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
@@ -137,6 +137,16 @@ export default function AboutPage() {
             to cite specific studies and acknowledge when evidence is thin, contradictory, or
             context-dependent. This approach helps users distinguish between well-supported claims
             and speculative arguments.
+          </p>
+        </section>
+
+        <section className="mb-10 p-6 rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50/30 dark:bg-violet-950/10">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">About the Creator</h2>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            ContradictMe was created by {DEFAULT_AUTHOR}, a developer focused on building tools that promote critical thinking and intellectual honesty. This project emerged from a desire to create an AI system that challenges beliefs rather than reinforcing them.
+          </p>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            The project is built using Next.js, Algolia Agent Studio, and curated argument databases with peer-reviewed sources. All arguments are evaluated for quality, credibility, and evidence strength before being included in the system. For questions or feedback, please visit the <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline font-medium">contact page</Link>.
           </p>
         </section>
 

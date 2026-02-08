@@ -429,7 +429,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
         }
 
         .source-preview-text {
-          @apply text-xs text-slate-600 dark:text-slate-400;
+          @apply text-xs text-slate-700 dark:text-slate-300;
           @apply leading-relaxed;
         }
 
@@ -438,7 +438,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
           @apply px-2.5 py-1 rounded-lg;
           @apply text-xs font-medium;
           @apply bg-slate-100 dark:bg-slate-800/50;
-          @apply text-slate-600 dark:text-slate-400;
+          @apply text-slate-700 dark:text-slate-300;
           @apply border border-slate-200/50 dark:border-slate-700/50;
           @apply transition-all duration-200;
           @apply hover:bg-violet-100 dark:hover:bg-violet-900/30;
