@@ -71,25 +71,40 @@ export default function ChatPage() {
         </div>
       </header>
 
-      <section className="max-w-4xl w-full mx-auto px-6 py-4">
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-2">
+      <section className="max-w-4xl w-full mx-auto px-6 py-4 mb-4">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
           By {DEFAULT_AUTHOR} • Last updated {CHAT_UPDATED_DATE}
         </p>
-        <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-          Ask for the strongest counterargument to any belief. For better results, include your
-          current position, what evidence you already trust, and what kind of objections you want
-          tested. This tool is designed for critical thinking and research prep. For background on
-          steel-manning, see{' '}
-          <a
-            href="https://en.wikipedia.org/wiki/Straw_man#Steelmanning"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-violet-600 dark:text-violet-400 hover:underline"
-          >
-            the steelmanning reference
-          </a>
-          .
-        </p>
+
+        <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p>
+            Ask for the strongest counterargument to any belief. ContradictMe uses AI to challenge your positions with research-backed opposing views, helping you escape echo chambers and think more critically.
+          </p>
+
+          <div className="bg-violet-50 dark:bg-violet-950/20 border border-violet-200 dark:border-violet-900 rounded-lg p-4">
+            <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">How to Get Better Results</h2>
+            <ul className="space-y-1.5 text-sm">
+              <li>• <strong>State your position clearly:</strong> &ldquo;I believe remote work is always better than office work&rdquo;</li>
+              <li>• <strong>Mention what you already know:</strong> &ldquo;I&rsquo;ve read about productivity gains but haven&rsquo;t considered innovation tradeoffs&rdquo;</li>
+              <li>• <strong>Specify what to test:</strong> &ldquo;Give me the strongest counterarguments with evidence and limitations&rdquo;</li>
+            </ul>
+          </div>
+
+          <p>
+            This tool is designed for critical thinking, debate preparation, research verification, and decision analysis. We <strong>steel-man</strong> opposing viewpoints—presenting them in their strongest, most credible form—rather than attacking weak straw-man versions. This approach helps you understand opposing positions as deeply as your own.
+          </p>
+
+          <p className="text-sm">
+            Background on steel-manning: <a
+              href="https://en.wikipedia.org/wiki/Straw_man#Steelmanning"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-violet-600 dark:text-violet-400 hover:underline font-medium"
+            >
+              Wikipedia reference
+            </a> • Not medical, legal, or financial advice.
+          </p>
+        </div>
       </section>
 
       {/* Chat Container */}

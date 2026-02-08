@@ -38,6 +38,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: `${SITE_NAME} - Challenge Your Beliefs with AI`,
   description:
     `${SITE_NAME} challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.`,
@@ -69,7 +70,6 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: 'ContradictMe - An AI That Disagrees With You',
     description:

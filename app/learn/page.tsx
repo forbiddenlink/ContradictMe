@@ -61,12 +61,33 @@ export default function LearnHubPage() {
           <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight mb-4">
             Counterargument Topic Guides
           </h1>
-          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-3xl">
-            Each guide breaks down a popular belief, then presents the strongest opposing case with
-            evidence signals, uncertainty notes, and reflection questions you can use in class,
-            writing, policy work, and decision reviews.
-          </p>
-          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+
+          <div className="space-y-4 max-w-3xl">
+            <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              Challenge your perspectives with research-backed opposing viewpoints. Each guide breaks down a popular stance, then presents the strongest counterarguments with evidence quality signals, uncertainty notes, and reflection questions.
+            </p>
+
+            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              These guides use <strong>steel-manning</strong>—presenting opposing views in their strongest, most credible form rather than attacking weak straw-man versions. This approach helps you understand different perspectives as deeply as your own, leading to better decisions, stronger arguments, and more nuanced thinking.
+            </p>
+
+            <div className="bg-teal-50 dark:bg-teal-950/20 border border-teal-200 dark:border-teal-900 rounded-lg p-5">
+              <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Who These Guides Are For</h2>
+              <ul className="space-y-1 text-sm sm:text-base text-slate-700 dark:text-slate-300">
+                <li>• <strong>Students:</strong> Strengthen essays and class discussions with well-researched opposing views</li>
+                <li>• <strong>Professionals:</strong> Stress-test business decisions and strategy assumptions</li>
+                <li>• <strong>Researchers:</strong> Identify weak points in hypotheses before publication</li>
+                <li>• <strong>Debaters:</strong> Prepare for opposing arguments with evidence-backed rebuttals</li>
+                <li>• <strong>Writers & Journalists:</strong> Present balanced perspectives and anticipate counterpoints</li>
+              </ul>
+            </div>
+
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Each guide includes peer-reviewed sources, evidence quality assessments, limitation notes, and practical reflection questions you can use in academic work, policy analysis, and professional decision-making.
+            </p>
+          </div>
+
+          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
             By {DEFAULT_AUTHOR} • Last updated {LEARN_UPDATED_DATE}
           </p>
         </header>
@@ -84,20 +105,20 @@ export default function LearnHubPage() {
                 {guide.description}
               </p>
               <p className="text-xs text-slate-500 dark:text-slate-500 mb-5">
-                Belief tested: {guide.beliefToChallenge}
+                Position tested: {guide.beliefToChallenge}
               </p>
               <div className="flex flex-col gap-2 text-sm">
                 <Link
                   href={`/learn/${guide.slug}`}
                   className="inline-flex justify-center rounded-xl px-4 py-2 bg-violet-600 text-white hover:bg-violet-700 transition-colors font-medium"
                 >
-                  Open Guide
+                  Read {guide.title}
                 </Link>
                 <Link
                   href={`/chat?message=${encodeURIComponent(guide.starterPrompt)}`}
                   className="inline-flex justify-center rounded-xl px-4 py-2 border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors font-medium"
                 >
-                  Run Prompt in Chat
+                  Test This in Chat
                 </Link>
               </div>
             </article>

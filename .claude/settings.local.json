@@ -46,7 +46,11 @@
       "Bash(curl -v \"https://2lakfjbn4j.algolia.net/agent-studio/1/agents/1ed2db11-e407-441c-9936-0bbf55e0604e/completions?stream=true&compatibilityMode=ai-sdk-5\" -X POST -H \"Content-Type: application/json\" -H \"X-Algolia-Application-Id: 2LAKFJBN4J\" -H \"X-Algolia-API-Key: 4498379d30a00504cc1ee228b4d9727b\" -d '{\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"parts\"\"\"\":[{\"\"\"\"text\"\"\"\":\"\"\"\"Nuclear energy is too dangerous\"\"\"\"}]}]}')",
       "Bash(node test-agent.mjs:*)",
       "Bash(uv run python:*)",
-      "Skill(seo-audit)"
+      "Skill(seo-audit)",
+      "Skill(onboard)",
+      "Skill(repo-research-analyst)",
+      "Skill(research-agent)",
+      "Skill(audit-website)"
     ]
   }
 }

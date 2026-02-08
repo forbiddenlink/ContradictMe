@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: TopicPageProps): Promise<Meta
   return {
     title: `${guide.seoTitle} | ${SITE_NAME}`,
     description: guide.description,
+    authors: [{ name: DEFAULT_AUTHOR }],
     alternates: {
       canonical: `/learn/${guide.slug}`,
     },
@@ -60,7 +61,17 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         author: {
           '@type': 'Organization',
           name: DEFAULT_AUTHOR,
+          url: `${SITE_URL}/about`,
         },
+        publisher: {
+          '@type': 'Organization',
+          name: SITE_NAME,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${SITE_URL}/og-image.png`,
+          },
+        },
+        image: `${SITE_URL}/og-image.png`,
         mainEntityOfPage: getTopicGuideUrl(guide.slug),
       },
       {
@@ -168,12 +179,38 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         </section>
 
         <section className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
-          <h2 className="font-display text-2xl font-semibold mb-4">Primary Source Types</h2>
-          <ul className="space-y-2 text-sm sm:text-base text-slate-700 dark:text-slate-300">
+          <h2 className="font-display text-2xl font-semibold mb-4">Primary Source Types & Further Reading</h2>
+          <ul className="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300">
             {guide.primarySources.map((source) => (
-              <li key={source}>- {source}</li>
+              <li key={source}>• {source}</li>
             ))}
           </ul>
+          <div className="mt-5 pt-5 border-t border-slate-200 dark:border-slate-700">
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-2">Recommended External Resources:</p>
+            <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+              {guide.slug === 'remote-work-productivity' && (
+                <>
+                  <li>• <a href="https://www.oecd.org/future-of-work/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">OECD Future of Work</a> - International labor market analysis</li>
+                  <li>• <a href="https://www.nber.org/papers" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">NBER Working Papers</a> - Academic research on remote work productivity</li>
+                  <li>• <a href="https://web.stanford.edu/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">Stanford HAI</a> - Human-centered AI research on distributed teams</li>
+                </>
+              )}
+              {guide.slug === 'nuclear-energy-safety' && (
+                <>
+                  <li>• <a href="https://ourworldindata.org/energy" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">Our World in Data - Energy</a> - Comparative energy risk analysis</li>
+                  <li>• <a href="https://www.iea.org/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">International Energy Agency (IEA)</a> - Energy transition scenarios</li>
+                  <li>• <a href="https://www.ipcc.ch/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">IPCC Reports</a> - Climate change mitigation pathways</li>
+                </>
+              )}
+              {guide.slug === 'ai-jobs-automation' && (
+                <>
+                  <li>• <a href="https://www.oecd.org/employment/future-of-work/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">OECD Employment Outlook</a> - AI and labor market analysis</li>
+                  <li>• <a href="https://www.nber.org/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">NBER</a> - Automation and task composition research</li>
+                  <li>• <a href="https://www.weforum.org/reports/the-future-of-jobs-report-2023" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">World Economic Forum</a> - Future of Jobs Report</li>
+                </>
+              )}
+            </ul>
+          </div>
         </section>
 
         <section className="mb-10 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
@@ -207,7 +244,7 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
           </div>
         </section>
 
-        <section aria-labelledby="related-heading">
+        <section aria-labelledby="related-heading" className="mb-8">
           <h2 id="related-heading" className="font-display text-2xl font-semibold mb-4">
             Related Guides
           </h2>
@@ -224,6 +261,16 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
             ))}
           </div>
         </section>
+
+        <footer className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <nav className="flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400" aria-label="Legal and site links">
+            <Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Home</Link>
+            <Link href="/chat" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Start Chat</Link>
+            <Link href="/about" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">About</Link>
+            <Link href="/privacy-policy" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Privacy Policy</Link>
+            <Link href="/contact" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Contact</Link>
+          </nav>
+        </footer>
       </div>
     </main>
   );

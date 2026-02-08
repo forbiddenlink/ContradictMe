@@ -32,7 +32,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   {
     slug: 'remote-work-productivity',
     title: 'Remote Work Productivity: Strong Counterarguments',
-    seoTitle: 'Is Remote Work Always Better? Counterarguments and Evidence',
+    seoTitle: 'Remote Work Debate: Evidence & Tradeoffs',
     description:
       'A practical guide to the strongest research-backed objections to the claim that remote work is always better for productivity, innovation, and career growth.',
     beliefToChallenge: 'Remote work is always better than in-office work.',
@@ -99,7 +99,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   {
     slug: 'nuclear-energy-safety',
     title: 'Nuclear Energy Safety: Strong Counterarguments',
-    seoTitle: 'Is Nuclear Energy Too Dangerous? Counterarguments and Evidence',
+    seoTitle: 'Nuclear Safety Debate: Evidence & Policy',
     description:
       'A steel-manned guide to the strongest case against the belief that nuclear energy is inherently too dangerous to include in modern energy policy.',
     beliefToChallenge: 'Nuclear energy is too dangerous to use at scale.',
@@ -166,7 +166,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   {
     slug: 'ai-jobs-automation',
     title: 'AI and Jobs: Strong Counterarguments',
-    seoTitle: 'Will AI Cause Mass Unemployment? Counterarguments and Evidence',
+    seoTitle: 'AI Jobs Impact: Evidence & Analysis',
     description:
       'A balanced guide to the strongest counterarguments to the claim that AI will mainly produce mass permanent unemployment.',
     beliefToChallenge: 'AI will cause mass permanent unemployment.',

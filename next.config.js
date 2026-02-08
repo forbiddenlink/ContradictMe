@@ -12,6 +12,11 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
 
+  // Partial Prerendering (PPR) - Available in Next.js 16+ canary
+  // experimental: {
+  //   ppr: 'incremental',
+  // },
+
   // Remove console.log in production builds (keep errors)
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
