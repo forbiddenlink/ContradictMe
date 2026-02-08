@@ -68,6 +68,8 @@ describe('Home Page', () => {
   it('renders the contest submission status', () => {
     renderWithTheme(<Home />);
     expect(screen.getByText(/Algolia Agent Studio Challenge/i)).toBeInTheDocument();
-    expect(screen.getByText(/26 arguments indexed/i)).toBeInTheDocument();
+    // Use getAllByText since "26 arguments indexed" appears in multiple places (banner + footer area)
+    const argumentsTexts = screen.getAllByText(/26 arguments indexed/i);
+    expect(argumentsTexts.length).toBeGreaterThanOrEqual(1);
   });
 });
