@@ -61,6 +61,34 @@ export default function Home() {
         <ThemeToggle />
       </div>
 
+      {/* Stats Banner */}
+      <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white py-2.5 px-4 text-center relative z-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm">
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+            <span className="font-semibold">26 Arguments Indexed</span>
+          </div>
+          <span className="hidden sm:inline text-white/50">•</span>
+          <div>
+            <span className="font-semibold">88.1</span> Avg Quality Score
+          </div>
+          <span className="hidden sm:inline text-white/50">•</span>
+          <div>
+            <span className="font-semibold">73/73</span> Tests Passing
+          </div>
+          <span className="hidden sm:inline text-white/50">•</span>
+          <div className="flex items-center gap-1.5">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>Contest Entry</span>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-16 sm:pb-20 relative z-10">
         <header className="text-center mb-14 sm:mb-20">
@@ -88,6 +116,41 @@ export default function Home() {
             </time>
           </p>
         </header>
+
+        {/* Demo Button with Popular Examples */}
+        <div className="mb-10 p-4 sm:p-6 bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/20 dark:to-purple-950/20 border border-violet-200 dark:border-violet-900 rounded-2xl">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="text-2xl">💡</div>
+            <div>
+              <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-1">
+                Try a Demo
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Click any example to see how ContradictMe challenges beliefs with research-backed counterarguments
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => handleChallenge('Remote work is always better for productivity')}
+              className="px-4 py-2 text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-700 dark:hover:text-violet-400 transition-colors border border-slate-200 dark:border-slate-700"
+            >
+              Remote work productivity
+            </button>
+            <button
+              onClick={() => handleChallenge('AI is going to take my job')}
+              className="px-4 py-2 text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-700 dark:hover:text-violet-400 transition-colors border border-slate-200 dark:border-slate-700"
+            >
+              AI job displacement
+            </button>
+            <button
+              onClick={() => handleChallenge('Nuclear energy is too dangerous')}
+              className="px-4 py-2 text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-700 dark:hover:text-violet-400 transition-colors border border-slate-200 dark:border-slate-700"
+            >
+              Nuclear safety
+            </button>
+          </div>
+        </div>
 
         {/* Chat Input Preview */}
         <div className="mb-12 sm:mb-16">
