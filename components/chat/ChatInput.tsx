@@ -80,7 +80,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
         onClick={handleSend}
         disabled={!input.trim() || isLoading}
         className="px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-2xl font-semibold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-        aria-label={isLoading ? 'Sending message...' : 'Send message to challenge your belief'}
+        aria-label={isLoading ? 'Sending message...' : 'Challenge Me'}
       >
         Challenge Me
       </button>

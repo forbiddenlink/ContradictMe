@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_NAME } from '@/lib/site';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 import ChatPageClient from './ChatPageClient';
 
 type ChatPageProps = {
@@ -17,13 +17,19 @@ export async function generateMetadata({ searchParams }: ChatPageProps): Promise
     alternates: {
       canonical: '/chat',
     },
-    robots: undefined, // Don't inherit from root
-    keywords: undefined, // Don't inherit from root
-    authors: undefined, // Don't inherit from root
-    creator: undefined, // Don't inherit from root
-    publisher: undefined, // Don't inherit from root
-    openGraph: undefined, // Don't inherit from root
-    twitter: undefined, // Don't inherit from root
+    openGraph: {
+      title: `Live Debate Chat | ${SITE_NAME}`,
+      description: 'Challenge positions with research-backed counterarguments and evidence.',
+      type: 'website',
+      url: `${SITE_URL}/chat`,
+      images: ['/og-image.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Live Debate Chat | ${SITE_NAME}`,
+      description: 'Challenge positions with research-backed counterarguments.',
+      images: ['/og-image.png'],
+    },
   };
 
   if (message && message.length > 0) {

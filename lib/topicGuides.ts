@@ -34,7 +34,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
     title: 'Remote Work Productivity: Strong Counterarguments',
     seoTitle: 'Remote Work Debate: Evidence & Tradeoffs',
     description:
-      'A practical guide to the strongest research-backed objections to the claim that distributed teams are always better for productivity, innovation, and career growth.',
+      'Research-backed objections to the claim that distributed teams are always better for productivity, innovation, and career growth.',
     beliefToChallenge: 'Remote work is always better than in-office work.',
     starterPrompt:
       'I believe remote work is always better than in-office work. Give me the strongest counterarguments with evidence and limitations.',
