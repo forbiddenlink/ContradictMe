@@ -91,7 +91,7 @@ export default function AuthorBioPage() {
             <p>
               {DEFAULT_AUTHOR} is a developer focused on building AI systems that promote critical
               thinking and intellectual honesty. As the creator of {SITE_NAME}, they designed a
-              platform that challenges users' beliefs with research-backed counterarguments rather
+              platform that challenges users&apos; beliefs with research-backed counterarguments rather
               than confirming existing biases.
             </p>
             <p>
@@ -102,7 +102,7 @@ export default function AuthorBioPage() {
               topics.
             </p>
             <p>
-              {DEFAULT_AUTHOR}'s approach emphasizes transparency in AI systems—every argument
+              {DEFAULT_AUTHOR}&apos;s approach emphasizes transparency in AI systems—every argument
               includes quality scores, source credibility ratings, documented limitations, and
               peer-reviewed citations. This commitment to evidence-based reasoning helps users
               distinguish between well-supported claims and speculative arguments.
