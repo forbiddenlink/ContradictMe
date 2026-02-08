@@ -51,7 +51,8 @@
       "Skill(repo-research-analyst)",
       "Skill(research-agent)",
       "Skill(audit-website)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(gh run view:*)"
     ]
   }
 }

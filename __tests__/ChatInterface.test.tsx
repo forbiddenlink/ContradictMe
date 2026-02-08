@@ -53,7 +53,7 @@ describe('ChatInterface', () => {
 
     render(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
-    const button = screen.getByRole('button', { name: /Send message/i });
+    const button = screen.getByRole('button', { name: /Challenge Me/i });
 
     fireEvent.change(input, { target: { value: 'Climate change is urgent' } });
     fireEvent.click(button);
@@ -74,7 +74,7 @@ describe('ChatInterface', () => {
 
     render(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
-    const button = screen.getByRole('button', { name: /Send message/i });
+    const button = screen.getByRole('button', { name: /Challenge Me/i });
 
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(button);
@@ -88,7 +88,7 @@ describe('ChatInterface', () => {
 
     render(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
-    const button = screen.getByRole('button', { name: /Send message/i });
+    const button = screen.getByRole('button', { name: /Challenge Me/i });
 
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(button);
@@ -106,7 +106,7 @@ describe('ChatInterface', () => {
 
     render(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
-    const button = screen.getByRole('button', { name: /Send message/i });
+    const button = screen.getByRole('button', { name: /Challenge Me/i });
 
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(button);
