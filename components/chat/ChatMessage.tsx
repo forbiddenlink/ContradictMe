@@ -1,7 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { Message } from '@/lib/types';
-import ArgumentCardEnhanced from '../arguments/ArgumentCardEnhanced';
+import { SkeletonCard } from '../ui/SkeletonCard';
+
+// Dynamic import for ArgumentCard - reduces initial bundle size
+const ArgumentCardEnhanced = dynamic(() => import('../arguments/ArgumentCardEnhanced'), {
+  loading: () => <SkeletonCard />,
+  ssr: false, // Only needed client-side for animations
+});
 
 interface ChatMessageProps {
   message: Message;

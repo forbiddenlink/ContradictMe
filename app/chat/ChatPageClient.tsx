@@ -5,6 +5,8 @@ import Script from 'next/script';
 import { Suspense } from 'react';
 import ChatInterface from '@/components/chat/ChatInterface';
 import ThemeToggle from '@/components/ThemeToggle';
+import { SkeletonMessage } from '@/components/ui/SkeletonCard';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
 const CHAT_UPDATED_DATE = '2026-02-07';
@@ -145,8 +147,12 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
       <main id="main-content" className="flex-1 min-h-0 max-w-4xl w-full mx-auto flex flex-col">
         <Suspense
           fallback={
-            <div className="flex items-center justify-center h-full text-slate-700 dark:text-slate-300">
-              Loading...
+            <div className="flex items-center justify-center h-full p-6">
+              <div className="w-full max-w-2xl space-y-4">
+                <SkeletonMessage />
+                <SkeletonMessage />
+                <SkeletonMessage />
+              </div>
             </div>
           }
         >
@@ -180,6 +186,9 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
           </p>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

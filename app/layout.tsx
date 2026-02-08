@@ -1,12 +1,21 @@
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import dynamic from 'next/dynamic';
 import './globals.css';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { MotionProvider } from '@/components/MotionProvider';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
+
+// Defer analytics loading for better TTI (Time to Interactive)
+const Analytics = dynamic(() => import('@vercel/analytics/react').then((mod) => mod.Analytics), {
+  ssr: false,
+});
+
+const SpeedInsights = dynamic(
+  () => import('@vercel/speed-insights/next').then((mod) => mod.SpeedInsights),
+  { ssr: false }
+);
 
 // Distinctive headline font - geometric, modern, memorable
 const spaceGrotesk = Space_Grotesk({

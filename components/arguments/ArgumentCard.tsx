@@ -10,8 +10,21 @@ interface ArgumentCardProps {
 
 export default function ArgumentCard({ argument }: ArgumentCardProps) {
   const [showLimitations, setShowLimitations] = useState(false);
+  const [copied, setCopied] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const handleCopy = async () => {
+    const textToCopy = `${argument.mainClaim}\n\n${argument.evidence}\n\nSource: ${argument.sourceMetadata?.authors?.join(', ') || 'Unknown'}, ${argument.sourceMetadata?.institution || 'Unknown Institution'} (${argument.sourceMetadata?.yearPublished || 'N/A'})`;
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   // Calculate quality score position for radial progress
   const circumference = 2 * Math.PI * 36; // radius = 36
@@ -97,10 +110,21 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
         </div>
       </div>
 
-      {/* Main Claim */}
-      <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-tight">
-        {argument.mainClaim}
-      </h3>
+      {/* Main Claim with Copy Button */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 leading-tight flex-1">
+          {argument.mainClaim}
+        </h3>
+        <motion.button
+          onClick={handleCopy}
+          animate={{ scale: copied ? [1, 1.2, 1] : 1 }}
+          transition={{ duration: 0.4 }}
+          className="flex-shrink-0 px-3 py-1.5 text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/30 hover:bg-violet-100 dark:hover:bg-violet-900/40 rounded-lg transition-colors"
+          title="Copy argument to clipboard"
+        >
+          {copied ? '✓ Copied' : '📋 Copy'}
+        </motion.button>
+      </div>
 
       {/* Evidence */}
       <div className="mb-4">

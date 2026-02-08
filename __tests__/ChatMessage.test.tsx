@@ -160,7 +160,7 @@ describe('ChatMessage', () => {
   });
 
   describe('ArgumentCard Integration', () => {
-    it('renders ArgumentCard when arguments are provided', () => {
+    it('renders ArgumentCard when arguments are provided', async () => {
       const message: Message = {
         id: 'assistant-6',
         role: 'assistant',
@@ -169,10 +169,10 @@ describe('ChatMessage', () => {
         timestamp: Date.now(),
       };
       render(<ChatMessage message={message} />);
-      expect(screen.getByText('Test claim for argument card')).toBeInTheDocument();
+      expect(await screen.findByText('Test claim for argument card')).toBeInTheDocument();
     });
 
-    it('renders multiple ArgumentCards', () => {
+    it('renders multiple ArgumentCards', async () => {
       const secondArgument = {
         ...mockArgument,
         objectID: 'test-arg-2',
@@ -186,11 +186,11 @@ describe('ChatMessage', () => {
         timestamp: Date.now(),
       };
       render(<ChatMessage message={message} />);
-      expect(screen.getByText('Test claim for argument card')).toBeInTheDocument();
-      expect(screen.getByText('Second test claim')).toBeInTheDocument();
+      expect(await screen.findByText('Test claim for argument card')).toBeInTheDocument();
+      expect(await screen.findByText('Second test claim')).toBeInTheDocument();
     });
 
-    it('does not render ArgumentCard for user messages', () => {
+    it('does not render ArgumentCard for user messages', async () => {
       const message: Message = {
         id: 'user-2',
         role: 'user',

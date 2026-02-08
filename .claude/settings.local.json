@@ -59,7 +59,9 @@
       "Skill(github-search)",
       "Bash(gh run:*)",
       "Bash(curl:*)",
-      "Skill(perplexity-search)"
+      "Skill(perplexity-search)",
+      "Skill(vercel-react-best-practices)",
+      "Bash(npm run format:check:*)"
     ]
   }
 }

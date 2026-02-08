@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
@@ -274,6 +275,34 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
       return () => clearTimeout(timer);
     }
   }, [messages]);
+
+  // Celebration confetti on first successful response
+  useEffect(() => {
+    // Check if we have exactly 2 messages (welcome + first user) + first assistant response
+    const userMsgs = messages.filter((m) => m.role === 'user');
+    const assistantMsgs = messages.filter((m) => m.role === 'assistant');
+
+    // First real AI response (after welcome message and first user message)
+    if (
+      userMsgs.length === 1 &&
+      assistantMsgs.length === 2 &&
+      !isLoading &&
+      !isStreaming &&
+      messages[messages.length - 1].role === 'assistant'
+    ) {
+      // Trigger confetti celebration
+      const timer = setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#7C3AED', '#0D9A9B', '#4DD4CF', '#A78BFA'],
+        });
+      }, 500); // Small delay so confetti appears after message is visible
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, isLoading, isStreaming]);
 
   const handleSendMessage = useCallback(
     async (content: string, signal?: AbortSignal) => {
