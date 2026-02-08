@@ -57,7 +57,9 @@
       "WebFetch(domain:contradict-me.vercel.app)",
       "Bash(npm run format:*)",
       "Skill(github-search)",
-      "Bash(gh run:*)"
+      "Bash(gh run:*)",
+      "Bash(curl:*)",
+      "Skill(perplexity-search)"
     ]
   }
 }

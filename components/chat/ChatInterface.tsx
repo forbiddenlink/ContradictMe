@@ -27,41 +27,148 @@ const ERROR_MESSAGES = [
   "Something went wrong on my end. I'll give it another shot.",
 ] as const;
 
-// Expanded suggested prompts covering all argument topics
+// Expanded suggested prompts with icons and categories for better engagement
 const SUGGESTED_PROMPTS = [
-  // Row 1 - Popular debates
-  { label: 'Nuclear energy', prompt: 'Nuclear energy is too dangerous' },
-  { label: 'College ROI', prompt: 'College is always worth it' },
-  { label: 'AI & Jobs', prompt: 'AI will cause mass unemployment' },
-  { label: 'Plant-based diet', prompt: 'You need meat to be healthy' },
-  // Row 2 - Economic/Policy
-  { label: 'Remote work', prompt: 'Remote work hurts productivity' },
-  { label: 'Minimum wage', prompt: 'Raising minimum wage kills jobs' },
-  { label: 'UBI', prompt: 'Universal basic income would make people lazy' },
-  { label: 'Crypto', prompt: 'Cryptocurrency is just a scam' },
-  // Row 3 - Social/Health
-  { label: 'Social media', prompt: 'Social media is destroying mental health' },
-  { label: 'Gun control', prompt: 'Stricter gun laws reduce violence' },
-  { label: 'Immigration', prompt: 'Immigration hurts the economy' },
-  { label: 'Drug policy', prompt: 'Drug legalization increases addiction' },
-  // Row 4 - Technology/Environment
+  // Popular debates
+  {
+    label: 'Nuclear energy',
+    prompt: 'Nuclear energy is too dangerous',
+    icon: '⚡',
+    category: 'Energy',
+  },
+  { label: 'College ROI', prompt: 'College is always worth it', icon: '🎓', category: 'Education' },
+  { label: 'AI & Jobs', prompt: 'AI will cause mass unemployment', icon: '🤖', category: 'Tech' },
+  {
+    label: 'Plant-based diet',
+    prompt: 'You need meat to be healthy',
+    icon: '🥗',
+    category: 'Health',
+  },
+  // Economic/Policy
+  {
+    label: 'Remote work',
+    prompt: 'Remote work hurts productivity',
+    icon: '💻',
+    category: 'Work',
+  },
+  {
+    label: 'Minimum wage',
+    prompt: 'Raising minimum wage kills jobs',
+    icon: '💵',
+    category: 'Economics',
+  },
+  {
+    label: 'UBI',
+    prompt: 'Universal basic income would make people lazy',
+    icon: '💰',
+    category: 'Policy',
+  },
+  {
+    label: 'Crypto',
+    prompt: 'Cryptocurrency is just a scam',
+    icon: '₿',
+    category: 'Finance',
+  },
+  // Social/Health
+  {
+    label: 'Social media',
+    prompt: 'Social media is destroying mental health',
+    icon: '📱',
+    category: 'Society',
+  },
+  {
+    label: 'Gun control',
+    prompt: 'Stricter gun laws reduce violence',
+    icon: '🔫',
+    category: 'Policy',
+  },
+  {
+    label: 'Immigration',
+    prompt: 'Immigration hurts the economy',
+    icon: '🌍',
+    category: 'Society',
+  },
+  {
+    label: 'Drug policy',
+    prompt: 'Drug legalization increases addiction',
+    icon: '💊',
+    category: 'Policy',
+  },
+  // Technology/Environment
   {
     label: 'Electric vehicles',
     prompt: "Electric vehicles aren't actually better for the environment",
+    icon: '🚗',
+    category: 'Environment',
   },
-  { label: 'Space funding', prompt: 'Space exploration is a waste of money' },
-  { label: 'Climate action', prompt: 'Climate change action hurts the economy' },
-  { label: 'Lab-grown meat', prompt: 'Lab-grown meat is unnatural and unsafe' },
-  // Row 5 - Education/Work
-  { label: '4-day workweek', prompt: "A 4-day workweek wouldn't work" },
-  { label: 'School choice', prompt: 'School vouchers hurt public education' },
-  { label: 'Standardized tests', prompt: 'Standardized testing is harmful' },
-  { label: 'Gig economy', prompt: 'The gig economy exploits workers' },
-  // Row 6 - Healthcare/Housing
-  { label: 'Healthcare', prompt: 'Universal healthcare would be worse' },
-  { label: 'Housing', prompt: 'Zoning laws protect neighborhoods' },
-  { label: 'Abortion', prompt: 'Abortion restrictions protect life' },
-  { label: 'Social regulation', prompt: 'Social media needs government regulation' },
+  {
+    label: 'Space funding',
+    prompt: 'Space exploration is a waste of money',
+    icon: '🚀',
+    category: 'Science',
+  },
+  {
+    label: 'Climate action',
+    prompt: 'Climate change action hurts the economy',
+    icon: '🌡️',
+    category: 'Environment',
+  },
+  {
+    label: 'Lab-grown meat',
+    prompt: 'Lab-grown meat is unnatural and unsafe',
+    icon: '🧬',
+    category: 'Science',
+  },
+  // Education/Work
+  {
+    label: '4-day workweek',
+    prompt: "A 4-day workweek wouldn't work",
+    icon: '📅',
+    category: 'Work',
+  },
+  {
+    label: 'School choice',
+    prompt: 'School vouchers hurt public education',
+    icon: '🏫',
+    category: 'Education',
+  },
+  {
+    label: 'Standardized tests',
+    prompt: 'Standardized testing is harmful',
+    icon: '📝',
+    category: 'Education',
+  },
+  {
+    label: 'Gig economy',
+    prompt: 'The gig economy exploits workers',
+    icon: '🚚',
+    category: 'Work',
+  },
+  // Healthcare/Housing
+  {
+    label: 'Healthcare',
+    prompt: 'Universal healthcare would be worse',
+    icon: '🏥',
+    category: 'Health',
+  },
+  {
+    label: 'Housing',
+    prompt: 'Zoning laws protect neighborhoods',
+    icon: '🏘️',
+    category: 'Housing',
+  },
+  {
+    label: 'Abortion',
+    prompt: 'Abortion restrictions protect life',
+    icon: '👶',
+    category: 'Policy',
+  },
+  {
+    label: 'Social regulation',
+    prompt: 'Social media needs government regulation',
+    icon: '⚖️',
+    category: 'Policy',
+  },
 ] as const;
 
 // Animation variants for Framer Motion
@@ -455,14 +562,17 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
               <m.button
                 key={item.label}
                 onClick={() => handleSuggestedPrompt(item.prompt)}
-                className="px-4 py-2 bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-gray-200/50 dark:border-slate-700/50 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:border-violet-200 dark:hover:border-violet-500/50 hover:shadow-sm hover:text-violet-700 dark:hover:text-violet-300 transition-all"
-                aria-label={item.label}
+                className="group px-4 py-2.5 bg-gradient-to-br from-white/80 to-white/60 dark:from-slate-800/80 dark:to-slate-900/60 backdrop-blur-md border border-gray-200/60 dark:border-slate-700/60 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:from-violet-50 hover:to-white dark:hover:from-violet-950/30 dark:hover:to-slate-800 hover:border-violet-300 dark:hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-200/50 dark:hover:shadow-violet-900/30 hover:text-violet-700 dark:hover:text-violet-300 transition-all flex items-center gap-2"
+                aria-label={`${item.category}: ${item.label}`}
                 variants={promptVariants}
                 whileHover="hover"
                 whileTap="tap"
                 transition={{ duration: 0.2, delay: index * 0.02 }}
               >
-                {item.label}
+                <span className="text-base transition-transform group-hover:scale-110">
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
               </m.button>
             ))}
           </m.div>
