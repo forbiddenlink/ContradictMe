@@ -72,7 +72,7 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
 
         <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
           <p>
-            Ask for the strongest counterargument to any belief. ContradictMe uses AI to challenge your positions with research-backed opposing views, helping you escape echo chambers and think more critically.
+            Ask for the strongest counterargument to any belief. ContradictMe uses AI to challenge positions with research-backed opposing views, helping you escape echo chambers and think more critically.
           </p>
 
           <div className="bg-violet-50 dark:bg-violet-950/20 border border-violet-200 dark:border-violet-900 rounded-lg p-4">
@@ -91,7 +91,7 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
           <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
             <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">What to Expect</h2>
             <p className="text-sm">
-              Each response includes specific counterarguments backed by peer-reviewed research, quality scores based on evidence strength, and honest limitations. You&rsquo;ll see citations from credible institutions, uncertainty notes when evidence is mixed, and reflection questions to deepen your thinking. This isn&rsquo;t about winning debates—it&rsquo;s about making better decisions by understanding the strongest case against your current position.
+              Each response includes specific counterarguments backed by peer-reviewed research, quality scores based on evidence strength, and honest limitations. You&rsquo;ll see citations from credible institutions, uncertainty notes when evidence is mixed, and reflection questions to deepen thinking. This isn&rsquo;t about winning debates—it&rsquo;s about making better decisions by understanding the strongest case against the position you hold.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
             </Link>
           </nav>
           <p>
-            ContradictMe uses AI to challenge your beliefs. Not medical, legal, or financial advice.
+            ContradictMe uses AI to challenge beliefs with counterarguments. Not medical, legal, or financial advice.
           </p>
         </div>
       </footer>

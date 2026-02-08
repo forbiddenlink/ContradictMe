@@ -34,7 +34,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
     title: 'Remote Work Productivity: Strong Counterarguments',
     seoTitle: 'Remote Work Debate: Evidence & Tradeoffs',
     description:
-      'A practical guide to the strongest research-backed objections to the claim that remote work is always better for productivity, innovation, and career growth.',
+      'A practical guide to the strongest research-backed objections to the claim that distributed teams are always better for productivity, innovation, and career growth.',
     beliefToChallenge: 'Remote work is always better than in-office work.',
     starterPrompt:
       'I believe remote work is always better than in-office work. Give me the strongest counterarguments with evidence and limitations.',
@@ -65,7 +65,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
         evidence:
           'Organizations that shifted rapidly to fully remote models often added meeting load, tooling complexity, and delayed decisions before process maturity improved.',
         limitation:
-          'Once remote operating norms are mature, some teams recover and outperform office baselines on focused individual work.',
+          'Once remote operating norms are mature, some teams recover and outperform office baselines on focused individual tasks.',
       },
     ],
     reflectionQuestions: [
@@ -77,12 +77,12 @@ export const TOPIC_GUIDES: TopicGuide[] = [
       {
         question: 'Does this mean remote work is bad?',
         answer:
-          'No. The point is that remote work has tradeoffs and may not dominate on every objective or team composition.',
+          'No. The point is that distributed employment has tradeoffs and may not dominate on every objective or team composition.',
       },
       {
         question: 'When does remote work usually perform best?',
         answer:
-          'It often performs well for experienced, documentation-heavy teams doing focused execution work.',
+          'It often performs well for experienced, documentation-heavy teams doing focused execution tasks.',
       },
       {
         question: 'What is the practical middle ground?',
