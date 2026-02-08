@@ -53,9 +53,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
                 : 'position-badge-supporting'
             }`}
           >
-            <span className="position-icon">
-              {argument.position === 'against' ? '⚡' : '✓'}
-            </span>
+            <span className="position-icon">{argument.position === 'against' ? '⚡' : '✓'}</span>
             <span className="position-text">
               {argument.position === 'against' ? 'Challenge' : 'Support'}
             </span>
@@ -75,18 +73,12 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
       {/* Main Claim with Citation */}
       <h3 className="argument-claim group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors">
         {argument.mainClaim}
-        <CitationTooltip
-          source={argument.sourceMetadata}
-          index={1}
-          snippet={evidenceSnippet}
-        />
+        <CitationTooltip source={argument.sourceMetadata} index={1} snippet={evidenceSnippet} />
       </h3>
 
       {/* Evidence */}
       <div className="mt-4 mb-5">
-        <p className="argument-evidence">
-          {argument.evidence}
-        </p>
+        <p className="argument-evidence">{argument.evidence}</p>
       </div>
 
       {/* Quality Metrics - Horizontal Bars */}
@@ -180,9 +172,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
               ▼
             </motion.span>
           </span>
-          <span className="collapsible-title">
-            Source Details
-          </span>
+          <span className="collapsible-title">Source Details</span>
         </button>
 
         {/* Compact source preview (always visible) */}
@@ -195,7 +185,9 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
             />
             <p className="source-preview-text">
               {argument.sourceMetadata.authors?.slice(0, 2).join(', ')}
-              {argument.sourceMetadata.authors && argument.sourceMetadata.authors.length > 2 && ' et al.'}
+              {argument.sourceMetadata.authors &&
+                argument.sourceMetadata.authors.length > 2 &&
+                ' et al.'}
               {' • '}
               {argument.sourceMetadata.institution}
               {' • '}
@@ -250,9 +242,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
             aria-expanded={showLimitations}
           >
             <span className="warning-icon">⚠️</span>
-            <span className="collapsible-title">
-              Limitations & Context
-            </span>
+            <span className="collapsible-title">Limitations & Context</span>
             <span className="collapsible-icon">
               <motion.span
                 animate={{ rotate: showLimitations ? 180 : 0 }}
@@ -284,10 +274,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
         .argument-card-enhanced {
           @apply relative p-6 rounded-2xl;
           @apply transition-all duration-500;
-          background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.9),
-            rgba(248, 245, 255, 0.7)
-          );
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 245, 255, 0.7));
           backdrop-filter: blur(32px) saturate(180%);
           -webkit-backdrop-filter: blur(32px) saturate(180%);
           @apply border border-violet-200/40 dark:border-violet-700/30;
@@ -298,10 +285,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
         }
 
         .dark .argument-card-enhanced {
-          background: linear-gradient(135deg,
-            rgba(15, 33, 55, 0.95),
-            rgba(31, 27, 61, 0.9)
-          );
+          background: linear-gradient(135deg, rgba(15, 33, 55, 0.95), rgba(31, 27, 61, 0.9));
           box-shadow:
             0 2px 8px rgba(139, 92, 246, 0.15),
             0 12px 32px rgba(0, 0, 0, 0.3),
@@ -322,7 +306,8 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
           @apply opacity-0 group-hover:opacity-100;
           @apply transition-opacity duration-500;
           @apply pointer-events-none;
-          background: linear-gradient(135deg,
+          background: linear-gradient(
+            135deg,
             rgba(139, 92, 246, 0.3) 0%,
             rgba(13, 154, 155, 0.2) 50%,
             rgba(124, 58, 237, 0.3) 100%
@@ -378,7 +363,8 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
           @apply border border-slate-200/50 dark:border-slate-700/30;
         }
 
-        .collapsible-trigger, .collapsible-trigger-warning {
+        .collapsible-trigger,
+        .collapsible-trigger-warning {
           @apply flex items-center gap-2 w-full;
           @apply text-sm font-semibold;
           @apply text-slate-700 dark:text-slate-300;

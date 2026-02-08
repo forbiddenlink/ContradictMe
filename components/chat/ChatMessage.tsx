@@ -74,7 +74,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
             <div className="space-y-4">
               {/* Streaming cursor for empty content */}
               {isStreaming && !message.content && (
-                <span className="inline-block w-2 h-5 bg-violet-500 animate-pulse rounded-sm" aria-label="Receiving response" />
+                <span
+                  className="inline-block w-2 h-5 bg-violet-500 animate-pulse rounded-sm"
+                  aria-label="Receiving response"
+                />
               )}
               {/* Intro text */}
               {parsed && parsed.intro && (
@@ -85,7 +88,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
                     // Skip separator lines
                     if (cleanLine === '---') return null;
                     return (
-                      <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2">
+                      <p
+                        key={i}
+                        className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2"
+                      >
                         {renderInlineMarkdown(cleanLine)}
                       </p>
                     );
@@ -104,7 +110,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
 
                     if (isArgument) {
                       return (
-                        <div key={idx} className="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-200 dark:border-slate-700">
+                        <div
+                          key={idx}
+                          className="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-200 dark:border-slate-700"
+                        >
                           <div className="prose prose-sm max-w-none dark:prose-invert">
                             {section.split('\n').map((line, i) => {
                               if (!line.trim()) return null;
@@ -125,13 +134,18 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
                               }
 
                               // Nuance or warning section (⚠️ or starts with Nuance)
-                              if (cleanLine.includes('⚠️ Nuance:') || cleanLine.match(/^\*\*Nuance\*\*:/)) {
+                              if (
+                                cleanLine.includes('⚠️ Nuance:') ||
+                                cleanLine.match(/^\*\*Nuance\*\*:/)
+                              ) {
                                 return (
                                   <p
                                     key={i}
                                     className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-3 py-2 rounded-lg mt-3 border-l-4 border-amber-400"
                                   >
-                                    {renderInlineMarkdown(cleanLine.replace(/^\*\*Nuance\*\*:/, '⚠️ Nuance:'))}
+                                    {renderInlineMarkdown(
+                                      cleanLine.replace(/^\*\*Nuance\*\*:/, '⚠️ Nuance:')
+                                    )}
                                   </p>
                                 );
                               }
@@ -151,7 +165,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
                               // Bullet points (lines starting with -)
                               if (cleanLine.startsWith('- ')) {
                                 return (
-                                  <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2 pl-4 border-l-2 border-slate-200 dark:border-slate-600">
+                                  <p
+                                    key={i}
+                                    className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2 pl-4 border-l-2 border-slate-200 dark:border-slate-600"
+                                  >
                                     {renderInlineMarkdown(cleanLine.slice(2))}
                                   </p>
                                 );
@@ -159,7 +176,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
 
                               // Regular lines - render with inline markdown
                               return (
-                                <p key={i} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2">
+                                <p
+                                  key={i}
+                                  className="text-slate-700 dark:text-slate-300 leading-relaxed mb-2"
+                                >
                                   {renderInlineMarkdown(cleanLine)}
                                 </p>
                               );
@@ -188,7 +208,10 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
               )}
               {/* Streaming cursor at end of content */}
               {isStreaming && message.content && (
-                <span className="inline-block w-2 h-4 bg-violet-500 animate-pulse rounded-sm ml-1" aria-hidden="true" />
+                <span
+                  className="inline-block w-2 h-4 bg-violet-500 animate-pulse rounded-sm ml-1"
+                  aria-hidden="true"
+                />
               )}
             </div>
           )}
@@ -204,7 +227,9 @@ export default function ChatMessage({ message, isStreaming = false }: ChatMessag
         )}
 
         {/* Timestamp */}
-        <div className={`text-xs text-gray-500 dark:text-slate-500 mt-2 ${isUser ? 'text-right' : 'text-left'}`}>
+        <div
+          className={`text-xs text-gray-500 dark:text-slate-500 mt-2 ${isUser ? 'text-right' : 'text-left'}`}
+        >
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',

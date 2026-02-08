@@ -78,9 +78,20 @@ export default function ContactPage() {
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Contact</h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
-          By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
+          By{' '}
+          <a
+            href="/about"
+            rel="author"
+            itemProp="author"
+            itemScope
+            itemType="https://schema.org/Person"
+          >
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </a> • Last updated <time dateTime={UPDATED_ISO_DATE} itemProp="dateModified">{UPDATED_DATE}</time>
+          </a>{' '}
+          • Last updated{' '}
+          <time dateTime={UPDATED_ISO_DATE} itemProp="dateModified">
+            {UPDATED_DATE}
+          </time>
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
           We welcome feedback on argument quality, missing sources, factual errors, and product
@@ -103,17 +114,33 @@ export default function ContactPage() {
           </h2>
           <ul className="space-y-3 text-base sm:text-lg text-slate-700 dark:text-slate-300">
             <li>
-              Email: <a className="text-violet-600 dark:text-violet-400 hover:underline" href="mailto:hello@contradict-me.vercel.app">hello@contradict-me.vercel.app</a>
+              Email:{' '}
+              <a
+                className="text-violet-600 dark:text-violet-400 hover:underline"
+                href="mailto:hello@contradict-me.vercel.app"
+              >
+                hello@contradict-me.vercel.app
+              </a>
             </li>
             <li>
-              Product support: <a className="text-violet-600 dark:text-violet-400 hover:underline" href="mailto:support@contradict-me.vercel.app">support@contradict-me.vercel.app</a>
+              Product support:{' '}
+              <a
+                className="text-violet-600 dark:text-violet-400 hover:underline"
+                href="mailto:support@contradict-me.vercel.app"
+              >
+                support@contradict-me.vercel.app
+              </a>
             </li>
             <li>
-              Privacy questions: <a className="text-violet-600 dark:text-violet-400 hover:underline" href="mailto:privacy@contradict-me.vercel.app">privacy@contradict-me.vercel.app</a>
+              Privacy questions:{' '}
+              <a
+                className="text-violet-600 dark:text-violet-400 hover:underline"
+                href="mailto:privacy@contradict-me.vercel.app"
+              >
+                privacy@contradict-me.vercel.app
+              </a>
             </li>
-            <li>
-              Response window: Monday through Friday, typically within 2 business days.
-            </li>
+            <li>Response window: Monday through Friday, typically within 2 business days.</li>
           </ul>
         </section>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8">

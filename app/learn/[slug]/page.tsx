@@ -137,9 +137,20 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
             {guide.description}
           </p>
           <p className="text-sm text-slate-600 dark:text-slate-300">
-            By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
+            By{' '}
+            <a
+              href="/about"
+              rel="author"
+              itemProp="author"
+              itemScope
+              itemType="https://schema.org/Person"
+            >
               <span itemProp="name">{DEFAULT_AUTHOR}</span>
-            </a> • Published <time dateTime={publishedIso} itemProp="datePublished">{guide.publishDate}</time>
+            </a>{' '}
+            • Published{' '}
+            <time dateTime={publishedIso} itemProp="datePublished">
+              {guide.publishDate}
+            </time>
           </p>
         </header>
 
@@ -172,7 +183,9 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         </section>
 
         <section className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
-          <h2 className="font-display text-2xl font-semibold mb-4">Questions to Pressure-Test Your View</h2>
+          <h2 className="font-display text-2xl font-semibold mb-4">
+            Questions to Pressure-Test Your View
+          </h2>
           <ul className="space-y-2 text-slate-700 dark:text-slate-300">
             {guide.reflectionQuestions.map((question) => (
               <li key={question}>- {question}</li>
@@ -181,34 +194,137 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         </section>
 
         <section className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
-          <h2 className="font-display text-2xl font-semibold mb-4">Primary Source Types & Further Reading</h2>
+          <h2 className="font-display text-2xl font-semibold mb-4">
+            Primary Source Types & Further Reading
+          </h2>
           <ul className="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300">
             {guide.primarySources.map((source) => (
               <li key={source}>• {source}</li>
             ))}
           </ul>
           <div className="mt-5 pt-5 border-t border-slate-200 dark:border-slate-700">
-            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-2">Recommended External Resources:</p>
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-2">
+              Recommended External Resources:
+            </p>
             <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
               {guide.slug === 'remote-work-productivity' && (
                 <>
-                  <li>• <a href="https://www.oecd.org/future-of-work/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">OECD Future of Work</a> - International labor market analysis</li>
-                  <li>• <a href="https://www.nber.org/papers" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">NBER Working Papers</a> - Academic research on remote work productivity</li>
-                  <li>• <a href="https://web.stanford.edu/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">Stanford HAI</a> - Human-centered AI research on distributed teams</li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.oecd.org/future-of-work/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      OECD Future of Work
+                    </a>{' '}
+                    - International labor market analysis
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.nber.org/papers"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      NBER Working Papers
+                    </a>{' '}
+                    - Academic research on remote work productivity
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://web.stanford.edu/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      Stanford HAI
+                    </a>{' '}
+                    - Human-centered AI research on distributed teams
+                  </li>
                 </>
               )}
               {guide.slug === 'nuclear-energy-safety' && (
                 <>
-                  <li>• <a href="https://ourworldindata.org/energy" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">Our World in Data - Energy</a> - Comparative energy risk analysis</li>
-                  <li>• <a href="https://www.iea.org/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">International Energy Agency (IEA)</a> - Energy transition scenarios</li>
-                  <li>• <a href="https://www.ipcc.ch/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">IPCC Reports</a> - Climate change mitigation pathways</li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://ourworldindata.org/energy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      Our World in Data - Energy
+                    </a>{' '}
+                    - Comparative energy risk analysis
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.iea.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      International Energy Agency (IEA)
+                    </a>{' '}
+                    - Energy transition scenarios
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.ipcc.ch/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      IPCC Reports
+                    </a>{' '}
+                    - Climate change mitigation pathways
+                  </li>
                 </>
               )}
               {guide.slug === 'ai-jobs-automation' && (
                 <>
-                  <li>• <a href="https://www.oecd.org/employment/future-of-work/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">OECD Employment Outlook</a> - AI and labor market analysis</li>
-                  <li>• <a href="https://www.nber.org/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">NBER</a> - Automation and task composition research</li>
-                  <li>• <a href="https://www.imf.org/en/Publications/WP" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">IMF Working Papers</a> - AI impact on employment and inequality</li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.oecd.org/employment/future-of-work/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      OECD Employment Outlook
+                    </a>{' '}
+                    - AI and labor market analysis
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.nber.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      NBER
+                    </a>{' '}
+                    - Automation and task composition research
+                  </li>
+                  <li>
+                    •{' '}
+                    <a
+                      href="https://www.imf.org/en/Publications/WP"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-violet-600 dark:text-violet-400 hover:underline"
+                    >
+                      IMF Working Papers
+                    </a>{' '}
+                    - AI impact on employment and inequality
+                  </li>
                 </>
               )}
             </ul>
@@ -216,7 +332,9 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         </section>
 
         <section className="mb-10 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
-          <h2 className="font-display text-2xl font-semibold mb-4">Try This Prompt in {SITE_NAME}</h2>
+          <h2 className="font-display text-2xl font-semibold mb-4">
+            Try This Prompt in {SITE_NAME}
+          </h2>
           <p className="text-slate-700 dark:text-slate-300 mb-4">
             Open the live chat with this guide preloaded, then ask follow-up questions to test your
             assumptions against stronger opposing evidence.
@@ -265,12 +383,40 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
         </section>
 
         <footer className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
-          <nav className="flex flex-wrap gap-4 text-sm text-slate-700 dark:text-slate-300" aria-label="Legal and site links">
-            <Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Home</Link>
-            <Link href="/chat" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Start Chat</Link>
-            <Link href="/about" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">About</Link>
-            <Link href="/privacy-policy" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Privacy Policy</Link>
-            <Link href="/contact" className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Contact</Link>
+          <nav
+            className="flex flex-wrap gap-4 text-sm text-slate-700 dark:text-slate-300"
+            aria-label="Legal and site links"
+          >
+            <Link
+              href="/"
+              className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              href="/chat"
+              className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            >
+              Start Chat
+            </Link>
+            <Link
+              href="/about"
+              className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/contact"
+              className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            >
+              Contact
+            </Link>
           </nav>
         </footer>
       </div>

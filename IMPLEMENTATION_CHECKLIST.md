@@ -1,6 +1,7 @@
 # Implementation Checklist - Crystalline Intelligence Design
 
 ## Overview
+
 This checklist guides you through implementing the new "Crystalline Intelligence" design enhancements for ContradictMe.
 
 ---
@@ -26,26 +27,26 @@ This checklist guides you through implementing the new "Crystalline Intelligence
 **Changes needed**:
 
 1. Import the enhanced card:
+
 ```tsx
 // Add to imports
 import ArgumentCardEnhanced from '../arguments/ArgumentCardEnhanced';
 ```
 
 2. Replace the argument card mapping (around line 202-207):
+
 ```tsx
 // OLD:
-{message.arguments.map((argument) => (
-  <ArgumentCard key={argument.objectID} argument={argument} />
-))}
+{
+  message.arguments.map((argument) => <ArgumentCard key={argument.objectID} argument={argument} />);
+}
 
 // NEW:
-{message.arguments.map((argument, index) => (
-  <ArgumentCardEnhanced
-    key={argument.objectID}
-    argument={argument}
-    index={index}
-  />
-))}
+{
+  message.arguments.map((argument, index) => (
+    <ArgumentCardEnhanced key={argument.objectID} argument={argument} index={index} />
+  ));
+}
 ```
 
 **Testing**: Verify arguments display correctly with new styling
@@ -59,28 +60,32 @@ import ArgumentCardEnhanced from '../arguments/ArgumentCardEnhanced';
 **Changes needed**:
 
 1. Import the thinking indicator:
+
 ```tsx
 // Add to imports
 import ThinkingIndicator from '../ui/ThinkingIndicator';
 ```
 
 2. Find the loading phase display (search for `LOADING_PHASES[loadingPhase]`):
+
 ```tsx
 // OLD: (around lines with loading phase display)
-{loadingPhase !== null && (
-  <div className="flex items-center gap-3">
-    {/* existing loading UI */}
-  </div>
-)}
+{
+  loadingPhase !== null && (
+    <div className="flex items-center gap-3">{/* existing loading UI */}</div>
+  );
+}
 
 // NEW:
-{loadingPhase !== null && (
-  <ThinkingIndicator
-    phase={loadingPhase}
-    message={LOADING_PHASES[loadingPhase].message}
-    totalPhases={LOADING_PHASES.length}
-  />
-)}
+{
+  loadingPhase !== null && (
+    <ThinkingIndicator
+      phase={loadingPhase}
+      message={LOADING_PHASES[loadingPhase].message}
+      totalPhases={LOADING_PHASES.length}
+    />
+  );
+}
 ```
 
 **Testing**: Verify loading states show morphing blob and progress ring
@@ -90,12 +95,14 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 ### Step 3: Verify Dark Mode
 
 **Action items**:
+
 - [ ] Toggle dark mode (check theme toggle button)
 - [ ] Verify all new components render correctly in dark mode
 - [ ] Check glassmorphism effects have proper contrast
 - [ ] Verify text remains readable (4.5:1 contrast ratio minimum)
 
 **Files to review**:
+
 - All components in `components/ui/`
 - `ArgumentCardEnhanced.tsx`
 
@@ -104,18 +111,21 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 ### Step 4: Test Accessibility
 
 **Keyboard navigation**:
+
 - [ ] Tab through collapsible sections in argument cards
 - [ ] Verify focus indicators are visible
 - [ ] Test Enter/Space to toggle collapsible sections
 - [ ] Verify citation tooltips can be opened with keyboard
 
 **Screen reader testing**:
+
 - [ ] Run VoiceOver (macOS) or NVDA (Windows)
 - [ ] Verify all interactive elements have labels
 - [ ] Check `aria-expanded` states announce correctly
 - [ ] Verify tooltips have proper `role="tooltip"`
 
 **Reduced motion**:
+
 - [ ] Enable "Reduce motion" in system preferences
 - [ ] Verify animations are simplified/removed
 - [ ] Check thinking blob becomes static circle
@@ -126,6 +136,7 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 ### Step 5: Mobile Testing
 
 **Responsive behavior**:
+
 - [ ] Test on viewport widths: 375px, 768px, 1024px, 1440px
 - [ ] Verify argument cards adapt to narrow screens
 - [ ] Check citation tooltips position correctly on mobile
@@ -133,6 +144,7 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 - [ ] Verify touch targets are ≥44px
 
 **Mobile-specific features**:
+
 - [ ] Citation tooltips toggle on tap (not hover)
 - [ ] Collapsible sections work smoothly
 - [ ] Progress bars render correctly
@@ -147,6 +159,7 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 **Context**: When AI generates responses with specific source references
 
 **Implementation**:
+
 ```tsx
 import CitationTooltip from '@/components/ui/CitationTooltip';
 
@@ -174,6 +187,7 @@ const renderTextWithCitations = (text: string, sources: Source[]) => {
 ```
 
 **Testing**:
+
 - [ ] Citations appear inline in text
 - [ ] Hover shows tooltip with source details
 - [ ] Mobile tap works correctly
@@ -186,6 +200,7 @@ const renderTextWithCitations = (text: string, sources: Source[]) => {
 **Location**: Any place currently showing numeric scores
 
 **Example - Home page argument preview**:
+
 ```tsx
 import ConfidenceBar from '@/components/ui/ConfidenceBar';
 
@@ -197,6 +212,7 @@ import ConfidenceBar from '@/components/ui/ConfidenceBar';
 ```
 
 **Testing**:
+
 - [ ] Bars animate on page load
 - [ ] Colors match confidence levels
 - [ ] Shimmer effect visible
@@ -208,17 +224,15 @@ import ConfidenceBar from '@/components/ui/ConfidenceBar';
 **Context**: When displaying argument types inline
 
 **Implementation**:
+
 ```tsx
 import EvidenceBadge from '@/components/ui/EvidenceBadge';
 
-<EvidenceBadge
-  strength="strong"
-  type="empirical"
-  animated={true}
-/>
+<EvidenceBadge strength="strong" type="empirical" animated={true} />;
 ```
 
 **Testing**:
+
 - [ ] Badge animates in smoothly
 - [ ] Strength levels show correct colors
 - [ ] Type icons render correctly
@@ -230,6 +244,7 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 ### Visual Regression Testing
 
 **Checklist**:
+
 - [ ] Take screenshots of all pages (light mode)
 - [ ] Take screenshots of all pages (dark mode)
 - [ ] Compare argument card layouts
@@ -237,6 +252,7 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 - [ ] Check glassmorphism effects render correctly
 
 **Tools**:
+
 - Browser DevTools for different viewports
 - Lighthouse for performance/accessibility audits
 
@@ -245,17 +261,20 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 ### Performance Testing
 
 **Metrics to check**:
+
 - [ ] First Contentful Paint (FCP) < 1.8s
 - [ ] Largest Contentful Paint (LCP) < 2.5s
 - [ ] Cumulative Layout Shift (CLS) < 0.1
 - [ ] Time to Interactive (TTI) < 3.8s
 
 **Animation performance**:
+
 - [ ] Framer Motion animations run at 60fps
 - [ ] No jank during scroll
 - [ ] Crystallization entrance smooth on low-end devices
 
 **Tools**:
+
 - Chrome DevTools Performance tab
 - Lighthouse audit
 - WebPageTest.org
@@ -265,6 +284,7 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 ### Cross-Browser Testing
 
 **Browsers to test**:
+
 - [ ] Chrome (latest)
 - [ ] Safari (latest)
 - [ ] Firefox (latest)
@@ -273,6 +293,7 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 - [ ] Chrome Mobile (Android)
 
 **Known compatibility**:
+
 - `backdrop-filter` has fallbacks
 - CSS animations work in all modern browsers
 - Flexbox/Grid fully supported
@@ -292,18 +313,22 @@ import EvidenceBadge from '@/components/ui/EvidenceBadge';
 ### Vercel Deployment
 
 **Steps**:
+
 1. Commit all changes:
+
 ```bash
 git add .
 git commit -m "Add Crystalline Intelligence design enhancements"
 ```
 
 2. Push to main branch:
+
 ```bash
 git push origin main
 ```
 
 3. Verify deployment on Vercel:
+
 - [ ] Build succeeds
 - [ ] Preview deployment works
 - [ ] Production deployment works
@@ -325,6 +350,7 @@ git push origin main
 **Symptoms**: Glassmorphism cards look flat/opaque
 
 **Solution**:
+
 ```css
 /* Add fallback background */
 background: rgba(255, 255, 255, 0.95);
@@ -341,6 +367,7 @@ backdrop-filter: blur(32px) saturate(180%);
 **Symptoms**: Tooltip cut off on mobile/narrow screens
 
 **Solution**: Tooltips auto-adjust position (already implemented)
+
 ```tsx
 // In CitationTooltip.tsx - mobile adjustments
 @media (max-width: 768px) {
@@ -359,6 +386,7 @@ backdrop-filter: blur(32px) saturate(180%);
 **Symptoms**: Motion sickness or visual overload
 
 **Solution**: Reduced motion is implemented, but users can also:
+
 ```tsx
 // Add manual toggle in ThemeProvider
 const [motionReduced, setMotionReduced] = useState(false);
@@ -371,6 +399,7 @@ const [motionReduced, setMotionReduced] = useState(false);
 ### User Experience Improvements
 
 **Measurable goals**:
+
 - [ ] Argument comprehension time reduced by 20%
 - [ ] Source credibility immediately visible
 - [ ] Evidence strength clear at a glance
@@ -379,6 +408,7 @@ const [motionReduced, setMotionReduced] = useState(false);
 ### Design Quality
 
 **Subjective assessment**:
+
 - [ ] Looks distinctive and memorable
 - [ ] Avoids generic "AI slop" aesthetics
 - [ ] Feels cohesive and intentional
@@ -387,6 +417,7 @@ const [motionReduced, setMotionReduced] = useState(false);
 ### Technical Excellence
 
 **Code quality**:
+
 - [ ] Components are reusable
 - [ ] Styling is maintainable (scoped, documented)
 - [ ] Accessibility standards met (WCAG 2.2 AA)
@@ -413,6 +444,7 @@ If time is limited, prioritize these items for maximum impact:
 **Estimated time**: 1-2 hours
 
 Skip for initial release:
+
 - Citation tooltips (requires AI integration changes)
 - Source credibility badges (nice-to-have)
 - Evidence badges (can add incrementally)
@@ -424,16 +456,19 @@ Skip for initial release:
 If issues arise in production:
 
 1. **Revert to original components**:
+
 ```tsx
 // In ChatMessage.tsx
 import ArgumentCard from '../arguments/ArgumentCard'; // Original
 ```
 
 2. **Keep original files**:
+
 - `ArgumentCard.tsx` (original) is preserved
 - Can switch back by changing imports
 
 3. **Feature flags** (future):
+
 ```tsx
 const useEnhancedUI = process.env.NEXT_PUBLIC_ENHANCED_UI === 'true';
 ```
@@ -443,12 +478,14 @@ const useEnhancedUI = process.env.NEXT_PUBLIC_ENHANCED_UI === 'true';
 ## 🎓 Learning Resources
 
 **Design patterns used**:
+
 - [Glassmorphism UI Trend 2026](https://medium.com/design-bootcamp/ui-design-trend-2026)
 - [Perplexity Citations Pattern](https://www.shapeof.ai/patterns/citations)
 - [WCAG 2.2 Complete Guide](https://www.allaccessible.org/blog/wcag-22-complete-guide-2025)
 - [Motion Design for Web](https://motion.dev)
 
 **Component documentation**:
+
 - See `DESIGN_ENHANCEMENTS.md` for detailed component docs
 - Inline code comments in each component file
 - Research document: `.claude/cache/agents/research-agent/latest-output.md`
@@ -481,6 +518,7 @@ After successful implementation:
 Design research and implementation by Claude Sonnet 4.5 using the `frontend-design` skill.
 
 Research sources:
+
 - Perplexity AI, Kialo, Apple WWDC 2025, Samsung One UI 7
 - WCAG, NN/g, Agentic Design patterns
 - Modern glassmorphism and motion design trends

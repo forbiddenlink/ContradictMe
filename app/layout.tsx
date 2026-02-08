@@ -40,8 +40,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `${SITE_NAME} - Challenge Your Beliefs with AI`,
-  description:
-    `${SITE_NAME} challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.`,
+  description: `${SITE_NAME} challenges your beliefs with research-backed counterarguments so you can escape echo chambers, test assumptions, and think more critically.`,
   alternates: {
     canonical: `${SITE_URL}/`,
   },
@@ -101,7 +100,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
         {/* Skip link for accessibility - keyboard navigation */}
         <a

@@ -1,12 +1,12 @@
 # ContradictMe: Building an AI That Disagrees With You
 
-*An AI-powered counterargument engine for the Algolia Agent Studio Challenge*
+_An AI-powered counterargument engine for the Algolia Agent Studio Challenge_
 
 ---
 
 ## The Problem: Echo Chambers Are Everywhere
 
-We live in an age of algorithmic curation. Every platform—social media, news, search—optimizes for engagement, which means showing you content that *confirms* what you already believe.
+We live in an age of algorithmic curation. Every platform—social media, news, search—optimizes for engagement, which means showing you content that _confirms_ what you already believe.
 
 The result? **Echo chambers.** We become more certain of our views while understanding opposing perspectives less.
 
@@ -38,12 +38,14 @@ I wanted to build something different: **an AI that actively disagrees with you.
 ## The Tech Stack
 
 ### Frontend
+
 - **Next.js 15** with App Router
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
 - **Framer Motion** for animations
 
 ### AI & Search
+
 - **Algolia Agent Studio** - The core of the application
 - **Algolia Search** - For argument indexing and retrieval
 - **GPT-4** - Via Agent Studio for response generation
@@ -83,6 +85,7 @@ Agent Studio solves a critical problem: **grounding AI responses in real data**.
 Without grounding, an LLM might generate plausible-sounding but invented "counterarguments." With Algolia's retrieval layer, every argument comes from my curated, indexed dataset.
 
 This means:
+
 - **No hallucinated sources**
 - **Consistent quality scoring**
 - **Traceable citations**
@@ -98,7 +101,7 @@ url.searchParams.set('compatibilityMode', 'ai-sdk-5');
 
 // Return SSE response
 return new Response(response.body.pipeThrough(transformStream), {
-  headers: { 'Content-Type': 'text/event-stream' }
+  headers: { 'Content-Type': 'text/event-stream' },
 });
 ```
 
@@ -111,6 +114,7 @@ The frontend consumes the stream and updates the message in real-time with a bli
 I started planning to index 500+ arguments. Reality check: **26 high-quality, well-researched arguments beat 500 mediocre ones.**
 
 Quality scoring matters. Each argument has:
+
 - Evidence strength (1-100)
 - Source credibility (1-100)
 - Argument coherence (1-100)
@@ -119,6 +123,7 @@ Quality scoring matters. Each argument has:
 ### 2. Steel-Manning Is Hard
 
 The goal isn't to "gotcha" users—it's to present the **strongest possible version** of opposing views. This requires:
+
 - Academic sources over opinion pieces
 - Acknowledging limitations honestly
 - Respecting the user's intelligence
@@ -126,6 +131,7 @@ The goal isn't to "gotcha" users—it's to present the **strongest possible vers
 ### 3. UX Details Matter
 
 Small things that made a big difference:
+
 - **Varied error messages** (less robotic)
 - **Keyboard shortcuts** (Enter to send, / to focus)
 - **Loading phase progression** (shows the AI is "thinking" purposefully)
@@ -135,7 +141,7 @@ Small things that made a big difference:
 
 🔗 **Live Demo:** [contradict-me.vercel.app](https://contradict-me.vercel.app)
 
-📂 **Source Code:** [GitHub](https://github.com/yourusername/contradictme) *(if public)*
+📂 **Source Code:** [GitHub](https://github.com/yourusername/contradictme) _(if public)_
 
 ### Example Prompts to Try
 
@@ -148,6 +154,7 @@ Small things that made a big difference:
 ## What's Next
 
 Future improvements I'm considering:
+
 - **More argument topics** (currently 26, could expand)
 - **User feedback loop** (rate argument quality)
 - **Conversation export** (save debates for later)
@@ -159,13 +166,13 @@ Future improvements I'm considering:
 
 Built for the **Algolia Agent Studio Challenge** on DEV.to.
 
-The goal was to demonstrate how retrieval-augmented generation can create AI experiences that are *grounded in real data*—not just plausible-sounding hallucinations.
+The goal was to demonstrate how retrieval-augmented generation can create AI experiences that are _grounded in real data_—not just plausible-sounding hallucinations.
 
 If you believe something strongly, I challenge you to try ContradictMe. You might not change your mind—but you'll understand the other side better.
 
 ---
 
-*What belief would you like challenged? Drop it in the comments and I'll tell you what ContradictMe thinks!*
+_What belief would you like challenged? Drop it in the comments and I'll tell you what ContradictMe thinks!_
 
 ---
 

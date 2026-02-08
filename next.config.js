@@ -31,9 +31,7 @@ const nextConfig = {
 
   // Security headers
   async headers() {
-    const scriptSrc = ["'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : [])].join(
-      ' '
-    );
+    const scriptSrc = ["'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : [])].join(' ');
     const connectSrc = [
       "'self'",
       ...(isDev ? ['ws:', 'wss:'] : []),
@@ -64,8 +62,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value:
-              `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src ${connectSrc}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;`,
+            value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src ${connectSrc}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;`,
           },
         ],
       },

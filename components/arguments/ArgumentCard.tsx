@@ -36,7 +36,14 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           <div className="relative w-20 h-20">
             <svg className="transform -rotate-90 w-20 h-20">
               {/* Background circle */}
-              <circle cx="40" cy="40" r="36" className="stroke-gray-200 dark:stroke-slate-700" strokeWidth="6" fill="none" />
+              <circle
+                cx="40"
+                cy="40"
+                r="36"
+                className="stroke-gray-200 dark:stroke-slate-700"
+                strokeWidth="6"
+                fill="none"
+              />
               {/* Progress circle */}
               <circle
                 cx="40"
@@ -83,7 +90,9 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       </div>
 
       {/* Main Claim */}
-      <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-tight">{argument.mainClaim}</h3>
+      <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-tight">
+        {argument.mainClaim}
+      </h3>
 
       {/* Evidence */}
       <div className="mb-4">
@@ -93,7 +102,9 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
       {/* Supporting Points */}
       {argument.supportingPoints && argument.supportingPoints.length > 0 && (
         <div className="mb-4">
-          <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Key Points:</div>
+          <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+            Key Points:
+          </div>
           <ul className="space-y-1">
             {argument.supportingPoints.map((point, idx) => (
               <li key={idx} className="flex items-start text-sm text-slate-700 dark:text-slate-300">

@@ -76,9 +76,7 @@ export default function ConfidenceBar({
     <div className="confidence-bar-wrapper">
       {/* Label Row */}
       <div className="flex items-center justify-between mb-1.5">
-        <span className={`font-semibold ${sizeClass.text} ${style.text}`}>
-          {label}
-        </span>
+        <span className={`font-semibold ${sizeClass.text} ${style.text}`}>{label}</span>
         {showNumeric && (
           <span className={`${sizeClass.text} font-bold ${style.text} tabular-nums`}>
             {score}

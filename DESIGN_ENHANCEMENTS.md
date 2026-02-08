@@ -9,6 +9,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 **Concept**: Arguments as faceted gemstones where evidence solidifies into crystalline structures of truth. Each surface reflects credibility at different angles, creating a sense of academic rigor meets liquid glass.
 
 ### Visual Language
+
 - **Faceted glassmorphism** with multi-layer depth
 - **Liquid gradients** flowing between violet (challenge) and teal (clarity)
 - **Micro-animations** that feel like light refracting through crystal
@@ -19,11 +20,13 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 ## New Components Created
 
 ### 1. CitationTooltip.tsx
+
 **Location**: `/components/ui/CitationTooltip.tsx`
 
 **Purpose**: Perplexity-style inline citations with hover tooltips
 
 **Features**:
+
 - Numbered citation markers `[1]`, `[2]`, etc.
 - Hover-triggered glassmorphic tooltip cards
 - Mobile: tap to toggle, Desktop: hover
@@ -33,6 +36,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 - Arrow pointer for visual connection
 
 **Usage**:
+
 ```tsx
 <CitationTooltip
   source={argument.sourceMetadata}
@@ -44,11 +48,13 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 ---
 
 ### 2. ConfidenceBar.tsx
+
 **Location**: `/components/ui/ConfidenceBar.tsx`
 
 **Purpose**: Visual confidence score indicators replacing numeric displays
 
 **Features**:
+
 - Horizontal progress bars with animated fills
 - Color-coded by confidence level:
   - **High (≥85%)**: Emerald green gradient
@@ -69,23 +75,21 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 | 0-59 | Low | Gray | Muted fill, subtle glow |
 
 **Usage**:
+
 ```tsx
-<ConfidenceBar
-  score={89}
-  label="Quality Score"
-  size="md"
-  animated={true}
-/>
+<ConfidenceBar score={89} label="Quality Score" size="md" animated={true} />
 ```
 
 ---
 
 ### 3. EvidenceBadge.tsx
+
 **Location**: `/components/ui/EvidenceBadge.tsx`
 
 **Purpose**: Visual strength indicators for evidence quality
 
 **Features**:
+
 - Three strength levels: strong, moderate, weak
 - Visual hierarchy:
   - **Strong**: Solid fill, emerald color, filled circle icon (●)
@@ -97,22 +101,21 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 - Hover scale animation
 
 **Usage**:
+
 ```tsx
-<EvidenceBadge
-  strength="strong"
-  type="empirical"
-  animated={true}
-/>
+<EvidenceBadge strength="strong" type="empirical" animated={true} />
 ```
 
 ---
 
 ### 4. SourceCredibilityBadge.tsx
+
 **Location**: `/components/ui/SourceCredibilityBadge.tsx`
 
 **Purpose**: Source credibility and metadata display
 
 **Features**:
+
 - Two display modes: compact and full
 - **Compact**: Micro-badges for peer-review status, citation count, recency
 - **Full**: Detailed card with:
@@ -127,6 +130,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 - Color-coded by credibility level (high/medium/low)
 
 **Usage**:
+
 ```tsx
 // Compact
 <SourceCredibilityBadge
@@ -146,11 +150,13 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 ---
 
 ### 5. ThinkingIndicator.tsx
+
 **Location**: `/components/ui/ThinkingIndicator.tsx`
 
 **Purpose**: Enhanced loading state with abstract visualization
 
 **Features**:
+
 - Morphing blob animation (liquid gradient with organic shape changes)
 - Progress ring showing phase completion
 - Phase counter (e.g., "2/4")
@@ -160,22 +166,21 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 - Respects `prefers-reduced-motion`
 
 **Usage**:
+
 ```tsx
-<ThinkingIndicator
-  phase={1}
-  message="Researching counterarguments..."
-  totalPhases={4}
-/>
+<ThinkingIndicator phase={1} message="Researching counterarguments..." totalPhases={4} />
 ```
 
 ---
 
 ### 6. ArgumentCardEnhanced.tsx
+
 **Location**: `/components/arguments/ArgumentCardEnhanced.tsx`
 
 **Purpose**: Production-grade argument display card integrating all new components
 
 **Features**:
+
 - Faceted glassmorphism with multi-layer depth
 - Crystallization entrance animation (rotateX + scale)
 - Staggered animation delays for multiple cards
@@ -193,6 +198,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 - Lift and scale on hover
 
 **Layout Structure**:
+
 1. Header: Position badge + Evidence badge
 2. Main claim with inline citation
 3. Evidence text
@@ -203,6 +209,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 8. Limitations (collapsible warning)
 
 **Usage**:
+
 ```tsx
 <ArgumentCardEnhanced
   argument={argumentData}
@@ -217,15 +224,17 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 ### Color Palette Extensions
 
 **Crystalline Gradients**:
+
 ```css
---gradient-argument: linear-gradient(135deg, #8B5CF6 0%, #0D9A9B 50%, #7C3AED 100%);
---gradient-evidence: linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
---gradient-caution: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
---gradient-challenge: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
---gradient-support: linear-gradient(135deg, #4DD4CF 0%, #0D9A9B 100%);
+--gradient-argument: linear-gradient(135deg, #8b5cf6 0%, #0d9a9b 50%, #7c3aed 100%);
+--gradient-evidence: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+--gradient-caution: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+--gradient-challenge: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+--gradient-support: linear-gradient(135deg, #4dd4cf 0%, #0d9a9b 100%);
 ```
 
 **Confidence Level Colors**:
+
 - High: Emerald (#10B981)
 - Medium: Amber (#F59E0B)
 - Low: Slate (#64748B)
@@ -233,6 +242,7 @@ This document outlines the visual improvements implemented for ContradictMe, tra
 ### Glassmorphism Enhancements
 
 **Multi-layer Glass**:
+
 ```css
 background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 245, 255, 0.7));
 backdrop-filter: blur(32px) saturate(180%);
@@ -244,12 +254,14 @@ box-shadow:
 ```
 
 **Faceted Border Effect**:
+
 ```css
 .facet-border {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     rgba(139, 92, 246, 0.3) 0%,
     rgba(13, 154, 155, 0.2) 50%,
     rgba(124, 58, 237, 0.3) 100%
@@ -267,6 +279,7 @@ box-shadow:
 ### Animation Principles
 
 **Crystallization Entrance**:
+
 ```typescript
 initial={{ opacity: 0, y: 24, rotateX: 8, scale: 0.96 }}
 animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
@@ -278,11 +291,13 @@ transition={{
 ```
 
 **Staggered Reveals**:
+
 - Card entrance: 100ms delay between cards
 - Supporting points: 50ms delay between items
 - Tags: 50ms delay between tags
 
 **Timing Standards**:
+
 - Hover states: 200ms ease-out
 - Collapsible sections: 200-300ms cubic-bezier(0.4, 0, 0.2, 1)
 - Modal/tooltip entry: 150ms ease-out
@@ -291,17 +306,25 @@ transition={{
 ### Micro-Interactions
 
 **Shine Sweep Effect**:
+
 ```css
 @keyframes shine-sweep {
-  0%, 100% { background-position: -100% 0; }
-  50% { background-position: 200% 0; }
+  0%,
+  100% {
+    background-position: -100% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
 }
 ```
 
 **Blob Morph Animation**:
+
 ```css
 @keyframes blob-morph {
-  0%, 100% {
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: rotate(0deg) scale(1);
   }
@@ -313,6 +336,7 @@ transition={{
 ```
 
 **Hover Lift**:
+
 ```css
 .card:hover {
   transform: translateY(-4px) scale(1.01);
@@ -327,6 +351,7 @@ transition={{
 ### Step 1: Import New Components
 
 In `/components/chat/ChatMessage.tsx`:
+
 ```tsx
 import ArgumentCardEnhanced from '../arguments/ArgumentCardEnhanced';
 import ThinkingIndicator from '../ui/ThinkingIndicator';
@@ -335,35 +360,37 @@ import ThinkingIndicator from '../ui/ThinkingIndicator';
 ### Step 2: Replace Argument Card
 
 Change:
+
 ```tsx
 <ArgumentCard key={argument.objectID} argument={argument} />
 ```
 
 To:
+
 ```tsx
-<ArgumentCardEnhanced
-  key={argument.objectID}
-  argument={argument}
-  index={index}
-/>
+<ArgumentCardEnhanced key={argument.objectID} argument={argument} index={index} />
 ```
 
 ### Step 3: Update Loading States
 
 In `/components/chat/ChatInterface.tsx`, replace loading phase display:
+
 ```tsx
-{loadingPhase !== null && (
-  <ThinkingIndicator
-    phase={loadingPhase}
-    message={LOADING_PHASES[loadingPhase].message}
-    totalPhases={LOADING_PHASES.length}
-  />
-)}
+{
+  loadingPhase !== null && (
+    <ThinkingIndicator
+      phase={loadingPhase}
+      message={LOADING_PHASES[loadingPhase].message}
+      totalPhases={LOADING_PHASES.length}
+    />
+  );
+}
 ```
 
 ### Step 4: Add Inline Citations (Optional)
 
 For future AI responses with citations, wrap citation numbers:
+
 ```tsx
 import CitationTooltip from '../ui/CitationTooltip';
 
@@ -371,7 +398,7 @@ import CitationTooltip from '../ui/CitationTooltip';
 <span>
   Main claim text
   <CitationTooltip source={source} index={1} snippet="..." />
-</span>
+</span>;
 ```
 
 ---
@@ -379,18 +406,22 @@ import CitationTooltip from '../ui/CitationTooltip';
 ## Accessibility Features
 
 ### Keyboard Navigation
+
 - All collapsible sections use proper `<button>` elements
 - Focus states visible on all interactive elements
 - `aria-expanded` attributes on collapsible triggers
 
 ### Screen Reader Support
+
 - `aria-label` on citation markers
 - `role="tooltip"` on citation popups
 - Semantic HTML (`<button>`, `<h3>`, etc.)
 - Hidden decorative elements (`aria-hidden`)
 
 ### Reduced Motion
+
 All animations respect `prefers-reduced-motion`:
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   .thinking-blob {
@@ -402,10 +433,12 @@ All animations respect `prefers-reduced-motion`:
 ```
 
 ### Touch Targets
+
 - Minimum 44px touch targets on mobile
 - Citation tooltips: tap to toggle on mobile, hover on desktop
 
 ### Color Contrast
+
 - All text meets WCAG AA standards (4.5:1 for normal text)
 - Confidence bars maintain contrast in both light and dark modes
 
@@ -416,12 +449,10 @@ All animations respect `prefers-reduced-motion`:
 All components include comprehensive dark mode styling:
 
 **Glass Effects**:
+
 ```css
 .dark .argument-card-enhanced {
-  background: linear-gradient(135deg,
-    rgba(15, 33, 55, 0.95),
-    rgba(31, 27, 61, 0.9)
-  );
+  background: linear-gradient(135deg, rgba(15, 33, 55, 0.95), rgba(31, 27, 61, 0.9));
   box-shadow:
     0 2px 8px rgba(139, 92, 246, 0.15),
     0 12px 32px rgba(0, 0, 0, 0.3),
@@ -430,11 +461,13 @@ All components include comprehensive dark mode styling:
 ```
 
 **Text Colors**:
+
 - Primary: `text-slate-100`
 - Secondary: `text-slate-300`
 - Muted: `text-slate-400`
 
 **Borders**:
+
 - Light mode: `border-violet-200/40`
 - Dark mode: `border-violet-700/30`
 
@@ -443,15 +476,18 @@ All components include comprehensive dark mode styling:
 ## Performance Optimizations
 
 ### Animation Performance
+
 - CSS transforms (not position/width changes)
 - `will-change` hints where appropriate
 - GPU-accelerated properties (transform, opacity)
 
 ### Progressive Enhancement
+
 - Components work without JavaScript (static fallback)
 - Animations enhance but don't block core functionality
 
 ### Bundle Size
+
 - Components use scoped styles (CSS-in-JS via `<style jsx>`)
 - Framer Motion already in project (no additional dependency)
 - Minimal runtime overhead
@@ -461,12 +497,14 @@ All components include comprehensive dark mode styling:
 ## Browser Support
 
 **Tested and optimized for:**
+
 - Chrome 90+
 - Safari 14+
 - Firefox 88+
 - Edge 90+
 
 **Graceful degradation:**
+
 - `backdrop-filter` fallbacks to solid backgrounds
 - CSS animations have reduced-motion alternatives
 - Flexbox/Grid with fallbacks
@@ -476,6 +514,7 @@ All components include comprehensive dark mode styling:
 ## Future Enhancements
 
 ### Phase 2 (Future Consideration)
+
 1. **Argument tree visualization** for complex multi-argument responses
 2. **Interactive evidence exploration** with zoom and pan
 3. **Comparison view** for weighing multiple arguments side-by-side
@@ -483,6 +522,7 @@ All components include comprehensive dark mode styling:
 5. **Export to PDF** with preserved styling
 
 ### Phase 3 (Advanced)
+
 6. **Real-time collaboration** indicators
 7. **Confidence calibration** based on user feedback
 8. **Personalized evidence filters** (academic vs. practical)
@@ -514,6 +554,7 @@ components/
 ## Credits & Research
 
 Based on extensive research of:
+
 - Perplexity AI citation patterns
 - Kialo argument visualization
 - Apple WWDC 2025 "Liquid Glass" design language
@@ -530,12 +571,14 @@ Research document: `.claude/cache/agents/research-agent/latest-output.md`
 To use the enhanced components immediately:
 
 1. **Replace argument cards**:
+
    ```tsx
    import ArgumentCardEnhanced from '@/components/arguments/ArgumentCardEnhanced';
    // Use instead of ArgumentCard
    ```
 
 2. **Add thinking indicator**:
+
    ```tsx
    import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
    ```
@@ -550,6 +593,7 @@ To use the enhanced components immediately:
 ## Support
 
 For questions or customization requests, refer to:
+
 - Research findings: `DESIGN_ENHANCEMENTS.md` (this file)
 - Component source code with inline documentation
 - Original research: `.claude/cache/agents/research-agent/latest-output.md`

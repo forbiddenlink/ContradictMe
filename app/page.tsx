@@ -72,9 +72,20 @@ export default function Home() {
             echo chambers. Think critically.
           </p>
           <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
-            By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
+            By{' '}
+            <a
+              href="/about"
+              rel="author"
+              itemProp="author"
+              itemScope
+              itemType="https://schema.org/Person"
+            >
               <span itemProp="name">{DEFAULT_AUTHOR}</span>
-            </a> • Last updated <time dateTime={HOME_UPDATED_ISO_DATE} itemProp="dateModified">{HOME_UPDATED_DATE}</time>
+            </a>{' '}
+            • Last updated{' '}
+            <time dateTime={HOME_UPDATED_ISO_DATE} itemProp="dateModified">
+              {HOME_UPDATED_DATE}
+            </time>
           </p>
         </header>
 
@@ -155,7 +166,10 @@ export default function Home() {
                 Innovation requires serendipity
               </h3>
               <div className="quality-score ml-3 sm:ml-4" aria-label="Quality score 87 out of 100">
-                <span className="text-score text-violet-600 dark:text-violet-400" aria-hidden="true">
+                <span
+                  className="text-score text-violet-600 dark:text-violet-400"
+                  aria-hidden="true"
+                >
                   87
                 </span>
                 <span className="text-[10px] sm:text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wide">
@@ -196,13 +210,19 @@ export default function Home() {
               </div>
               <ul className="list-none p-0 m-0 space-y-1">
                 <li className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 pl-4 relative">
-                  <span className="absolute left-0 text-violet-500 dark:text-violet-400" aria-hidden="true">
+                  <span
+                    className="absolute left-0 text-violet-500 dark:text-violet-400"
+                    aria-hidden="true"
+                  >
                     •
                   </span>
                   Study focused on tech industry
                 </li>
                 <li className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 pl-4 relative">
-                  <span className="absolute left-0 text-violet-500 dark:text-violet-400" aria-hidden="true">
+                  <span
+                    className="absolute left-0 text-violet-500 dark:text-violet-400"
+                    aria-hidden="true"
+                  >
                     •
                   </span>
                   Hybrid model (2-3 days) equally effective
@@ -212,8 +232,12 @@ export default function Home() {
 
             {/* CTA - Example indicator */}
             <div className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400 mt-4">
-              <span className="px-2 py-1 bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 rounded text-xs">Example Card</span>
-              <span className="text-slate-600 dark:text-slate-300">Real arguments include source links</span>
+              <span className="px-2 py-1 bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 rounded text-xs">
+                Example Card
+              </span>
+              <span className="text-slate-600 dark:text-slate-300">
+                Real arguments include source links
+              </span>
             </div>
           </article>
         </section>
@@ -310,10 +334,7 @@ export default function Home() {
         </section>
 
         {/* Why this exists */}
-        <section
-          className="mb-16 sm:mb-20 px-2 sm:px-0"
-          aria-labelledby="why-heading"
-        >
+        <section className="mb-16 sm:mb-20 px-2 sm:px-0" aria-labelledby="why-heading">
           <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
             <h2
               id="why-heading"
@@ -322,9 +343,9 @@ export default function Home() {
               Why ContradictMe matters
             </h2>
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-              Most feeds reward agreement and outrage. That pushes people toward familiar takes,
-              not stronger reasoning. ContradictMe is built to reverse that pattern by presenting
-              the strongest case against your position, including evidence quality, sample size, and
+              Most feeds reward agreement and outrage. That pushes people toward familiar takes, not
+              stronger reasoning. ContradictMe is built to reverse that pattern by presenting the
+              strongest case against your position, including evidence quality, sample size, and
               limits of each source. The goal is not to force a conclusion. The goal is to help you
               make better decisions after seeing what your current view may be missing.
             </p>
@@ -336,7 +357,10 @@ export default function Home() {
                 About page
               </Link>
               ,{' '}
-              <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline">
+              <Link
+                href="/contact"
+                className="text-violet-600 dark:text-violet-400 hover:underline"
+              >
                 Contact page
               </Link>
               , and{' '}

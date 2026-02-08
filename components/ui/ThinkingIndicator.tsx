@@ -33,14 +33,7 @@ export default function ThinkingIndicator({
       <div className="progress-ring-container">
         <svg className="progress-ring-svg" viewBox="0 0 32 32">
           {/* Background circle */}
-          <circle
-            cx="16"
-            cy="16"
-            r="14"
-            className="progress-ring-bg"
-            strokeWidth="2"
-            fill="none"
-          />
+          <circle cx="16" cy="16" r="14" className="progress-ring-bg" strokeWidth="2" fill="none" />
           {/* Progress circle */}
           <motion.circle
             cx="16"
@@ -117,12 +110,7 @@ export default function ThinkingIndicator({
 
         .thinking-blob {
           @apply absolute inset-0;
-          background: linear-gradient(
-            135deg,
-            #a78bfa 0%,
-            #4dd4cf 50%,
-            #8b5cf6 100%
-          );
+          background: linear-gradient(135deg, #a78bfa 0%, #4dd4cf 50%, #8b5cf6 100%);
           background-size: 200% 200%;
           border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
           animation:
@@ -134,7 +122,8 @@ export default function ThinkingIndicator({
         }
 
         @keyframes blob-morph {
-          0%, 100% {
+          0%,
+          100% {
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             transform: rotate(0deg) scale(1);
           }
@@ -153,7 +142,8 @@ export default function ThinkingIndicator({
         }
 
         @keyframes blob-gradient {
-          0%, 100% {
+          0%,
+          100% {
             background-position: 0% 50%;
           }
           50% {

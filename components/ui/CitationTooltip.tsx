@@ -67,9 +67,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
               </div>
 
               {/* Title */}
-              <h4 className="citation-title">
-                {source.title}
-              </h4>
+              <h4 className="citation-title">{source.title}</h4>
 
               {/* Authors & Institution */}
               <div className="mt-2 space-y-1">
@@ -79,19 +77,11 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
                     {source.authors.length > 2 && ` +${source.authors.length - 2} more`}
                   </p>
                 )}
-                {source.institution && (
-                  <p className="citation-institution">
-                    {source.institution}
-                  </p>
-                )}
+                {source.institution && <p className="citation-institution">{source.institution}</p>}
               </div>
 
               {/* Snippet Preview */}
-              {snippet && (
-                <p className="citation-snippet">
-                  &ldquo;{snippet}&rdquo;
-                </p>
-              )}
+              {snippet && <p className="citation-snippet">&ldquo;{snippet}&rdquo;</p>}
 
               {/* Citation Count */}
               {source.citationCount && source.citationCount > 0 && (
@@ -152,7 +142,8 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
         .citation-tooltip-border {
           @apply absolute inset-0;
           @apply rounded-xl;
-          background: linear-gradient(135deg,
+          background: linear-gradient(
+            135deg,
             rgba(139, 92, 246, 0.4) 0%,
             rgba(13, 154, 155, 0.3) 50%,
             rgba(124, 58, 237, 0.4) 100%

@@ -64,33 +64,68 @@ export default function LearnHubPage() {
 
           <div className="space-y-4 max-w-3xl">
             <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-              Challenge your perspectives with research-backed opposing viewpoints. Each guide breaks down a popular stance, then presents the strongest counterarguments with evidence quality signals, uncertainty notes, and reflection questions.
+              Challenge your perspectives with research-backed opposing viewpoints. Each guide
+              breaks down a popular stance, then presents the strongest counterarguments with
+              evidence quality signals, uncertainty notes, and reflection questions.
             </p>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              These guides use <strong>steel-manning</strong>—presenting opposing views in their strongest, most credible form rather than attacking weak straw-man versions. This approach helps you understand different perspectives as deeply as your own, leading to better decisions, stronger arguments, and more nuanced thinking.
+              These guides use <strong>steel-manning</strong>—presenting opposing views in their
+              strongest, most credible form rather than attacking weak straw-man versions. This
+              approach helps you understand different perspectives as deeply as your own, leading to
+              better decisions, stronger arguments, and more nuanced thinking.
             </p>
 
             <div className="bg-teal-50 dark:bg-teal-950/20 border border-teal-200 dark:border-teal-900 rounded-lg p-5">
-              <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Who These Guides Are For</h2>
+              <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                Who These Guides Are For
+              </h2>
               <ul className="space-y-1 text-sm sm:text-base text-slate-700 dark:text-slate-300">
-                <li>• <strong>Students:</strong> Strengthen essays and class discussions with well-researched opposing views</li>
-                <li>• <strong>Professionals:</strong> Stress-test business decisions and strategy assumptions</li>
-                <li>• <strong>Researchers:</strong> Identify weak points in hypotheses before publication</li>
-                <li>• <strong>Debaters:</strong> Prepare for opposing arguments with evidence-backed rebuttals</li>
-                <li>• <strong>Writers & Journalists:</strong> Present balanced perspectives and anticipate counterpoints</li>
+                <li>
+                  • <strong>Students:</strong> Strengthen essays and class discussions with
+                  well-researched opposing views
+                </li>
+                <li>
+                  • <strong>Professionals:</strong> Stress-test business decisions and strategy
+                  assumptions
+                </li>
+                <li>
+                  • <strong>Researchers:</strong> Identify weak points in hypotheses before
+                  publication
+                </li>
+                <li>
+                  • <strong>Debaters:</strong> Prepare for opposing arguments with evidence-backed
+                  rebuttals
+                </li>
+                <li>
+                  • <strong>Writers & Journalists:</strong> Present balanced perspectives and
+                  anticipate counterpoints
+                </li>
               </ul>
             </div>
 
             <p className="text-sm text-slate-700 dark:text-slate-300">
-              Each guide includes peer-reviewed sources, evidence quality assessments, limitation notes, and practical reflection questions you can use in academic work, policy analysis, and professional decision-making.
+              Each guide includes peer-reviewed sources, evidence quality assessments, limitation
+              notes, and practical reflection questions you can use in academic work, policy
+              analysis, and professional decision-making.
             </p>
           </div>
 
           <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
-            By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
+            By{' '}
+            <a
+              href="/about"
+              rel="author"
+              itemProp="author"
+              itemScope
+              itemType="https://schema.org/Person"
+            >
               <span itemProp="name">{DEFAULT_AUTHOR}</span>
-            </a> • Last updated <time dateTime={LEARN_UPDATED_ISO_DATE} itemProp="dateModified">{LEARN_UPDATED_DATE}</time>
+            </a>{' '}
+            • Last updated{' '}
+            <time dateTime={LEARN_UPDATED_ISO_DATE} itemProp="dateModified">
+              {LEARN_UPDATED_DATE}
+            </time>
           </p>
         </header>
 
@@ -134,11 +169,16 @@ export default function LearnHubPage() {
           <ul className="space-y-2 text-sm sm:text-base text-slate-700 dark:text-slate-300">
             <li>1. Start with the belief statement and identify your current confidence level.</li>
             <li>2. Read the strongest objections and note which assumptions are challenged.</li>
-            <li>3. Use the linked chat prompt to pressure-test your position with follow-up questions.</li>
+            <li>
+              3. Use the linked chat prompt to pressure-test your position with follow-up questions.
+            </li>
           </ul>
         </section>
 
-        <nav className="mt-10 flex flex-wrap gap-4 text-sm sm:text-base" aria-label="Learn hub links">
+        <nav
+          className="mt-10 flex flex-wrap gap-4 text-sm sm:text-base"
+          aria-label="Learn hub links"
+        >
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home
           </Link>
@@ -151,7 +191,10 @@ export default function LearnHubPage() {
           <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline">
             Contact
           </Link>
-          <Link href="/privacy-policy" className="text-violet-600 dark:text-violet-400 hover:underline">
+          <Link
+            href="/privacy-policy"
+            className="text-violet-600 dark:text-violet-400 hover:underline"
+          >
             Privacy Policy
           </Link>
         </nav>

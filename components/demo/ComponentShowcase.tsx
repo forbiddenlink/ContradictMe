@@ -23,15 +23,18 @@ const sampleArgument: Argument = {
   objectID: 'demo-1',
   position: 'against',
   opposingBeliefs: ['Four-day workweeks reduce productivity'],
-  mainClaim: 'Four-day workweeks increase productivity and employee wellbeing without reducing output',
-  evidence: 'A comprehensive UK trial involving 61 companies and 2,900 workers showed a 35% increase in revenue, 57% decrease in employee turnover, and 71% reduction in burnout levels. 92% of companies continued the four-day workweek after the trial ended.',
+  mainClaim:
+    'Four-day workweeks increase productivity and employee wellbeing without reducing output',
+  evidence:
+    'A comprehensive UK trial involving 61 companies and 2,900 workers showed a 35% increase in revenue, 57% decrease in employee turnover, and 71% reduction in burnout levels. 92% of companies continued the four-day workweek after the trial ended.',
   supportingPoints: [
     'Companies reported revenue increases of 35% on average during the trial period',
     '57% reduction in employee turnover, saving recruitment and training costs',
     '71% decrease in burnout levels and 39% decrease in stress among workers',
-    '92% of participating companies chose to continue with the four-day workweek permanently'
+    '92% of participating companies chose to continue with the four-day workweek permanently',
   ],
-  limitations: 'Implementation varies significantly by industry. Roles requiring continuous coverage (healthcare, customer service) face unique challenges. Hourly workers may see income reduction if not properly transitioned to salaried compensation.',
+  limitations:
+    'Implementation varies significantly by industry. Roles requiring continuous coverage (healthcare, customer service) face unique challenges. Hourly workers may see income reduction if not properly transitioned to salaried compensation.',
   sourceMetadata: {
     title: 'Four Day Week UK Pilot Results: Final Report',
     authors: ['Dr. Juliet Schor', 'Dr. Jan-Emmanuel De Neve'],
@@ -43,7 +46,7 @@ const sampleArgument: Argument = {
     doi: '10.1234/fdw-uk-2023',
     url: 'https://autonomy.work/portfolio/uk4dwpilot/',
     sampleSize: 2900,
-    methodology: 'Randomized controlled trial with 61 companies across multiple industries'
+    methodology: 'Randomized controlled trial with 61 companies across multiple industries',
   },
   qualityScore: 89,
   sourceCredibility: 92,
@@ -60,8 +63,8 @@ const sampleArgument: Argument = {
     createdAt: '2024-01-15',
     lastUpdated: '2024-01-15',
     reviewStatus: 'peer-reviewed',
-    curator: 'ContradictMe Team'
-  }
+    curator: 'ContradictMe Team',
+  },
 };
 
 export default function ComponentShowcase() {
@@ -76,7 +79,7 @@ export default function ComponentShowcase() {
     { message: 'Understanding your perspective...' },
     { message: 'Searching research databases...' },
     { message: 'Evaluating evidence quality...' },
-    { message: 'Formulating counterarguments...' }
+    { message: 'Formulating counterarguments...' },
   ];
 
   return (
@@ -99,7 +102,8 @@ export default function ComponentShowcase() {
               1. ArgumentCardEnhanced
             </h2>
             <p className="text-slate-700 dark:text-slate-300">
-              Production-grade argument display with faceted glassmorphism, progressive disclosure, and crystallization animations.
+              Production-grade argument display with faceted glassmorphism, progressive disclosure,
+              and crystallization animations.
             </p>
           </div>
 
@@ -112,7 +116,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<ArgumentCardEnhanced
+              {`<ArgumentCardEnhanced
   argument={argumentData}
   index={0} // for staggered animation
 />`}
@@ -159,7 +163,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<ConfidenceBar
+              {`<ConfidenceBar
   score={89}
   label="Quality Score"
   size="md"
@@ -200,7 +204,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<EvidenceBadge
+              {`<EvidenceBadge
   strength="strong"
   type="empirical"
   animated={true}
@@ -249,7 +253,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<SourceCredibilityBadge
+              {`<SourceCredibilityBadge
   source={sourceMetadata}
   score={92}
   compact={false}
@@ -287,7 +291,8 @@ export default function ComponentShowcase() {
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-4">
               Hover over the <span className="text-violet-600 dark:text-violet-400">[1]</span> and{' '}
-              <span className="text-violet-600 dark:text-violet-400">[2]</span> markers to see tooltips
+              <span className="text-violet-600 dark:text-violet-400">[2]</span> markers to see
+              tooltips
             </p>
           </div>
 
@@ -296,7 +301,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<CitationTooltip
+              {`<CitationTooltip
   source={sourceMetadata}
   index={1}
   snippet="Brief excerpt..."
@@ -336,7 +341,7 @@ export default function ComponentShowcase() {
               Usage:
             </h3>
             <pre className="text-xs text-slate-700 dark:text-slate-300 overflow-x-auto">
-{`<ThinkingIndicator
+              {`<ThinkingIndicator
   phase={0}
   message="Understanding your perspective..."
   totalPhases={4}
@@ -362,7 +367,8 @@ export default function ComponentShowcase() {
                 🔮 Faceted Glassmorphism
               </h3>
               <p className="text-sm text-violet-700 dark:text-violet-300">
-                Multi-layer glass effects with gradient borders that glow on interaction. Each surface reflects credibility at different angles.
+                Multi-layer glass effects with gradient borders that glow on interaction. Each
+                surface reflects credibility at different angles.
               </p>
             </div>
 
@@ -371,7 +377,8 @@ export default function ComponentShowcase() {
                 💎 Crystallization Animations
               </h3>
               <p className="text-sm text-teal-700 dark:text-teal-300">
-                Arguments materialize like crystalline structures with rotateX + scale animations. Staggered reveals create depth.
+                Arguments materialize like crystalline structures with rotateX + scale animations.
+                Staggered reveals create depth.
               </p>
             </div>
 
@@ -380,7 +387,8 @@ export default function ComponentShowcase() {
                 📊 Progressive Disclosure
               </h3>
               <p className="text-sm text-emerald-700 dark:text-emerald-300">
-                Information unfolds on demand with smooth height transitions. Key metrics visible first, details available on expansion.
+                Information unfolds on demand with smooth height transitions. Key metrics visible
+                first, details available on expansion.
               </p>
             </div>
 
@@ -389,7 +397,8 @@ export default function ComponentShowcase() {
                 ✨ Liquid Gradients
               </h3>
               <p className="text-sm text-amber-700 dark:text-amber-300">
-                Flowing color transitions between violet (intellectual challenge) and teal (clarity). Animated gradient shifts create dynamism.
+                Flowing color transitions between violet (intellectual challenge) and teal
+                (clarity). Animated gradient shifts create dynamism.
               </p>
             </div>
           </div>

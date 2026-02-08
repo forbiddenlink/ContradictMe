@@ -37,15 +37,30 @@ export default function PrivacyPolicyPage() {
         }}
       />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Privacy Policy</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">
+          Privacy Policy
+        </h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-8">
-          By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
+          By{' '}
+          <a
+            href="/about"
+            rel="author"
+            itemProp="author"
+            itemScope
+            itemType="https://schema.org/Person"
+          >
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </a> • Effective date: <time dateTime={EFFECTIVE_ISO_DATE} itemProp="datePublished">{EFFECTIVE_DATE}</time>
+          </a>{' '}
+          • Effective date:{' '}
+          <time dateTime={EFFECTIVE_ISO_DATE} itemProp="datePublished">
+            {EFFECTIVE_DATE}
+          </time>
         </p>
 
         <section className="mb-6">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Information We Process</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Information We Process
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             ContradictMe processes the text you submit in chat prompts and related technical logs
             needed to operate the service. We use this information to generate responses, monitor
@@ -55,7 +70,9 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="mb-6">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">How We Use Data</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            How We Use Data
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             Data is used to provide the chat experience, detect abuse, troubleshoot errors, and
             evaluate product quality. We do not sell personal data. We may use service providers to
@@ -64,7 +81,9 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Your Choices</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Your Choices
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             You can request deletion or correction of personal data associated with your support
             communications by contacting us. For privacy inquiries, use{' '}
@@ -79,7 +98,9 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Retention and Security</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Retention and Security
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             We retain operational logs only as long as needed for service continuity, abuse
             prevention, and debugging. Access is restricted to authorized personnel and service
@@ -88,7 +109,9 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Legal Rights and Frameworks</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Legal Rights and Frameworks
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             Depending on your location, you may have rights to access, correction, deletion, and
             portability of personal data. Our handling of requests follows applicable requirements
@@ -121,7 +144,9 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Cookies and Tracking</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Cookies and Tracking
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             ContradictMe uses minimal analytics to understand usage patterns and improve service
             quality. We use Vercel Analytics and Speed Insights to collect aggregate performance
@@ -129,13 +154,15 @@ export default function PrivacyPolicyPage() {
           </p>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             We store your theme preference (light/dark mode) in local browser storage to improve
-            your experience. This data never leaves your device and is not transmitted to our servers.
-            You can clear this at any time through your browser settings.
+            your experience. This data never leaves your device and is not transmitted to our
+            servers. You can clear this at any time through your browser settings.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Third-Party Services</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Third-Party Services
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             ContradictMe uses the following third-party services to deliver functionality:
           </p>
@@ -167,7 +194,9 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">Policy Updates</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-3">
+            Policy Updates
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             We may update this policy to reflect changes in our practices, legal requirements, or
             service features. Material changes will be posted on this page with an updated effective

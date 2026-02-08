@@ -3,66 +3,78 @@
 ## 🎨 Component Cheat Sheet
 
 ### ArgumentCardEnhanced
+
 ```tsx
 import ArgumentCardEnhanced from '@/components/arguments/ArgumentCardEnhanced';
 
-<ArgumentCardEnhanced argument={arg} index={0} />
+<ArgumentCardEnhanced argument={arg} index={0} />;
 ```
+
 **Features**: Faceted glass, progressive disclosure, confidence bars, citations
 **When**: Replace ArgumentCard for production-grade argument display
 
 ---
 
 ### ConfidenceBar
+
 ```tsx
 import ConfidenceBar from '@/components/ui/ConfidenceBar';
 
-<ConfidenceBar score={89} label="Quality" size="md" animated={true} />
+<ConfidenceBar score={89} label="Quality" size="md" animated={true} />;
 ```
+
 **Colors**: Green (≥85), Amber (60-84), Gray (<60)
 **When**: Replace numeric scores with visual indicators
 
 ---
 
 ### EvidenceBadge
+
 ```tsx
 import EvidenceBadge from '@/components/ui/EvidenceBadge';
 
-<EvidenceBadge strength="strong" type="empirical" animated={true} />
+<EvidenceBadge strength="strong" type="empirical" animated={true} />;
 ```
+
 **Levels**: Strong (●), Moderate (◐), Weak (○)
 **When**: Show evidence quality at a glance
 
 ---
 
 ### SourceCredibilityBadge
+
 ```tsx
 import SourceCredibilityBadge from '@/components/ui/SourceCredibilityBadge';
 
-<SourceCredibilityBadge source={meta} score={92} compact={false} />
+<SourceCredibilityBadge source={meta} score={92} compact={false} />;
 ```
+
 **Modes**: Compact (badges) or Full (detailed card)
 **When**: Display source metadata and credibility
 
 ---
 
 ### CitationTooltip
+
 ```tsx
 import CitationTooltip from '@/components/ui/CitationTooltip';
 
-<CitationTooltip source={meta} index={1} snippet="..." />
+<CitationTooltip source={meta} index={1} snippet="..." />;
 ```
+
 **Interaction**: Hover (desktop) or Tap (mobile)
 **When**: Add inline citations to text
 
 ---
 
 ### ThinkingIndicator
+
 ```tsx
 import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
 
-<ThinkingIndicator phase={0} message="..." totalPhases={4} />
+<ThinkingIndicator phase={0} message="..." totalPhases={4} />;
 ```
+
 **Features**: Morphing blob, progress ring, phase counter
 **When**: Replace generic loading spinners
 
@@ -70,34 +82,34 @@ import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
 
 ## 🎨 Color System
 
-| Color | Meaning | Usage |
-|-------|---------|-------|
-| **Violet** | Challenge | Counterarguments, citations, quality rings |
-| **Teal** | Clarity | Supporting args, evidence, links |
-| **Emerald** | High confidence | ≥85% scores, strong evidence |
-| **Amber** | Caution | 60-84% scores, limitations |
-| **Gray** | Uncertainty | <60% scores, weak evidence |
+| Color       | Meaning         | Usage                                      |
+| ----------- | --------------- | ------------------------------------------ |
+| **Violet**  | Challenge       | Counterarguments, citations, quality rings |
+| **Teal**    | Clarity         | Supporting args, evidence, links           |
+| **Emerald** | High confidence | ≥85% scores, strong evidence               |
+| **Amber**   | Caution         | 60-84% scores, limitations                 |
+| **Gray**    | Uncertainty     | <60% scores, weak evidence                 |
 
 ---
 
 ## 🎬 Animation Timing
 
-| Type | Duration | Easing |
-|------|----------|--------|
-| Hover | 200ms | ease-out |
-| Collapsible | 200-300ms | cubic-bezier(0.4, 0, 0.2, 1) |
-| Entrance | 400-600ms | cubic-bezier(0.34, 1.56, 0.64, 1) |
-| Loading | 300-500ms | ease-in-out |
+| Type        | Duration  | Easing                            |
+| ----------- | --------- | --------------------------------- |
+| Hover       | 200ms     | ease-out                          |
+| Collapsible | 200-300ms | cubic-bezier(0.4, 0, 0.2, 1)      |
+| Entrance    | 400-600ms | cubic-bezier(0.34, 1.56, 0.64, 1) |
+| Loading     | 300-500ms | ease-in-out                       |
 
 ---
 
 ## 📏 Sizing
 
-| Component | Sizes | Default |
-|-----------|-------|---------|
-| ConfidenceBar | sm, md, lg | md |
-| Touch targets | ≥44px | 44px |
-| Border radius | Various | 12-24px |
+| Component     | Sizes      | Default |
+| ------------- | ---------- | ------- |
+| ConfidenceBar | sm, md, lg | md      |
+| Touch targets | ≥44px      | 44px    |
+| Border radius | Various    | 12-24px |
 
 ---
 
@@ -115,6 +127,7 @@ import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
 ## 🚀 Quick Integration
 
 ### Step 1: Replace Argument Cards
+
 ```tsx
 // In ChatMessage.tsx
 - import ArgumentCard from '../arguments/ArgumentCard';
@@ -125,6 +138,7 @@ import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
 ```
 
 ### Step 2: Add Thinking Indicator
+
 ```tsx
 // In ChatInterface.tsx
 + import ThinkingIndicator from '../ui/ThinkingIndicator';
@@ -139,6 +153,7 @@ import ThinkingIndicator from '@/components/ui/ThinkingIndicator';
 ```
 
 ### Step 3: Test
+
 - [ ] View arguments in light mode
 - [ ] Toggle dark mode
 - [ ] Test on mobile
@@ -221,6 +236,7 @@ docs/
 ## ✨ Remember
 
 This is a **design system**, not just components:
+
 - Use colors consistently (violet = challenge, teal = clarity)
 - Maintain animation timing standards
 - Follow glassmorphism patterns for new components

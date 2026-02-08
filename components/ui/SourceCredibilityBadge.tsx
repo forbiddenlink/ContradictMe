@@ -56,20 +56,14 @@ export default function SourceCredibilityBadge({
     return (
       <div className="flex items-center gap-1.5 flex-wrap">
         {isPeerReviewed && (
-          <span className="credibility-micro-badge peer-reviewed">
-            ✓ Peer-Reviewed
-          </span>
+          <span className="credibility-micro-badge peer-reviewed">✓ Peer-Reviewed</span>
         )}
         {hasCitations && (
           <span className="credibility-micro-badge citations">
             📈 {source.citationCount!.toLocaleString()}
           </span>
         )}
-        {isRecent && (
-          <span className="credibility-micro-badge recent">
-            🕐 Recent
-          </span>
-        )}
+        {isRecent && <span className="credibility-micro-badge recent">🕐 Recent</span>}
       </div>
     );
   }
@@ -90,9 +84,7 @@ export default function SourceCredibilityBadge({
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span className="text-lg">{style.icon}</span>
-          <span className={`text-sm font-bold ${style.text}`}>
-            Source Credibility
-          </span>
+          <span className={`text-sm font-bold ${style.text}`}>Source Credibility</span>
         </div>
         {score !== undefined && (
           <div className={`credibility-score ${style.text}`}>
@@ -108,9 +100,7 @@ export default function SourceCredibilityBadge({
         {isPeerReviewed && (
           <div className="credibility-indicator peer-reviewed-indicator">
             <span className="credibility-indicator-icon">✓</span>
-            <span className="credibility-indicator-text">
-              Peer-Reviewed Publication
-            </span>
+            <span className="credibility-indicator-text">Peer-Reviewed Publication</span>
           </div>
         )}
 
@@ -138,9 +128,7 @@ export default function SourceCredibilityBadge({
         {source.institution && (
           <div className="credibility-indicator institution-indicator">
             <span className="credibility-indicator-icon">🏛️</span>
-            <span className="credibility-indicator-text">
-              {source.institution}
-            </span>
+            <span className="credibility-indicator-text">{source.institution}</span>
           </div>
         )}
 
@@ -148,9 +136,7 @@ export default function SourceCredibilityBadge({
         {source.journal && (
           <div className="credibility-indicator journal-indicator">
             <span className="credibility-indicator-icon">📰</span>
-            <span className="credibility-indicator-text">
-              {source.journal}
-            </span>
+            <span className="credibility-indicator-text">{source.journal}</span>
           </div>
         )}
       </div>
@@ -163,13 +149,15 @@ export default function SourceCredibilityBadge({
           @apply relative p-4 rounded-xl;
           @apply border;
           @apply overflow-hidden;
-          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+          box-shadow:
+            0 4px 12px rgba(139, 92, 246, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
         .dark .credibility-badge {
-          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 4px 12px rgba(139, 92, 246, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .credibility-score {
@@ -233,7 +221,8 @@ export default function SourceCredibilityBadge({
         }
 
         @keyframes credibility-shine-sweep {
-          0%, 100% {
+          0%,
+          100% {
             background-position: -100% 0;
           }
           50% {

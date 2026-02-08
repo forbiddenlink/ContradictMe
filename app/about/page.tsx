@@ -39,11 +39,18 @@ export default function AboutPage() {
         }}
       />
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">About ContradictMe</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">
+          About ContradictMe
+        </h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
-          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+          By{' '}
+          <span itemProp="author" itemScope itemType="https://schema.org/Person">
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </span> • Published <time dateTime={ISO_DATE} itemProp="datePublished">{PUBLISHED_DATE}</time>
+          </span>{' '}
+          • Published{' '}
+          <time dateTime={ISO_DATE} itemProp="datePublished">
+            {PUBLISHED_DATE}
+          </time>
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
           ContradictMe is an AI project built to help people think through difficult topics by
@@ -53,8 +60,8 @@ export default function AboutPage() {
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
           Our approach emphasizes steel-manning over straw-manning. Each response aims to surface
-          the most credible opposing evidence, explain limitations, and avoid personal attacks.
-          This product is intended for education and critical thinking. It is not a replacement for
+          the most credible opposing evidence, explain limitations, and avoid personal attacks. This
+          product is intended for education and critical thinking. It is not a replacement for
           professional medical, legal, or financial advice.
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8">
@@ -72,10 +79,10 @@ export default function AboutPage() {
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8">
           The core product standard is simple: represent opposing viewpoints accurately, anchor
-          arguments to traceable evidence, and reveal uncertainty instead of hiding it. We iterate on
-          ranking and retrieval quality as new topics emerge and as source quality shifts. If you are
-          evaluating this for classroom use, team workshops, or editorial research, you can inspect
-          the technical foundations in the{' '}
+          arguments to traceable evidence, and reveal uncertainty instead of hiding it. We iterate
+          on ranking and retrieval quality as new topics emerge and as source quality shifts. If you
+          are evaluating this for classroom use, team workshops, or editorial research, you can
+          inspect the technical foundations in the{' '}
           <a
             href="https://nextjs.org/docs"
             target="_blank"
@@ -97,42 +104,51 @@ export default function AboutPage() {
         </p>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">Common Use Cases</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+            Common Use Cases
+          </h2>
           <ul className="space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300">
             <li className="flex gap-3">
               <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
               <div>
-                <strong>Debate Preparation:</strong> Students and professionals use ContradictMe to anticipate counterarguments before presentations, debates, or policy discussions.
+                <strong>Debate Preparation:</strong> Students and professionals use ContradictMe to
+                anticipate counterarguments before presentations, debates, or policy discussions.
               </div>
             </li>
             <li className="flex gap-3">
               <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
               <div>
-                <strong>Critical Thinking Practice:</strong> Educators assign prompts to help students engage with opposing evidence and develop intellectual humility.
+                <strong>Critical Thinking Practice:</strong> Educators assign prompts to help
+                students engage with opposing evidence and develop intellectual humility.
               </div>
             </li>
             <li className="flex gap-3">
               <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
               <div>
-                <strong>Decision-Making:</strong> Individuals exploring career changes, policy positions, or personal beliefs use the tool to surface blind spots before making commitments.
+                <strong>Decision-Making:</strong> Individuals exploring career changes, policy
+                positions, or personal beliefs use the tool to surface blind spots before making
+                commitments.
               </div>
             </li>
             <li className="flex gap-3">
               <span className="text-violet-600 dark:text-violet-400 font-bold">•</span>
               <div>
-                <strong>Research Starting Point:</strong> Writers and researchers use responses as a curated starting point for exploring opposing perspectives and evidence gaps.
+                <strong>Research Starting Point:</strong> Writers and researchers use responses as a
+                curated starting point for exploring opposing perspectives and evidence gaps.
               </div>
             </li>
           </ul>
         </section>
 
         <section className="mb-8">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">Evidence Standards</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+            Evidence Standards
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            ContradictMe prioritizes arguments backed by peer-reviewed research, transparent methodologies,
-            and verifiable sources. Each argument includes quality scores based on evidence strength,
-            sample size, and study design. We explicitly flag limitations, conflicts of interest,
-            and areas where scientific consensus is absent or evolving.
+            ContradictMe prioritizes arguments backed by peer-reviewed research, transparent
+            methodologies, and verifiable sources. Each argument includes quality scores based on
+            evidence strength, sample size, and study design. We explicitly flag limitations,
+            conflicts of interest, and areas where scientific consensus is absent or evolving.
           </p>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
             Unlike generative AI models that produce plausible-sounding text, our system is designed
@@ -143,12 +159,26 @@ export default function AboutPage() {
         </section>
 
         <section className="mb-10 p-6 rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50/30 dark:bg-violet-950/10">
-          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">About the Creator</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+            About the Creator
+          </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            ContradictMe was created by {DEFAULT_AUTHOR}, a developer focused on building tools that promote critical thinking and intellectual honesty. This project emerged from a desire to create an AI system that challenges beliefs rather than reinforcing them.
+            ContradictMe was created by {DEFAULT_AUTHOR}, a developer focused on building tools that
+            promote critical thinking and intellectual honesty. This project emerged from a desire
+            to create an AI system that challenges beliefs rather than reinforcing them.
           </p>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-            The project is built using Next.js, Algolia Agent Studio, and curated argument databases with peer-reviewed sources. All arguments are evaluated for quality, credibility, and evidence strength before being included in the system. For questions or feedback, please visit the <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline font-medium">contact page</Link>.
+            The project is built using Next.js, Algolia Agent Studio, and curated argument databases
+            with peer-reviewed sources. All arguments are evaluated for quality, credibility, and
+            evidence strength before being included in the system. For questions or feedback, please
+            visit the{' '}
+            <Link
+              href="/contact"
+              className="text-violet-600 dark:text-violet-400 hover:underline font-medium"
+            >
+              contact page
+            </Link>
+            .
           </p>
         </section>
 

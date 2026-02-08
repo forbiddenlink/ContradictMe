@@ -8,15 +8,12 @@ interface EvidenceBadgeProps {
   animated?: boolean;
 }
 
-export default function EvidenceBadge({
-  strength,
-  type,
-  animated = true,
-}: EvidenceBadgeProps) {
+export default function EvidenceBadge({ strength, type, animated = true }: EvidenceBadgeProps) {
   // Visual styling per strength level
   const strengthStyles = {
     strong: {
-      container: 'bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/30',
+      container:
+        'bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/30',
       border: 'border-emerald-400/60 dark:border-emerald-500/40',
       text: 'text-emerald-800 dark:text-emerald-200',
       icon: '●',
@@ -24,7 +21,8 @@ export default function EvidenceBadge({
       glow: '0 0 16px rgba(16, 185, 129, 0.2)',
     },
     moderate: {
-      container: 'bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/40 dark:to-amber-800/30',
+      container:
+        'bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/40 dark:to-amber-800/30',
       border: 'border-amber-400/60 dark:border-amber-500/40 border-dashed',
       text: 'text-amber-800 dark:text-amber-200',
       icon: '◐',
@@ -32,7 +30,8 @@ export default function EvidenceBadge({
       glow: '0 0 16px rgba(245, 158, 11, 0.2)',
     },
     weak: {
-      container: 'bg-gradient-to-br from-slate-100 to-slate-50 dark:from-slate-800/40 dark:to-slate-700/30',
+      container:
+        'bg-gradient-to-br from-slate-100 to-slate-50 dark:from-slate-800/40 dark:to-slate-700/30',
       border: 'border-slate-400/60 dark:border-slate-500/40 border-dashed',
       text: 'text-slate-700 dark:text-slate-300',
       icon: '○',
@@ -45,12 +44,12 @@ export default function EvidenceBadge({
 
   // Type emoji mapping
   const typeEmojis: Record<string, string> = {
-    'empirical': '📊',
+    empirical: '📊',
     'meta-analysis': '🔬',
     'randomized controlled trial': '🧪',
     'case study': '📋',
     'expert opinion': '👤',
-    'survey': '📈',
+    survey: '📈',
     'longitudinal study': '📉',
   };
 
@@ -70,14 +69,10 @@ export default function EvidenceBadge({
       style={{ boxShadow: style.glow }}
     >
       {/* Strength Indicator */}
-      <span className={`evidence-icon ${style.iconColor}`}>
-        {style.icon}
-      </span>
+      <span className={`evidence-icon ${style.iconColor}`}>{style.icon}</span>
 
       {/* Label */}
-      <span className={`evidence-text ${style.text}`}>
-        {strengthLabels[strength]}
-      </span>
+      <span className={`evidence-text ${style.text}`}>{strengthLabels[strength]}</span>
 
       {/* Type Badge (if provided) */}
       {type && (
