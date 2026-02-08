@@ -52,7 +52,10 @@
       "Skill(research-agent)",
       "Skill(audit-website)",
       "Bash(find:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "Bash(npx squirrelscan:*)",
+      "WebFetch(domain:contradict-me.vercel.app)",
+      "Bash(npm run format:*)"
     ]
   }
 }

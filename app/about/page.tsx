@@ -44,9 +44,15 @@ export default function AboutPage() {
         </h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
           By{' '}
-          <span itemProp="author" itemScope itemType="https://schema.org/Person">
+          <a
+            href="/about"
+            rel="author"
+            itemProp="author"
+            itemScope
+            itemType="https://schema.org/Person"
+          >
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </span>{' '}
+          </a>{' '}
           • Published{' '}
           <time dateTime={ISO_DATE} itemProp="datePublished">
             {PUBLISHED_DATE}
