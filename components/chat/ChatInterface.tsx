@@ -6,9 +6,21 @@ import confetti from 'canvas-confetti';
 import { Message } from '@/lib/types';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
-import ThinkingIndicator from '../ui/ThinkingIndicator';
+import FollowUpSuggestions from './FollowUpSuggestions';
+import EnhancedThinkingIndicator from '../ui/EnhancedThinkingIndicator';
 import { SkeletonMessage } from '../ui/SkeletonCard';
+import { ConversationHistorySidebar } from '../ui/ConversationHistorySidebar';
+import ShareModal from '../ui/ShareModal';
+import ThemeToggle from '../ThemeToggle';
+import { Menu, Share2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 import { saveConversation, loadConversation, clearConversation } from '@/lib/storage';
+import {
+  useConversationOperations,
+  useConversationTracking,
+  useConversation,
+} from '@/lib/hooks/useConversations';
+import { db } from '@/lib/db';
 
 // Generate unique IDs using crypto
 const generateId = () => crypto.randomUUID();
@@ -194,6 +206,16 @@ interface ChatInterfaceProps {
 }
 
 export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
+  // Sidebar and conversation state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  
+  // Conversation hooks
+  const { createConversation, addMessage: addMessageToDB } = useConversationOperations();
+  const { conversation: currentConversation } = useConversation(currentConversationId || '');
+  useConversationTracking(currentConversationId);
+
   const [messages, setMessages] = useState<Message[]>(() => {
     try {
       const saved = loadConversation();
@@ -226,6 +248,24 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
     [messages]
   );
   const hasUserMessages = userMessages.length > 0;
+
+  // Get last assistant message for follow-up suggestions
+  const lastAssistantMessage = useMemo(() => {
+    const assistantMessages = messages.filter((msg) => msg.role === 'assistant');
+    return assistantMessages[assistantMessages.length - 1];
+  }, [messages]);
+
+  // Check if we should show follow-up suggestions
+  const shouldShowFollowUps = useMemo(() => {
+    return (
+      hasUserMessages &&
+      !isLoading &&
+      !isStreaming &&
+      lastAssistantMessage &&
+      lastAssistantMessage.content.length > 0 &&
+      messages[messages.length - 1]?.role === 'assistant'
+    );
+  }, [hasUserMessages, isLoading, isStreaming, lastAssistantMessage, messages]);
 
   // Progress through loading phases for better perceived performance
   useEffect(() => {
@@ -268,13 +308,65 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
     scrollToBottom();
   }, [messages]);
 
-  // Debounced save to localStorage
+  // Auto-save to both localStorage (backward compat) and IndexedDB
   useEffect(() => {
     if (messages.length > 1) {
+      // Save to localStorage for backward compatibility
       const timer = setTimeout(() => saveConversation(messages), 300);
+      
+      // Save to IndexedDB
+      const saveToDb = async () => {
+        try {
+          // Helper to convert Message to ConversationMessage
+          const convertMessage = (msg: Message) => ({
+            id: msg.id,
+            role: msg.role,
+            content: msg.content,
+            timestamp: msg.timestamp,
+            arguments: msg.arguments?.map(arg => ({
+              id: arg.objectID,
+              mainClaim: arg.mainClaim,
+              evidence: arg.evidence,
+              sources: [{
+                title: arg.sourceMetadata.title,
+                url: arg.sourceMetadata.url || '',
+                credibility: arg.sourceCredibility,
+              }],
+              qualityScore: arg.qualityScore,
+              domain: arg.metadata.domain,
+              createdAt: Date.now(),
+            })),
+          });
+
+          // Create conversation on first user message
+          if (!currentConversationId && messages.some(m => m.role === 'user')) {
+            const firstUserMessage = messages.find(m => m.role === 'user');
+            if (firstUserMessage) {
+              const newConversation = await createConversation(firstUserMessage.content.slice(0, 100));
+              if (newConversation) {
+                setCurrentConversationId(newConversation.id);
+                // Save all messages to the new conversation
+                for (const msg of messages) {
+                  await addMessageToDB(newConversation.id, convertMessage(msg));
+                }
+              }
+            }
+          } else if (currentConversationId) {
+            // Add the latest message to existing conversation
+            const latestMessage = messages[messages.length - 1];
+            if (latestMessage) {
+              await addMessageToDB(currentConversationId, convertMessage(latestMessage));
+            }
+          }
+        } catch (error) {
+          console.error('Failed to save to IndexedDB:', error);
+        }
+      };
+      
+      saveToDb();
       return () => clearTimeout(timer);
     }
-  }, [messages]);
+  }, [messages, currentConversationId, createConversation, addMessageToDB]);
 
   // Celebration confetti on first successful response
   useEffect(() => {
@@ -491,8 +583,126 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
     handleSendMessage(prompt);
   };
 
+  // Load conversation from sidebar
+  const handleSelectConversation = async (conversationId: string) => {
+    try {
+      const conversation = await db.conversations.get(conversationId);
+      if (conversation) {
+        setCurrentConversationId(conversationId);
+        
+        // Convert ConversationMessage to Message
+        const convertedMessages: Message[] = conversation.messages.map(msg => ({
+          id: msg.id,
+          role: msg.role,
+          content: msg.content,
+          timestamp: msg.timestamp,
+          arguments: msg.arguments?.map(arg => ({
+            objectID: arg.id,
+            position: '',
+            opposingBeliefs: [],
+            mainClaim: arg.mainClaim,
+            evidence: arg.evidence,
+            supportingPoints: [],
+            limitations: '',
+            sourceMetadata: {
+              title: arg.sources[0]?.title || '',
+              authors: [],
+              institution: '',
+              publicationType: '',
+              yearPublished: new Date(arg.createdAt).getFullYear(),
+              url: arg.sources[0]?.url || '',
+            },
+            qualityScore: arg.qualityScore,
+            sourceCredibility: arg.sources[0]?.credibility || 0,
+            evidenceStrength: arg.qualityScore,
+            argumentCoherence: arg.qualityScore,
+            metadata: {
+              argumentType: 'empirical' as const,
+              evidenceType: '',
+              domain: arg.domain || '',
+              subDomain: '',
+              strength: 'moderate' as const,
+              tags: [],
+              createdAt: new Date(arg.createdAt).toISOString(),
+              lastUpdated: new Date(arg.createdAt).toISOString(),
+              reviewStatus: '',
+            },
+          })),
+        }));
+        
+        setMessages(convertedMessages);
+        setIsSidebarOpen(false);
+        toast.success('Conversation loaded');
+      }
+    } catch (error) {
+      console.error('Failed to load conversation:', error);
+      toast.error('Failed to load conversation');
+    }
+  };
+
+  // Start new conversation
+  const handleNewConversation = () => {
+    setCurrentConversationId(null);
+    setMessages([
+      {
+        id: generateId(),
+        role: 'assistant',
+        content:
+          "I'm ContradictMe — an AI designed to challenge your beliefs with the strongest possible counterarguments.\n\nTell me something you believe strongly. I'll present research-backed opposing perspectives, not to change your mind, but to help you understand the full picture.",
+        timestamp: Date.now(),
+      },
+    ]);
+    setIsSidebarOpen(false);
+    toast.success('New conversation started');
+  };
+
   return (
-    <div className="flex flex-col h-screen">
+    <>
+      {/* Conversation History Sidebar */}
+      <ConversationHistorySidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        currentConversationId={currentConversationId}
+        onSelectConversation={handleSelectConversation}
+        onNewConversation={handleNewConversation}
+      />
+
+      {/* Share Modal */}
+      {currentConversationId && (
+        <ShareModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          conversationId={currentConversationId}
+          conversationTitle={currentConversation?.title || 'Conversation'}
+        />
+      )}
+
+      <div className="flex flex-col h-screen">
+        {/* Header with sidebar toggle, theme toggle, and share button */}
+        <div className="border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-4 py-3 flex items-center justify-between sticky top-0 z-20">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle conversation history"
+            >
+              <Menu className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+            </button>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            {currentConversationId && hasUserMessages && (
+              <button
+                onClick={() => setIsShareModalOpen(true)}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+                aria-label="Share conversation"
+              >
+                <Share2 className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+              </button>
+            )}
+          </div>
+        </div>
       {/* Messages Area */}
       <div
         className="flex-1 overflow-y-auto px-4 py-6 space-y-6 min-h-0"
@@ -528,16 +738,12 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="space-y-4"
           >
-            <SkeletonMessage />
-            <div className="flex justify-start">
-              <ThinkingIndicator
-                phase={loadingPhase}
-                message={LOADING_PHASES[loadingPhase].message}
-                totalPhases={LOADING_PHASES.length}
-              />
-            </div>
+            <EnhancedThinkingIndicator
+              phase={loadingPhase}
+              message={LOADING_PHASES[loadingPhase].message}
+              totalPhases={LOADING_PHASES.length}
+            />
           </m.div>
         )}
 
@@ -574,15 +780,33 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
             </div>
           </div>
         )}
+
+        {/* Follow-up suggestions */}
+        {shouldShowFollowUps && lastAssistantMessage && (
+          <div className="flex justify-start px-4">
+            <FollowUpSuggestions
+              conversationContext={messages
+                .slice(-4)
+                .map((m) => m.content)
+                .join(' ')}
+              lastAssistantMessage={lastAssistantMessage.content}
+              onSelectQuestion={handleSendMessage}
+              isVisible={shouldShowFollowUps}
+            />
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
       {/* Suggested Prompts (only show if no user messages yet) */}
       {!hasUserMessages && (
         <div className="px-4 pb-4">
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium uppercase tracking-wide">
-            Popular beliefs to challenge
-          </p>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-lg" aria-hidden="true">💡</span>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
+              Popular beliefs to challenge
+            </p>
+          </div>
           <m.div
             className="flex flex-wrap gap-2 mb-4 max-h-[180px] overflow-y-auto pr-2 scrollbar-thin"
             role="group"
@@ -618,10 +842,11 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         </div>
       )}
 
-      {/* Input Area */}
-      <div className="border-t border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 relative z-10">
-        <ChatInput onSend={handleSendMessage} isLoading={isLoading} error={error} />
+        {/* Input Area */}
+        <div className="border-t border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 relative z-10">
+          <ChatInput onSend={handleSendMessage} isLoading={isLoading} error={error} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

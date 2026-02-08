@@ -2,8 +2,13 @@
 
 import { useTheme } from './ThemeProvider';
 import { m } from 'framer-motion';
+import { useEffect } from 'react';
 
-export default function ThemeToggle() {
+interface ThemeToggleProps {
+  showLabel?: boolean;
+}
+
+export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
   const { resolvedTheme, setTheme, theme } = useTheme();
 
   const cycleTheme = () => {
@@ -12,17 +17,36 @@ export default function ThemeToggle() {
     else setTheme('light');
   };
 
+  // Keyboard shortcut: Cmd/Ctrl + Shift + L
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'L') {
+        e.preventDefault();
+        cycleTheme();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [theme]);
+
+  const themeLabel = theme === 'light' ? 'Light' : theme === 'dark' ? 'Dark' : 'System';
+  const shortcutHint = typeof navigator !== 'undefined' && navigator.platform.includes('Mac') 
+    ? '⌘⇧L' 
+    : 'Ctrl+Shift+L';
+
   return (
     <m.button
       onClick={cycleTheme}
-      className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors duration-200"
-      aria-label={`Current theme: ${theme}. Click to change.`}
-      title={`Theme: ${theme}`}
+      className="relative flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 group"
+      style={{ width: showLabel ? 'auto' : '40px', height: '40px', paddingLeft: showLabel ? '12px' : '0', paddingRight: showLabel ? '12px' : '0' }}
+      aria-label={`Current theme: ${theme}. Click to change. Keyboard shortcut: ${shortcutHint}`}
+      title={`Theme: ${themeLabel} (${shortcutHint})`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
       {/* Icon container - prevents transform conflicts */}
-      <div className="relative w-[18px] h-[18px]">
+      <div className="relative w-[18px] h-[18px] flex-shrink-0">
         {/* Sun icon (light mode) */}
         <m.svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +102,18 @@ export default function ThemeToggle() {
         </m.svg>
       </div>
 
+      {/* Label */}
+      {showLabel && (
+        <m.span
+          className="ml-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+          initial={{ opacity: 0, width: 0 }}
+          animate={{ opacity: 1, width: 'auto' }}
+          transition={{ duration: 0.2 }}
+        >
+          {themeLabel}
+        </m.span>
+      )}
+
       {/* System indicator */}
       {theme === 'system' && (
         <m.span
@@ -88,6 +124,14 @@ export default function ThemeToggle() {
           title="Following system preference"
         />
       )}
+
+      {/* Hover tooltip with keyboard shortcut */}
+      <m.div
+        className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-900 dark:bg-slate-700 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50"
+        initial={false}
+      >
+        {shortcutHint}
+      </m.div>
     </m.button>
   );
 }

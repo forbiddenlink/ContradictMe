@@ -44,7 +44,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homePageSchema).replace(/</g, '\\u003c'),
+          __html: JSON.stringify(homePageSchema).replaceAll('<', '\\u003c'),
         }}
       />
       {/* Subtle noise texture for print-like feel */}
@@ -115,7 +115,6 @@ export default function Home() {
           </div>
           <div
             className="mt-5 sm:mt-6 flex flex-wrap gap-2.5 sm:gap-3"
-            role="group"
             aria-label="Example topics to challenge"
           >
             <button
@@ -191,15 +190,14 @@ export default function Home() {
                 Dr. Sarah Chen
               </div>
               <div className="text-citation text-xs sm:text-sm">Stanford Economics, 2024</div>
-              <div
-                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-700 dark:text-slate-300"
-                role="list"
+              <ul
+                className="flex gap-3 sm:gap-4 mt-2 sm:mt-3 text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 list-none"
                 aria-label="Research metrics"
               >
-                <span role="listitem">Evidence: 85/100</span>
-                <span aria-hidden="true">•</span>
-                <span role="listitem">Sample: 10,000</span>
-              </div>
+                <li>Evidence: 85/100</li>
+                <li aria-hidden="true">•</li>
+                <li>Sample: 10,000</li>
+              </ul>
             </div>
 
             {/* Limitations */}

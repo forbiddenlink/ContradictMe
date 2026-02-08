@@ -1,146 +1,165 @@
 # ContradictMe 🎯
 
-**Challenge Your Beliefs with Intelligent Counterarguments**
+**Challenge Your Beliefs with AI-Powered Counterarguments**
 
-## The Hook
+[![Tests](https://img.shields.io/badge/tests-73%20passing-success)](https://github.com/forbiddenlink/ContradictMe)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![Algolia](https://img.shields.io/badge/Algolia-Agent%20Studio-5468ff)](https://www.algolia.com/)
 
-An AI agent that actively seeks and presents the strongest arguments _against_ your own views. Instead of confirming your biases, ContradictMe helps you think critically by steel-manning opposing perspectives.
+> An AI that actively disagrees with you, presenting steel-manned counterarguments backed by research.
 
-## The Problem
-
-- **Echo chambers**: Algorithms reinforce existing beliefs
-- **Confirmation bias**: We seek information that agrees with us
-- **Intellectual stagnation**: Rarely exposed to quality opposing arguments
-- **Poor decision-making**: Decisions made without considering alternatives
-- **Polarization**: Lack of understanding of opposing viewpoints
-
-## The Solution
-
-ContradictMe uses Algolia Agent Studio to:
-
-1. Understand the user's belief or position
-2. Search indexed counterarguments, research, and perspectives
-3. Present the **strongest** opposing viewpoints (steel-man, not straw-man)
-4. Cite quality sources and evidence
-5. Help users think more critically about their positions
-
-## Example Interactions
-
-**User**: "I think remote work is always better - what am I missing?"
-
-**ContradictMe**: "Let me present the strongest case for in-office work:
-
-1. **Innovation & Serendipity**: Stanford research shows breakthrough innovations often come from spontaneous hallway conversations and unplanned collaborations that don't happen on Zoom...
-
-2. **Career Development**: Junior employees learn 40% less in remote settings according to a 2024 Harvard study, missing mentorship moments and observational learning...
-
-3. **Social Cohesion**: Teams that never meet in person report 60% lower trust scores and higher turnover rates..."
+**Live Demo:** https://contradict-me.vercel.app
 
 ---
 
-**User**: "I'm convinced crypto is a scam - steel-man the case for it"
+## Overview
 
-**ContradictMe**: "Here's the strongest case for cryptocurrency that addresses your skepticism:
+ContradictMe is an AI agent built for the Algolia Agent Studio Challenge 2026 that fights echo chambers by presenting the strongest possible arguments against your beliefs. Unlike typical AI tools that confirm biases, ContradictMe promotes intellectual humility and critical thinking.
 
-1. **Financial Inclusion**: 1.4 billion adults globally lack bank access. Crypto provides banking services via smartphone...
+### Key Features
 
-2. **Programmable Money**: Smart contracts enable trustless automation that's impossible with traditional finance...
+- 💬 **Intelligent Chat Interface** - Natural conversations with context-aware follow-ups
+- 📊 **Analytics Dashboard** - Track explored topics, tags, and achievements
+- ⚔️ **AI Debate Arena** - Watch Pro vs Con agents debate any topic
+- 🎨 **Premium Design** - Dark/light themes, smooth animations, fully responsive
+- ♿ **Accessible** - WCAG compliant, keyboard navigation, screen reader support
+- 🧪 **100% Tested** - 73 tests passing with full coverage
 
-3. **Inflation Hedge**: In countries like Argentina (140% inflation), Bitcoin provides alternative store of value..."
+## Quick Start
 
-## Why This Wins the Contest
+```bash
+# Clone the repository
+git clone https://github.com/forbiddenlink/ContradictMe.git
+cd ContradictMe
 
-### 1. **Fights Echo Chambers** (Responsible AI)
+# Install dependencies
+npm install
 
-- Goes against typical algorithm behavior
-- Promotes intellectual humility
-- Demonstrates ethical AI design
+# Set up environment variables (see .env.example)
+cp .env.example .env.local
+# Add your ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME, OPENAI_API_KEY
 
-### 2. **Intellectual Honesty** (Judges Will Respect)
+# Run development server
+npm run dev
 
-- Counter-intuitive approach shows sophistication
-- Educational rather than manipulative
-- Promotes civil discourse
+# Run tests
+npm test
 
-### 3. **Genuinely Novel** (Creativity)
+# Build for production
+npm run build
+```
 
-- No mainstream product does this well
-- Flips typical search/AI behavior on its head
-- Memorable positioning: "The AI that disagrees with you"
+Visit http://localhost:3000 to see it in action.
 
-### 4. **Technical Showcase** (Use of Technology)
+## How It Works
 
-- Algolia's search quality is critical for finding best counterarguments
-- Demonstrates advanced indexing (argument quality, source credibility)
-- Shows intelligent ranking beyond simple relevance
-- Perspective diversity scoring
+1. **You share a belief** - The AI understands your position through natural conversation
+2. **Agent Studio searches** - Algolia indexes 26 research-backed counterarguments
+3. **AI presents the strongest case against you** - Steel-manned arguments with sources
+4. **You think critically** - Evidence quality scores, limitations, and follow-up paths
 
-### 5. **Immediate Practical Value** (Usability)
-
-- Better decision-making
-- Preparation for debates/discussions
-- Self-improvement tool
-- Research assistant for writers/students
-
-## Algolia Agent Studio Features Demonstrated
-
-- **Targeted prompting**: Understanding nuanced beliefs and finding specific counterpoints
-- **Quality ranking**: Surfacing strongest arguments, not just matching keywords
-- **Source credibility**: Weighting academic research, expert opinions, empirical data
-- **Perspective diversity**: Ensuring different types of counterarguments
-- **Conversational refinement**: Following up with specifics, asking clarifying questions
-
-## Target Users
-
-- **Students**: Learning to think critically and write better arguments
-- **Professionals**: Making better business decisions
-- **Researchers**: Stress-testing hypotheses
-- **Debaters**: Preparing for opposing arguments
-- **Anyone**: Who values intellectual honesty and wants to escape echo chambers
+Each argument includes:
+- **Quality Score** (evidence strength, sample size)
+- **Source Citations** (peer-reviewed research, expert opinions)
+- **Limitations** (what the evidence doesn't prove)
+- **Context** (when/where/how the findings apply)
 
 ## Tech Stack
 
-- **Frontend**: Next.js 15 with React 18
-- **Agent Platform**: Algolia Agent Studio (GPT-4)
-- **Data**: 26 indexed arguments with peer-reviewed sources
-- **Styling**: Tailwind CSS with custom design system
-- **Testing**: Jest + React Testing Library (56 tests passing)
-- **Deployment**: Vercel
+- **Frontend:** Next.js 15 (App Router) + React 18 + TypeScript
+- **AI Agent:** Algolia Agent Studio powered by GPT-4
+- **Search:** Algolia semantic search with quality weighting
+- **Database:** IndexedDB (Dexie.js) for local persistence
+- **Styling:** Tailwind CSS + custom design system
+- **Animations:** Framer Motion
+- **Testing:** Jest + React Testing Library (73/73 tests passing)
+- **Deployment:** Vercel with automatic CI/CD
 
-## Project Status
+## Project Structure
 
-✅ **MVP Complete - Production Ready**
+```
+ContradictMe/
+├── app/                    # Next.js 15 App Router
+│   ├── api/chat/          # Agent Studio API route
+│   ├── chat/              # Main chat interface
+│   ├── analytics/         # Analytics dashboard
+│   ├── debate/            # AI Debate Arena
+│   └── ...
+├── components/            # React components
+│   ├── chat/             # Chat interface components
+│   ├── arguments/        # Argument display cards
+│   └── ui/               # Shared UI components
+├── lib/                  # Utilities and types
+├── data/arguments/       # 26 indexed arguments (JSON)
+├── __tests__/           # Jest test suites (73 tests)
+└── public/              # Static assets
+```
 
-Contest Entry Period: January 7 - February 8, 2026
+## Features
 
-### Completed Features
+### 💬 Chat Interface
+- Natural language conversation
+- Context-aware follow-up questions
+- Conversation history with search
+- Bookmark important exchanges
+- Auto-save with IndexedDB
+- Keyboard shortcuts (⌘⇧L for theme)
 
-- ✅ 26 high-quality arguments indexed (avg quality: 88.1/100)
-- ✅ Full chat interface with conversation persistence
-- ✅ Algolia Agent Studio integration (GPT-4)
-- ✅ Error handling with retry functionality
-- ✅ Premium design system (Space Grotesk + violet accents)
-- ✅ Comprehensive test suite (56 tests passing)
-- ✅ SEO optimization (Open Graph, Twitter cards)
-- ✅ Abstract "thinking" animation (no generic bouncing dots)
-- ✅ Crystallization card entrance animations
-- ✅ Dark mode with system preference support
-- ✅ Theme toggle (light/dark/system)
+### 📊 Analytics Dashboard
+- Topics explored counter
+- Tag cloud visualization
+- Achievement system
+- Engagement metrics
+- Empty state handling
 
-### Testing
+### ⚔️ AI Debate Arena
+- 5-round structured debates
+- Pro vs Con AI agents
+- Submit interjections mid-debate
+- Vote for winner
+- Export transcripts (JSON, MD, TXT)
+
+### 🎨 Design System
+- Teal/cyan gradient accents
+- Dark/light/system themes
+- Space Grotesk typography
+- Smooth Framer Motion animations
+- Mobile-first responsive design
+- WCAG accessibility compliant
+
+## Testing
 
 ```bash
-npm test              # Run all tests
-npm run test:watch    # Watch mode
-npm run test:coverage # Coverage report
+npm test               # Run all 73 tests
+npm run test:watch     # Watch mode
+npm run test:coverage  # Coverage report
 ```
+
+**Current Status:** ✅ 73/73 tests passing (100%)
+
+## Documentation
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Technical architecture and design decisions
+- [DEVPOST_SUBMISSION.md](./DEVPOST_SUBMISSION.md) - Full contest submission
+- [CHANGELOG.md](./CHANGELOG.md) - Version history
+
+## Contributing
+
+Contributions welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) first.
+
+## License
+
+MIT License - see [LICENSE](./LICENSE) for details.
+
+## Contact
+
+**Developer:** Liz Stein  
+**Email:** liz@lizstein.dev  
+**Project:** https://github.com/forbiddenlink/ContradictMe  
+**Demo:** https://contradict-me.vercel.app
 
 ---
 
-## Getting Started
-
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for technical details.
-
-See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for data sourcing and indexing approach.
-
-See [DEMO_PLAN.md](./DEMO_PLAN.md) for contest demo strategy.
+**Built for the Algolia Agent Studio Challenge 2026**  
+An AI that challenges you to think better. 🎯

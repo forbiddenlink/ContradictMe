@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ChatInterface from '@/components/chat/ChatInterface';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 // Mock fetch
 global.fetch = jest.fn();
@@ -9,34 +10,46 @@ jest.mock('next/navigation', () => ({
   useRouter() {
     return {
       push: jest.fn(),
+      replace: jest.fn(),
+      back: jest.fn(),
+      forward: jest.fn(),
+      refresh: jest.fn(),
+      prefetch: jest.fn(),
     };
+  },
+  usePathname() {
+    return '/chat';
   },
 }));
 
 describe('ChatInterface', () => {
   beforeEach(() => {
-    (global.fetch as jest.Mock).mockClear();
+    jest.clearAllMocks();
     localStorage.clear();
   });
 
+  const renderWithTheme = (component: React.ReactElement) => {
+    return render(<ThemeProvider>{component}</ThemeProvider>);
+  };
+
   it('renders the initial assistant message', () => {
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     expect(screen.getByText(/I'm ContradictMe/i)).toBeInTheDocument();
   });
 
   it('renders the chat input', () => {
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
     expect(input).toBeInTheDocument();
   });
 
   it('renders suggestion buttons when no user messages', () => {
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     expect(screen.getByText(/Nuclear energy/i)).toBeInTheDocument();
   });
 
   it('allows typing in the input field', () => {
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(
       /Tell me something you believe strongly/i
     ) as HTMLInputElement;
@@ -51,7 +64,7 @@ describe('ChatInterface', () => {
       json: async () => ({ message: 'Test response', arguments: [] }),
     });
 
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
     const button = screen.getByRole('button', { name: /Challenge Me/i });
 
@@ -72,7 +85,7 @@ describe('ChatInterface', () => {
   it('shows loading state while waiting for response', async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() => new Promise(() => {}));
 
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
     const button = screen.getByRole('button', { name: /Challenge Me/i });
 
@@ -86,7 +99,7 @@ describe('ChatInterface', () => {
   it('displays error message on API failure', async () => {
     (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
 
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
     const button = screen.getByRole('button', { name: /Challenge Me/i });
 
@@ -104,7 +117,7 @@ describe('ChatInterface', () => {
       json: async () => ({ message: 'Test response', arguments: [] }),
     });
 
-    render(<ChatInterface />);
+    renderWithTheme(<ChatInterface />);
     const input = screen.getByPlaceholderText(/Tell me something you believe strongly/i);
     const button = screen.getByRole('button', { name: /Challenge Me/i });
 

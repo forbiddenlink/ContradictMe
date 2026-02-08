@@ -1,21 +1,13 @@
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
-import dynamic from 'next/dynamic';
 import './globals.css';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { MotionProvider } from '@/components/MotionProvider';
+import { ToastProvider } from '@/components/ui/ToastProvider';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
-
-// Defer analytics loading for better TTI (Time to Interactive)
-const Analytics = dynamic(() => import('@vercel/analytics/react').then((mod) => mod.Analytics), {
-  ssr: false,
-});
-
-const SpeedInsights = dynamic(
-  () => import('@vercel/speed-insights/next').then((mod) => mod.SpeedInsights),
-  { ssr: false }
-);
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Distinctive headline font - geometric, modern, memorable
 const spaceGrotesk = Space_Grotesk({
@@ -116,6 +108,10 @@ export default function RootLayout({
     >
       <head>
         <meta charSet="utf-8" />
+        {/* Resource hints for performance */}
+        <link rel="preconnect" href="https://ai-sdk-5.api.algolia.com" />
+        <link rel="preconnect" href="https://vitals.vercel-analytics.com" />
+        <link rel="dns-prefetch" href="https://vercel.live" />
       </head>
       <body className="antialiased bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
         {/* Skip link for accessibility - keyboard navigation */}
@@ -128,6 +124,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="system">
           <MotionProvider>
             <ErrorBoundary>{children}</ErrorBoundary>
+            <ToastProvider />
           </MotionProvider>
         </ThemeProvider>
         {shouldLoadVercelInsights && <Analytics />}
