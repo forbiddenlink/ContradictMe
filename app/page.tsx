@@ -6,7 +6,7 @@ import { useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
-const HOME_UPDATED_DATE = '2026-02-07';
+const HOME_UPDATED_DATE = '2026-02-08';
 const HOME_UPDATED_ISO_DATE = `${HOME_UPDATED_DATE}T00:00:00.000Z`;
 
 const homePageSchema = {
@@ -409,6 +409,18 @@ export default function Home() {
             <Link href="/about" className="text-slate-700 dark:text-slate-300 hover:underline">
               About
             </Link>
+            <Link href="/chat" className="text-slate-700 dark:text-slate-300 hover:underline">
+              Chat
+            </Link>
+            <Link href="/analytics" className="text-slate-700 dark:text-slate-300 hover:underline">
+              Analytics
+            </Link>
+            <Link href="/debate" className="text-slate-700 dark:text-slate-300 hover:underline">
+              Debate Arena
+            </Link>
+            <Link href="/learn" className="text-slate-700 dark:text-slate-300 hover:underline">
+              Learn
+            </Link>
             <Link href="/contact" className="text-slate-700 dark:text-slate-300 hover:underline">
               Contact
             </Link>
@@ -416,13 +428,7 @@ export default function Home() {
               href="/privacy-policy"
               className="text-slate-700 dark:text-slate-300 hover:underline"
             >
-              Privacy Policy
-            </Link>
-            <Link href="/learn" className="text-slate-700 dark:text-slate-300 hover:underline">
-              Learn
-            </Link>
-            <Link href="/chat" className="text-slate-700 dark:text-slate-300 hover:underline">
-              Start Chat
+              Privacy
             </Link>
           </nav>
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">

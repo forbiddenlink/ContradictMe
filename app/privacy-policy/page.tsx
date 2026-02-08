@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
-const EFFECTIVE_DATE = '2026-02-07';
+const EFFECTIVE_DATE = '2026-02-08';
 const EFFECTIVE_ISO_DATE = `${EFFECTIVE_DATE}T00:00:00.000Z`;
 
 const privacySchema = {
@@ -152,10 +152,13 @@ export default function PrivacyPolicyPage() {
             quality. We use Vercel Analytics and Speed Insights to collect aggregate performance
             metrics and page view data. These tools do not use third-party advertising cookies.
           </p>
-          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             We store your theme preference (light/dark mode) in local browser storage to improve
             your experience. This data never leaves your device and is not transmitted to our
-            servers. You can clear this at any time through your browser settings.
+            servers.
+          </p>
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            <strong>Conversation History:</strong> Your chat conversations, bookmarks, and analytics data are stored locally in your browser using IndexedDB. This data remains on your device only and is never sent to our servers. You can clear all stored data at any time through your browser settings (Clear Browsing Data &gt; Indexed databases) or by using the in-app conversation management features.
           </p>
         </section>
 
@@ -208,6 +211,15 @@ export default function PrivacyPolicyPage() {
         <div className="flex flex-wrap gap-4 text-sm sm:text-base">
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home
+          </Link>
+          <Link href="/chat" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Chat
+          </Link>
+          <Link href="/analytics" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Analytics
+          </Link>
+          <Link href="/debate" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Debate Arena
           </Link>
           <Link href="/learn" className="text-violet-600 dark:text-violet-400 hover:underline">
             Learn

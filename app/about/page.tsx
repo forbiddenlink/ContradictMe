@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
-const PUBLISHED_DATE = '2026-02-07';
+const PUBLISHED_DATE = '2026-02-08';
 const ISO_DATE = `${PUBLISHED_DATE}T00:00:00.000Z`;
 
 const aboutPageSchema = {
@@ -65,6 +65,44 @@ export default function AboutPage() {
           and engagement. This project does the opposite. It prioritizes constructive disagreement
           so users can test their assumptions, identify blind spots, and improve judgment.
         </p>
+
+        <section className="mb-8">
+          <h2 className="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+            Features Overview
+          </h2>
+          <ul className="space-y-3 text-base sm:text-lg text-slate-700 dark:text-slate-300">
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">💬</span>
+              <div>
+                <strong>Intelligent Chat Interface:</strong> Natural conversations with context-aware follow-up questions, conversation history with search and bookmarks, and auto-save functionality.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">⚔️</span>
+              <div>
+                <strong>AI Debate Arena:</strong> Watch Pro and Con AI agents debate any topic through 5 structured rounds, submit interjections, vote for winners, and export transcripts.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">📊</span>
+              <div>
+                <strong>Analytics Dashboard:</strong> Track topics explored, visualize tag clouds, earn achievements for critical thinking milestones, and review engagement metrics.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">🎨</span>
+              <div>
+                <strong>Premium Experience:</strong> Dark/light/system theme preferences, smooth Framer Motion animations, keyboard shortcuts (⌘⇧L for theme), and full accessibility compliance.
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-violet-600 dark:text-violet-400 font-bold">🔍</span>
+              <div>
+                <strong>Smart Follow-ups:</strong> AI-generated contextual questions based on your conversation to deepen understanding and explore nuances.
+              </div>
+            </li>
+          </ul>
+        </section>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
           Our approach emphasizes steel-manning over straw-manning. Each response aims to surface
           the most credible opposing evidence, explain limitations, and avoid personal attacks. This
@@ -193,11 +231,17 @@ export default function AboutPage() {
           <Link href="/" className="text-violet-600 dark:text-violet-400 hover:underline">
             Home
           </Link>
+          <Link href="/chat" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Chat
+          </Link>
+          <Link href="/analytics" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Analytics
+          </Link>
+          <Link href="/debate" className="text-violet-600 dark:text-violet-400 hover:underline">
+            Debate Arena
+          </Link>
           <Link href="/learn" className="text-violet-600 dark:text-violet-400 hover:underline">
             Learn
-          </Link>
-          <Link href="/chat" className="text-violet-600 dark:text-violet-400 hover:underline">
-            Start Chat
           </Link>
           <Link href="/contact" className="text-violet-600 dark:text-violet-400 hover:underline">
             Contact
@@ -206,7 +250,7 @@ export default function AboutPage() {
             href="/privacy-policy"
             className="text-violet-600 dark:text-violet-400 hover:underline"
           >
-            Privacy Policy
+            Privacy
           </Link>
         </div>
       </div>

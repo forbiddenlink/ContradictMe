@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 
-const UPDATED_DATE = '2026-02-07';
+const UPDATED_DATE = '2026-02-08';
 const UPDATED_ISO_DATE = `${UPDATED_DATE}T00:00:00.000Z`;
 
 const contactPageSchema = {
@@ -98,6 +98,18 @@ export default function ContactPage() {
           improvements. Please include the topic you asked about and the response details so I can
           reproduce the issue quickly.
         </p>
+
+        <div className="mb-8 p-5 bg-violet-50 dark:bg-violet-950/20 border border-violet-200 dark:border-violet-900 rounded-xl">
+          <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">What&apos;s New</h2>
+          <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">ContradictMe now includes several new features to enhance critical thinking:</p>
+          <ul className="text-sm text-slate-700 dark:text-slate-300 space-y-1.5">
+            <li>• <strong>Analytics Dashboard:</strong> Track your exploration topics, view tag clouds, and earn critical thinking achievements</li>
+            <li>• <strong>AI Debate Arena:</strong> Watch Pro vs Con agents debate any topic through 5 structured rounds</li>
+            <li>• <strong>Conversation History:</strong> Search and bookmark past conversations with full context preservation</li>
+            <li>• <strong>Smart Follow-ups:</strong> AI-generated contextual questions to deepen your understanding</li>
+            <li>• <strong>Share & Export:</strong> Export conversations in multiple formats (JSON, Markdown, TXT)</li>
+          </ul>
+        </div>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
           For the fastest support, include screenshots, timestamps, and the exact prompt text you
           submitted. If your report is about evidence quality, tell me which claims looked weak and

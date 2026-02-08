@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DEFAULT_AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 import { LEARN_HUB_TITLE, TOPIC_GUIDES, getTopicGuideUrl } from '@/lib/topicGuides';
 
-const LEARN_UPDATED_DATE = '2026-02-07';
+const LEARN_UPDATED_DATE = '2026-02-08';
 const LEARN_UPDATED_ISO_DATE = `${LEARN_UPDATED_DATE}T00:00:00.000Z`;
 
 const learnHubSchema = {
