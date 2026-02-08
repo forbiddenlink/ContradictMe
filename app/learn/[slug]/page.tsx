@@ -136,7 +136,7 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             {guide.description}
           </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-slate-600 dark:text-slate-300">
             By {DEFAULT_AUTHOR} • Published {guide.publishDate}
           </p>
         </header>
@@ -206,7 +206,7 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
                 <>
                   <li>• <a href="https://www.oecd.org/employment/future-of-work/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">OECD Employment Outlook</a> - AI and labor market analysis</li>
                   <li>• <a href="https://www.nber.org/" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">NBER</a> - Automation and task composition research</li>
-                  <li>• <a href="https://www.weforum.org/reports/the-future-of-jobs-report-2023" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">World Economic Forum</a> - Future of Jobs Report</li>
+                  <li>• <a href="https://www.imf.org/en/Publications/WP" target="_blank" rel="noopener noreferrer" className="text-violet-600 dark:text-violet-400 hover:underline">IMF Working Papers</a> - AI impact on employment and inequality</li>
                 </>
               )}
             </ul>

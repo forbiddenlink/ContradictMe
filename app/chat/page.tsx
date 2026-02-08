@@ -72,7 +72,7 @@ export default function ChatPage() {
       </header>
 
       <section className="max-w-4xl w-full mx-auto px-6 py-4 mb-4">
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
           By {DEFAULT_AUTHOR} • Last updated {CHAT_UPDATED_DATE}
         </p>
 

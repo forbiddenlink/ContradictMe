@@ -87,7 +87,7 @@ export default function LearnHubPage() {
             </p>
           </div>
 
-          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
             By {DEFAULT_AUTHOR} • Last updated {LEARN_UPDATED_DATE}
           </p>
         </header>
@@ -104,7 +104,7 @@ export default function LearnHubPage() {
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                 {guide.description}
               </p>
-              <p className="text-xs text-slate-500 dark:text-slate-500 mb-5">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mb-5">
                 Position tested: {guide.beliefToChallenge}
               </p>
               <div className="flex flex-col gap-2 text-sm">
