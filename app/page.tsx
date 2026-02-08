@@ -95,6 +95,7 @@ export default function Home() {
             <button
               onClick={() => handleChallenge()}
               className="absolute right-2 top-1/2 -translate-y-1/2 px-4 sm:px-7 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-500 dark:to-cyan-500 text-white rounded-xl font-semibold text-sm sm:text-base btn-magnetic shadow-lg hover:shadow-teal-500/25 whitespace-nowrap"
+              aria-label="Challenge Me"
             >
               Challenge Me
             </button>
