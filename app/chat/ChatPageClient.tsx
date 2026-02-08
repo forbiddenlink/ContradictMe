@@ -65,7 +65,9 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
 
       <section className="max-w-4xl w-full mx-auto px-6 py-4 mb-4">
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
-          By {DEFAULT_AUTHOR} • Last updated {CHAT_UPDATED_DATE}
+          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            <span itemProp="name">{DEFAULT_AUTHOR}</span>
+          </span> • Last updated <time dateTime={CHAT_UPDATED_ISO_DATE}>{CHAT_UPDATED_DATE}</time>
         </p>
 
         <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">

@@ -78,7 +78,9 @@ export default function ContactPage() {
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Contact</h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
-          By {DEFAULT_AUTHOR} • Last updated {UPDATED_DATE}
+          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            <span itemProp="name">{DEFAULT_AUTHOR}</span>
+          </span> • Last updated <time dateTime={UPDATED_ISO_DATE}>{UPDATED_DATE}</time>
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
           We welcome feedback on argument quality, missing sources, factual errors, and product

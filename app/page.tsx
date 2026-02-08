@@ -72,7 +72,9 @@ export default function Home() {
             echo chambers. Think critically.
           </p>
           <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
-            By {DEFAULT_AUTHOR} • Last updated {HOME_UPDATED_DATE}
+            By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+              <span itemProp="name">{DEFAULT_AUTHOR}</span>
+            </span> • Last updated <time dateTime={HOME_UPDATED_ISO_DATE}>{HOME_UPDATED_DATE}</time>
           </p>
         </header>
 

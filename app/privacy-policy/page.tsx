@@ -39,7 +39,9 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">Privacy Policy</h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-8">
-          By {DEFAULT_AUTHOR} • Effective date: {EFFECTIVE_DATE}
+          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            <span itemProp="name">{DEFAULT_AUTHOR}</span>
+          </span> • Effective date: <time dateTime={EFFECTIVE_ISO_DATE}>{EFFECTIVE_DATE}</time>
         </p>
 
         <section className="mb-6">

@@ -41,7 +41,9 @@ export default function AboutPage() {
       <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-6">About ContradictMe</h1>
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
-          By {DEFAULT_AUTHOR} • Published {PUBLISHED_DATE}
+          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            <span itemProp="name">{DEFAULT_AUTHOR}</span>
+          </span> • Published <time dateTime={ISO_DATE}>{PUBLISHED_DATE}</time>
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
           ContradictMe is an AI project built to help people think through difficult topics by
