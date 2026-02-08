@@ -34,7 +34,7 @@ const authorSchema = {
 export const metadata: Metadata = {
   title: `${DEFAULT_AUTHOR} - Author & Creator | ${SITE_NAME}`,
   description:
-    'Developer focused on building AI tools that promote critical thinking and intellectual honesty. Creator of ContradictMe, an AI system that challenges beliefs with research-backed counterarguments.',
+    'Developer specializing in AI tools for critical thinking. Creator of ContradictMe, challenging beliefs with research-backed counterarguments.',
   alternates: {
     canonical: '/about/liz-stein',
   },
@@ -91,8 +91,8 @@ export default function AuthorBioPage() {
             <p>
               {DEFAULT_AUTHOR} is a developer focused on building AI systems that promote critical
               thinking and intellectual honesty. As the creator of {SITE_NAME}, they designed a
-              platform that challenges users&apos; beliefs with research-backed counterarguments rather
-              than confirming existing biases.
+              platform that challenges users&apos; beliefs with research-backed counterarguments
+              rather than confirming existing biases.
             </p>
             <p>
               The motivation behind {SITE_NAME} stems from a recognition that most AI systems
