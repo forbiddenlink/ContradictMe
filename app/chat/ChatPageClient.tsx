@@ -65,9 +65,9 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
 
       <section className="max-w-4xl w-full mx-auto px-6 py-4 mb-4">
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
-          By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+          By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </span> • Last updated <time dateTime={CHAT_UPDATED_ISO_DATE}>{CHAT_UPDATED_DATE}</time>
+          </a> • Last updated <time dateTime={CHAT_UPDATED_ISO_DATE} itemProp="dateModified">{CHAT_UPDATED_DATE}</time>
         </p>
 
         <div className="space-y-4 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -91,7 +91,7 @@ export default function ChatPageClient({ initialMessage }: { initialMessage: str
           <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
             <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">What to Expect</h2>
             <p className="text-sm">
-              Each response includes specific counterarguments backed by peer-reviewed research, quality scores based on evidence strength, and honest limitations. You&rsquo;ll see citations from credible institutions, uncertainty notes when evidence is mixed, and reflection questions to deepen thinking. This isn&rsquo;t about winning debates—it&rsquo;s about making better decisions by understanding the strongest case against the position you hold.
+              Each response includes specific counterarguments backed by peer-reviewed research, quality scores based on evidence strength, and honest limitations. You&rsquo;ll see citations from credible institutions like Stanford, MIT, and Oxford, uncertainty notes when evidence is mixed, and reflection questions to deepen thinking. The system prioritizes empirical studies over opinion pieces and flags where conclusions are contested. This isn&rsquo;t about winning debates—it&rsquo;s about making better decisions by understanding the strongest case against the position you hold.
             </p>
           </div>
 

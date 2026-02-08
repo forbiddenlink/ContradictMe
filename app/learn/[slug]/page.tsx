@@ -137,9 +137,9 @@ export default async function TopicGuidePage({ params }: TopicPageProps) {
             {guide.description}
           </p>
           <p className="text-sm text-slate-600 dark:text-slate-300">
-            By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
               <span itemProp="name">{DEFAULT_AUTHOR}</span>
-            </span> • Published <time dateTime={publishedIso}>{guide.publishDate}</time>
+            </a> • Published <time dateTime={publishedIso} itemProp="datePublished">{guide.publishDate}</time>
           </p>
         </header>
 

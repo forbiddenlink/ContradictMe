@@ -43,7 +43,7 @@ export default function AboutPage() {
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mb-6">
           By <span itemProp="author" itemScope itemType="https://schema.org/Person">
             <span itemProp="name">{DEFAULT_AUTHOR}</span>
-          </span> • Published <time dateTime={ISO_DATE}>{PUBLISHED_DATE}</time>
+          </span> • Published <time dateTime={ISO_DATE} itemProp="datePublished">{PUBLISHED_DATE}</time>
         </p>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-5">
           ContradictMe is an AI project built to help people think through difficult topics by

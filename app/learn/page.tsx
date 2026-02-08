@@ -88,9 +88,9 @@ export default function LearnHubPage() {
           </div>
 
           <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
-            By <span itemProp="author" itemScope itemType="https://schema.org/Person">
+            By <a href="/about" rel="author" itemProp="author" itemScope itemType="https://schema.org/Person">
               <span itemProp="name">{DEFAULT_AUTHOR}</span>
-            </span> • Last updated <time dateTime={LEARN_UPDATED_ISO_DATE}>{LEARN_UPDATED_DATE}</time>
+            </a> • Last updated <time dateTime={LEARN_UPDATED_ISO_DATE} itemProp="dateModified">{LEARN_UPDATED_DATE}</time>
           </p>
         </header>
 
