@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Argument } from '@/lib/types';
 import ConfidenceBar from '../ui/ConfidenceBar';
 import EvidenceBadge from '../ui/EvidenceBadge';
@@ -22,7 +22,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
   const evidenceSnippet = argument.evidence.split('.')[0] + '.';
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24, rotateX: 8, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       transition={{
@@ -39,7 +39,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
       <div className="flex items-start justify-between gap-4 mb-4">
         {/* Position Badge */}
         <div className="flex-shrink-0">
-          <motion.div
+          <m.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
@@ -57,7 +57,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
             <span className="position-text">
               {argument.position === 'against' ? 'Challenge' : 'Support'}
             </span>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Evidence Badge */}
@@ -114,13 +114,13 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
             aria-expanded={showSupportingPoints}
           >
             <span className="collapsible-icon">
-              <motion.span
+              <m.span
                 animate={{ rotate: showSupportingPoints ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="inline-block"
               >
                 ▼
-              </motion.span>
+              </m.span>
             </span>
             <span className="collapsible-title">
               Key Supporting Points ({argument.supportingPoints.length})
@@ -129,7 +129,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
 
           <AnimatePresence>
             {showSupportingPoints && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -138,7 +138,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
               >
                 <ul className="supporting-points-list">
                   {argument.supportingPoints.map((point, idx) => (
-                    <motion.li
+                    <m.li
                       key={idx}
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -147,10 +147,10 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
                     >
                       <span className="supporting-point-bullet">●</span>
                       <span className="supporting-point-text">{point}</span>
-                    </motion.li>
+                    </m.li>
                   ))}
                 </ul>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -164,13 +164,13 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
           aria-expanded={showFullSource}
         >
           <span className="collapsible-icon">
-            <motion.span
+            <m.span
               animate={{ rotate: showFullSource ? 180 : 0 }}
               transition={{ duration: 0.2 }}
               className="inline-block"
             >
               ▼
-            </motion.span>
+            </m.span>
           </span>
           <span className="collapsible-title">Source Details</span>
         </button>
@@ -199,7 +199,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
         {/* Full source details */}
         <AnimatePresence>
           {showFullSource && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -211,7 +211,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
                 score={argument.sourceCredibility}
                 compact={false}
               />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -220,7 +220,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
       {argument.tags && argument.tags.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {argument.tags.slice(0, 4).map((tag, idx) => (
-            <motion.span
+            <m.span
               key={idx}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -228,7 +228,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
               className="argument-tag"
             >
               {tag}
-            </motion.span>
+            </m.span>
           ))}
         </div>
       )}
@@ -244,19 +244,19 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
             <span className="warning-icon">⚠️</span>
             <span className="collapsible-title">Limitations & Context</span>
             <span className="collapsible-icon">
-              <motion.span
+              <m.span
                 animate={{ rotate: showLimitations ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="inline-block"
               >
                 ▼
-              </motion.span>
+              </m.span>
             </span>
           </button>
 
           <AnimatePresence>
             {showLimitations && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -264,7 +264,7 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
                 className="limitations-content"
               >
                 {argument.limitations}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -441,6 +441,6 @@ export default function ArgumentCardEnhanced({ argument, index = 0 }: ArgumentCa
           @apply overflow-hidden;
         }
       `}</style>
-    </motion.div>
+    </m.div>
   );
 }

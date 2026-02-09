@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Argument } from '@/lib/types';
 
 interface CitationTooltipProps {
@@ -40,7 +40,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
       {/* Tooltip - Glassmorphic Card */}
       <AnimatePresence>
         {isVisible && (
-          <motion.div
+          <m.div
             id={`citation-tooltip-${index}`}
             initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -110,7 +110,7 @@ export default function CitationTooltip({ source, index, snippet }: CitationTool
 
             {/* Arrow pointer */}
             <div className="citation-arrow" />
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

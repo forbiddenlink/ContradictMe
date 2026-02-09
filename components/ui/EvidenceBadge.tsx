@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface EvidenceBadgeProps {
   strength: 'strong' | 'moderate' | 'weak';
@@ -127,7 +127,7 @@ export default function EvidenceBadge({ strength, type, animated = true }: Evide
 
   if (animated) {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.9, y: 4 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{
@@ -138,7 +138,7 @@ export default function EvidenceBadge({ strength, type, animated = true }: Evide
         className="inline-block"
       >
         {BadgeContent}
-      </motion.div>
+      </m.div>
     );
   }
 

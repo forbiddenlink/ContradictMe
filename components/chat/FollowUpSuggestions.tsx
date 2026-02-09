@@ -6,7 +6,7 @@
 
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -181,7 +181,7 @@ export default function FollowUpSuggestions({
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
@@ -199,7 +199,7 @@ export default function FollowUpSuggestions({
       {/* Suggestions */}
       <div className="flex flex-wrap gap-2">
         {suggestions.map((suggestion, index) => (
-          <motion.button
+          <m.button
             key={`${suggestion}-${index}`}
             onClick={() => onSelectQuestion(suggestion)}
             className="group relative px-4 py-2.5 bg-gradient-to-br from-white/90 to-white/70 dark:from-slate-800/90 dark:to-slate-900/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:from-violet-50 hover:to-teal-50 dark:hover:from-violet-950/30 dark:hover:to-teal-950/30 hover:border-violet-300 dark:hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-200/30 dark:hover:shadow-violet-900/20 hover:text-violet-700 dark:hover:text-violet-300 transition-all duration-200 flex items-center gap-2"
@@ -211,7 +211,7 @@ export default function FollowUpSuggestions({
           >
             <MessageCircle className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
             <span>{suggestion}</span>
-          </motion.button>
+          </m.button>
         ))}
       </div>
 
@@ -219,6 +219,6 @@ export default function FollowUpSuggestions({
       <p className="text-xs text-slate-400 dark:text-slate-500 mt-3 px-2 italic">
         Or ask your own follow-up question below
       </p>
-    </motion.div>
+    </m.div>
   );
 }

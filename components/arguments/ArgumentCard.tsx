@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { m, AnimatePresence, useInView } from 'framer-motion';
 import { Argument } from '@/lib/types';
 
 interface ArgumentCardProps {
@@ -44,7 +44,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -115,7 +115,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
         <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 leading-tight flex-1">
           {argument.mainClaim}
         </h3>
-        <motion.button
+        <m.button
           onClick={handleCopy}
           animate={{ scale: copied ? [1, 1.2, 1] : 1 }}
           transition={{ duration: 0.4 }}
@@ -137,7 +137,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
               <span>Copy</span>
             </>
           )}
-        </motion.button>
+        </m.button>
       </div>
 
       {/* Evidence */}
@@ -222,7 +222,7 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
           </button>
           <AnimatePresence>
             {showLimitations && (
-              <motion.div
+              <m.div
                 id={`limitations-${argument.mainClaim.slice(0, 20).replace(/\s/g, '-')}`}
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
                 animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
@@ -231,11 +231,11 @@ export default function ArgumentCard({ argument }: ArgumentCardProps) {
                 className="text-sm text-gray-600 dark:text-slate-400 bg-gray-50 dark:bg-slate-800/50 rounded-lg p-3 overflow-hidden"
               >
                 {argument.limitations}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }

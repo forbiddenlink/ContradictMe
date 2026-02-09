@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface ConfidenceBarProps {
   score: number;
@@ -89,7 +89,7 @@ export default function ConfidenceBar({
       <div className={`confidence-bar-track ${sizeClass.container} ${style.bg}`}>
         {/* Animated Fill */}
         {animated ? (
-          <motion.div
+          <m.div
             className={`confidence-bar-fill ${sizeClass.bar} bg-gradient-to-r ${style.gradient}`}
             initial={{ width: 0 }}
             animate={{ width: `${score}%` }}

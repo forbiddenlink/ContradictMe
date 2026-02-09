@@ -575,9 +575,9 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
   useEffect(() => {
     if (initialMessage && !hasProcessedInitial.current) {
       hasProcessedInitial.current = true;
-      const controller = new AbortController();
-      handleSendMessage(initialMessage, controller.signal);
-      return () => controller.abort();
+      // Don't abort on cleanup - we want the request to complete even if the effect re-runs
+      // The handleSendMessage already handles aborting previous in-flight requests
+      handleSendMessage(initialMessage);
     }
   }, [initialMessage, handleSendMessage]);
 

@@ -6,7 +6,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   MessageCircle,
   TrendingUp,
@@ -31,7 +31,7 @@ interface StatCardProps {
 
 function StatCard({ icon, label, value, description, color, delay = 0 }: StatCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay }}
@@ -45,7 +45,7 @@ function StatCard({ icon, label, value, description, color, delay = 0 }: StatCar
       {description && (
         <p className="text-xs text-slate-500 dark:text-slate-500">{description}</p>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -70,7 +70,7 @@ function TagCloud({ tags }: { tags: TagCloudItem[] }) {
       {tags.map((item, index) => {
         const size = Math.max(0.8, Math.min(1.5, item.count / maxCount));
         return (
-          <motion.span
+          <m.span
             key={item.tag}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +80,7 @@ function TagCloud({ tags }: { tags: TagCloudItem[] }) {
           >
             {item.tag}
             <span className="ml-1.5 text-xs opacity-60">×{item.count}</span>
-          </motion.span>
+          </m.span>
         );
       })}
     </div>
@@ -99,7 +99,7 @@ interface Achievement {
 
 function AchievementBadge({ achievement }: { achievement: Achievement }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
@@ -133,7 +133,7 @@ function AchievementBadge({ achievement }: { achievement: Achievement }) {
                 </span>
               </div>
               <div className="h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                <motion.div
+                <m.div
                   className="h-full bg-gradient-to-r from-violet-500 to-teal-500"
                   initial={{ width: 0 }}
                   animate={{ width: `${(achievement.progress / achievement.target) * 100}%` }}
@@ -144,7 +144,7 @@ function AchievementBadge({ achievement }: { achievement: Achievement }) {
           )}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -294,7 +294,7 @@ export default function AnalyticsDashboard() {
         </section>
 
         {/* Topics Tag Cloud */}
-        <motion.section
+        <m.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -307,10 +307,10 @@ export default function AnalyticsDashboard() {
           <div className="p-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl">
             <TagCloud tags={tagCounts} />
           </div>
-        </motion.section>
+        </m.section>
 
         {/* Achievements */}
-        <motion.section
+        <m.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -326,11 +326,11 @@ export default function AnalyticsDashboard() {
               <AchievementBadge key={achievement.id} achievement={achievement} />
             ))}
           </div>
-        </motion.section>
+        </m.section>
 
         {/* Empty State */}
         {conversations.length === 0 && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -352,7 +352,7 @@ export default function AnalyticsDashboard() {
             >
               Start Chatting →
             </Link>
-          </motion.div>
+          </m.div>
         )}
       </main>
     </div>

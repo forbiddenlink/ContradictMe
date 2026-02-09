@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface ThinkingIndicatorProps {
   phase: number;
@@ -18,7 +18,7 @@ export default function ThinkingIndicator({
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
@@ -35,7 +35,7 @@ export default function ThinkingIndicator({
           {/* Background circle */}
           <circle cx="16" cy="16" r="14" className="progress-ring-bg" strokeWidth="2" fill="none" />
           {/* Progress circle */}
-          <motion.circle
+          <m.circle
             cx="16"
             cy="16"
             r="14"
@@ -59,7 +59,7 @@ export default function ThinkingIndicator({
 
       {/* Message */}
       <div className="thinking-message-container">
-        <motion.p
+        <m.p
           key={message}
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,31 +67,31 @@ export default function ThinkingIndicator({
           className="thinking-message"
         >
           {message}
-        </motion.p>
+        </m.p>
 
         {/* Animated dots */}
         <div className="thinking-dots">
-          <motion.span
+          <m.span
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ duration: 1.4, repeat: Infinity, delay: 0 }}
             className="thinking-dot"
           >
             ●
-          </motion.span>
-          <motion.span
+          </m.span>
+          <m.span
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ duration: 1.4, repeat: Infinity, delay: 0.2 }}
             className="thinking-dot"
           >
             ●
-          </motion.span>
-          <motion.span
+          </m.span>
+          <m.span
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ duration: 1.4, repeat: Infinity, delay: 0.4 }}
             className="thinking-dot"
           >
             ●
-          </motion.span>
+          </m.span>
         </div>
       </div>
 
@@ -207,6 +207,6 @@ export default function ThinkingIndicator({
           }
         }
       `}</style>
-    </motion.div>
+    </m.div>
   );
 }

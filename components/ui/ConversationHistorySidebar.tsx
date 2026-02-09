@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   Search,
   X,
@@ -140,7 +140,7 @@ export function ConversationHistorySidebar({
       if (conversationId === currentConversationId) {
         onNewConversation();
       }
-    } catch (err) {
+    } catch {
       toast.error('Failed to delete conversation');
     }
     setActiveMenu(null);
@@ -150,7 +150,7 @@ export function ConversationHistorySidebar({
     try {
       const newState = await toggleBookmark(conversationId);
       toast.success(newState ? 'Bookmarked' : 'Bookmark removed');
-    } catch (err) {
+    } catch {
       toast.error('Failed to update bookmark');
     }
     setActiveMenu(null);
@@ -163,7 +163,7 @@ export function ConversationHistorySidebar({
     try {
       await updateTitle(conversationId, newTitle);
       toast.success('Title updated');
-    } catch (err) {
+    } catch {
       toast.error('Failed to update title');
     }
     setActiveMenu(null);
@@ -181,7 +181,7 @@ export function ConversationHistorySidebar({
         await exportAsMarkdown(conversationId);
         toast.success('Exported as Markdown');
       }
-    } catch (err) {
+    } catch {
       toast.error('Export failed');
     }
     setActiveMenu(null);
@@ -191,7 +191,7 @@ export function ConversationHistorySidebar({
     try {
       await copyAsText(conversationId);
       toast.success('Copied to clipboard');
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy');
     }
     setActiveMenu(null);
@@ -202,7 +202,7 @@ export function ConversationHistorySidebar({
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -211,7 +211,7 @@ export function ConversationHistorySidebar({
           />
 
           {/* Sidebar */}
-          <motion.aside
+          <m.aside
             ref={sidebarRef}
             initial={{ x: -320 }}
             animate={{ x: 0 }}
@@ -404,7 +404,7 @@ export function ConversationHistorySidebar({
                 </>
               )}
             </div>
-          </motion.aside>
+          </m.aside>
         </>
       )}
     </AnimatePresence>
@@ -575,7 +575,7 @@ function ConversationItem({
       {/* Context Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
@@ -625,7 +625,7 @@ function ConversationItem({
               <Trash2 className="h-4 w-4" />
               Delete
             </button>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

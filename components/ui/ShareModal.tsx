@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   X,
   Link as LinkIcon,
@@ -127,7 +127,7 @@ export default function ShareModal({
       setCopied(true);
       toast.success('Link copied!');
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy link');
     }
   };
@@ -163,7 +163,7 @@ export default function ShareModal({
     try {
       await copyAsText(conversationId);
       toast.success('Conversation copied as text!');
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy');
     }
   };
@@ -172,7 +172,7 @@ export default function ShareModal({
     try {
       await exportAsMarkdown(conversationId);
       toast.success('Exported as Markdown!');
-    } catch (err) {
+    } catch {
       toast.error('Export failed');
     }
   };
@@ -181,7 +181,7 @@ export default function ShareModal({
     try {
       await exportAsJSON(conversationId);
       toast.success('Exported as JSON!');
-    } catch (err) {
+    } catch {
       toast.error('Export failed');
     }
   };
@@ -191,7 +191,7 @@ export default function ShareModal({
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -200,7 +200,7 @@ export default function ShareModal({
           />
 
           {/* Modal */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -338,7 +338,7 @@ export default function ShareModal({
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>
