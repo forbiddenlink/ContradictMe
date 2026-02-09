@@ -22,15 +22,25 @@ export default function ChatInput({ onSend, isLoading, error }: ChatInputProps) 
   useEffect(() => {
     if (isLoading) {
       setButtonState('sending');
-    } else if (!error && buttonState === 'sending') {
-      // Show success briefly, then reset
-      setButtonState('success');
-      const timer = setTimeout(() => setButtonState('idle'), 1000);
-      return () => clearTimeout(timer);
     } else if (error) {
       setButtonState('idle');
     }
-  }, [isLoading, error, buttonState]);
+  }, [isLoading, error]);
+
+  // Handle success state separately to avoid timer being cleared
+  useEffect(() => {
+    if (buttonState === 'success') {
+      const timer = setTimeout(() => setButtonState('idle'), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [buttonState]);
+
+  // Transition from sending to success when loading completes
+  useEffect(() => {
+    if (!isLoading && buttonState === 'sending' && !error) {
+      setButtonState('success');
+    }
+  }, [isLoading, buttonState, error]);
 
   const handleSend = () => {
     if (input.trim() && !isLoading) {

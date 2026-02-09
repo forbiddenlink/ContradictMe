@@ -107,7 +107,10 @@ export default function DebatePage() {
         }),
       });
 
-      if (!response.ok) throw new Error('Failed to generate debate response');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status}`);
+      }
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
@@ -173,7 +176,13 @@ export default function DebatePage() {
       }
     } catch (error) {
       console.error('Debate generation error:', error);
-      toast.error('Failed to generate debate response');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to generate debate response';
+      toast.error(errorMessage);
+      // Reset debate state on error so user can try again
+      setDebateState(prev => ({
+        ...prev,
+        isActive: false,
+      }));
     } finally {
       setIsGenerating(false);
     }

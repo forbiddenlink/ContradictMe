@@ -2,7 +2,7 @@
 
 import { useTheme } from './ThemeProvider';
 import { m } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ThemeToggleProps {
   showLabel?: boolean;
@@ -10,12 +10,19 @@ interface ThemeToggleProps {
 
 export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
   const { resolvedTheme, setTheme, theme } = useTheme();
+  // Use consistent initial value to avoid hydration mismatch
+  const [isMac, setIsMac] = useState(false);
 
   const cycleTheme = () => {
     if (theme === 'light') setTheme('dark');
     else if (theme === 'dark') setTheme('system');
     else setTheme('light');
   };
+
+  // Detect Mac platform after mount to avoid hydration mismatch
+  useEffect(() => {
+    setIsMac(typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform));
+  }, []);
 
   // Keyboard shortcut: Cmd/Ctrl + Shift + L
   useEffect(() => {
@@ -31,9 +38,7 @@ export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
   }, [theme]);
 
   const themeLabel = theme === 'light' ? 'Light' : theme === 'dark' ? 'Dark' : 'System';
-  const shortcutHint = typeof navigator !== 'undefined' && navigator.platform.includes('Mac') 
-    ? '⌘⇧L' 
-    : 'Ctrl+Shift+L';
+  const shortcutHint = isMac ? '⌘⇧L' : 'Ctrl+Shift+L';
 
   return (
     <m.button

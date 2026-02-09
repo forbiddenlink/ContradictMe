@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-const MAX_MESSAGE_LENGTH = 4000;
+const MAX_MESSAGE_LENGTH = 8000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 25;
 const AGENT_TIMEOUT_MS = 30_000;
