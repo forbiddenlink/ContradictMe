@@ -45,11 +45,31 @@ export default [
     },
   },
   {
+    // Node.js config files (next.config.js, etc.)
+    files: ['*.config.js', '*.config.mjs', '*.config.ts'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+      },
+    },
+  },
+  {
     // Scripts can use console
     files: ['scripts/**/*.{js,ts,mjs}'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        console: 'readonly',
+      },
+    },
     rules: {
       'no-console': 'off',
-      'no-undef': 'off',
     },
   },
   {
@@ -60,14 +80,6 @@ export default [
     },
   },
   {
-    ignores: [
-      'node_modules/**',
-      '.next/**',
-      'out/**',
-      '*.config.js',
-      '*.config.mjs',
-      '.history/**',
-      '.codacy/**',
-    ],
+    ignores: ['node_modules/**', '.next/**', 'out/**', '.history/**', '.codacy/**'],
   },
 ];
