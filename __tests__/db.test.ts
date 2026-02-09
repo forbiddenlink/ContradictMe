@@ -2,8 +2,8 @@
  * Tests for IndexedDB Database Layer
  */
 
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
-import { db, dbOperations, conversationUtils } from '@/lib/db';
+import { describe, it, expect } from '@jest/globals';
+import { conversationUtils } from '@/lib/db';
 import type { ConversationMessage } from '@/lib/db';
 
 describe('conversationUtils', () => {

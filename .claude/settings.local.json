@@ -62,7 +62,9 @@
       "Skill(perplexity-search)",
       "Skill(vercel-react-best-practices)",
       "Bash(npm run format:check:*)",
-      "mcp__plugin_playwright_playwright__browser_install"
+      "mcp__plugin_playwright_playwright__browser_install",
+      "Bash(npx eslint:*)",
+      "mcp__plugin_playwright_playwright__browser_network_requests"
     ]
   }
 }

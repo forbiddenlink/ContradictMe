@@ -9,7 +9,7 @@ const requiredEnvVars = [
   'ALGOLIA_AGENT_ENDPOINT',
 ] as const;
 
-const optionalEnvVars = [
+const _optionalEnvVars = [
   'ALGOLIA_APP_ID',
   'ALGOLIA_SEARCH_API_KEY',
   'VERCEL',

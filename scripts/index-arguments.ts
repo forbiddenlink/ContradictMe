@@ -76,13 +76,13 @@ async function indexArguments(client: ReturnType<typeof algoliasearch>) {
 
   try {
     console.log('⬆️  Indexing to Algolia...');
-    const responses = await client.saveObjects({
+    await client.saveObjects({
       indexName: INDEX_NAME,
       objects: argumentsToIndex,
     });
 
     console.log('\n✅ Successfully indexed arguments:');
-    argumentsToIndex.forEach((arg: any, idx: number) => {
+    argumentsToIndex.forEach((arg: { objectID: string }, idx: number) => {
       console.log(`   ${idx + 1}. ${arg.objectID}`);
     });
 

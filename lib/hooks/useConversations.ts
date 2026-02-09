@@ -243,14 +243,14 @@ export function usePreference<T extends string | number | boolean | object>(
   defaultValue: T
 ): [T, (value: T) => Promise<void>] {
   const [value, setValue] = useState<T>(defaultValue);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [_isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
       try {
         const storedValue = await dbOperations.getPreference(key);
-        if (storedValue !== undefined) {
-          setValue(storedValue);
+        if (storedValue !== undefined && storedValue !== null) {
+          setValue(storedValue as T);
         }
       } catch (err) {
         console.error('Failed to load preference:', err);

@@ -2,7 +2,7 @@
 
 import { useTheme } from './ThemeProvider';
 import { m } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface ThemeToggleProps {
   showLabel?: boolean;
@@ -13,11 +13,11 @@ export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
   // Use consistent initial value to avoid hydration mismatch
   const [isMac, setIsMac] = useState(false);
 
-  const cycleTheme = () => {
+  const cycleTheme = useCallback(() => {
     if (theme === 'light') setTheme('dark');
     else if (theme === 'dark') setTheme('system');
     else setTheme('light');
-  };
+  }, [theme, setTheme]);
 
   // Detect Mac platform after mount to avoid hydration mismatch
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [theme]);
+  }, [cycleTheme]);
 
   const themeLabel = theme === 'light' ? 'Light' : theme === 'dark' ? 'Dark' : 'System';
   const shortcutHint = isMac ? '⌘⇧L' : 'Ctrl+Shift+L';

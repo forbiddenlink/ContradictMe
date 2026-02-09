@@ -324,7 +324,7 @@ export const dbOperations = {
   /**
    * Get user preference
    */
-  async getPreference(key: string): Promise<any> {
+  async getPreference(key: string): Promise<unknown> {
     const pref = await db.preferences.get(key);
     return pref?.value;
   },
