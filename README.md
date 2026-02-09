@@ -60,6 +60,7 @@ Visit http://localhost:3000 to see it in action.
 4. **You think critically** - Evidence quality scores, limitations, and follow-up paths
 
 Each argument includes:
+
 - **Quality Score** (evidence strength, sample size)
 - **Source Citations** (peer-reviewed research, expert opinions)
 - **Limitations** (what the evidence doesn't prove)
@@ -99,6 +100,7 @@ ContradictMe/
 ## Features
 
 ### 💬 Chat Interface
+
 - Natural language conversation
 - Context-aware follow-up questions
 - Conversation history with search
@@ -107,6 +109,7 @@ ContradictMe/
 - Keyboard shortcuts (⌘⇧L for theme)
 
 ### 📊 Analytics Dashboard
+
 - Topics explored counter
 - Tag cloud visualization
 - Achievement system
@@ -114,6 +117,7 @@ ContradictMe/
 - Empty state handling
 
 ### ⚔️ AI Debate Arena
+
 - 5-round structured debates
 - Pro vs Con AI agents
 - Submit interjections mid-debate
@@ -121,6 +125,7 @@ ContradictMe/
 - Export transcripts (JSON, MD, TXT)
 
 ### 🎨 Design System
+
 - Teal/cyan gradient accents
 - Dark/light/system themes
 - Space Grotesk typography

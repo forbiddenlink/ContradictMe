@@ -87,7 +87,7 @@
   --color-error: var(--crimson-500);
   --color-warning: var(--amber-500);
   --color-info: #3b82f6;
-  
+
   /* Glassmorphism variables for 2026 design */
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-bg-hover: rgba(255, 255, 255, 0.08);
@@ -516,7 +516,7 @@
   --color-text-muted: #94a3b8;
   --color-border: var(--slate-700);
   --color-border-hover: var(--teal-600);
-  
+
   /* Dark mode glassmorphism */
   --glass-bg: rgba(15, 33, 55, 0.6);
   --glass-bg-hover: rgba(20, 40, 65, 0.7);

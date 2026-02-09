@@ -101,13 +101,30 @@ export default function ContactPage() {
 
         <div className="mb-8 p-5 bg-violet-50 dark:bg-violet-950/20 border border-violet-200 dark:border-violet-900 rounded-xl">
           <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">What&apos;s New</h2>
-          <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">ContradictMe now includes several new features to enhance critical thinking:</p>
+          <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">
+            ContradictMe now includes several new features to enhance critical thinking:
+          </p>
           <ul className="text-sm text-slate-700 dark:text-slate-300 space-y-1.5">
-            <li>• <strong>Analytics Dashboard:</strong> Track your exploration topics, view tag clouds, and earn critical thinking achievements</li>
-            <li>• <strong>AI Debate Arena:</strong> Watch Pro vs Con agents debate any topic through 5 structured rounds</li>
-            <li>• <strong>Conversation History:</strong> Search and bookmark past conversations with full context preservation</li>
-            <li>• <strong>Smart Follow-ups:</strong> AI-generated contextual questions to deepen your understanding</li>
-            <li>• <strong>Share & Export:</strong> Export conversations in multiple formats (JSON, Markdown, TXT)</li>
+            <li>
+              • <strong>Analytics Dashboard:</strong> Track your exploration topics, view tag
+              clouds, and earn critical thinking achievements
+            </li>
+            <li>
+              • <strong>AI Debate Arena:</strong> Watch Pro vs Con agents debate any topic through 5
+              structured rounds
+            </li>
+            <li>
+              • <strong>Conversation History:</strong> Search and bookmark past conversations with
+              full context preservation
+            </li>
+            <li>
+              • <strong>Smart Follow-ups:</strong> AI-generated contextual questions to deepen your
+              understanding
+            </li>
+            <li>
+              • <strong>Share & Export:</strong> Export conversations in multiple formats (JSON,
+              Markdown, TXT)
+            </li>
           </ul>
         </div>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
@@ -138,8 +155,8 @@ export default function ContactPage() {
           </ul>
         </section>
         <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8">
-          For deployment-related incidents, include affected route URLs and the time window so I
-          can correlate logs quickly. If your issue relates to how results are sourced or ranked,
+          For deployment-related incidents, include affected route URLs and the time window so I can
+          correlate logs quickly. If your issue relates to how results are sourced or ranked,
           include at least one external reference URL to compare against. You can also review the
           platform deployment model at{' '}
           <a
@@ -158,7 +175,8 @@ export default function ContactPage() {
             className="text-violet-600 dark:text-violet-400 hover:underline"
           >
             HTTP Semantics standard
-          </a>.
+          </a>
+          .
         </p>
 
         <section className="mb-8" aria-labelledby="faq-heading">

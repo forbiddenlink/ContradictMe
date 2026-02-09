@@ -7,14 +7,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import {
-  X,
-  Link as LinkIcon,
-  Twitter,
-  Download,
-  Check,
-  Share2,
-} from 'lucide-react';
+import { X, Link as LinkIcon, Twitter, Download, Check, Share2 } from 'lucide-react';
 import { Button } from './button';
 import { toast } from 'react-hot-toast';
 import { useConversationExport } from '@/lib/hooks/useConversations';
@@ -33,8 +26,7 @@ export default function ShareModal({
   conversationTitle,
 }: ShareModalProps) {
   const [copied, setCopied] = useState(false);
-  const { exportAsJSON, exportAsMarkdown, copyAsText } =
-    useConversationExport();
+  const { exportAsJSON, exportAsMarkdown, copyAsText } = useConversationExport();
 
   // Refs for focus management
   const modalRef = useRef<HTMLDivElement>(null);
@@ -75,35 +67,32 @@ export default function ShareModal({
   }, [isOpen, onClose]);
 
   // Focus trap - cycle through focusable elements
-  const handleFocusTrap = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || !modalRef.current) return;
+  const handleFocusTrap = useCallback((e: KeyboardEvent) => {
+    if (e.key !== 'Tab' || !modalRef.current) return;
 
-      const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      );
+    const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
 
-      if (focusableElements.length === 0) return;
+    if (focusableElements.length === 0) return;
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
 
-      if (e.shiftKey) {
-        // Shift + Tab: if on first element, go to last
-        if (document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement.focus();
-        }
-      } else {
-        // Tab: if on last element, go to first
-        if (document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement.focus();
-        }
+    if (e.shiftKey) {
+      // Shift + Tab: if on first element, go to last
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
       }
-    },
-    []
-  );
+    } else {
+      // Tab: if on last element, go to first
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -114,9 +103,7 @@ export default function ShareModal({
 
   // Check if native share is supported
   const isShareSupported =
-    typeof window !== 'undefined' &&
-    typeof navigator !== 'undefined' &&
-    'share' in navigator;
+    typeof window !== 'undefined' && typeof navigator !== 'undefined' && 'share' in navigator;
 
   const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/chat?conversation=${conversationId}`;
   const twitterText = `Check out this debate on ContradictMe: "${conversationTitle}"`;
@@ -237,9 +224,7 @@ export default function ShareModal({
               <div className="p-6 space-y-4">
                 {/* Title */}
                 <div className="p-3 bg-gray-50 dark:bg-slate-800 rounded-lg">
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
-                    Conversation:
-                  </p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Conversation:</p>
                   <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                     {conversationTitle}
                   </p>

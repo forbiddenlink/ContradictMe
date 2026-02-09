@@ -10,7 +10,11 @@ interface Shortcut {
 }
 
 const shortcuts: Shortcut[] = [
-  { keys: ['⌘', 'Shift', 'L'], description: 'Toggle theme (light/dark/system)', category: 'General' },
+  {
+    keys: ['⌘', 'Shift', 'L'],
+    description: 'Toggle theme (light/dark/system)',
+    category: 'General',
+  },
   { keys: ['?'], description: 'Show keyboard shortcuts', category: 'General' },
   { keys: ['Escape'], description: 'Close modals and dialogs', category: 'General' },
   { keys: ['/'], description: 'Focus chat input', category: 'Chat' },
@@ -80,7 +84,12 @@ export default function KeyboardShortcutsModal() {
               aria-label="Close shortcuts modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -123,7 +132,15 @@ export default function KeyboardShortcutsModal() {
 
           <div className="sticky bottom-0 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 px-6 py-3">
             <p className="text-xs text-slate-600 dark:text-slate-400 text-center">
-              Press <kbd className="px-1.5 py-0.5 text-xs font-semibold bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded">?</kbd> anytime to see shortcuts • Press <kbd className="px-1.5 py-0.5 text-xs font-semibold bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded">Esc</kbd> to close
+              Press{' '}
+              <kbd className="px-1.5 py-0.5 text-xs font-semibold bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded">
+                ?
+              </kbd>{' '}
+              anytime to see shortcuts • Press{' '}
+              <kbd className="px-1.5 py-0.5 text-xs font-semibold bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded">
+                Esc
+              </kbd>{' '}
+              to close
             </p>
           </div>
         </m.div>

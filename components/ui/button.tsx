@@ -6,8 +6,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'ghost' | 'outline' | 'destructive';
   size?: 'default' | 'sm' | 'lg' | 'icon';
   asChild?: boolean;
@@ -29,8 +28,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             // Outline: improved dark mode contrast with lighter text
             'border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-100':
               variant === 'outline',
-            'bg-red-600 text-white hover:bg-red-700 shadow-sm':
-              variant === 'destructive',
+            'bg-red-600 text-white hover:bg-red-700 shadow-sm': variant === 'destructive',
             // Sizes
             'h-10 px-4 py-2': size === 'default',
             'h-9 rounded-md px-3': size === 'sm',

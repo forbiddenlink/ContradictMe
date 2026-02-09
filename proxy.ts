@@ -4,17 +4,17 @@ import { nanoid } from 'nanoid';
 export function proxy(request: NextRequest) {
   // Generate a unique nonce for this request
   const nonce = Buffer.from(nanoid()).toString('base64');
-  
+
   // Build CSP with nonce for scripts and styles
   const isDev = process.env.NODE_ENV !== 'production';
-  
+
   const scriptSrc = [
     "'self'",
     `'nonce-${nonce}'`,
     "'strict-dynamic'",
     ...(isDev ? ["'unsafe-eval'"] : []),
   ].join(' ');
-  
+
   const connectSrc = [
     "'self'",
     ...(isDev ? ['ws:', 'wss:'] : []),
@@ -37,7 +37,9 @@ export function proxy(request: NextRequest) {
     form-action 'self';
     frame-ancestors 'none';
     upgrade-insecure-requests;
-  `.replace(/\\s{2,}/g, ' ').trim();
+  `
+    .replace(/\\s{2,}/g, ' ')
+    .trim();
 
   // Add nonce to request headers so we can access it in pages
   const requestHeaders = new Headers(request.headers);
@@ -53,12 +55,9 @@ export function proxy(request: NextRequest) {
 
   // Set CSP header on response
   response.headers.set('Content-Security-Policy', cspHeader);
-  
+
   // Add HSTS header for security
-  response.headers.set(
-    'Strict-Transport-Security',
-    'max-age=63072000; includeSubDomains; preload'
-  );
+  response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
   return response;
 }
@@ -74,6 +73,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public files with extensions
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)/', 
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)/',
   ],
 };

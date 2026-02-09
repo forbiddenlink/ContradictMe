@@ -158,7 +158,11 @@ export default function PrivacyPolicyPage() {
             servers.
           </p>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-            <strong>Conversation History:</strong> Your chat conversations, bookmarks, and analytics data are stored locally in your browser using IndexedDB. This data remains on your device only and is never sent to our servers. You can clear all stored data at any time through your browser settings (Clear Browsing Data &gt; Indexed databases) or by using the in-app conversation management features.
+            <strong>Conversation History:</strong> Your chat conversations, bookmarks, and analytics
+            data are stored locally in your browser using IndexedDB. This data remains on your
+            device only and is never sent to our servers. You can clear all stored data at any time
+            through your browser settings (Clear Browsing Data &gt; Indexed databases) or by using
+            the in-app conversation management features.
           </p>
         </section>
 

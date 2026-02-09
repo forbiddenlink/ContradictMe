@@ -59,7 +59,7 @@ describe('Accessibility Tests', () => {
       </ThemeProvider>
     );
     const buttons = container.querySelectorAll('button');
-    
+
     buttons.forEach((button) => {
       // Check if button has accessible name (either text content or aria-label)
       const accessibleName = button.textContent || button.getAttribute('aria-label');

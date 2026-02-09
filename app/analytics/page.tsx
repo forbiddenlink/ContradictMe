@@ -42,9 +42,7 @@ function StatCard({ icon, label, value, description, color, delay = 0 }: StatCar
       </div>
       <p className="text-3xl font-bold text-slate-900 dark:text-white mb-1">{value}</p>
       <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">{label}</p>
-      {description && (
-        <p className="text-xs text-slate-500 dark:text-slate-500">{description}</p>
-      )}
+      {description && <p className="text-xs text-slate-500 dark:text-slate-500">{description}</p>}
     </m.div>
   );
 }
@@ -254,9 +252,7 @@ export default function AnalyticsDashboard() {
       <main className="max-w-6xl mx-auto px-6 py-8">
         {/* Stats Grid */}
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
-            Your Statistics
-          </h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Your Statistics</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <StatCard
               icon={<MessageCircle className="w-5 h-5 text-violet-700 dark:text-violet-400" />}

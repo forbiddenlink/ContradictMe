@@ -72,9 +72,7 @@ export default function EnhancedThinkingIndicator({
 
         {/* Message */}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
-            {message}
-          </p>
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{message}</p>
           {sourceCount && sourceCount > 0 && (
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               {sourceCount} sources found

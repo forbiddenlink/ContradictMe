@@ -44,7 +44,12 @@ export default function ThemeToggle({ showLabel = false }: ThemeToggleProps) {
     <m.button
       onClick={cycleTheme}
       className="relative flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 group"
-      style={{ width: showLabel ? 'auto' : '48px', height: '48px', paddingLeft: showLabel ? '12px' : '0', paddingRight: showLabel ? '12px' : '0' }}
+      style={{
+        width: showLabel ? 'auto' : '48px',
+        height: '48px',
+        paddingLeft: showLabel ? '12px' : '0',
+        paddingRight: showLabel ? '12px' : '0',
+      }}
       aria-label={`Current theme: ${theme}. Click to change. Keyboard shortcut: ${shortcutHint}`}
       title={`Theme: ${themeLabel} (${shortcutHint})`}
       whileHover={{ scale: 1.05 }}

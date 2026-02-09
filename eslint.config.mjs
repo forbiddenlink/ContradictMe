@@ -35,7 +35,10 @@ export default [
       'react/prop-types': 'off',
       // Allow jsx property (styled-jsx in Next.js)
       'react/no-unknown-property': ['error', { ignore: ['jsx', 'global'] }],
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       // These patterns are valid: reading from localStorage on mount, computing derived state
       'react-hooks/set-state-in-effect': 'off',
@@ -57,6 +60,14 @@ export default [
     },
   },
   {
-    ignores: ['node_modules/**', '.next/**', 'out/**', '*.config.js', '*.config.mjs', '.history/**', '.codacy/**'],
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      '*.config.js',
+      '*.config.mjs',
+      '.history/**',
+      '.codacy/**',
+    ],
   },
 ];

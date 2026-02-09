@@ -15,9 +15,7 @@ import { db, dbOperations, conversationUtils } from '../db';
 export function useConversations() {
   const conversations = useLiveQuery(() => dbOperations.getAllConversations());
 
-  const grouped = conversations
-    ? conversationUtils.groupByDate(conversations)
-    : null;
+  const grouped = conversations ? conversationUtils.groupByDate(conversations) : null;
 
   return {
     conversations: conversations || [],
@@ -30,13 +28,10 @@ export function useConversations() {
  * Hook to get a single conversation with live updates
  */
 export function useConversation(conversationId: string | null) {
-  const conversation = useLiveQuery(
-    async () => {
-      if (!conversationId) return null;
-      return await db.conversations.get(conversationId);
-    },
-    [conversationId]
-  );
+  const conversation = useLiveQuery(async () => {
+    if (!conversationId) return null;
+    return await db.conversations.get(conversationId);
+  }, [conversationId]);
 
   return {
     conversation: conversation || null,
@@ -52,63 +47,48 @@ export function useConversationOperations() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const createConversation = useCallback(
-    async (firstMessage: string, id?: string) => {
-      setIsCreating(true);
-      setError(null);
-      try {
-        const conversation = await dbOperations.createConversation(
-          firstMessage,
-          id
-        );
-        return conversation;
-      } catch (err) {
-        const message =
-          err instanceof Error ? err.message : 'Failed to create conversation';
-        setError(message);
-        throw err;
-      } finally {
-        setIsCreating(false);
-      }
-    },
-    []
-  );
+  const createConversation = useCallback(async (firstMessage: string, id?: string) => {
+    setIsCreating(true);
+    setError(null);
+    try {
+      const conversation = await dbOperations.createConversation(firstMessage, id);
+      return conversation;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to create conversation';
+      setError(message);
+      throw err;
+    } finally {
+      setIsCreating(false);
+    }
+  }, []);
 
-  const addMessage = useCallback(
-    async (conversationId: string, message: ConversationMessage) => {
-      setIsUpdating(true);
-      setError(null);
-      try {
-        await dbOperations.addMessage(conversationId, message);
-      } catch (err) {
-        const message =
-          err instanceof Error ? err.message : 'Failed to add message';
-        setError(message);
-        throw err;
-      } finally {
-        setIsUpdating(false);
-      }
-    },
-    []
-  );
+  const addMessage = useCallback(async (conversationId: string, message: ConversationMessage) => {
+    setIsUpdating(true);
+    setError(null);
+    try {
+      await dbOperations.addMessage(conversationId, message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to add message';
+      setError(message);
+      throw err;
+    } finally {
+      setIsUpdating(false);
+    }
+  }, []);
 
-  const updateTitle = useCallback(
-    async (conversationId: string, title: string) => {
-      setIsUpdating(true);
-      setError(null);
-      try {
-        await dbOperations.updateTitle(conversationId, title);
-      } catch (err) {
-        const message =
-          err instanceof Error ? err.message : 'Failed to update title';
-        setError(message);
-        throw err;
-      } finally {
-        setIsUpdating(false);
-      }
-    },
-    []
-  );
+  const updateTitle = useCallback(async (conversationId: string, title: string) => {
+    setIsUpdating(true);
+    setError(null);
+    try {
+      await dbOperations.updateTitle(conversationId, title);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to update title';
+      setError(message);
+      throw err;
+    } finally {
+      setIsUpdating(false);
+    }
+  }, []);
 
   const toggleBookmark = useCallback(async (conversationId: string) => {
     setIsUpdating(true);
@@ -117,8 +97,7 @@ export function useConversationOperations() {
       const newState = await dbOperations.toggleBookmark(conversationId);
       return newState;
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Failed to toggle bookmark';
+      const message = err instanceof Error ? err.message : 'Failed to toggle bookmark';
       setError(message);
       throw err;
     } finally {
@@ -132,8 +111,7 @@ export function useConversationOperations() {
     try {
       await dbOperations.deleteConversation(conversationId);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Failed to delete conversation';
+      const message = err instanceof Error ? err.message : 'Failed to delete conversation';
       setError(message);
       throw err;
     } finally {
@@ -302,8 +280,7 @@ export function useConversationExport() {
 
   const exportAsMarkdown = useCallback(async (conversationId: string) => {
     try {
-      const markdown =
-        await dbOperations.exportConversationMarkdown(conversationId);
+      const markdown = await dbOperations.exportConversationMarkdown(conversationId);
       const blob = new Blob([markdown], { type: 'text/markdown' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -321,8 +298,7 @@ export function useConversationExport() {
 
   const copyAsText = useCallback(async (conversationId: string) => {
     try {
-      const markdown =
-        await dbOperations.exportConversationMarkdown(conversationId);
+      const markdown = await dbOperations.exportConversationMarkdown(conversationId);
       await navigator.clipboard.writeText(markdown);
     } catch (err) {
       console.error('Copy failed:', err);

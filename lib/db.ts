@@ -169,10 +169,7 @@ export const dbOperations = {
   /**
    * Create a new conversation
    */
-  async createConversation(
-    firstMessage: string,
-    id?: string
-  ): Promise<Conversation> {
+  async createConversation(firstMessage: string, id?: string): Promise<Conversation> {
     const now = Date.now();
     const conversation: Conversation = {
       id: id || crypto.randomUUID(),
@@ -192,10 +189,7 @@ export const dbOperations = {
   /**
    * Add message to conversation
    */
-  async addMessage(
-    conversationId: string,
-    message: ConversationMessage
-  ): Promise<void> {
+  async addMessage(conversationId: string, message: ConversationMessage): Promise<void> {
     const conversation = await db.conversations.get(conversationId);
     if (!conversation) throw new Error('Conversation not found');
 
@@ -250,10 +244,7 @@ export const dbOperations = {
    * Get all conversations (sorted by update time)
    */
   async getAllConversations(): Promise<Conversation[]> {
-    return await db.conversations
-      .orderBy('updatedAt')
-      .reverse()
-      .toArray();
+    return await db.conversations.orderBy('updatedAt').reverse().toArray();
   },
 
   /**
@@ -310,10 +301,7 @@ export const dbOperations = {
   /**
    * Save user preference
    */
-  async setPreference(
-    key: string,
-    value: string | number | boolean | object
-  ): Promise<void> {
+  async setPreference(key: string, value: string | number | boolean | object): Promise<void> {
     await db.preferences.put({
       key,
       value,
@@ -363,20 +351,11 @@ export const dbOperations = {
     topTopics: Array<{ topic: string; count: number }>;
   }> {
     const cutoffDate = Date.now() - days * 24 * 60 * 60 * 1000;
-    const analytics = await db.analytics
-      .where('date')
-      .above(cutoffDate)
-      .toArray();
+    const analytics = await db.analytics.where('date').above(cutoffDate).toArray();
 
     const totalConversations = analytics.length;
-    const totalMessages = analytics.reduce(
-      (sum, a) => sum + a.messageCount,
-      0
-    );
-    const totalArguments = analytics.reduce(
-      (sum, a) => sum + a.argumentsViewed,
-      0
-    );
+    const totalMessages = analytics.reduce((sum, a) => sum + a.messageCount, 0);
+    const totalArguments = analytics.reduce((sum, a) => sum + a.argumentsViewed, 0);
     const averageDuration =
       totalConversations > 0
         ? analytics.reduce((sum, a) => sum + a.duration, 0) / totalConversations

@@ -26,7 +26,7 @@ describe('FollowUpSuggestions', () => {
 
     // Should show header
     expect(screen.getByText(/Continue the conversation/i)).toBeInTheDocument();
-    
+
     // Should show at least one suggestion
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBeGreaterThan(0);

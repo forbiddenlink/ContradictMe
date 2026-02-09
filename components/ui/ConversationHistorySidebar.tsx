@@ -53,10 +53,8 @@ export function ConversationHistorySidebar({
 
   const { conversations, grouped, isLoading } = useConversations();
   const { query, setQuery, results, isSearching } = useConversationSearch();
-  const { deleteConversation, toggleBookmark, updateTitle } =
-    useConversationOperations();
-  const { exportAsJSON, exportAsMarkdown, copyAsText } =
-    useConversationExport();
+  const { deleteConversation, toggleBookmark, updateTitle } = useConversationOperations();
+  const { exportAsJSON, exportAsMarkdown, copyAsText } = useConversationExport();
 
   const displayConversations = searchMode && query ? results : conversations;
 
@@ -94,35 +92,32 @@ export function ConversationHistorySidebar({
   }, [isOpen, onClose]);
 
   // Focus trap - cycle through focusable elements
-  const handleFocusTrap = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || !sidebarRef.current) return;
+  const handleFocusTrap = useCallback((e: KeyboardEvent) => {
+    if (e.key !== 'Tab' || !sidebarRef.current) return;
 
-      const focusableElements = sidebarRef.current.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      );
+    const focusableElements = sidebarRef.current.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
 
-      if (focusableElements.length === 0) return;
+    if (focusableElements.length === 0) return;
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
 
-      if (e.shiftKey) {
-        // Shift + Tab: if on first element, go to last
-        if (document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement.focus();
-        }
-      } else {
-        // Tab: if on last element, go to first
-        if (document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement.focus();
-        }
+    if (e.shiftKey) {
+      // Shift + Tab: if on first element, go to last
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
       }
-    },
-    []
-  );
+    } else {
+      // Tab: if on last element, go to first
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -169,10 +164,7 @@ export function ConversationHistorySidebar({
     setActiveMenu(null);
   };
 
-  const handleExport = async (
-    conversationId: string,
-    format: 'json' | 'markdown'
-  ) => {
+  const handleExport = async (conversationId: string, format: 'json' | 'markdown') => {
     try {
       if (format === 'json') {
         await exportAsJSON(conversationId);
@@ -224,7 +216,9 @@ export function ConversationHistorySidebar({
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
-              <h2 id="sidebar-title" className="text-lg font-semibold">Conversations</h2>
+              <h2 id="sidebar-title" className="text-lg font-semibold">
+                Conversations
+              </h2>
               <div className="flex items-center gap-2">
                 <Button
                   variant="ghost"
@@ -235,11 +229,7 @@ export function ConversationHistorySidebar({
                   }}
                   aria-label={searchMode ? 'Close search' : 'Search conversations'}
                 >
-                  {searchMode ? (
-                    <X className="h-4 w-4" />
-                  ) : (
-                    <Search className="h-4 w-4" />
-                  )}
+                  {searchMode ? <X className="h-4 w-4" /> : <Search className="h-4 w-4" />}
                 </Button>
                 <Button
                   ref={closeButtonRef}
@@ -278,11 +268,7 @@ export function ConversationHistorySidebar({
 
             {/* New Conversation Button */}
             <div className="p-4 space-y-2">
-              <Button
-                onClick={onNewConversation}
-                className="w-full"
-                variant="default"
-              >
+              <Button onClick={onNewConversation} className="w-full" variant="default">
                 New Conversation
               </Button>
               <Button
@@ -535,9 +521,7 @@ function ConversationItem({
       <button
         onClick={() => onSelect(conversation.id)}
         className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-          isActive
-            ? 'bg-primary/10 text-primary'
-            : 'hover:bg-muted text-foreground'
+          isActive ? 'bg-primary/10 text-primary' : 'hover:bg-muted text-foreground'
         }`}
       >
         <div className="flex items-start gap-2">
@@ -551,9 +535,7 @@ function ConversationItem({
                 {conversation.messageCount} messages
               </span>
               {conversation.tags.length > 0 && (
-                <span className="text-xs text-muted-foreground">
-                  · {conversation.tags[0]}
-                </span>
+                <span className="text-xs text-muted-foreground">· {conversation.tags[0]}</span>
               )}
             </div>
           </div>

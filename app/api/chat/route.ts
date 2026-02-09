@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
   if (isRateLimited(clientId)) {
     const state = rateLimitStore.get(clientId);
     const retryAfter = state ? Math.ceil((state.resetAt - Date.now()) / 1000) : 60;
-    
+
     return new Response(
       JSON.stringify({
         error: 'Rate limit exceeded. Please wait a minute and try again.',
@@ -118,8 +118,8 @@ export async function POST(req: NextRequest) {
       }),
       {
         status: 429,
-        headers: { 
-          ...jsonHeaders, 
+        headers: {
+          ...jsonHeaders,
           'Retry-After': retryAfter.toString(),
           'X-RateLimit-Limit': RATE_LIMIT_MAX_REQUESTS.toString(),
           'X-RateLimit-Remaining': '0',

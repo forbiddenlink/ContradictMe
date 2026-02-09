@@ -31,7 +31,8 @@ export function validateEnv() {
   }
 
   // Validate ALGOLIA_AGENT_ENDPOINT is a valid URL
-  const endpoint = process.env.ALGOLIA_AGENT_ENDPOINT || process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
+  const endpoint =
+    process.env.ALGOLIA_AGENT_ENDPOINT || process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ENDPOINT;
   if (endpoint) {
     try {
       new URL(endpoint);

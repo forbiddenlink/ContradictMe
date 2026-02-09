@@ -214,7 +214,7 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  
+
   // Conversation hooks
   const { createConversation, addMessage: addMessageToDB } = useConversationOperations();
   const { conversation: currentConversation } = useConversation(currentConversationId || '');
@@ -317,7 +317,7 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
     if (messages.length > 1) {
       // Save to localStorage for backward compatibility
       const timer = setTimeout(() => saveConversation(messages), 300);
-      
+
       // Save to IndexedDB
       const saveToDb = async () => {
         try {
@@ -327,15 +327,17 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
             role: msg.role,
             content: msg.content,
             timestamp: msg.timestamp,
-            arguments: msg.arguments?.map(arg => ({
+            arguments: msg.arguments?.map((arg) => ({
               id: arg.objectID,
               mainClaim: arg.mainClaim,
               evidence: arg.evidence,
-              sources: [{
-                title: arg.sourceMetadata.title,
-                url: arg.sourceMetadata.url || '',
-                credibility: arg.sourceCredibility,
-              }],
+              sources: [
+                {
+                  title: arg.sourceMetadata.title,
+                  url: arg.sourceMetadata.url || '',
+                  credibility: arg.sourceCredibility,
+                },
+              ],
               qualityScore: arg.qualityScore,
               domain: arg.metadata.domain,
               createdAt: Date.now(),
@@ -343,10 +345,12 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
           });
 
           // Create conversation on first user message
-          if (!currentConversationId && messages.some(m => m.role === 'user')) {
-            const firstUserMessage = messages.find(m => m.role === 'user');
+          if (!currentConversationId && messages.some((m) => m.role === 'user')) {
+            const firstUserMessage = messages.find((m) => m.role === 'user');
             if (firstUserMessage) {
-              const newConversation = await createConversation(firstUserMessage.content.slice(0, 100));
+              const newConversation = await createConversation(
+                firstUserMessage.content.slice(0, 100)
+              );
               if (newConversation) {
                 setCurrentConversationId(newConversation.id);
                 // Save all messages to the new conversation
@@ -366,7 +370,7 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
           console.error('Failed to save to IndexedDB:', error);
         }
       };
-      
+
       saveToDb();
       return () => clearTimeout(timer);
     }
@@ -387,7 +391,9 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
       messages.at(-1)?.role === 'assistant'
     ) {
       // Check for reduced motion preference before triggering confetti
-      const prefersReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersReducedMotion = globalThis.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
       if (prefersReducedMotion) {
         return; // Skip confetti for users who prefer reduced motion
       }
@@ -600,14 +606,14 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
       const conversation = await db.conversations.get(conversationId);
       if (conversation) {
         setCurrentConversationId(conversationId);
-        
+
         // Convert ConversationMessage to Message
-        const convertedMessages: Message[] = conversation.messages.map(msg => ({
+        const convertedMessages: Message[] = conversation.messages.map((msg) => ({
           id: msg.id,
           role: msg.role,
           content: msg.content,
           timestamp: msg.timestamp,
-          arguments: msg.arguments?.map(arg => ({
+          arguments: msg.arguments?.map((arg) => ({
             objectID: arg.id,
             position: '',
             opposingBeliefs: [],
@@ -640,7 +646,7 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
             },
           })),
         }));
-        
+
         setMessages(convertedMessages);
         setIsSidebarOpen(false);
         toast.success('Conversation loaded');
@@ -700,7 +706,7 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
               <Menu className="w-5 h-5 text-slate-600 dark:text-slate-400" />
             </button>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <ThemeToggle />
             {currentConversationId && hasUserMessages && (
@@ -714,144 +720,149 @@ export default function ChatInterface({ initialMessage }: Readonly<ChatInterface
             )}
           </div>
         </div>
-      {/* Messages Area */}
-      <div
-        className="flex-1 overflow-y-auto px-4 py-6 space-y-6 min-h-0"
-        role="log"
-        aria-live="polite"
-        aria-label="Chat conversation"
-      >
-        <AnimatePresence mode="popLayout">
-          {messages.map((message, index) => (
+        {/* Messages Area */}
+        <div
+          className="flex-1 overflow-y-auto px-4 py-6 space-y-6 min-h-0"
+          role="log"
+          aria-live="polite"
+          aria-label="Chat conversation"
+        >
+          <AnimatePresence mode="popLayout">
+            {messages.map((message, index) => (
+              <m.div
+                key={message.id}
+                variants={messageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{
+                  duration: 0.3,
+                  delay: index === messages.length - 1 ? 0.1 : 0,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
+                layout
+              >
+                <ChatMessage
+                  message={message}
+                  isStreaming={isStreaming && message.id === streamingMessageId}
+                />
+              </m.div>
+            ))}
+          </AnimatePresence>
+          {isLoading && !isStreaming && (
             <m.div
-              key={message.id}
-              variants={messageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{
-                duration: 0.3,
-                delay: index === messages.length - 1 ? 0.1 : 0,
-                ease: [0.4, 0, 0.2, 1],
-              }}
-              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              <ChatMessage
-                message={message}
-                isStreaming={isStreaming && message.id === streamingMessageId}
+              <EnhancedThinkingIndicator
+                phase={loadingPhase}
+                message={LOADING_PHASES[loadingPhase].message}
+                totalPhases={LOADING_PHASES.length}
               />
             </m.div>
-          ))}
-        </AnimatePresence>
-        {isLoading && !isStreaming && (
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <EnhancedThinkingIndicator
-              phase={loadingPhase}
-              message={LOADING_PHASES[loadingPhase].message}
-              totalPhases={LOADING_PHASES.length}
-            />
-          </m.div>
-        )}
+          )}
 
-        {/* Error display */}
-        {error && !isLoading && (
-          <div className="flex justify-center animate-slide-up">
-            <div
-              className="bg-red-50/90 dark:bg-red-950/50 backdrop-blur-sm border border-red-200 dark:border-red-800/50 rounded-2xl px-5 py-4 shadow-sm max-w-md"
-              role="alert"
-              aria-live="assertive"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-red-500 text-xl flex-shrink-0" aria-hidden="true">
-                  ⚠️
-                </span>
-                <div>
-                  <p className="text-sm text-red-800 dark:text-red-200 font-medium mb-1">
-                    Connection Error
-                  </p>
-                  <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
-                  <button
-                    onClick={() => {
-                      setError(null);
-                      const lastUserMessage = userMessages.at(-1);
-                      if (lastUserMessage) handleSendMessage(lastUserMessage.content);
-                    }}
-                    className="mt-2 text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition-colors"
-                    aria-label="Retry sending last message"
-                  >
-                    Retry →
-                  </button>
+          {/* Error display */}
+          {error && !isLoading && (
+            <div className="flex justify-center animate-slide-up">
+              <div
+                className="bg-red-50/90 dark:bg-red-950/50 backdrop-blur-sm border border-red-200 dark:border-red-800/50 rounded-2xl px-5 py-4 shadow-sm max-w-md"
+                role="alert"
+                aria-live="assertive"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 text-xl flex-shrink-0" aria-hidden="true">
+                    ⚠️
+                  </span>
+                  <div>
+                    <p className="text-sm text-red-800 dark:text-red-200 font-medium mb-1">
+                      Connection Error
+                    </p>
+                    <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+                    <button
+                      onClick={() => {
+                        setError(null);
+                        const lastUserMessage = userMessages.at(-1);
+                        if (lastUserMessage) handleSendMessage(lastUserMessage.content);
+                      }}
+                      className="mt-2 text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition-colors"
+                      aria-label="Retry sending last message"
+                    >
+                      Retry →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Follow-up suggestions */}
-        {shouldShowFollowUps && lastAssistantMessage && (
-          <div className="flex justify-start px-4">
-            <FollowUpSuggestions
-              conversationContext={messages
-                .slice(-4)
-                .map((m) => m.content)
-                .join(' ')}
-              lastAssistantMessage={lastAssistantMessage.content}
-              onSelectQuestion={handleSendMessage}
-              isVisible={shouldShowFollowUps}
-            />
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
-
-      {/* Suggested Prompts (only show if no user messages yet) */}
-      {!hasUserMessages && (
-        <div className="px-4 pb-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg" aria-hidden="true">💡</span>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
-              Popular beliefs to challenge
-            </p>
-          </div>
-          <m.div
-            className="flex flex-wrap gap-2 mb-4 max-h-[180px] overflow-y-auto pr-2 scrollbar-thin"
-            role="group"
-            aria-label="Suggested topics to challenge"
-            initial="initial"
-            animate="animate"
-            variants={{
-              animate: {
-                transition: {
-                  staggerChildren: 0.03,
-                },
-              },
-            }}
-          >
-            {SUGGESTED_PROMPTS.map((item, index) => (
-              <m.button
-                key={item.label}
-                onClick={() => handleSuggestedPrompt(item.prompt)}
-                className="group px-4 py-2.5 bg-gradient-to-br from-white/80 to-white/60 dark:from-slate-800/80 dark:to-slate-900/60 backdrop-blur-md border border-gray-200/60 dark:border-slate-700/60 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:from-violet-50 hover:to-white dark:hover:from-violet-950/30 dark:hover:to-slate-800 hover:border-violet-300 dark:hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-200/50 dark:hover:shadow-violet-900/30 hover:text-violet-700 dark:hover:text-violet-300 transition-all flex items-center gap-2"
-                aria-label={`${item.category}: ${item.label}`}
-                variants={promptVariants}
-                whileHover="hover"
-                whileTap="tap"
-                transition={{ duration: 0.2, delay: index * 0.02 }}
-              >
-                <span className="text-base transition-transform group-hover:scale-110" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <span>{item.label}</span>
-              </m.button>
-            ))}
-          </m.div>
+          {/* Follow-up suggestions */}
+          {shouldShowFollowUps && lastAssistantMessage && (
+            <div className="flex justify-start px-4">
+              <FollowUpSuggestions
+                conversationContext={messages
+                  .slice(-4)
+                  .map((m) => m.content)
+                  .join(' ')}
+                lastAssistantMessage={lastAssistantMessage.content}
+                onSelectQuestion={handleSendMessage}
+                isVisible={shouldShowFollowUps}
+              />
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
-      )}
+
+        {/* Suggested Prompts (only show if no user messages yet) */}
+        {!hasUserMessages && (
+          <div className="px-4 pb-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg" aria-hidden="true">
+                💡
+              </span>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
+                Popular beliefs to challenge
+              </p>
+            </div>
+            <m.div
+              className="flex flex-wrap gap-2 mb-4 max-h-[180px] overflow-y-auto pr-2 scrollbar-thin"
+              role="group"
+              aria-label="Suggested topics to challenge"
+              initial="initial"
+              animate="animate"
+              variants={{
+                animate: {
+                  transition: {
+                    staggerChildren: 0.03,
+                  },
+                },
+              }}
+            >
+              {SUGGESTED_PROMPTS.map((item, index) => (
+                <m.button
+                  key={item.label}
+                  onClick={() => handleSuggestedPrompt(item.prompt)}
+                  className="group px-4 py-2.5 bg-gradient-to-br from-white/80 to-white/60 dark:from-slate-800/80 dark:to-slate-900/60 backdrop-blur-md border border-gray-200/60 dark:border-slate-700/60 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:from-violet-50 hover:to-white dark:hover:from-violet-950/30 dark:hover:to-slate-800 hover:border-violet-300 dark:hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-200/50 dark:hover:shadow-violet-900/30 hover:text-violet-700 dark:hover:text-violet-300 transition-all flex items-center gap-2"
+                  aria-label={`${item.category}: ${item.label}`}
+                  variants={promptVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                  transition={{ duration: 0.2, delay: index * 0.02 }}
+                >
+                  <span
+                    className="text-base transition-transform group-hover:scale-110"
+                    aria-hidden="true"
+                  >
+                    {item.icon}
+                  </span>
+                  <span>{item.label}</span>
+                </m.button>
+              ))}
+            </m.div>
+          </div>
+        )}
 
         {/* Input Area */}
         <div className="border-t border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 relative z-10">

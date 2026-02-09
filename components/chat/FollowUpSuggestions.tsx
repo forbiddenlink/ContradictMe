@@ -101,9 +101,7 @@ function generateFollowUps(context: string, lastMessage: string): string[] {
     lowerContext.includes('data')
   ) {
     suggestions.push(
-      FOLLOW_UP_TEMPLATES.evidence[
-        Math.floor(Math.random() * FOLLOW_UP_TEMPLATES.evidence.length)
-      ]
+      FOLLOW_UP_TEMPLATES.evidence[Math.floor(Math.random() * FOLLOW_UP_TEMPLATES.evidence.length)]
     );
   }
 

@@ -2,15 +2,15 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { 
-  Brain, 
-  Heart, 
-  Send, 
-  Share2, 
-  Download, 
+import {
+  Brain,
+  Heart,
+  Send,
+  Share2,
+  Download,
   ThumbsUp,
   MessageCircle,
-  Trophy
+  Trophy,
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
@@ -84,16 +84,18 @@ export default function DebatePage() {
     try {
       // Build context from previous messages
       const context = previousMessages
-        .map(m => `${m.speaker === 'logical' ? 'Logical Larry' : 'Emotional Emma'}: ${m.content}`)
+        .map((m) => `${m.speaker === 'logical' ? 'Logical Larry' : 'Emotional Emma'}: ${m.content}`)
         .join('\n\n');
 
-      const systemPrompt = nextSpeaker === 'logical'
-        ? `You are "Logical Larry" - a rational, evidence-based debater who values logic, data, and scientific reasoning. You make structured arguments with clear premises and conclusions. Be concise (2-3 paragraphs max).`
-        : `You are "Emotional Emma" - a passionate, empathetic debater who values human stories, emotions, and moral intuitions. You connect with people's hearts and speak to values. Be concise (2-3 paragraphs max).`;
+      const systemPrompt =
+        nextSpeaker === 'logical'
+          ? `You are "Logical Larry" - a rational, evidence-based debater who values logic, data, and scientific reasoning. You make structured arguments with clear premises and conclusions. Be concise (2-3 paragraphs max).`
+          : `You are "Emotional Emma" - a passionate, empathetic debater who values human stories, emotions, and moral intuitions. You connect with people's hearts and speak to values. Be concise (2-3 paragraphs max).`;
 
-      const userPrompt = round === 1 && nextSpeaker === 'logical'
-        ? `Make an opening argument about: ${topic}\n\nBe compelling but concise.`
-        : `Continue the debate about: ${topic}\n\nPrevious arguments:\n${context}\n\nRespond to your opponent's points and strengthen your position.`;
+      const userPrompt =
+        round === 1 && nextSpeaker === 'logical'
+          ? `Make an opening argument about: ${topic}\n\nBe compelling but concise.`
+          : `Continue the debate about: ${topic}\n\nPrevious arguments:\n${context}\n\nRespond to your opponent's points and strengthen your position.`;
 
       // Combine system prompt and user prompt into a single message
       // since the API expects { message: string } format
@@ -150,7 +152,7 @@ export default function DebatePage() {
         round,
       };
 
-      setDebateState(prev => ({
+      setDebateState((prev) => ({
         ...prev,
         messages: [...prev.messages, newMessage],
       }));
@@ -167,7 +169,7 @@ export default function DebatePage() {
         }, 1000);
       } else {
         // Debate complete
-        setDebateState(prev => ({
+        setDebateState((prev) => ({
           ...prev,
           currentRound: round,
           isActive: false,
@@ -176,10 +178,11 @@ export default function DebatePage() {
       }
     } catch (error) {
       console.error('Debate generation error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to generate debate response';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to generate debate response';
       toast.error(errorMessage);
       // Reset debate state on error so user can try again
-      setDebateState(prev => ({
+      setDebateState((prev) => ({
         ...prev,
         isActive: false,
       }));
@@ -199,7 +202,7 @@ export default function DebatePage() {
       round: debateState.currentRound,
     };
 
-    setDebateState(prev => ({
+    setDebateState((prev) => ({
       ...prev,
       messages: [...prev.messages, interjectionMessage],
     }));
@@ -208,10 +211,11 @@ export default function DebatePage() {
     toast.success('Interjection added! AIs will consider it.');
 
     // Continue debate with user's input in context
-    const nextSpeaker = debateState.messages[debateState.messages.length - 1]?.speaker === 'logical' 
-      ? 'emotional' 
-      : 'logical';
-    
+    const nextSpeaker =
+      debateState.messages[debateState.messages.length - 1]?.speaker === 'logical'
+        ? 'emotional'
+        : 'logical';
+
     await generateDebateRound(
       debateState.topic,
       [...debateState.messages, interjectionMessage],
@@ -221,7 +225,7 @@ export default function DebatePage() {
   };
 
   const castVote = (vote: 'logical' | 'emotional') => {
-    setDebateState(prev => ({
+    setDebateState((prev) => ({
       ...prev,
       userVote: vote,
       winner: vote,
@@ -233,10 +237,13 @@ export default function DebatePage() {
 
   const shareDebate = async () => {
     const transcript = debateState.messages
-      .map(m => {
-        const name = m.speaker === 'logical' ? 'Logical Larry' : 
-                     m.speaker === 'emotional' ? 'Emotional Emma' : 
-                     'You';
+      .map((m) => {
+        const name =
+          m.speaker === 'logical'
+            ? 'Logical Larry'
+            : m.speaker === 'emotional'
+              ? 'Emotional Emma'
+              : 'You';
         return `${name} (Round ${m.round}):\n${m.content}`;
       })
       .join('\n\n---\n\n');
@@ -261,10 +268,13 @@ export default function DebatePage() {
 
   const downloadTranscript = () => {
     const transcript = debateState.messages
-      .map(m => {
-        const name = m.speaker === 'logical' ? 'Logical Larry' : 
-                     m.speaker === 'emotional' ? 'Emotional Emma' : 
-                     'User';
+      .map((m) => {
+        const name =
+          m.speaker === 'logical'
+            ? 'Logical Larry'
+            : m.speaker === 'emotional'
+              ? 'Emotional Emma'
+              : 'User';
         return `${name} (Round ${m.round}):\n${m.content}`;
       })
       .join('\n\n---\n\n');
@@ -288,9 +298,23 @@ export default function DebatePage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/30">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-3-3m0 0l-3 3m3-3v6" />
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-3-3m0 0l-3 3m3-3v6"
+                  />
                 </svg>
               </div>
               <div>
@@ -348,8 +372,18 @@ export default function DebatePage() {
                 disabled={!topicInput.trim()}
                 className="mt-4 w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-teal-600 text-white font-semibold hover:from-violet-700 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
                 Start Debate
               </button>
@@ -387,7 +421,9 @@ export default function DebatePage() {
                 {debateState.topic}
               </h2>
               <div className="flex items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-                <span>Round {debateState.currentRound}/{debateState.maxRounds}</span>
+                <span>
+                  Round {debateState.currentRound}/{debateState.maxRounds}
+                </span>
                 {!debateState.isActive && debateState.messages.length > 0 && (
                   <span className="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-medium">
                     Complete
@@ -411,7 +447,7 @@ export default function DebatePage() {
                 </div>
                 <AnimatePresence>
                   {debateState.messages
-                    .filter(m => m.speaker === 'logical')
+                    .filter((m) => m.speaker === 'logical')
                     .map((message, idx) => (
                       <m.div
                         key={message.id}
@@ -444,7 +480,7 @@ export default function DebatePage() {
                 </div>
                 <AnimatePresence>
                   {debateState.messages
-                    .filter(m => m.speaker === 'emotional')
+                    .filter((m) => m.speaker === 'emotional')
                     .map((message, idx) => (
                       <m.div
                         key={message.id}
@@ -466,7 +502,7 @@ export default function DebatePage() {
             </div>
 
             {/* User Interjections */}
-            {debateState.messages.filter(m => m.speaker === 'user').length > 0 && (
+            {debateState.messages.filter((m) => m.speaker === 'user').length > 0 && (
               <div className="mb-8">
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
                   <MessageCircle className="w-4 h-4" />
@@ -474,7 +510,7 @@ export default function DebatePage() {
                 </h3>
                 <div className="space-y-2">
                   {debateState.messages
-                    .filter(m => m.speaker === 'user')
+                    .filter((m) => m.speaker === 'user')
                     .map((message) => (
                       <div
                         key={message.id}
@@ -532,7 +568,7 @@ export default function DebatePage() {
                     Who won the debate?
                   </h3>
                 </div>
-                
+
                 {!debateState.userVote ? (
                   <div className="flex gap-4 justify-center">
                     <button
@@ -555,10 +591,14 @@ export default function DebatePage() {
                 ) : (
                   <div className="text-center">
                     <p className="text-lg text-gray-700 dark:text-gray-300">
-                      You voted for <span className="font-bold">{debateState.userVote === 'logical' ? 'Logical Larry' : 'Emotional Emma'}</span>!
+                      You voted for{' '}
+                      <span className="font-bold">
+                        {debateState.userVote === 'logical' ? 'Logical Larry' : 'Emotional Emma'}
+                      </span>
+                      !
                     </p>
                     <button
-                      onClick={() => setDebateState(prev => ({ ...prev, userVote: undefined }))}
+                      onClick={() => setDebateState((prev) => ({ ...prev, userVote: undefined }))}
                       className="mt-4 text-sm text-violet-600 dark:text-violet-400 hover:underline"
                     >
                       Change vote
@@ -572,9 +612,7 @@ export default function DebatePage() {
             {isGenerating && (
               <div className="flex items-center justify-center gap-3 py-4">
                 <div className="animate-spin rounded-full h-5 w-5 border-2 border-violet-600 border-t-transparent" />
-                <span className="text-gray-600 dark:text-gray-400">
-                  AI is thinking...
-                </span>
+                <span className="text-gray-600 dark:text-gray-400">AI is thinking...</span>
               </div>
             )}
 

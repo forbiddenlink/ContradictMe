@@ -21,8 +21,7 @@ export function ToastProvider() {
           borderRadius: '0.75rem',
           padding: '1rem',
           fontSize: '0.875rem',
-          boxShadow:
-            '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.10)',
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.10)',
           backdropFilter: 'blur(20px) saturate(180%)',
         },
 

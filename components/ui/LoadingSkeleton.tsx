@@ -40,7 +40,10 @@ export default function LoadingSkeleton({ variant = 'chat' }: LoadingSkeletonPro
     return (
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-pulse">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
+          <div
+            key={i}
+            className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl"
+          >
             <div className="h-10 bg-slate-200 dark:bg-slate-800 rounded w-16 mb-2" />
             <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded w-24" />
           </div>
