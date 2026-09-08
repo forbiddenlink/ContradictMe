@@ -11,7 +11,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      // Must match tsconfig's `"@/*": ["./*"]`, which is the repo ROOT, not ./src.
+      // This pointed at ./src, where almost nothing lives — components/ and lib/
+      // are at the root — so every `@/...` import in __tests__ failed to resolve
+      // and the entire suite collected 0 tests while CI showed failed FILES
+      // rather than failed tests.
+      '@': resolve(__dirname, '.'),
     },
   },
 })
